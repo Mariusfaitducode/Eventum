@@ -1,0 +1,54 @@
+/* Style de la barre de navigation */
+.navbar {
+  background-color: #ffffff;
+  width: 100%;
+}
+  
+.navbar.li{
+  float : left;
+}
+
+ul{
+  list-style-type: none;
+}
+
+/* Style des liens de la barre de navigation */
+.nav-item a {
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+  
+/* Changement de couleur au survol */
+.nav-item a:hover {
+  background: #ddd;
+  color: black;
+}
+
+#leftPane{
+  margin-top: 50px;
+  margin-left: 0px;
+  width: 25%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+  
+
+#logo{
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.icon{
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+}
