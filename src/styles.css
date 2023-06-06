@@ -13,3 +13,17 @@
   border: none;
   border-radius: 100px;
 }
+
+.central-pane{
+  margin-left: 25%;
+  background-color: rgb(53, 120, 120);
+}
+
+a {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+li {
+    list-style: none;
+}

@@ -5,6 +5,7 @@ import {HomeRoutingModule} from "./home-routing.module";
 import {CentralPaneComponent} from "../../central-pane/central-pane.component";
 import {LeftPaneComponent} from "../../left-pane/left-pane.component";
 import {RightPaneComponent} from "../../right-pane/right-pane.component";
+import { SearchBarComponent } from "../../utils/search-bar/search-bar.component";
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {RightPaneComponent} from "../../right-pane/right-pane.component";
     CentralPaneComponent,
     LeftPaneComponent,
     RightPaneComponent,
+    SearchBarComponent
   ],
   imports: [
     CommonModule,

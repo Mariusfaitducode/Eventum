@@ -26,7 +26,6 @@ import { LoginComponent } from './view/forms/components/login/login.component';
     MessageComponent,
     ContainerEventComponent,
     CardEventComponent,
-    SearchBarComponent,
     LoginComponent,
   ],
   imports: [
