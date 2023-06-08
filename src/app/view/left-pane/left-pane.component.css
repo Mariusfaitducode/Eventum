@@ -1,6 +1,7 @@
 /* Style de la barre de navigation */
 
 /* Container bar de navigation */
+/* Taille du coté gauche */
 
 #leftPane{
   /* margin-top: 50px; */
@@ -26,6 +27,7 @@
   }
 }
 
+/* Style contenu */
 
 .sidebar {
   display: flex;
@@ -36,11 +38,7 @@
   padding: 40px 0;
 }  
 
-
-
 .logo{
-  /* border : 1px solid #352f2f8a; */
-
   align-self: center;
 }
 
@@ -50,14 +48,13 @@
 
 .links{
   margin-top: 20px; 
+  padding: 0px;
   
   /* align-self: center; */
   
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  /* border : 1px solid #352f2f8a; */
 }
 
 .navbar {
@@ -72,20 +69,18 @@
 }
 
 .links a{
+  
   padding: 10px;
   
-  padding-left: 50px;
+  padding-left: 40px;
 
   display: flex;
-  /* border : 1px solid #352f2f8a; */
+  
 }
 
 .links a:hover{
-  background-color: var(--color2-hover);
-  border-radius: 10px;
-
-  color: var(--color2-text);
-  fill: var(--color2-text);
+  background-color: var(--purple-0);
+  border-radius: 30px;
 }
 
 .links .nav-icon svg{
@@ -115,15 +110,21 @@
   }
 
   .links a{
-      padding: 10px;
+      padding: 5px;
 
       width: 53px;
       height: 53px;
 
       /* align-self: center; */
       /* padding-left: 10px; */
-      
   }
+
+  .links li{
+      
+      margin-bottom: 0px;
+
+      margin-left: 10px;
+    }
 
   .links .nav-icon{
       /* vertical-align: middle; */
@@ -139,6 +140,6 @@
   }
 
   .logo img{
-      width: 100px;
+      width: 80px;
   }
 }

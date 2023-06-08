@@ -1,29 +1,87 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+
+  /* Variable color */
+
+  /* Color white */
+  --white-0: #ffffff;
+  --white-1: #fcfaff;
+
+  /* Color violet */
+
+  --purple-0: #dcb3df;
+  --purple-1: #9E5CA3;
+  --purple-2: #621768;
+  --purple-3: #3c0444;
+
+  /* Color bleu */
+  --blue-0: #B9DDF6;
+
+  /* Color gray */
+
+  --lightgray-0: #dfdddd;
+
+
+  --gray-0: #352f2f8a;
+  --black: #000000;
+  
+}
+
+/* Basic style */
+
 * {
-  font-family: "Fira Code Light", sans-serif;
+  /* font-family: "Fira Code Light", sans-serif; */
+  font-family: -apple-system, BlinkMacSystemFont, Poppins,  Montserrat, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
-}
-
-.button {
-  padding: 10px 35px;
-  font-size: 25px;
-  cursor: pointer;
-  background-color: #9E5CA3;
-  color: white;
-  border: none;
-  border-radius: 100px;
-}
-
-.central-pane{
-  margin-left: 25%;
-  background-color: rgb(53, 120, 120);
 }
 
 a {
   text-decoration: none;
   font-size: 18px;
+  color: var(--black);
+
+  transition: all 0.3s ease-in-out;
 }
 
 li {
     list-style: none;
+}
+
+/* General class */
+
+/* Central Pane */
+
+.central-pane{
+  margin-left: 240px;
+  margin-right: 240px;
+  
+}
+
+@media screen and (max-width: 1200px) {
+  .central-pane {
+    margin-left: 100px;
+  }
+}
+
+/* @media screen and (max-width: 600px) {
+  .centralPane {
+    margin-left: 0px;
+  }
+} */
+
+/* Button */
+
+.button {
+  padding: 10px 35px;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: var(--purple-1);
+  color: var(--white-0);
+  border: none;
+  border-radius: 100px;
 }
