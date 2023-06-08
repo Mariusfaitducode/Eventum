@@ -1,0 +1,74 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+
+  "users" :[
+    {
+      "id_utilisateur": 2,
+      "nom": "nom",
+      "prenom": "prenom",
+      "pseudo": "pseudo",
+      "email": "email",
+      "password": "password",
+      "photo_profil": "photo_profil",
+      "is_darkmode": true,
+      "role": 9
+    },
+    {
+        "id_utilisateur": 3,
+        "nom": "nom",
+        "prenom": "prenom",
+        "pseudo": "pseudo",
+        "email": "email",
+        "password": "password",
+        "photo_profil": "photo_profil",
+        "is_darkmode": true,
+        "role": 9
+      },
+      {
+        "id_utilisateur": 4,
+        "nom": "nom2",
+        "prenom": "prenom2",
+        "pseudo": "pseudo2",
+        "email": "email2",
+        "password": "password2",
+        "photo_profil": "photo_profil2",
+        "is_darkmode": true,
+        "role": 9
+      },
+      {
+        "id_utilisateur": 5,
+        "nom": "nom3",
+        "prenom": "prenom3",
+        "pseudo": "pseudo3",
+        "email": "email3",
+        "password": "password3",
+        "photo_profil": "photo_profil3",
+        "is_darkmode": true,
+        "role": 9
+      },
+    {
+      "id_utilisateur": 6,
+      "nom": "nom",
+      "prenom": "prenom",
+      "pseudo": "pseudo",
+      "email": "email",
+      "password": "password",
+      "photo_profil": "photo_profil",
+      "is_darkmode": true,
+      "role": 9
+    }
+  ]
+}
