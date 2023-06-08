@@ -12,6 +12,8 @@ import {HubModule} from "./view/pages/hub/hub.module";
 import {HomeModule} from "./view/pages/home/home.module";
 import { LoginComponent } from './view/forms/components/login/login.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './model/services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,6 @@ import { LoginComponent } from './view/forms/components/login/login.component';
     HubModule,
     HomeModule
   ],
-  providers: [],
   exports: [
   ],
   bootstrap: [AppComponent]
