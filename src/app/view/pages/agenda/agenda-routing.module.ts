@@ -1,10 +1,11 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {EventComponent} from "../event/event.component";
+import { AgendaComponent } from "./components/agenda.component";
 
 const routes: Routes = [
   {
-    path: '', component: EventComponent
+    path: '', component: AgendaComponent,
   }
 ]
 @NgModule({
