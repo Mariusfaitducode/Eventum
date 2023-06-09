@@ -1,6 +1,6 @@
 
 header{
-    /* background: var(--transparent-gray); */
+    background: var(--transparent-gray);
     width: 100%;
     position: sticky;
     top: 0;
@@ -19,16 +19,17 @@ header{
     background: var(--white-1);
     margin: 10px;
    
-    /* height: 50px;    */
+    /* height: 30px;    */
     width: 50%;
     min-width: 250px;
     border-radius: 50px;
-    padding: 5px 15px;
+    padding: 7px 15px 5px 15px;
 
     border: 1px solid var(--purple-1);
 }
 
 .search-btn{
+
     float: right;
 
     /* display: flex;
@@ -49,4 +50,15 @@ header{
     width: 90%;
 
     /* border: 1px solid var(--ligneSection); */
+}
+
+.theme-color-button{
+    padding: 10px;
+    
+}
+
+.theme-color-button button{
+    border: none;
+    outline: none;
+    background: var(--white-1);
 }

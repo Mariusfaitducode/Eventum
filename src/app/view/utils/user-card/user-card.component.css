@@ -1,0 +1,36 @@
+
+
+.row-user{
+    display: flex;
+
+    margin: 10px 30px;
+
+    padding: 5px 10px;
+
+    background: none;
+    border: none;
+    /* border: 1px solid var(--ligneSection); */
+}
+
+.row-user img{
+    border-radius: 50%;
+}
+
+.row-user:hover{
+    background: var(--purple-0);
+    border-radius: 10px;
+}
+
+.infos-user{
+
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.infos-user p{
+    text-align: left;
+}
+   
