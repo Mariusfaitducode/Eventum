@@ -28,6 +28,10 @@
 
 
   --gray-0: #352f2f8a;
+
+  /* Color black */
+  --transparent-gray: #333a;
+  --transparent-black: #0000008a;
   --black: #000000;
   
 }
