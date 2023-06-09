@@ -1,14 +1,14 @@
 #rightPane{
-    margin-top: 50px;
+    /* margin-top: 50px; */
     width: 25%;
     height: 100%;
     position: fixed;
     top: 0;
     right: 0;
-    background-color: #ffffff;
+    background-color: var(--white-0);
     overflow-x: hidden;
     padding-top: 20px;
-    border-left: 1px solid #9E5CA3;
+    border-left: 1px solid var(--purple-1);
   }
     
   
