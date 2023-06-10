@@ -13,7 +13,6 @@ import {HomeModule} from "./view/pages/home/home.module";
 import { LoginComponent } from './view/forms/components/login/login.component';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { UserService } from './model/services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { UserService } from './model/services/user/user.service';
     HubModule,
     HomeModule,
     HttpClientModule, // Ajout de HttpClientModule
-    HttpClient
+
   ],
   exports: [
   ],

@@ -1,6 +1,8 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core'
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+
 import { User } from './model/classes/user/user';
 
 

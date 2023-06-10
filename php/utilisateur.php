@@ -10,10 +10,8 @@ $postdata = file_get_contents("php://input");
 echo $postdata;
 $request = json_decode($postdata);
 
-if(isset($postdata) && !empty($postdata))
+if(isset($postdata))
 {
-    $keyword=trim($request->keyword);
-
     $sql = "SELECT * FROM utilisateur";
     $ret=$mysqli->query($sql);
 
