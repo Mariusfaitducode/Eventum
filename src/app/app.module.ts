@@ -12,7 +12,7 @@ import {HubModule} from "./view/pages/hub/hub.module";
 import {HomeModule} from "./view/pages/home/home.module";
 import { LoginComponent } from './view/forms/components/login/login.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { UserService } from './model/services/user/user.service';
 
 @NgModule({
@@ -26,7 +26,9 @@ import { UserService } from './model/services/user/user.service';
     BrowserModule,
     AppRoutingModule,
     HubModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule, // Ajout de HttpClientModule
+    HttpClient
   ],
   exports: [
   ],

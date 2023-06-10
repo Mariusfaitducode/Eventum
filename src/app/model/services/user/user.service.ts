@@ -12,13 +12,9 @@ export class UserService {
 
   }
 
-  
   getData() : Observable<User[]>{
     console.log('getData() called');
-    return this.http.get<User[]>('http://localhost:3000/users');
+    return this.http.get<User[]>('http://localhost/eventum/Eventum_Angular/php/utilisateur.php');
   }
 
-  getUserById(id: number) : Observable<User>{
-    return this.http.get<User>('http://localhost:3000/users/' + id);
-  }
 }

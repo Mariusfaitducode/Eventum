@@ -37,7 +37,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de
   imports: [
     CommonModule,
     HomeRoutingModule,
-    HttpClientModule // Ajout de HttpClientModule
+
 
   ]
 })

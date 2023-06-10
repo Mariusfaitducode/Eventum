@@ -9,10 +9,12 @@ import {AgendaRoutingModule} from "./agenda-routing.module";
 @NgModule({
   declarations: [
     EventComponent,
+
   ],
   imports: [
     CommonModule,
-    AgendaRoutingModule
+    AgendaRoutingModule,
+
   ]
 })
 export class AgendaModule {
