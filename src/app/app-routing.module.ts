@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'notifications', component: NotifPageComponent },
   { path: 'messages', component: MessageComponent },
   { path: 'profil/:id', component: ProfilComponent },
+  { path: 'profil', component: ProfilComponent},
   {
     path: '**', redirectTo: 'hub', pathMatch: 'full'
   },
