@@ -1,4 +1,5 @@
 <div class="userContainer">
   <img [src]="img" alt="Avatar" class="avatar">
-  <p class="userName">balba {{name}}</p>
+  <p class="userName">{{name}}</p>
+  <a [routerLink]="'/profil/' + id">view Profile</a>
 </div>

@@ -1,4 +1,4 @@
 <p>sugest friend</p>
-<div *ngFor="let user of UserArray">
-    <app-user-card [img]="user.photo_profil" [name]="user.pseudo"></app-user-card>
+<div *ngFor="let user of getRandomUsers(UserArray, 5)">
+    <app-user-card [img]="user.photo_profil" [name]="user.pseudo" [id]="user.id_utilisateur"></app-user-card>
 </div>

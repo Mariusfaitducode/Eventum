@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '', component: HomeComponent
   },
-  { path: 'profil', component: ProfilComponent },
+  { path: 'profil/:id', component: ProfilComponent },
   { path: 'messages', component: MessageComponent },
 
 ]

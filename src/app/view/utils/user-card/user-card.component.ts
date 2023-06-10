@@ -8,9 +8,9 @@ import { Component, Input } from '@angular/core';
 export class UserCardComponent {
   @Input() img!: string
   @Input() name!: string
+  @Input() id!: number
 
-  constructor() { 
-    this.name = "test";
+  constructor() {
   }
 
 }

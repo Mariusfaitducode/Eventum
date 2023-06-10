@@ -22,4 +22,9 @@ export class SugestFriendComponent implements OnInit{
 
   }
 
+  getRandomUsers(userArray: any[], count: number): any[] {
+    const shuffledArray = userArray.sort(() => 0.5 - Math.random());
+    return shuffledArray.slice(0, count);
+  }
+
 }
