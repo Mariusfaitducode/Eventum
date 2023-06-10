@@ -6,6 +6,8 @@ import { ApiService } from 'src/app/api.service';
 import { ActivatedRoute } from '@angular/router';
 
 
+import { OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
@@ -30,5 +32,6 @@ export class ProfilComponent {
       });
     });
   }
-
 }
+
+  

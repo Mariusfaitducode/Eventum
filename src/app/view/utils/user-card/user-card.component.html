@@ -1,5 +1,14 @@
-<div class="userContainer">
-  <img [src]="img" alt="Avatar" class="avatar">
-  <p class="userName">{{name}}</p>
-  <a [routerLink]="'/profil/' + id">view Profile</a>
-</div>
+
+
+<a class="row-user" [routerLink]="'/profil/' + id">
+
+  <img [src]="img" width="55px" height="55px" alt="Avatar" class="avatar">
+
+
+  <div class="infos-user">
+    <p class="userName">{{name}}</p>
+    
+  </div>
+  
+
+</a>
