@@ -11,9 +11,10 @@ import { AgendaComponent } from "../agenda/components/agenda.component";
 import { AddEventComponent } from "../add-event/add-event.component";
 import { NotifPageComponent } from "../notif-page/notif-page.component";
 import { UserCardComponent } from "../../utils/user-card/user-card.component";
-import { UserService } from '../../../model/services/user/user.service';
+
 import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.component";
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
+import { ApiService } from "src/app/api.service";
 
 
 @NgModule({
@@ -32,12 +33,12 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de
 
   ],
   providers: [
-    UserService
+    ApiService
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    HttpClientModule // Ajout de HttpClientModule
+
 
   ]
 })
