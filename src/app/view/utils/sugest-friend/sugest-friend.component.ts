@@ -3,6 +3,7 @@ import { User } from '../../../model/classes/user/user';
 
 import { OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { UserService } from 'src/app/model/services/user/user.service';
 
 @Component({
   selector: 'app-sugest-friend',
@@ -11,8 +12,8 @@ import { ApiService } from 'src/app/api.service';
 })
 export class SugestFriendComponent implements OnInit{
   public UserArray : User[] = [];
-  constructor(private apiService: ApiService) {
-    this.apiService.getUsers().subscribe((data: User[]) => {
+  constructor(private service: UserService) {
+    this.service.getUsers().subscribe((data: User[]) => {
       console.log(data);
       this.UserArray = data;
     });
