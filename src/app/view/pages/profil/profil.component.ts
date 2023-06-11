@@ -25,9 +25,11 @@ export class ProfilComponent {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       const id = +params['id'];
+      console.log(id); // Check if the id is correct
 
       this.apiService.getUserById(id).subscribe((user) => {
-        console.log(user); // Check if the user object is retrieved correctly
+
+        console.log("user ="+user); // Check if the user object is retrieved correctly
         this.user = user;
       });
     });
