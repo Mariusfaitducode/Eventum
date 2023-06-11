@@ -14,7 +14,7 @@ import { UserCardComponent } from "../../utils/user-card/user-card.component";
 
 import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.component";
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
-import { ApiService } from "src/app/api.service";
+import { UserService } from 'src/app/model/services/user/user.service'; // Ajout de UserService
 
 
 @NgModule({
@@ -33,12 +33,13 @@ import { ApiService } from "src/app/api.service";
 
   ],
   providers: [
-    ApiService
+    UserService
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-
+    HttpClientModule, // Ajout de HttpClientModule
+    
 
   ]
 })

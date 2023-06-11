@@ -36,11 +36,9 @@ if(isset($postdata) && empty($postdata))
             "is_darkmode" => $row['is_darkmode'],
             "role" => $row['role']];
         echo json_encode($data);
-
     } 
     else 
     {
-        echo "test";
         $sql = "SELECT * FROM utilisateur";
         $result=mysqli_query($mysqli,$sql);
         while( $row = $result->fetch_array())
