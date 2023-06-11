@@ -40,23 +40,21 @@ if(isset($postdata) && empty($postdata))
     } 
     else 
     {
+        echo "test";
         $sql = "SELECT * FROM utilisateur";
         $result=mysqli_query($mysqli,$sql);
         while( $row = $result->fetch_array())
         {
-            $data[] = array(
-                "id_evenement" => $row['id_evenement'],
-                "id_createur" => $row['id_createur'],
-                "titre" => $row['titre'],
-                "id_categorie" => $row['id_categorie'],
-                "description" => $row['description'],
-                "image" => $row['image'],
-                "date" => $row['date'],
-                "heure" => $row['heure'],
-                "lieu" => $row['lieu'],
-                "is_public" => $row['is_public']
-            );
-            
+            $data[]=array(        
+            "id_utilisateur" => $row['id_utilisateur'],
+            "nom" => $row['nom'],
+            "prenom" => $row['prenom'],
+            "pseudo" => $row['pseudo'],
+            "email" => $row['email'],
+            "password" => $row['password'],
+            "photo_profil" => $row['photo_profil'],
+            "is_darkmode" => $row['is_darkmode'],
+            "role" => $row['role']);
         }
         echo json_encode($data);
     }   

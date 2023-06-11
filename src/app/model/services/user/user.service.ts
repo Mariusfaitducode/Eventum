@@ -12,6 +12,7 @@ import { User } from '../../classes/user/user'
 export class UserService {
   redirectUrl!: string;
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
+  users[] : User[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
