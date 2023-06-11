@@ -25,7 +25,7 @@ if(isset($postdata) && empty($postdata))
         $result=mysqli_query($mysqli,$sql);
         $row = $result->fetch_array();
       
-        $data[] = array(
+        $data = [               
                 "id_evenement" => $row['id_evenement'],
                 "id_createur" => $row['id_createur'],
                 "titre" => $row['titre'],
@@ -36,7 +36,7 @@ if(isset($postdata) && empty($postdata))
                 "heure" => $row['heure'],
                 "lieu" => $row['lieu'],
                 "is_public" => $row['is_public']
-            );
+            ];
 
         echo json_encode($data);
 

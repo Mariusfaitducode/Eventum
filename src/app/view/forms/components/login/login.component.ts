@@ -12,8 +12,13 @@ export class LoginComponent implements OnInit {
   }
 
   onConnect(): void {
+    
     console.log("oui");
-    this.router.navigateByUrl('home')
+  
+  }
+
+  onSubmit(): void {
+    console.log("oui");
   }
 
   ngOnInit(): void {

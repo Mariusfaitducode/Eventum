@@ -36,7 +36,6 @@ if(isset($postdata) && empty($postdata))
             "is_darkmode" => $row['is_darkmode'],
             "role" => $row['role']];
         echo json_encode($data);
-
     } 
     else 
     {
