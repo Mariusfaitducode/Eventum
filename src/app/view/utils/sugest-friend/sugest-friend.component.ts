@@ -12,9 +12,10 @@ import { UserService } from 'src/app/model/services/user/user.service';
 })
 export class SugestFriendComponent implements OnInit{
   public UserArray : User[] = [];
+
   constructor(private service: UserService) {
     this.service.getUsers().subscribe((data: User[]) => {
-      console.log(data);
+      console.log("data"+data);
       this.UserArray = data;
     });
   }

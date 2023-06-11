@@ -14,7 +14,14 @@ import { UserCardComponent } from "../../utils/user-card/user-card.component";
 
 import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.component";
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
+<<<<<<< HEAD
 import { UserService } from 'src/app/model/services/user/user.service'; // Ajout de UserService
+=======
+import { ApiService } from "src/app/api.service";
+import { UserService } from "src/app/model/services/user/user.service";
+
+import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
+>>>>>>> origin/marius
 
 
 @NgModule({
@@ -29,7 +36,8 @@ import { UserService } from 'src/app/model/services/user/user.service'; // Ajout
     AddEventComponent,
     NotifPageComponent,
     UserCardComponent,
-    SugestFriendComponent
+    SugestFriendComponent,
+    ProfilSectionComponent,
 
   ],
   providers: [
