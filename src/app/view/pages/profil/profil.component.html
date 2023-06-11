@@ -1,15 +1,8 @@
 <app-left-pane></app-left-pane>
 <div class="central-pane">
 
-    <app-profil-section></app-profil-section>
+    <app-profil-section  [user]="user"></app-profil-section>
 
-    <div>
-        <img src="https://picsum.photos/200/300" alt="photo de profil" class="photo-profil">
-        <p class="pseudo">{{user.pseudo}}</p>
-    
-    </div>
-    <button class="button">Amis</button>
-    <button class="button">Modifier le profil</button>
-    <p>User = {{user.pseudo}}</p>
+
 </div>
 <app-right-pane></app-right-pane>

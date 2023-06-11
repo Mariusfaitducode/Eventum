@@ -16,6 +16,7 @@ import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.c
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
 import { ApiService } from "src/app/api.service";
 import { UserService } from "src/app/model/services/user/user.service";
+import { AuthentificationService } from "src/app/model/services/authentification/authentification.service";
 
 import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
 
@@ -37,7 +38,8 @@ import { ProfilSectionComponent } from "../profil/profil-section/profil-section.
 
   ],
   providers: [
-    UserService
+    UserService,
+    AuthentificationService,
   ],
   imports: [
     CommonModule,
