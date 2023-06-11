@@ -19,28 +19,31 @@ if(isset($postdata) && empty($postdata))
 {
     if (isset($_GET['id'])) {
 
-        $id_utilisateur = $_GET['id'];
-        $sql = "SELECT * FROM utilisateur WHERE id_utilisateur = '$id_utilisateur'";
+        $id_evenement = $_GET['id'];
+        $sql = "SELECT * FROM evenement WHERE id_evenement = '$id_evenement'";
 
         $result=mysqli_query($mysqli,$sql);
         $row = $result->fetch_array();
+      
+        $data[] = array(
+                "id_evenement" => $row['id_evenement'],
+                "id_createur" => $row['id_createur'],
+                "titre" => $row['titre'],
+                "id_categorie" => $row['id_categorie'],
+                "description" => $row['description'],
+                "image" => $row['image'],
+                "date" => $row['date'],
+                "heure" => $row['heure'],
+                "lieu" => $row['lieu'],
+                "is_public" => $row['is_public']
+            );
 
-        $data=[        
-            "id_utilisateur" => $row['id_utilisateur'],
-            "nom" => $row['nom'],
-            "prenom" => $row['prenom'],
-            "pseudo" => $row['pseudo'],
-            "email" => $row['email'],
-            "password" => $row['password'],
-            "photo_profil" => $row['photo_profil'],
-            "is_darkmode" => $row['is_darkmode'],
-            "role" => $row['role']];
         echo json_encode($data);
 
     } 
     else 
     {
-        $sql = "SELECT * FROM utilisateur";
+        $sql = "SELECT * FROM evenement";
         $result=mysqli_query($mysqli,$sql);
         while( $row = $result->fetch_array())
         {
@@ -55,7 +58,7 @@ if(isset($postdata) && empty($postdata))
                 "heure" => $row['heure'],
                 "lieu" => $row['lieu'],
                 "is_public" => $row['is_public']
-            );
+            );                    
             
         }
         echo json_encode($data);
