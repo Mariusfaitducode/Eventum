@@ -16,6 +16,8 @@ import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.c
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
 import { ApiService } from "src/app/api.service";
 
+import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { ApiService } from "src/app/api.service";
     AddEventComponent,
     NotifPageComponent,
     UserCardComponent,
-    SugestFriendComponent
+    SugestFriendComponent,
+    ProfilSectionComponent,
 
   ],
   providers: [
