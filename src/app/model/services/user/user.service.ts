@@ -14,7 +14,6 @@ export class UserService {
   redirectUrl!: string;
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
   
-
   constructor(private httpClient: HttpClient) { }
 
   public getUsers() {

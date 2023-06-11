@@ -15,6 +15,5 @@ export class CardEventComponent {
   @Input()  date!: Date
   @Input()  heure!: string
   @Input()  lieu!: string
-  @Input()  is_public!: boolean
   constructor() { }
 }

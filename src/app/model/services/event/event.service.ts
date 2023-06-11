@@ -11,8 +11,6 @@ export class EventService {
   redirectUrl!: string;
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
 
-  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
-
   constructor(private httpClient: HttpClient) { }
 
   public getEvents() {
