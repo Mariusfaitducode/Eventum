@@ -18,16 +18,4 @@ export class ApiService {
 
     constructor(private httpClient: HttpClient) { }
 
-    public getUsers() {
-        return this.httpClient.get<User[]>(this.baseUrl + '/utilisateur.php').pipe(map(Users => {
-            return Users;
-        }));;
-    }
-
-    public getUserById(id: number) {
-        return this.httpClient.get<User>(this.baseUrl + '/utilisateur.php?id=' + id).pipe(map(User => {
-            return User;
-        }));
-    }
-
 }

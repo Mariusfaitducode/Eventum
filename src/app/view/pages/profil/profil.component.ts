@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 
 
 import { OnInit } from '@angular/core';
+import { UserService } from 'src/app/model/services/user/user.service';
 
 @Component({
   selector: 'app-profil',
@@ -19,7 +20,7 @@ export class ProfilComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService
+    private service: UserService
   ) {}
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class ProfilComponent {
       const id = +params['id'];
       console.log(id); // Check if the id is correct
 
-      this.apiService.getUserById(id).subscribe((user) => {
+      this.service.getUserById(id).subscribe((user) => {
 
         console.log("user ="+user); // Check if the user object is retrieved correctly
         this.user = user;
