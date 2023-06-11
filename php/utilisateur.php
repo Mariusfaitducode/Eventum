@@ -40,7 +40,6 @@ if(isset($postdata) && empty($postdata))
     } 
     else 
     {
-        echo "test";
         $sql = "SELECT * FROM utilisateur";
         $result=mysqli_query($mysqli,$sql);
         while( $row = $result->fetch_array())

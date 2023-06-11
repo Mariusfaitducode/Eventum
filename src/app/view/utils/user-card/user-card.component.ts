@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent {
-  @Input() img!: string
+  @Input() link_img!: string
   @Input() name!: string
   @Input() id!: number
 
