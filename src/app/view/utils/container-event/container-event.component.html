@@ -1,12 +1,5 @@
 <div *ngFor="let event of events">
-    <app-card-event 
-  [id_createur]="event.id_createur"
-  [titre]="event.titre"
-  [id_categorie]="event.id_categorie"
-  [description]="event.description"
-  [image]="event.image"
-  [date]="event.date"
-  [heure]="event.heure"
-  [lieu]="event.lieu"
-></app-card-event>
+
+    <app-card-event [event]="event"></app-card-event>
+    
 </div>

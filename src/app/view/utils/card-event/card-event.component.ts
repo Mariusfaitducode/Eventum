@@ -1,4 +1,5 @@
 import { Component, Inject, Input } from '@angular/core';
+import { Event } from 'src/app/model/classes/event/event';
 
 @Component({
   selector: 'app-card-event',
@@ -7,13 +8,7 @@ import { Component, Inject, Input } from '@angular/core';
 })
 
 export class CardEventComponent {
-  @Input() id_createur!: number
-  @Input()  titre!: string
-  @Input()  id_categorie!: number
-  @Input()  description!: string
-  @Input()  image!: string
-  @Input()  date!: Date
-  @Input()  heure!: string
-  @Input()  lieu!: string
+  
+  @Input()  event!: Event;
   constructor() { }
 }
