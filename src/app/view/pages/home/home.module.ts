@@ -6,11 +6,16 @@ import {LeftPaneComponent} from "../../left-pane/left-pane.component";
 import {RightPaneComponent} from "../../right-pane/right-pane.component";
 import { SearchBarComponent } from "../../utils/search-bar/search-bar.component";
 import { ProfilComponent } from "../profil/profil.component";
+import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
+
 import { MessageComponent } from "../message/message.component";
 import { AgendaComponent } from "../agenda/components/agenda.component";
 import { AddEventComponent } from "../add-event/add-event.component";
 import { NotifPageComponent } from "../notif-page/notif-page.component";
 import { UserCardComponent } from "../../utils/user-card/user-card.component";
+
+import { EventComponent} from "../event/event.component";
+import { EventSectionComponent } from "../event/event-section/event-section.component";
 
 import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.component";
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
@@ -19,12 +24,12 @@ import { ApiService } from "src/app/api.service";
 
 import { AuthentificationService } from "src/app/model/services/authentification/authentification.service";
 
-import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
+
 import { EventService } from "src/app/model/services/event/event.service";
 import { ContainerEventComponent } from "../../utils/container-event/container-event.component";
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
 import { MainEventComponent } from "../../utils/main-event/main-event.component";
-import { EventComponent} from "../event/event.component";
+
 
 
 
@@ -46,6 +51,7 @@ import { EventComponent} from "../event/event.component";
     CardEventComponent,
     MainEventComponent,
     EventComponent,
+    EventSectionComponent,
   ],
   providers: [
     UserService,

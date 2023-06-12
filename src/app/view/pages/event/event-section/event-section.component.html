@@ -1,0 +1,48 @@
+
+<div class="page-event">
+
+    <div class="event">
+        <div class="event-header">
+            <div *ngIf="event.image != null">
+
+                <img src="/assets/{{event.image}}" class="image-event" alt="Image de l'événement">
+    
+            </div>
+    
+            <div class="event-description">
+                <h1>{{event.titre}}</h1>
+                <p>{{event.description}}</p>
+            </div>
+        </div>
+        
+        <div class="event-infos">
+            <div class="info blue-1">
+                <h3>{{event.lieu}}</h3>
+            </div>
+            <div class="info blue-0">
+                <h3>{{event.date}}</h3>
+            </div>
+            <div class="info blue-1">
+                <h3>{{event.heure}}</h3>
+            </div>
+        </div>
+
+        <div class="event-buttons">
+
+            <!-- Si utilisateur inscrit -->
+            <p>Vous êtes inscrits</p>
+            <button class="button">Se désinscrire</button>
+
+            <!-- Si utilisateur non inscrit -->
+            <button class="button">S'inscrire</button>
+
+            <!-- Si utilisateur non inscrit mais plus de places -->
+            <p>Nombre de participants maximum atteints</p>
+
+
+
+        </div>
+
+
+    </div>
+</div>
