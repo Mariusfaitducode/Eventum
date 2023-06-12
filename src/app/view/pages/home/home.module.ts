@@ -24,6 +24,7 @@ import { EventService } from "src/app/model/services/event/event.service";
 import { ContainerEventComponent } from "../../utils/container-event/container-event.component";
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
 import { MainEventComponent } from "../../utils/main-event/main-event.component";
+import { EventComponent} from "../event/event.component";
 
 
 
@@ -43,8 +44,8 @@ import { MainEventComponent } from "../../utils/main-event/main-event.component"
     ProfilSectionComponent,
     ContainerEventComponent,
     CardEventComponent,
-    MainEventComponent
-
+    MainEventComponent,
+    EventComponent,
   ],
   providers: [
     UserService,

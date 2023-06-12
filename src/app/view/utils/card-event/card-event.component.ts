@@ -10,5 +10,6 @@ import { Event } from 'src/app/model/classes/event/event';
 export class CardEventComponent {
   
   @Input()  event!: Event;
+  @Input()  id!: number;
   constructor() { }
 }

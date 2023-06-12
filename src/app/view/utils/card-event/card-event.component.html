@@ -1,13 +1,9 @@
 
 
-<div action="./evenement.php" method="get">
+<div [routerLink]="'/event/' + id">
     <button type="submit" class="card-event">
         
         <div class="event-infos">
-
-            <!-- <div ngIf="{{event.image}}">
-                
-            </div> -->
 
             <div *ngIf="event.image != null; else no_image">
                 <img src="/assets/{{event.image}}" alt="" width="180px" height="100px" alt="Image de l'événement">
@@ -23,8 +19,6 @@
             <p>{{event.date}}</p>
             <p>{{event.heure}}</p>
             <p>{{event.lieu}}</p>
-            
-
             
         </div>
 

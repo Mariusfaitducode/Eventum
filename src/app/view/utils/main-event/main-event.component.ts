@@ -10,7 +10,7 @@ import { Event } from 'src/app/model/classes/event/event';
 export class MainEventComponent {
   public event!: Event;
   constructor(service: EventService) {
-    service.getEventbyId(23).subscribe((data: Event) => {
+    service.getEventById(23).subscribe((data: Event) => {
       this.event = data;
       console.log(this.event);
     });

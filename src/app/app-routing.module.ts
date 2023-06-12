@@ -4,6 +4,7 @@ import {AddEventComponent} from "./view/pages/add-event/add-event.component";
 import {NotifPageComponent} from "./view/pages/notif-page/notif-page.component";
 import {MessageComponent} from "./view/pages/message/message.component";
 import {ProfilComponent} from "./view/pages/profil/profil.component";
+import { EventComponent } from './view/pages/event/event.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'messages', component: MessageComponent },
   { path: 'profil/:id', component: ProfilComponent },
   { path: 'profil', component: ProfilComponent},
+  { path: 'event/:id', component: EventComponent},
   {
     path: '**', redirectTo: 'hub', pathMatch: 'full'
   },

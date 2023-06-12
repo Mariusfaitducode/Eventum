@@ -20,7 +20,7 @@ export class EventService {
   }
 
 
-  public getEventbyId(id: number) {
+  public getEventById(id: number) {
       return this.httpClient.get<Event>(this.baseUrl + '/evenement.php?id=' + id).pipe(map(Event => {
           return Event;
       }));
