@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RightPaneComponent } from '../../right-pane/right-pane.component';
 import { LeftPaneComponent } from '../../left-pane/left-pane.component';
 import { User } from '../../../model/classes/user/user';
+import { Relation } from '../../../model/classes/relation/relation';
+
 import { ApiService } from 'src/app/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthentificationService } from 'src/app/model/services/authentification/authentification.service';
@@ -18,6 +20,8 @@ import { UserService } from 'src/app/model/services/user/user.service';
 })
 export class ProfilComponent {
   user!: User; // Assurez-vous d'importer le modèle User depuis votre API ou de le définir correctement
+  relation!: Relation;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -42,7 +46,16 @@ export class ProfilComponent {
           console.log("user ="+user); // Check if the user object is retrieved correctly
           this.user = user;
         });
+
+        this.service.getRelation(id, 1).subscribe((relation) => {
+                      
+            console.log("relation ="+relation); // Check if the user object is retrieved correctly
+            console.log("relation statut ="+relation.statut); // Check if the user object is retrieved correctly
+            this.relation = relation;
+          });                               
       });
+
+      
 
       // L'utilisateur est connecté, vous pouvez charger les données du profil
       // Si c'est le profil de l'utilisateur actuel, vous pouvez le traiter différemment
