@@ -16,7 +16,7 @@
   overflow-x: hidden;
   padding-top: 20px;
   border-right: 1px solid #9E5CA3;
-
+  pointer-events: none;
   background: var(--color1);
 
 }

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,10 @@ export class AuthentificationService {
 
   private loggedInStatus = true;
 
-  constructor() {
+  redirectUrl!: string;
+  baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
+
+  constructor(private httpClient: HttpClient) {
     this.loggedInStatus = this.isLoggedIn();
   }
 
@@ -22,4 +27,13 @@ export class AuthentificationService {
   setLoggedIn(value: boolean) {
     this.loggedInStatus = value;
   }
+
+  // Fonction appelé à l'authentification
+  public login(email: string, password : string) {
+    return this.httpClient.get<Boolean>(this.baseUrl + '/login.php?email=' + email + '&password=' + password).pipe(map(Boolean => {
+      return Boolean;
+  }));
+  }
+
+
 }
