@@ -15,7 +15,7 @@ $request = json_decode($postdata);
 
 
 // Requete GET
-if(isset($postdata) && empty($postdata))
+if(isset($postdata))
 {
     if (isset($_GET['id'])) {
 

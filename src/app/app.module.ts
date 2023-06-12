@@ -13,8 +13,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-
   ],
   imports: [
     BrowserModule,
