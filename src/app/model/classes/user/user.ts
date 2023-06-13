@@ -13,7 +13,7 @@ export class User {
     }
 
     // Getters
-    get Id_utilisateur(): number {
+    public get Id_utilisateur(): number {
         return this.id_utilisateur;
     }
 

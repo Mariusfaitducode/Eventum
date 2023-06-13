@@ -1,0 +1,14 @@
+<div class = "background">
+    <form class = "form">
+      <h1>Inscription</h1>
+      <input type = "text" name="nom" [(ngModel)]="nom" >
+      <input type = "text" name="prenom" [(ngModel)]="prenom" >
+      <input type = "text" name="pseudo" [(ngModel)]="pseudo" >
+      <input type = "text" name="email" [(ngModel)]="email" >
+      <input type = "password" name="password"  [(ngModel)]="password" >
+      <input type = "password" name="confirm_password"  [(ngModel)]="confirm_password" >
+      <!--button class = "button">Connexion</button-->
+      <input type="submit" class="button" value="Connexion" (click)="onConnect()" />
+    </form>
+</div>
+  
