@@ -12,25 +12,4 @@ export class User {
 
     }
 
-    // Getters
-    public get Id_utilisateur(): number {
-        return this.id_utilisateur;
-    }
-
-    get Nom(): string {
-        return this.nom;
-    }
-
-    get Prenom(): string {
-        return this.prenom;
-    }
-
-    get Pseudo(): string {
-        return this.pseudo;
-    }
-
-    get Picture(): string {
-        return this.photo_profil;
-    }
-
 }
