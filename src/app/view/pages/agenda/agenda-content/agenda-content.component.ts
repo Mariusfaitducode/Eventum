@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Event } from 'src/app/model/classes/event/event';
+import { User } from 'src/app/model/classes/user/user';
+import { EventService } from 'src/app/model/services/event/event.service';
+import { UserService } from 'src/app/model/services/user/user.service';
 
 @Component({
   selector: 'app-agenda-content',
@@ -19,16 +23,20 @@ export class AgendaContentComponent {
     { day: 'Dimanche', number: [] },
   ];
 
-  eventOfMonth: { day: number, event: Event }[] = []; 
+  user!: User;
 
-  selectedMonth = new Date().getMonth();
+  eventOfMonth: Event[] = []; 
+
+  //selectedMonth = new Date().getMonth();
+  selectedMonth = 3;
   selectedYear = new Date().getFullYear();
 
+  constructor(
+    private eventService: EventService,
+    private userService: UserService ) {}
+
   getCalendarDays(){
-    const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth() + 1;
     
-  
     const daysInMonth = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
     
     //Nombre de jours dans le mois
@@ -51,13 +59,42 @@ export class AgendaContentComponent {
         }
       }
     }
-  
+
+    // :const userr :
+
+    this.userService.getUserByToken().subscribe((user) => {
+      console.log("user on agenda"); // Check if the user object is retrieved correctly
+      console.log(user); // Check if the user object is retrieved correctly
+      this.user = user;
+      this.getEventOfMonth();
+    });
+
+    console.log("this.user.id_utilisateur"+ this.user.id_utilisateur);
+    console.log("this.selectedMonth"+ this.selectedMonth);
+    console.log("this.selectedMonth"+ this.selectedYear);
+  }
+
+
+  getEventOfMonth(){
+    this.eventService.getEventsByMonthAndUser(this.user.id_utilisateur, this.selectedMonth + 1, this.selectedYear).subscribe((events) => {
+      console.log("events on agenda"); // Check if the user object is retrieved correctly
+      console.log(events.length);
+      this.eventOfMonth = events;
+    });
+  }
+
+  getDayOfEvent(date: Date): number {
+    return date.getDate();
   }
 
   ngOnInit(): void {  
+    console.log("load agenda");
     console.log(this.selectedMonth);
-    console.log(this.getCalendarDays());
+    this.getCalendarDays()
+    
     console.log(this.daysOfWeek);
+    console.log("eventOfMonth");
+    console.log(this.eventOfMonth);
   }
 
 }
