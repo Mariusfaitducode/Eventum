@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class AuthentificationService {
 
   private loggedInStatus = true;
-  private userId! : Number;
+  private userId! : number;
   //private secretKey = this.generateSecretKey();
 
   redirectUrl!: string;
@@ -37,12 +37,18 @@ export class AuthentificationService {
   // Fonction appelé à l'authentification
   public login(email: string, password : string) {
 
-    return this.httpClient.get<Number>(this.baseUrl + '/login.php?email=' + email + '&password=' + password).pipe(map(Number => {
+    return this.httpClient.get<any>(this.baseUrl + '/login.php?email=' + email + '&password=' + password).pipe(map(token => {
 
-      //localStorage.setItem('token', this.generateToken(Number));
-      this.userId = Number;
-
-      return Number;
+      console.log("token ="+token); // Check if the user object is retrieved correctly
+      
+      if (token != false) {
+        
+        localStorage.setItem('token', token);
+        return true;
+      }
+      else{
+        return false;
+      }
   }));
   }
 
@@ -89,7 +95,5 @@ export class AuthentificationService {
   }
 
   public getConnectedUserId() {return this.userId;}
-
-  
 
 }
