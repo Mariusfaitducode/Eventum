@@ -1,0 +1,36 @@
+<p>agenda-content works!</p>
+
+<section class="days">
+
+    <div *ngFor="let day of daysOfWeek; let jour = index" class="day">
+        
+        
+        <h3>{{ day.day }}</h3>
+
+        <div *ngFor="let number of day.number; let i = index" class="day">
+
+            <div class="day-content-item">
+                <div> {{number}}</div>
+            </div>
+
+        </div>
+
+        <!-- <div class="day-content">
+            
+            <div class="day-content-item">
+                <div> {{day.number[1]}}</div>
+            </div>
+            <div class="day-content-item">
+                <div> {{day.number[2]}}</div>
+            </div>
+            <div class="day-content-item">
+                <div> {{day.number[3]}}</div>
+            </div>
+            <div class="day-content-item">
+                <div> {{day.number[4]}}</div>
+            </div>
+        </div> -->
+        
+    </div>
+
+</section>

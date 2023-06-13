@@ -1,0 +1,37 @@
+
+.agenda-titre{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 30px;
+    
+}
+
+.selector{
+    display: flex;
+    flex-direction: row;
+    
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 30px;
+    /* border: 1px solid black; */
+}
+
+.selector-item{
+    width: 100%;
+    margin: auto;
+
+    height: 80px;
+    /* color: var(--white-0); */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid var(--purple-0);
+}

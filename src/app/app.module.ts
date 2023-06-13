@@ -14,6 +14,7 @@ import { RegisterComponent } from './view/forms/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
+    //NotificationComponent,
   ],
   imports: [
     BrowserModule,

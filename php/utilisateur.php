@@ -37,6 +37,7 @@ if(isset($postdata) && empty($postdata))
             "photo_profil" => $row['photo_profil'],
             "is_darkmode" => $row['is_darkmode'],
             "role" => $row['role']];
+            
         echo json_encode($data);
     } 
     else if (isset($_GET['id'])) {

@@ -5,6 +5,7 @@ import {NotifPageComponent} from "./view/pages/notif-page/notif-page.component";
 import {MessageComponent} from "./view/pages/message/message.component";
 import {ProfilComponent} from "./view/pages/profil/profil.component";
 import { EventComponent } from './view/pages/event/event.component';
+import { AgendaComponent } from './view/pages/agenda/agenda.component';
 
 const routes: Routes = [
   {
@@ -16,9 +17,7 @@ const routes: Routes = [
   {
     path: 'add', component: AddEventComponent
   },
-  {
-    path: 'agenda', loadChildren: () => import('../../src/app/view/pages/agenda/agenda.module').then(m => m.AgendaModule)
-  },
+  { path: 'agenda', component: AgendaComponent },
   { path: 'notifications', component: NotifPageComponent },
   { path: 'messages', component: MessageComponent },
   { path: 'profil/:id', component: ProfilComponent },

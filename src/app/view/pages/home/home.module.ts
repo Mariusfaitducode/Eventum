@@ -9,9 +9,13 @@ import { ProfilComponent } from "../profil/profil.component";
 import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
 
 import { MessageComponent } from "../message/message.component";
-import { AgendaComponent } from "../agenda/components/agenda.component";
+
+import { AgendaComponent } from "../agenda/agenda.component";
+import { AgendaContentComponent } from "../agenda/agenda-content/agenda-content.component";
 import { AddEventComponent } from "../add-event/add-event.component";
+
 import { NotifPageComponent } from "../notif-page/notif-page.component";
+import { NotificationComponent } from "../notif-page/notification/notification.component";
 import { UserCardComponent } from "../../utils/user-card/user-card.component";
 
 import { EventComponent} from "../event/event.component";
@@ -43,8 +47,12 @@ import { FormsModule } from "@angular/forms";
     ProfilComponent,
     MessageComponent,
     AgendaComponent,
+    AgendaContentComponent,
     AddEventComponent,
+    
     NotifPageComponent,
+    NotificationComponent,
+
     UserCardComponent,
     SugestFriendComponent,
     ProfilSectionComponent,
