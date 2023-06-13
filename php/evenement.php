@@ -17,7 +17,7 @@ $request = json_decode($postdata);
 // Requete GET
 if(isset($postdata) && empty($postdata))
 {
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id'])) { // Récupère un évènement par son id
 
         $id_evenement = $_GET['id'];
         $sql = "SELECT * FROM evenement WHERE id_evenement = '$id_evenement'";
@@ -40,9 +40,9 @@ if(isset($postdata) && empty($postdata))
 
         echo json_encode($data);
 
-    } 
-    else 
-    {
+    }else{
+        
+        // Renvoi tous les événements
         $sql = "SELECT * FROM evenement";
         $result=mysqli_query($mysqli,$sql);
         while( $row = $result->fetch_array())
@@ -62,7 +62,8 @@ if(isset($postdata) && empty($postdata))
             
         }
         echo json_encode($data);
+        }
     }   
-}
+
 
 ?>

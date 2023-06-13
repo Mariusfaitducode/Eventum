@@ -29,6 +29,7 @@ import { EventService } from "src/app/model/services/event/event.service";
 import { ContainerEventComponent } from "../../utils/container-event/container-event.component";
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
 import { MainEventComponent } from "../../utils/main-event/main-event.component";
+import { FormsModule } from "@angular/forms";
 
 
 
@@ -62,6 +63,7 @@ import { MainEventComponent } from "../../utils/main-event/main-event.component"
     CommonModule,
     HomeRoutingModule,
     HttpClientModule, // Ajout de HttpClientModule
+    FormsModule
     
 
   ]
