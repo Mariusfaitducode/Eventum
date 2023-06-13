@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HubModule} from "./view/pages/hub/hub.module";
 import {HomeModule} from "./view/pages/home/home.module";
-import { LoginComponent } from './view/forms/components/login/login.component';
+import { LoginComponent } from './view/forms/login/login.component';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { RegisterComponent } from './view/forms/register/register.component';
 
 
 @NgModule({

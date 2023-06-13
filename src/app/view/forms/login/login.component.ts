@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       if(data){ // Si la connection est réussi
         this.router.navigate(['/home']);
       }else{ // Sinon redirection à login avec message d'erreur
-        this.router.navigate(['/hube'])
+        this.router.navigate(['/hub'])
       }
     });
   

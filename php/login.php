@@ -32,8 +32,7 @@ if(isset($postdata))
             // On vérifie le mdp
             if (password_verify($password, $row["password"])){
                 // login correct
-                echo json_encode(true);
-        
+                echo json_encode($row["id_utilisateur"]);
             }else{
                 // Mauvais mdp
                 echo json_encode(false);

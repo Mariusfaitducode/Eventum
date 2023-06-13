@@ -35,5 +35,13 @@ export class AuthentificationService {
   }));
   }
 
+  // Fonction appelé à l'inscription
+  public register(nom: string, prenom: string, pseudo: string, email: string, password: string) {
+    return this.httpClient.get<Boolean>(this.baseUrl + '/register.php?nom=' + nom + '&prenom=' + prenom + '&pseudo=' + pseudo + '&email=' + email + '&password=' + password).pipe(map(Boolean => {
+      return Boolean;
+  }));
+  }
+
+  
 
 }
