@@ -35,17 +35,37 @@ export class ProfilComponent {
     const loggedIn: boolean = this.authService.isLoggedIn();
   
     //if (loggedIn)
-    if (true) {
+    if (loggedIn) {
 
       this.route.params.subscribe((params) => {
-        const id = +params['id'];
-        console.log(id); // Check if the id is correct
+        var id = +params['id'];
+        // Check if the id is correct
+        console.log("id ="+id);
+
+        if (Number.isNaN(id)){
+
+          //Page profil utilisateur connecté
+
+          console.log("token profil");
+
+          this.service.getUserByToken().subscribe((user) => {
   
-        this.service.getUserById(id).subscribe((user) => {
+            console.log(user); // Check if the user object is retrieved correctly
+            console.log("user"); // Check if the user object is retrieved correctly
+            this.user = user;
+          });
+        }
+        else{
+          //Visite page profil
+
+          this.service.getUserById(id).subscribe((user) => {
   
-          console.log("user ="+user); // Check if the user object is retrieved correctly
-          this.user = user;
-        });
+            console.log("user ="+user); // Check if the user object is retrieved correctly
+            this.user = user;
+          });
+        }
+  
+        
 
         this.service.getRelation(id, 1).subscribe((relation) => {
                       
