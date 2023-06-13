@@ -31,6 +31,7 @@ export class AuthentificationService {
   // Fonction appelé à l'authentification
   public login(email: string, password : string) {
     return this.httpClient.get<Boolean>(this.baseUrl + '/login.php?email=' + email + '&password=' + password).pipe(map(Boolean => {
+      this.loggedInStatus = true;
       return Boolean;
   }));
   }
