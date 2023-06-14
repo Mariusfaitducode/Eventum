@@ -1,4 +1,6 @@
 <div class="list-messages">
-  <p>Will it work !</p>
+  <div *ngFor="let message of messages">
+    <app-single-message [message]="message" [id_user]="id_sender"></app-single-message>
+  </div>
 </div>
 
