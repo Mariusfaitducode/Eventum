@@ -49,6 +49,10 @@ export class EventService {
 
   public getEventsByMonthAndUser(id: number, month: number, year: number) {
     return this.httpClient.get<Event[]>(this.baseUrl + '/event/event_month.php?id_user=' + id + '&month=' + month + '&year=' + year).pipe(map(Events => {
+      
+      Events.forEach(event => {
+        event.date = new Date(event.date);
+      });
       return Events;
     }));
   }

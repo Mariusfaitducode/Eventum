@@ -12,6 +12,8 @@ import { MessageComponent } from "../message/message.component";
 
 import { AgendaComponent } from "../agenda/agenda.component";
 import { AgendaContentComponent } from "../agenda/agenda-content/agenda-content.component";
+import { DaySectionComponent } from "../agenda/day-section/day-section.component";
+
 import { AddEventComponent } from "../add-event/add-event.component";
 
 import { NotifPageComponent } from "../notif-page/notif-page.component";
@@ -24,11 +26,7 @@ import { EventSectionComponent } from "../event/event-section/event-section.comp
 import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.component";
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
 import { UserService } from 'src/app/model/services/user/user.service'; // Ajout de UserService
-import { ApiService } from "src/app/api.service";
-
 import { AuthentificationService } from "src/app/model/services/authentification/authentification.service";
-
-
 import { EventService } from "src/app/model/services/event/event.service";
 import { ContainerEventComponent } from "../../utils/container-event/container-event.component";
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
@@ -36,9 +34,8 @@ import { MainEventComponent } from "../../utils/main-event/main-event.component"
 import { FormsModule } from "@angular/forms";
 import {SendMessageComponent} from "../../utils/send-message/send-message.component";
 import {ListMessageComponent} from "../message/components/list-message/list-message.component";
-import { FileService } from "src/app/model/services/file/file.service";
 
-
+import { ShareDataService } from "src/app/model/services/share/share-data.service";
 
 
 @NgModule({
@@ -49,8 +46,11 @@ import { FileService } from "src/app/model/services/file/file.service";
     SearchBarComponent,
     ProfilComponent,
     MessageComponent,
+
     AgendaComponent,
     AgendaContentComponent,
+    DaySectionComponent,
+    
     AddEventComponent,
 
     NotifPageComponent,
@@ -66,6 +66,7 @@ import { FileService } from "src/app/model/services/file/file.service";
     EventSectionComponent,
     SendMessageComponent,
     ListMessageComponent,
+    ListConversationComponent,
   ],
   providers: [
     UserService,
@@ -73,6 +74,7 @@ import { FileService } from "src/app/model/services/file/file.service";
     EventService,
     FileService
 
+    ShareDataService,
   ],
   imports: [
     CommonModule,

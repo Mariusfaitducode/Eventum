@@ -1,4 +1,5 @@
 <?php
+global $mysqli;
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Credentials: true');
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
@@ -14,12 +15,12 @@ $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
 /*
-    Cette requete permet de récupérer toutes les personnes qui suivent l'utilisateur
-    
+    Cette requete permet de récupérer toutes les personnes avec qui l'utilisateur a une discussion
+
     Paramètres de la requete GET:
         - id_utilisateur : l'id de l'utilisateur
 
-    Retourne un objet JSON contenant les utilisateurs qui suivent l'utilisateur
+    Retourne un objet JSON contenant les id des personnes avec qui l'utilisateur a une discussion
 */
 
 // Requete GET
@@ -28,26 +29,39 @@ if(isset($postdata) && empty($postdata))
     if (isset($_GET['id_utilisateur'])) {
 
         $id_user = $_GET['id_utilisateur'];
-        $sql = "SELECT 
-                    DISTINCT rel.id_suiveur as id_utilisateur,
+        $sql = "SELECT
+                    DISTINCT id_utilisateur_envoyeur as id_utilisateur,
                     uti.nom,
                     uti.prenom,
-                    uti.pseudo,   
+                    uti.pseudo,
                     uti.email,
                     uti.password,
                     uti.photo_profil,
                     uti.is_darkmode,
                     uti.role
                 FROM
-                    relation as rel INNER JOIN utilisateur as uti ON rel.id_suiveur = uti.id_utilisateur
+                    message_prive as mp INNER JOIN utilisateur as uti ON mp.id_utilisateur_envoyeur = uti.id_utilisateur
                 WHERE
-                    id_suivie = '$id_user'
-                AND 
-                    statut = 'accepte'";                
+                    id_utilisateur_destinataire = '$id_user'
+                UNION
+                SELECT
+                    DISTINCT id_utilisateur_destinataire as id_utilisateur,
+                    uti.nom,
+                    uti.prenom,
+                    uti.pseudo,
+                    uti.email,
+                    uti.password,
+                    uti.photo_profil,
+                    uti.is_darkmode,
+                    uti.role
+                FROM
+                    message_prive as mp INNER JOIN utilisateur as uti ON mp.id_utilisateur_destinataire = uti.id_utilisateur
+                WHERE
+                    id_utilisateur_envoyeur = '$id_user'";
 
         $result=mysqli_query($mysqli,$sql);
 
-        while ($row = $result->fetch_array()) {
+        while($row = $result->fetch_array()){
 
             $data[] = array(
                 "id_utilisateur" => $row['id_utilisateur'],
@@ -61,7 +75,7 @@ if(isset($postdata) && empty($postdata))
                 "role" => $row['role']
             );
         }
-                 
+
         echo json_encode($data);
     }
 }
