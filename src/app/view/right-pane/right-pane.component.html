@@ -1,3 +1,16 @@
 <div id="rightPane">
-    <app-sugest-friend></app-sugest-friend>
+
+    <ng-container [ngSwitch]="true">
+        <div *ngSwitchCase="page =='agenda'">
+            <app-day-section></app-day-section>
+        </div>
+
+        <div *ngSwitchCase="page == 'messages'">
+          <app-list-conversation></app-list-conversation>
+        </div>
+        <div *ngSwitchDefault>
+            <app-sugest-friend></app-sugest-friend>
+        </div>
+      </ng-container>
+      
 </div>

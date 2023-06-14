@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { EventService } from 'src/app/model/services/event/event.service';
+import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 import { UserService } from 'src/app/model/services/user/user.service';
 
 @Component({
@@ -29,35 +30,36 @@ export class AgendaContentComponent {
 
   eventOfMonth: Event[] = []; 
 
-  //selectedMonth = new Date().getMonth();
-  selectedMonth = 3;
+  selectedMonth = new Date().getMonth();
+  //selectedMonth = 3;
   selectedYear = new Date().getFullYear();
 
   constructor(
     private eventService: EventService,
-    private userService: UserService ) {}
+    private userService: UserService,
+    private shareService: ShareDataService ) {}
 
-    incrementMonth(): void{
-      if (this.selectedMonth < 11){
-        this.selectedMonth++;
-      }
-      else{
-        this.selectedMonth = 0;
-        this.selectedYear++;
-      }
-      this.getCalendarDays();
+  incrementMonth(): void{
+    if (this.selectedMonth < 11){
+      this.selectedMonth++;
     }
-  
-    decrementMonth(): void{
-      if (this.selectedMonth > 0){
-        this.selectedMonth--;
-      }
-      else{
-        this.selectedMonth = 11;
-        this.selectedYear--;
-      }
-      this.getCalendarDays();
+    else{
+      this.selectedMonth = 0;
+      this.selectedYear++;
     }
+    this.getCalendarDays();
+  }
+
+  decrementMonth(): void{
+    if (this.selectedMonth > 0){
+      this.selectedMonth--;
+    }
+    else{
+      this.selectedMonth = 11;
+      this.selectedYear--;
+    }
+    this.getCalendarDays();
+  }
 
   getCalendarDays(){
 
@@ -75,8 +77,6 @@ export class AgendaContentComponent {
       const dayOfWeek = new Date(this.selectedYear, this.selectedMonth, day).getDay();
       this.daysOfWeek[dayOfWeek].number.push(day);
     }
-
-    
 
     for (let i = 0; i < this.daysOfWeek.length; i++) {
       const day = this.daysOfWeek[i];
@@ -134,6 +134,22 @@ export class AgendaContentComponent {
 
   getDayOfEvent(date: Date): number {
     return date.getDate();
+  }
+
+  updateEventDayData(number: number): void {
+
+    console.log("updateEventDayData");
+
+    var eventOfDay : Event[] = [];
+    
+    for (let event of this.eventOfMonth) {
+      if (event.date.getDate() == number){
+        eventOfDay.push(event);
+      }
+    }
+    console.log(eventOfDay);
+
+    this.shareService.setAgendaDayEvent(eventOfDay);
   }
 
   ngOnInit(): void {  
