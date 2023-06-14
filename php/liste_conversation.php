@@ -1,4 +1,5 @@
 <?php
+global $mysqli;
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Credentials: true');
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
@@ -15,7 +16,7 @@ $request = json_decode($postdata);
 
 /*
     Cette requete permet de récupérer toutes les personnes avec qui l'utilisateur a une discussion
-    
+
     Paramètres de la requete GET:
         - id_utilisateur : l'id de l'utilisateur
 
@@ -28,16 +29,16 @@ if(isset($postdata) && empty($postdata))
     if (isset($_GET['id_utilisateur'])) {
 
         $id_user = $_GET['id_utilisateur'];
-        $sql = "SELECT 
+        $sql = "SELECT
                     DISTINCT id_utilisateur_envoyeur as id
-                FROM 
+                FROM
                     message_prive
                 WHERE
                     id_utilisateur_destinataire = '$id_user'
                 UNION
-                SELECT 
+                SELECT
                     DISTINCT id_utilisateur_destinataire as id
-                FROM 
+                FROM
                     message_prive
                 WHERE
                     id_utilisateur_envoyeur = '$id_user'";
@@ -45,10 +46,10 @@ if(isset($postdata) && empty($postdata))
         $result=mysqli_query($mysqli,$sql);
         $row = $result->fetch_array();
 
-        $data = [               
+        $data = [
                 "id" => $row['id']
         ];
-                  
+
         echo json_encode($data);
     }
 }

@@ -15,7 +15,10 @@ export class SendMessageComponent {
   public id_event: number = 0
 
   constructor(private service: MessagerieService, private userService: UserService) {
-
+    this.userService.getUserByToken().subscribe((data: any) => {
+      console.log(data);
+      this.id_sender = data.id_utilisateur;
+    });
   }
 
   OnConfirm(): void {

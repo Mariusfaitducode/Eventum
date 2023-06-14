@@ -9,13 +9,11 @@ import { LoginComponent } from './view/forms/login/login.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './view/forms/register/register.component';
 import {HomeModule} from "./view/pages/home/home.module";
-import { ListConversationComponent } from './view/pages/message/components/list-conversation/list-conversation.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListConversationComponent,
     //NotificationComponent,
   ],
   imports: [
