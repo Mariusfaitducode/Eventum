@@ -11,15 +11,20 @@ import { Event } from 'src/app/model/classes/event/event';
 export class DaySectionComponent implements OnInit {
 
   eventOfDay: Event[] = [];
+  date: Date = new Date();
+
+  day: string[] = ['Lundi' , 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
   constructor(
     private shareService: ShareDataService,
   ) {}
 
   ngOnInit() {
-    this.shareService.agendaDayEvent.subscribe((data: Event[]) => {
+    this.shareService.agendaDayEvent.subscribe((data: [Date, Event[]]) => {
       console.log("data actualisation");
-      this.eventOfDay = data;
+      this.date = data[0];
+
+      this.eventOfDay = data[1];
     });
   }
 

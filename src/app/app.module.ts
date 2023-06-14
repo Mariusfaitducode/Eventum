@@ -14,6 +14,7 @@ import {HomeModule} from "./view/pages/home/home.module";
 @NgModule({
   declarations: [
     AppComponent,
+    
     //NotificationComponent,
   ],
   imports: [

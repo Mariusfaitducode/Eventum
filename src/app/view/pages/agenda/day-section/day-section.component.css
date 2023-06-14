@@ -1,0 +1,53 @@
+
+.day-header{
+
+    width: 100%;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--purple-0);
+    
+    border-bottom: solid 1px var(--purple-1);
+    
+
+    margin-bottom: 30px;
+}
+
+.event-day-section{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.event-link{
+
+    margin-bottom: 10px;
+    width: 90%;
+    height: 80px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: var(--purple-1);
+    
+}
+
+.event-infos{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 0 10px 0 10px;
+}

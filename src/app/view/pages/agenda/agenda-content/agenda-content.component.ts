@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { EventService } from 'src/app/model/services/event/event.service';
@@ -127,8 +127,6 @@ export class AgendaContentComponent {
       console.log("events on agenda"); // Check if the user object is retrieved correctly
       console.log(events.length);
       this.eventOfMonth = events;
-      let myday = new Date(this.eventOfMonth[0].date)
-      console.log(myday.getDate());
     });
   }
 
@@ -143,13 +141,16 @@ export class AgendaContentComponent {
     var eventOfDay : Event[] = [];
     
     for (let event of this.eventOfMonth) {
-      if (event.date.getDate() == number){
+      
+      if (event.date instanceof Date && event.date.getDate() == number){
         eventOfDay.push(event);
       }
     }
     console.log(eventOfDay);
 
-    this.shareService.setAgendaDayEvent(eventOfDay);
+    const date = new Date(this.selectedYear, this.selectedMonth, number);
+
+    this.shareService.setAgendaDayEvent(date, eventOfDay);
   }
 
   ngOnInit(): void {  
@@ -160,6 +161,22 @@ export class AgendaContentComponent {
     console.log(this.daysOfWeek);
     console.log("eventOfMonth");
     console.log(this.eventOfMonth);
+  }
+
+  @ViewChild('event-day', { static: true })
+  maDiv!: ElementRef;
+  
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event: any) {
+    // Code à exécuter lorsque la taille de l'écran change
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 1000) {
+      // Masquer le contenu de la div
+      // Changer la couleur de fond
+    } else {
+      // Rétablir le contenu de la div
+      // Restaurer la couleur de fond
+    }
   }
 
 }
