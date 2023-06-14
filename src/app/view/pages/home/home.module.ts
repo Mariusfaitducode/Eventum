@@ -37,6 +37,7 @@ import {ListMessageComponent} from "../message/components/list-message/list-mess
 import {ListConversationComponent} from "../message/components/list-conversation/list-conversation.component";
 
 import { ShareDataService } from "src/app/model/services/share/share-data.service";
+import {SingleMessageComponent} from "../message/components/single-message/single-message.component";
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { ShareDataService } from "src/app/model/services/share/share-data.servic
     AgendaComponent,
     AgendaContentComponent,
     DaySectionComponent,
-    
+
     AddEventComponent,
 
     NotifPageComponent,
@@ -68,6 +69,7 @@ import { ShareDataService } from "src/app/model/services/share/share-data.servic
     SendMessageComponent,
     ListMessageComponent,
     ListConversationComponent,
+    SingleMessageComponent,
   ],
   providers: [
     UserService,

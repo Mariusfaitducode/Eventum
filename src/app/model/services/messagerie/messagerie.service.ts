@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {User} from "../../classes/user/user";
+import {Message} from "../../classes/message/message";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,12 @@ export class MessagerieService {
   public getListConversation(id_user: number) {
     return this.httpClient.get<User[]>(this.baseUrl + '/liste_conversation.php?id_utilisateur=' + id_user).pipe(map(Conversations => {
       return Conversations;
+    }));
+  }
+
+  public getMessages(id_sender: number, id_receiver: number) {
+    return this.httpClient.get<Message[]>(this.baseUrl + '/load_messages.php?id_sender=' + id_sender + '&id_receiver=' + id_receiver).pipe(map(messages => {
+      return messages;
     }));
   }
 }

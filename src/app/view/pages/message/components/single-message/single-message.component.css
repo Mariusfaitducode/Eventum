@@ -1,0 +1,71 @@
+
+
+.d-flex{
+  display: flex;
+  flex-direction: row;
+}
+
+section{
+  border-right: 1px solid var(--purple-1);
+  border-left: 1px solid var(--purple-1);
+  text-align: center;
+}
+
+section h2{
+  margin: 10px;
+}
+
+/* affichage des messages */
+
+
+.message{
+  color: var(--black);
+  margin: 5px 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--lightgray-0);
+  /* width: 100%;
+  min-width: 300px;
+  max-width: 500px; */
+  text-align: left;
+}
+
+img{
+  min-width: 180px;
+  max-width: 60%;
+  margin: 5px 10px;
+
+  border-radius: 10px;
+}
+
+.card-event{
+  /* width: 100%;
+  min-width: 300px;
+  max-width: 500px; */
+  margin: 5px 10px;
+  transition: none;
+}
+
+
+.left{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  /* border: 1px solid #352f2f8a; */
+}
+
+.right{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  /* border: 1px solid #352f2f8a; */
+}
+
+.photo-groupe{
+  display: flex;
+  align-items: center;
+}
