@@ -7,6 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //Connexion database
 include_once("database.php");
+include_once("utils.php");
 
 //Récupère données envoyés depuis angular surtout pour POST
 $postdata = file_get_contents("php://input");
@@ -32,7 +33,15 @@ if(isset($postdata))
             // On vérifie le mdp
             if (password_verify($password, $row["password"])){
                 // login correct
-                echo json_encode($row["id_utilisateur"]);
+
+                //generate token and store it in the database
+                $token = generateToken();
+
+                $sql = "UPDATE utilisateur SET token = ('$token') WHERE id_utilisateur = '$row[id_utilisateur]'";
+                $result = mysqli_query($mysqli, $sql);
+                
+                echo json_encode($token);
+        
             }else{
                 // Mauvais mdp
                 echo json_encode(false);
@@ -52,13 +61,7 @@ echo json_encode(false);
 
 // Fonction pour nettoyer l'entrée utilisateur pour des raisons de sécurité
 //--------------------------------------------------------------------------------
-function SecurizeString_ForSQL($string) {
-    $string = trim($string);
-    $string = stripcslashes($string);
-    $string = addslashes($string);
-    $string = htmlspecialchars($string);
-    return $string;
-}
+
 
 
 ?>

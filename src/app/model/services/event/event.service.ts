@@ -46,6 +46,12 @@ export class EventService {
         return Categories;
     }));
   }
+
+  public getEventsByMonthAndUser(id: number, month: number, year: number) {
+    return this.httpClient.get<Event[]>(this.baseUrl + '/event/event_month.php?id_user=' + id + '&month=' + month + '&year=' + year).pipe(map(Events => {
+      return Events;
+    }));
+  }
   
 
 }

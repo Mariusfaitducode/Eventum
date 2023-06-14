@@ -1,0 +1,24 @@
+<p>agenda-content works!</p>
+{{user.pseudo}}
+{{eventOfMonth[0].date}}
+
+<section class="days">
+
+    <div *ngFor="let day of daysOfWeek" class="day">
+        
+        
+        <h3>{{ day.day }}</h3>
+
+        <div *ngFor="let number of day.number" class="day">
+
+            <div class="day-content-item">
+                <div> {{number}}</div>
+
+                <div *ngFor="let event of eventOfMonth" class="">
+                    <div *ngIf="getDayOfEvent(event.date) === number" class="">{{event.titre}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

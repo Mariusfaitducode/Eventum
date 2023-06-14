@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1
+-- http://www.phpmyadmin.net
 --
--- Hôte : 127.0.0.1
--- Généré le : jeu. 08 juin 2023 à 10:45
--- Version du serveur : 10.4.27-MariaDB
--- Version de PHP : 8.2.0
+-- Client :  localhost
+-- Généré le :  Mar 13 Juin 2023 à 12:20
+-- Version du serveur :  5.7.11
+-- Version de PHP :  5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -18,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `eventum_db`
+-- Base de données :  `eventum`
 --
 CREATE DATABASE IF NOT EXISTS `eventum` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `eventum`;
@@ -32,10 +31,10 @@ USE `eventum`;
 CREATE TABLE `categorie` (
   `id_categorie` int(11) NOT NULL,
   `categorie` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `categorie`
+-- Contenu de la table `categorie`
 --
 
 INSERT INTO `categorie` (`id_categorie`, `categorie`) VALUES
@@ -63,16 +62,16 @@ CREATE TABLE `evenement` (
   `id_createur` int(11) NOT NULL,
   `titre` varchar(255) NOT NULL,
   `id_categorie` int(11) NOT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `image` varchar(255) DEFAULT NULL,
   `date` date NOT NULL,
   `heure` time DEFAULT NULL,
   `lieu` varchar(255) DEFAULT NULL,
   `is_public` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `evenement`
+-- Contenu de la table `evenement`
 --
 
 INSERT INTO `evenement` (`id_evenement`, `id_createur`, `titre`, `id_categorie`, `description`, `image`, `date`, `heure`, `lieu`, `is_public`) VALUES
@@ -96,10 +95,10 @@ CREATE TABLE `inscription_evenement` (
   `id_relation` int(11) NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
   `id_evenement` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `inscription_evenement`
+-- Contenu de la table `inscription_evenement`
 --
 
 INSERT INTO `inscription_evenement` (`id_relation`, `id_utilisateur`, `id_evenement`) VALUES
@@ -122,10 +121,10 @@ CREATE TABLE `message_groupe` (
   `date_envoi` datetime NOT NULL,
   `contenu` text NOT NULL,
   `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `message_groupe`
+-- Contenu de la table `message_groupe`
 --
 
 INSERT INTO `message_groupe` (`id_message`, `id_utilisateur_envoyeur`, `id_evenement`, `date_envoi`, `contenu`, `image`) VALUES
@@ -154,10 +153,10 @@ CREATE TABLE `message_prive` (
   `image` varchar(255) DEFAULT NULL,
   `vue` tinyint(1) DEFAULT NULL,
   `id_evenement` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `message_prive`
+-- Contenu de la table `message_prive`
 --
 
 INSERT INTO `message_prive` (`id_message`, `id_utilisateur_envoyeur`, `id_utilisateur_destinataire`, `date_envoi`, `contenu`, `image`, `vue`, `id_evenement`) VALUES
@@ -197,7 +196,7 @@ CREATE TABLE `notifications` (
   `id_utilisateur` int(11) NOT NULL,
   `date_notif` date NOT NULL,
   `vue` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -208,7 +207,7 @@ CREATE TABLE `notifications` (
 CREATE TABLE `notification_change_evenement` (
   `id_notif` int(11) NOT NULL,
   `id_evenement` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -219,7 +218,7 @@ CREATE TABLE `notification_change_evenement` (
 CREATE TABLE `notification_change_relation` (
   `id_notif` int(11) NOT NULL,
   `id_relation` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -230,7 +229,7 @@ CREATE TABLE `notification_change_relation` (
 CREATE TABLE `notification_evenement_close` (
   `id_notif` int(11) NOT NULL,
   `id_evenement` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -241,7 +240,7 @@ CREATE TABLE `notification_evenement_close` (
 CREATE TABLE `notification_message_groupe` (
   `id_notif` int(11) NOT NULL,
   `id_message` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -252,7 +251,7 @@ CREATE TABLE `notification_message_groupe` (
 CREATE TABLE `notification_message_prive` (
   `id_notif` int(11) NOT NULL,
   `id_message` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -263,7 +262,7 @@ CREATE TABLE `notification_message_prive` (
 CREATE TABLE `notification_new_participant` (
   `id_notif` int(11) NOT NULL,
   `id_evenement` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -275,7 +274,7 @@ CREATE TABLE `preferences` (
   `id_utilisateur` int(11) NOT NULL,
   `id_categorie` int(11) NOT NULL,
   `preference_value` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -288,10 +287,10 @@ CREATE TABLE `relation` (
   `id_suiveur` int(11) DEFAULT NULL,
   `id_suivie` int(11) DEFAULT NULL,
   `statut` enum('en attente','accepte','bloque') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `relation`
+-- Contenu de la table `relation`
 --
 
 INSERT INTO `relation` (`id_relation`, `id_suiveur`, `id_suivie`, `statut`) VALUES
@@ -319,10 +318,10 @@ INSERT INTO `relation` (`id_relation`, `id_suiveur`, `id_suivie`, `statut`) VALU
 CREATE TABLE `roles` (
   `id_role` int(11) NOT NULL,
   `role` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `roles`
+-- Contenu de la table `roles`
 --
 
 INSERT INTO `roles` (`id_role`, `role`) VALUES
@@ -341,33 +340,34 @@ CREATE TABLE `utilisateur` (
   `prenom` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,	
+  `password` varchar(255) NOT NULL,
   `photo_profil` varchar(255) DEFAULT NULL,
   `is_darkmode` tinyint(1) NOT NULL,
-  `role` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `role` int(11) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `pseudo`, `email`, `password`, `photo_profil`, `is_darkmode`, `role`) VALUES
-(1, 'Diguat', 'Marius', 'sk8zen', 'm@d', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-64398b40977e23.71004061.jpg', 1, NULL),
-(2, 'Chaussoy', 'ElisÃ©o', 'tatsuya', 'e@c', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c35c0418828.97606205.png', 0, NULL),
-(3, 'Goudal', 'Victor', 'victrolles', 'v@g', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c381e177c59.98535094.jpg', 1, NULL),
-(4, 'Esstafa', 'Yasmine', 'yass', 'y@e', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c3902a6f735.59820818.jpg', 0, NULL),
-(5, 'Marcelin', 'Nicolas', 'nicoco', 'n@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL),
-(6, 'Royer', 'Albert', 'raryn', 'a@r', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL),
-(7, 'Maurer', 'Gilles', 'sellig', 'g@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c39793e7f62.50049025.jpg', 0, NULL),
-(8, 'Sudaker', 'Veronica', 'greenorica', 'v@s', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL),
-(9, 'Augustin', 'Athane', 'augustin', 'a@a', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL),
-(10, 'testeur', 'test', 'test', 't@t', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL),
-(11, 'Melon', 'Eleonore', 'unity', 'u@c', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c3d0ee50f67.49967731.jpg', 1, NULL),
-(12, 'Organisateur', 'Super', 'orga2000', 's@o', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 1, NULL),
-(14, 'Diguat', 'Marius', 'mario', 'mario@mail', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 1, NULL);
+INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `pseudo`, `email`, `password`, `photo_profil`, `is_darkmode`, `role`, `token`) VALUES
+(1, 'Diguat', 'Marius', 'sk8zen', 'm@d', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-64398b40977e23.71004061.jpg', 1, NULL, NULL),
+(2, 'Chaussoy', 'ElisÃ©o', 'tatsuya', 'e@c', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c35c0418828.97606205.png', 0, NULL, NULL),
+(3, 'Goudal', 'Victor', 'victrolles', 'v@g', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c381e177c59.98535094.jpg', 1, NULL, NULL),
+(4, 'Esstafa', 'Yasmine', 'yass', 'y@e', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c3902a6f735.59820818.jpg', 0, NULL, NULL),
+(5, 'Marcelin', 'Nicolas', 'nicoco', 'n@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
+(6, 'Royer', 'Albert', 'raryn', 'a@r', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
+(7, 'Maurer', 'Gilles', 'sellig', 'g@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c39793e7f62.50049025.jpg', 0, NULL, NULL),
+(8, 'Sudaker', 'Veronica', 'greenorica', 'v@s', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
+(9, 'Augustin', 'Athane', 'augustin', 'a@a', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
+(10, 'testeur', 'test', 'test', 't@t', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
+(11, 'Melon', 'Eleonore', 'unity', 'u@c', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c3d0ee50f67.49967731.jpg', 1, NULL, NULL),
+(12, 'Organisateur', 'Super', 'orga2000', 's@o', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 1, NULL, NULL),
+(14, 'Diguat', 'Marius', 'mario', 'mario@mail', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 1, NULL, NULL);
 
 --
--- Index pour les tables déchargées
+-- Index pour les tables exportées
 --
 
 --
@@ -488,7 +488,7 @@ ALTER TABLE `utilisateur`
   ADD KEY `role` (`role`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
@@ -496,51 +496,43 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `categorie`
   MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
 --
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
   MODIFY `id_evenement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
-
 --
 -- AUTO_INCREMENT pour la table `inscription_evenement`
 --
 ALTER TABLE `inscription_evenement`
   MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
 --
 -- AUTO_INCREMENT pour la table `message_groupe`
 --
 ALTER TABLE `message_groupe`
   MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT pour la table `message_prive`
 --
 ALTER TABLE `message_prive`
   MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
 --
 -- AUTO_INCREMENT pour la table `notifications`
 --
 ALTER TABLE `notifications`
   MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT pour la table `relation`
 --
 ALTER TABLE `relation`
   MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
--- Contraintes pour les tables déchargées
+-- Contraintes pour les tables exportées
 --
 
 --
@@ -638,7 +630,6 @@ ALTER TABLE `relation`
 --
 ALTER TABLE `utilisateur`
   ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`role`) REFERENCES `roles` (`id_role`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

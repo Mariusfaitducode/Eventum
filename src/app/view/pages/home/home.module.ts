@@ -9,9 +9,13 @@ import { ProfilComponent } from "../profil/profil.component";
 import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
 
 import { MessageComponent } from "../message/message.component";
-import { AgendaComponent } from "../agenda/components/agenda.component";
+
+import { AgendaComponent } from "../agenda/agenda.component";
+import { AgendaContentComponent } from "../agenda/agenda-content/agenda-content.component";
 import { AddEventComponent } from "../add-event/add-event.component";
+
 import { NotifPageComponent } from "../notif-page/notif-page.component";
+import { NotificationComponent } from "../notif-page/notification/notification.component";
 import { UserCardComponent } from "../../utils/user-card/user-card.component";
 
 import { EventComponent} from "../event/event.component";
@@ -30,6 +34,8 @@ import { ContainerEventComponent } from "../../utils/container-event/container-e
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
 import { MainEventComponent } from "../../utils/main-event/main-event.component";
 import { FormsModule } from "@angular/forms";
+import {SendMessageComponent} from "../../utils/send-message/send-message.component";
+import {ListMessageComponent} from "../message/components/list-message/list-message.component";
 
 
 
@@ -43,8 +49,12 @@ import { FormsModule } from "@angular/forms";
     ProfilComponent,
     MessageComponent,
     AgendaComponent,
+    AgendaContentComponent,
     AddEventComponent,
+
     NotifPageComponent,
+    NotificationComponent,
+
     UserCardComponent,
     SugestFriendComponent,
     ProfilSectionComponent,
@@ -53,6 +63,8 @@ import { FormsModule } from "@angular/forms";
     MainEventComponent,
     EventComponent,
     EventSectionComponent,
+    SendMessageComponent,
+    ListMessageComponent,
   ],
   providers: [
     UserService,
@@ -64,7 +76,7 @@ import { FormsModule } from "@angular/forms";
     HomeRoutingModule,
     HttpClientModule, // Ajout de HttpClientModule
     FormsModule
-    
+
 
   ]
 })

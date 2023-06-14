@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     console.log(this.login);
     console.log(this.password);
 
-    this.service.login(this.login, this.password).subscribe((data: Boolean) => {
+    this.service.login(this.login, this.password).subscribe((data: boolean) => {
       console.log(data);
       if(data){ // Si la connection est réussi
         this.router.navigate(['/home']);
