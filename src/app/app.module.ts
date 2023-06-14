@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HubModule} from "./view/pages/hub/hub.module";
-import {HomeModule} from "./view/pages/home/home.module";
 import { LoginComponent } from './view/forms/login/login.component';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './view/forms/register/register.component';
+import {HomeModule} from "./view/pages/home/home.module";
+import { SendMessageComponent } from './view/utils/send-message/send-message.component';
+import { ListMessageComponent } from './view/pages/message/components/list-message/list-message.component';
 
 
 @NgModule({

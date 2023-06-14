@@ -34,6 +34,8 @@ import { ContainerEventComponent } from "../../utils/container-event/container-e
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
 import { MainEventComponent } from "../../utils/main-event/main-event.component";
 import { FormsModule } from "@angular/forms";
+import {SendMessageComponent} from "../../utils/send-message/send-message.component";
+import {ListMessageComponent} from "../message/components/list-message/list-message.component";
 
 
 
@@ -49,7 +51,7 @@ import { FormsModule } from "@angular/forms";
     AgendaComponent,
     AgendaContentComponent,
     AddEventComponent,
-    
+
     NotifPageComponent,
     NotificationComponent,
 
@@ -61,6 +63,8 @@ import { FormsModule } from "@angular/forms";
     MainEventComponent,
     EventComponent,
     EventSectionComponent,
+    SendMessageComponent,
+    ListMessageComponent,
   ],
   providers: [
     UserService,
@@ -72,7 +76,7 @@ import { FormsModule } from "@angular/forms";
     HomeRoutingModule,
     HttpClientModule, // Ajout de HttpClientModule
     FormsModule
-    
+
 
   ]
 })

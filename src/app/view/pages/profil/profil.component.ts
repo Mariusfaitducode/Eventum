@@ -30,10 +30,10 @@ export class ProfilComponent {
   ) {}
 
   ngOnInit() {
-    
-  
+
+
     const loggedIn: boolean = this.authService.isLoggedIn();
-  
+
     //if (loggedIn)
     if (loggedIn) {
 
@@ -49,7 +49,7 @@ export class ProfilComponent {
           console.log("token profil");
 
           this.service.getUserByToken().subscribe((user) => {
-  
+
             console.log(user); // Check if the user object is retrieved correctly
             console.log("user"); // Check if the user object is retrieved correctly
             this.user = user;
@@ -59,23 +59,23 @@ export class ProfilComponent {
           //Visite page profil
 
           this.service.getUserById(id).subscribe((user) => {
-  
+
             console.log("user ="+user); // Check if the user object is retrieved correctly
             this.user = user;
           });
         }
-  
-        
 
-        this.service.getRelation(id, 1).subscribe((relation) => {
-                      
-            console.log("relation ="+relation); // Check if the user object is retrieved correctly
-            console.log("relation statut ="+relation.statut); // Check if the user object is retrieved correctly
-            this.relation = relation;
-          });                               
+
+
+        // this.service.getRelation(id, 1).subscribe((relation) => {
+        //
+        //     console.log("relation ="+relation); // Check if the user object is retrieved correctly
+        //     console.log("relation statut ="+relation.statut); // Check if the user object is retrieved correctly
+        //     this.relation = relation;
+        //   });
       });
 
-      
+
 
       // L'utilisateur est connecté, vous pouvez charger les données du profil
       // Si c'est le profil de l'utilisateur actuel, vous pouvez le traiter différemment
@@ -91,7 +91,7 @@ export class ProfilComponent {
     } else {
       // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
     }
-  } 
+  }
 }
 
-  
+
