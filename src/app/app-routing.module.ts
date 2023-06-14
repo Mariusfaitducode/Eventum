@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'agenda', component: AgendaComponent },
   { path: 'notifications', component: NotifPageComponent },
   { path: 'messages', component: MessageComponent },
+  { path: 'messages/:id', component: MessageComponent },
   { path: 'profil/:id', component: ProfilComponent },
   { path: 'profil', component: ProfilComponent},
   { path: 'event/:id', component: EventComponent},

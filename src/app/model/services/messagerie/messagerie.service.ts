@@ -19,8 +19,7 @@ export class MessagerieService {
   }
 
   public getListConversation(id_user: number) {
-
-    return this.httpClient.get<User[]>(this.baseUrl + '/list_conversation.php?id_user=' + id_user).pipe(map(Conversations => {
+    return this.httpClient.get<User[]>(this.baseUrl + '/liste_conversation.php?id_utilisateur=' + id_user).pipe(map(Conversations => {
       return Conversations;
     }));
   }

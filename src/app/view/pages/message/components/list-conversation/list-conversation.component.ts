@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../../../../model/classes/user/user";
 import {MessagerieService} from "../../../../../model/services/messagerie/messagerie.service";
 import {UserService} from "../../../../../model/services/user/user.service";
+import {AuthentificationService} from "../../../../../model/services/authentification/authentification.service";
 
 @Component({
   selector: 'app-list-conversation',
@@ -11,22 +12,28 @@ import {UserService} from "../../../../../model/services/user/user.service";
 export class ListConversationComponent implements OnInit {
   public UserArray : User[] = [];
   public link: string = "messages";
-  public id_user!: number;
 
-  constructor(private service: MessagerieService, private userService: UserService) {
-    this.userService.getUserByToken().subscribe((data: any) => {
-      console.log(data);
-      this.id_user = data.id_utilisateur;
-    });
-  }
+  constructor(private service: MessagerieService, private userService: UserService, private authService: AuthentificationService) {}
 
   ngOnInit(): void {
-    this.service.getListConversation(this.id_user).subscribe((data: User[]) => {
-      console.log("data"+data);
-      this.UserArray = data;
-    })
+
+    const loggedIn: boolean = this.authService.isLoggedIn();
+
+    //if (loggedIn)
+    if (loggedIn) {
+
+      // Get the user information
+      this.userService.getUserByToken().subscribe((data: User) => {
+        console.log(data);
+        this.getListConversationOfUser(data.id_utilisateur);
+      });
+    }
   }
 
-
-
+  getListConversationOfUser(id: number): void {
+    this.service.getListConversation(id).subscribe((data2: User[]) => {
+      console.log("data"+data2);
+      this.UserArray = data2;
+    })
+  }
 }
