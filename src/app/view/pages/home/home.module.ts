@@ -26,11 +26,7 @@ import { EventSectionComponent } from "../event/event-section/event-section.comp
 import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.component";
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
 import { UserService } from 'src/app/model/services/user/user.service'; // Ajout de UserService
-import { ApiService } from "src/app/api.service";
-
 import { AuthentificationService } from "src/app/model/services/authentification/authentification.service";
-
-
 import { EventService } from "src/app/model/services/event/event.service";
 import { ContainerEventComponent } from "../../utils/container-event/container-event.component";
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
@@ -38,6 +34,7 @@ import { MainEventComponent } from "../../utils/main-event/main-event.component"
 import { FormsModule } from "@angular/forms";
 import {SendMessageComponent} from "../../utils/send-message/send-message.component";
 import {ListMessageComponent} from "../message/components/list-message/list-message.component";
+import {ListConversationComponent} from "../message/components/list-conversation/list-conversation.component";
 
 import { ShareDataService } from "src/app/model/services/share/share-data.service";
 
@@ -70,6 +67,7 @@ import { ShareDataService } from "src/app/model/services/share/share-data.servic
     EventSectionComponent,
     SendMessageComponent,
     ListMessageComponent,
+    ListConversationComponent,
   ],
   providers: [
     UserService,
