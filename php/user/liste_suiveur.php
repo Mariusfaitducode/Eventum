@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header("Content-Type: application/json; charset=UTF-8");
 
 //Connexion database
-include_once("database.php");
+include_once("../database.php");
 
 //Récupère données envoyés depuis angular surtout pour POST
 $postdata = file_get_contents("php://input");
@@ -19,7 +19,7 @@ $request = json_decode($postdata);
     Paramètres de la requete GET:
         - id_utilisateur : l'id de l'utilisateur
 
-    Retourne un objet JSON contenant les id des personnes qui suivent l'utilisateur
+    Retourne un objet JSON contenant les utilisateurs qui suivent l'utilisateur
 */
 
 // Requete GET
@@ -29,21 +29,39 @@ if(isset($postdata) && empty($postdata))
 
         $id_user = $_GET['id_utilisateur'];
         $sql = "SELECT 
-                    DISTINCT id_suiveur as id
+                    DISTINCT rel.id_suiveur as id_utilisateur,
+                    uti.nom,
+                    uti.prenom,
+                    uti.pseudo,   
+                    uti.email,
+                    uti.password,
+                    uti.photo_profil,
+                    uti.is_darkmode,
+                    uti.role
                 FROM
-                    relation
+                    relation as rel INNER JOIN utilisateur as uti ON rel.id_suiveur = uti.id_utilisateur
                 WHERE
-                    id_suivie = '$id_user'"
+                    id_suivie = '$id_user'
                 AND 
-                    statut = 'accepte';                
+                    statut = 'accepte'";                
 
         $result=mysqli_query($mysqli,$sql);
-        $row = $result->fetch_array();
 
-        $data = [               
-                "id" => $row['id']
-        ];
-                  
+        while ($row = $result->fetch_array()) {
+
+            $data[] = array(
+                "id_utilisateur" => $row['id_utilisateur'],
+                "nom" => $row['nom'],
+                "prenom" => $row['prenom'],
+                "pseudo" => $row['pseudo'],
+                "email" => $row['email'],
+                "password" => $row['password'],
+                "photo_profil" => $row['photo_profil'],
+                "is_darkmode" => $row['is_darkmode'],
+                "role" => $row['role']
+            );
+        }
+                 
         echo json_encode($data);
     }
 }

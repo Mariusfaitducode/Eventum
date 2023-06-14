@@ -9,6 +9,7 @@ export class UserCardComponent {
   @Input() link_img!: string
   @Input() name!: string
   @Input() id!: number
+  @Input() link!: string;
 
   constructor() {
   }
