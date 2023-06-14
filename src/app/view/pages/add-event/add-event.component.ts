@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categorie } from 'src/app/model/classes/categorie/categorie';
 import { EventService } from 'src/app/model/services/event/event.service';
+import { UserService } from 'src/app/model/services/user/user.service';
 
 @Component({
   selector: 'app-add-event',
@@ -21,13 +22,16 @@ export class AddEventComponent implements OnInit{
   public list_categorie!: Categorie[]
   
 
-  constructor(private router: Router, private service: EventService) {
+  constructor(private router: Router, private service: EventService, private userService: UserService) {
     this.service.getCategories().subscribe((data: Categorie[]) => {
+      console.log(data);
       this.list_categorie = data;
     });
   }
 
   OnConfirm(): void {
+    this.heure = this.heure.padStart(5, '0') + ':00';
+
     console.log(this.titre);
     console.log(this.description);
     console.log(this.date);
@@ -36,7 +40,7 @@ export class AddEventComponent implements OnInit{
     console.log(this.is_public);
     console.log(this.id_categorie);
     console.log(this.imageFileName);
-    this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.is_public, this.id_categorie, 0, this.imageFileName).subscribe((data: boolean) => {
+    this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.is_public, this.id_categorie, , this.imageFileName).subscribe((data: boolean) => {
       console.log(data);
 
     });

@@ -15,8 +15,8 @@ export class SugestFriendComponent implements OnInit{
 
   constructor(private service: UserService) {
     this.service.getUsers().subscribe((data: User[]) => {
-      console.log("data"+data);
-      this.UserArray = data;
+      const shuffledArray = data.sort(() => 0.5 - Math.random());
+      this.UserArray = shuffledArray.slice(0, 5);;
     });
   }
 
@@ -24,9 +24,5 @@ export class SugestFriendComponent implements OnInit{
 
   }
 
-  getRandomUsers(userArray: any[], count: number): any[] {
-    const shuffledArray = userArray.sort(() => 0.5 - Math.random());
-    return shuffledArray.slice(0, count);
-  }
 
 }

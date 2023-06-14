@@ -25,7 +25,7 @@ if(isset($postdata))
         $password = SecurizeString_ForSQL($_GET['password']);
 
         // Vérification si l'utilisateur existe déjà
-        $sql = "SELECT * FROM utilisateur WHERE email = '$email'";
+        $sql = "SELECT * FROM utilisateur WHERE email = '$email' or username = '$pseudo'";
         $result = mysqli_query($mysqli, $sql);
 
         if ($result->num_rows > 0) {
