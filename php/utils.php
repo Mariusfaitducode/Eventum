@@ -8,8 +8,8 @@ function generateToken(){
 
     $token = str_replace('+', '', $token);
     $token = str_replace('/', '', $token);
-    $token = str_replace('=', '', $token);  
-    
+    $token = str_replace('=', '', $token);
+
     return $token;
 }
 
@@ -20,6 +20,7 @@ function SecurizeString_ForSQL($string) {
     $string = htmlspecialchars($string);
     return $string;
 }
+
 
 
 ?>
