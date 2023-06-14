@@ -19,8 +19,12 @@ import { UserService } from 'src/app/model/services/user/user.service';
 
 })
 export class ProfilComponent {
+  connectedUser!: User;
   user!: User; // Assurez-vous d'importer le modèle User depuis votre API ou de le définir correctement
-  relation!: Relation;
+  relation!: [Relation, Relation];
+  
+
+  personnal_page: boolean = false;
 
 
   constructor(
@@ -44,7 +48,7 @@ export class ProfilComponent {
 
         if (Number.isNaN(id)){
 
-          //Page profil utilisateur connecté
+          this.personnal_page = true;
 
           console.log("token profil");
 
@@ -62,17 +66,34 @@ export class ProfilComponent {
 
             console.log("user ="+user); // Check if the user object is retrieved correctly
             this.user = user;
+
+            this.service.getUserByToken().subscribe((user) => {
+
+              console.log(user); // Check if the user object is retrieved correctly
+              console.log("user"); // Check if the user object is retrieved correctly
+              this.connectedUser = user;
+
+              this.service.getRelation(id, this.connectedUser.id_utilisateur).subscribe((relation) => {
+            
+                console.log("relation ="+relation); // Check if the user object is retrieved correctly
+                console.log("relation statut ="+relation.statut); // Check if the user object is retrieved correctly
+                this.relation[0] = relation;
+
+                this.service.getRelation(this.connectedUser.id_utilisateur, id).subscribe((relation) => {
+            
+                  console.log("relation ="+relation); // Check if the user object is retrieved correctly
+                  console.log("relation statut ="+relation.statut); // Check if the user object is retrieved correctly
+                  this.relation[1] = relation;
+                  
+                });
+              });
+            });
           });
         }
 
 
 
-        // this.service.getRelation(id, 1).subscribe((relation) => {
-        //
-        //     console.log("relation ="+relation); // Check if the user object is retrieved correctly
-        //     console.log("relation statut ="+relation.statut); // Check if the user object is retrieved correctly
-        //     this.relation = relation;
-        //   });
+        
       });
 
 

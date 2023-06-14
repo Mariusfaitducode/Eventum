@@ -3,8 +3,6 @@
 
     <!-- Affichage ami -->
 
-    
-
         <img src="/assets/{{user.photo_profil}}" width="255px" height="255px" alt="avatar">
 
         
@@ -23,7 +21,7 @@
         
         <!-- Si nous sommes sur notr profil -->
 
-        <!-- <div class="profil-button">
+        <div *ngIf="personnal_page; else visite" class="profil-button">
 
             <button id="amis-button" class="ecart-button">Amis</button>
 
@@ -34,46 +32,50 @@
                 <button type="submit">Se déconnecter</button>
                 
             </form>
-        </div> -->
+        </div>
 
-        <!-- Si nous sommes sur un autre profil ami -->
+        <ng-template #visite>
+            <!-- Si nous sommes sur un autre profil ami -->
         
-                <div class="profil-button">
+            <div class="profil-button">
                     
-                    <!-- Bouton contact envoie vers la messagerie -->
-                    <form action="./messagerie.php" class="ecart-button" method="post">
-                        <input type="hidden" id="pseudo_ami" name="pseudo_ami" value="<?php echo $row['pseudo']; ?>">
-                        <button type="submit" name="contact_ami" id="contact_ami"> Contacter</button>
-                    </form>
-
-                    <!-- Bouton pour retirer ami -->
-
-                    <form action="" method="post">
-                        <input type="hidden" name="id_ami" value="<?php echo $id_ami; ?>">
-                        <button type="submit"  name="retire_ami"> Retirer</button>
-                    </form>
-
-                </div>
+                <!-- Bouton contact envoie vers la messagerie -->
                 
-        <!-- Si nous sommes sur un autre profil non ami -->
+                <button type="submit" name="contact_ami" id="contact_ami"> Contacter</button>
+                
 
-                <!-- <div class="profil-button">
+                <!-- Bouton pour suivre ami -->
 
-                    <form action="" method="post">
-                        <input type="hidden" name="id_ami" value="<?php echo $id_ami; ?>">
-                        <button type="submit" name="accept_ami" id="accept_ami"> Accepter</button>
-                    </form>
+                <!-- <div *ngIf="relation[1] == null && relation[0] == null">
+                    <button type="submit"  name="retire_ami"> Suivre</button>
                 </div> -->
-                    
-        <!-- Si nous avons déjà envoyé une demande d'ami -->
+                
+                
 
-                <!-- <div class="profil-button">
-
-                    <form action="" method="post">
-                        <input type="hidden" name="id_ami" value="<?php echo $id_ami; ?>">
-                        <button type="submit" name="ajout_ami" id="ajout_ami"> Ajouter</button>
-                    </form>
-                </div> -->
             </div>
+            
+    <!-- Si nous sommes sur un autre profil non ami -->
+
+            <div class="profil-button">
+
+                <form action="" method="post">
+                    <input type="hidden" name="id_ami" value="<?php echo $id_ami; ?>">
+                    <button type="submit" name="accept_ami" id="accept_ami"> Accepter</button>
+                </form>
+            </div>
+                
+    <!-- Si nous avons déjà envoyé une demande d'ami -->
+
+            <div class="profil-button">
+
+                <form action="" method="post">
+                    <input type="hidden" name="id_ami" value="<?php echo $id_ami; ?>">
+                    <button type="submit" name="ajout_ami" id="ajout_ami"> Ajouter</button>
+                </form>
+            </div>
+        
+        </ng-template>
+
+        
     
 </div>
