@@ -23,14 +23,14 @@
         
         <h3>{{ day.day }}</h3>
 
-        <div *ngFor="let number of day.number" class="day-content-item">
+        <div *ngFor="let number of day.number" class="day-content-item" (click)="updateEventDayData(number)">
 
             
-                <h5 *ngIf="number != 0"> {{number}}</h5>
+            <h5 *ngIf="number != 0"> {{number}}</h5>
 
-                <div *ngFor="let event of eventOfMonth" class="event">
-                    <div *ngIf="getDayOfEvent(event.date) === number" class="">{{event.titre}}</div>
-                </div>
+            <div *ngFor="let event of eventOfMonth" class="event">
+                <div *ngIf="getDayOfEvent(event.date) === number" class="">{{event.titre}}</div>
+            </div>
             
         </div>
     </div>

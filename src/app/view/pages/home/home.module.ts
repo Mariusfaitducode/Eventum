@@ -12,6 +12,8 @@ import { MessageComponent } from "../message/message.component";
 
 import { AgendaComponent } from "../agenda/agenda.component";
 import { AgendaContentComponent } from "../agenda/agenda-content/agenda-content.component";
+import { DaySectionComponent } from "../agenda/day-section/day-section.component";
+
 import { AddEventComponent } from "../add-event/add-event.component";
 
 import { NotifPageComponent } from "../notif-page/notif-page.component";
@@ -37,7 +39,7 @@ import { FormsModule } from "@angular/forms";
 import {SendMessageComponent} from "../../utils/send-message/send-message.component";
 import {ListMessageComponent} from "../message/components/list-message/list-message.component";
 
-
+import { ShareDataService } from "src/app/model/services/share/share-data.service";
 
 
 @NgModule({
@@ -48,8 +50,11 @@ import {ListMessageComponent} from "../message/components/list-message/list-mess
     SearchBarComponent,
     ProfilComponent,
     MessageComponent,
+
     AgendaComponent,
     AgendaContentComponent,
+    DaySectionComponent,
+    
     AddEventComponent,
 
     NotifPageComponent,
@@ -69,7 +74,8 @@ import {ListMessageComponent} from "../message/components/list-message/list-mess
   providers: [
     UserService,
     AuthentificationService,
-    EventService
+    EventService,
+    ShareDataService,
   ],
   imports: [
     CommonModule,
