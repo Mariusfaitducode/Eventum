@@ -19,7 +19,7 @@ $request = json_decode($postdata);
     Paramètres de la requete GET:
         - id_utilisateur : l'id de l'utilisateur
 
-    Retourne un objet JSON contenant la liste d'utilisateurs
+    Retourne un objet JSON contenant une liste de 6 utilisateurs
 */
 
 // Requete GET
@@ -121,7 +121,7 @@ if(isset($postdata) && empty($postdata))
                 AND
                     statut = 'accepte'
                 AND
-                    id_suivie NOT IN (
+                    id_suiveur NOT IN (
                         SELECT 
                             id_suivie
                         FROM
@@ -150,11 +150,9 @@ if(isset($postdata) && empty($postdata))
                 );
         }
 
-
+        // complète la liste avec des utilisateurs aléatoires
         $number_of_users = count($data);
-
         if ($number_of_users < 6) {
-
             $users_to_add = 6 - $number_of_users;
             $sql = "SELECT 
                         uti.id_utilisateur,
@@ -170,6 +168,17 @@ if(isset($postdata) && empty($postdata))
                         utilisateur as uti
                     WHERE
                         id_utilisateur != '$id_user'
+                    AND
+                        id_utilisateur NOT IN (
+                            SELECT 
+                                id_suivie
+                            FROM
+                                relation
+                            WHERE
+                                id_suiveur = '$id_user'
+                            AND
+                                statut = 'accepte'
+                        )
                     LIMIT $users_to_add";
             
             $result=mysqli_query($mysqli,$sql);
