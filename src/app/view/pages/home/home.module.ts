@@ -36,6 +36,7 @@ import { MainEventComponent } from "../../utils/main-event/main-event.component"
 import { FormsModule } from "@angular/forms";
 import {SendMessageComponent} from "../../utils/send-message/send-message.component";
 import {ListMessageComponent} from "../message/components/list-message/list-message.component";
+import { FileService } from "src/app/model/services/file/file.service";
 
 
 
@@ -69,7 +70,9 @@ import {ListMessageComponent} from "../message/components/list-message/list-mess
   providers: [
     UserService,
     AuthentificationService,
-    EventService
+    EventService,
+    FileService
+
   ],
   imports: [
     CommonModule,
