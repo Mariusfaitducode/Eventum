@@ -11,5 +11,11 @@
 }
 
 .list-messages {
-  height: 90%;
+  height: 80%;
+}
+
+.header {
+  height: 10%;
+  background-color: var(--purple-0);
+  border-bottom: 2px solid var(--purple-1);
 }

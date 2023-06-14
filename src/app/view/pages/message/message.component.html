@@ -1,5 +1,18 @@
 <app-left-pane></app-left-pane>
 <div class="central-pane flex-column">
+  <a class="row-user header" [routerLink]="'/' + link + '/' + id">
+
+
+    <img src="/assets/{{link_img}}" width="55px" height="55px" alt="Avatar" class="avatar">
+
+
+    <div class="infos-user">
+      <p class="userName">{{name}}</p>
+
+    </div>
+
+
+  </a>
   <div class="list-messages">
     <app-list-message></app-list-message>
   </div>

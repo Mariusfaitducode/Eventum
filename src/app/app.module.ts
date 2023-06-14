@@ -9,13 +9,11 @@ import { LoginComponent } from './view/forms/login/login.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './view/forms/register/register.component';
 import {HomeModule} from "./view/pages/home/home.module";
-import { ProfilBarComponent } from './view/pages/message/components/profil-bar/profil-bar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfilBarComponent,
 
     //NotificationComponent,
   ],
