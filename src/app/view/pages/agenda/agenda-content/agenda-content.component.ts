@@ -37,7 +37,33 @@ export class AgendaContentComponent {
     private eventService: EventService,
     private userService: UserService ) {}
 
+    incrementMonth(): void{
+      if (this.selectedMonth < 11){
+        this.selectedMonth++;
+      }
+      else{
+        this.selectedMonth = 0;
+        this.selectedYear++;
+      }
+      this.getCalendarDays();
+    }
+  
+    decrementMonth(): void{
+      if (this.selectedMonth > 0){
+        this.selectedMonth--;
+      }
+      else{
+        this.selectedMonth = 11;
+        this.selectedYear--;
+      }
+      this.getCalendarDays();
+    }
+
   getCalendarDays(){
+
+    for (let day of this.daysOfWeek) {
+      day.number = [];
+    }
     
     const daysInMonth = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
     
@@ -55,7 +81,7 @@ export class AgendaContentComponent {
     for (let i = 0; i < this.daysOfWeek.length; i++) {
       const day = this.daysOfWeek[i];
       if (day.number.length < 6 ) {
-        if (day.number[0] < i){
+        if (day.number[0] <= i+1){
           var maxLigne = 0;
           for (let i = 0; i < this.daysOfWeek.length; i++) {
             maxLigne = Math.max(maxLigne, this.daysOfWeek[i].number.length);
@@ -96,6 +122,7 @@ export class AgendaContentComponent {
 
 
   getEventOfMonth(){
+    this.eventOfMonth = [];
     this.eventService.getEventsByMonthAndUser(this.user.id_utilisateur, this.selectedMonth + 1, this.selectedYear).subscribe((events) => {
       console.log("events on agenda"); // Check if the user object is retrieved correctly
       console.log(events.length);
