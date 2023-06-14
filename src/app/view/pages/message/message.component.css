@@ -4,11 +4,12 @@
   height: 100vh;
 }
 
-.send-height {
+.send-message {
   height: 10%;
   background-color: var(--purple-0);
+  border-top: 2px solid var(--purple-1);
 }
 
-.conversation-height {
+.list-messages {
   height: 90%;
 }

@@ -23,6 +23,8 @@ export class AgendaContentComponent {
     { day: 'Dimanche', number: [] },
   ];
 
+  monthOfYear: string[] = ['Janvier' , 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre','Octobre', 'Novembre', 'Décembre'];
+
   user!: User;
 
   eventOfMonth: Event[] = []; 
@@ -35,7 +37,33 @@ export class AgendaContentComponent {
     private eventService: EventService,
     private userService: UserService ) {}
 
+    incrementMonth(): void{
+      if (this.selectedMonth < 11){
+        this.selectedMonth++;
+      }
+      else{
+        this.selectedMonth = 0;
+        this.selectedYear++;
+      }
+      this.getCalendarDays();
+    }
+  
+    decrementMonth(): void{
+      if (this.selectedMonth > 0){
+        this.selectedMonth--;
+      }
+      else{
+        this.selectedMonth = 11;
+        this.selectedYear--;
+      }
+      this.getCalendarDays();
+    }
+
   getCalendarDays(){
+
+    for (let day of this.daysOfWeek) {
+      day.number = [];
+    }
     
     const daysInMonth = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
     
@@ -48,14 +76,32 @@ export class AgendaContentComponent {
       this.daysOfWeek[dayOfWeek].number.push(day);
     }
 
+    
+
     for (let i = 0; i < this.daysOfWeek.length; i++) {
       const day = this.daysOfWeek[i];
-      if (day.number.length < 5) {
-        if (day.number[0] < i){
-          day.number.push(0);
+      if (day.number.length < 6 ) {
+        if (day.number[0] <= i+1){
+          var maxLigne = 0;
+          for (let i = 0; i < this.daysOfWeek.length; i++) {
+            maxLigne = Math.max(maxLigne, this.daysOfWeek[i].number.length);
+          }
+
+          if (day.number.length < maxLigne ) {
+            day.number.push(0);
+          }
         }
         else {
           day.number.unshift(0);
+
+          var maxLigne = 0;
+          for (let i = 0; i < this.daysOfWeek.length; i++) {
+            maxLigne = Math.max(maxLigne, this.daysOfWeek[i].number.length);
+          }
+
+          if (day.number.length < maxLigne ) {
+            day.number.push(0);
+          }
         }
       }
     }
@@ -63,23 +109,26 @@ export class AgendaContentComponent {
     // :const userr :
 
     this.userService.getUserByToken().subscribe((user) => {
-      console.log("user on agenda"); // Check if the user object is retrieved correctly
-      console.log(user); // Check if the user object is retrieved correctly
+      //console.log("user on agenda"); // Check if the user object is retrieved correctly
+      //console.log(user); // Check if the user object is retrieved correctly
       this.user = user;
       this.getEventOfMonth();
     });
 
-    console.log("this.user.id_utilisateur"+ this.user.id_utilisateur);
-    console.log("this.selectedMonth"+ this.selectedMonth);
-    console.log("this.selectedMonth"+ this.selectedYear);
+    //console.log("this.user.id_utilisateur"+ this.user.id_utilisateur);
+    //console.log("this.selectedMonth"+ this.selectedMonth);
+    //console.log("this.selectedMonth"+ this.selectedYear);
   }
 
 
   getEventOfMonth(){
+    this.eventOfMonth = [];
     this.eventService.getEventsByMonthAndUser(this.user.id_utilisateur, this.selectedMonth + 1, this.selectedYear).subscribe((events) => {
       console.log("events on agenda"); // Check if the user object is retrieved correctly
       console.log(events.length);
       this.eventOfMonth = events;
+      let myday = new Date(this.eventOfMonth[0].date)
+      console.log(myday.getDate());
     });
   }
 
