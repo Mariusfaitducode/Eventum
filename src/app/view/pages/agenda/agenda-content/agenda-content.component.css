@@ -68,27 +68,37 @@
     /* height: 100%; */
     background-color: var(--white-0);
     border-radius: 5px;
-    box-shadow: 0 0 5px var(--lightgray-01);
+    /* box-shadow: 0 0 5px var(--lightgray-01); */
 }
 
 .days .day{
+
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 14.28%;
     height: 100%;
-    border-right: 1px solid var(--lightgray-01);
-    /* cursor: pointer; */
 }
 
 .days .day h3{
+
+    max-width: 100%;
+
     font-size: 20px;
     margin: 20px 0px;
+
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
     
 }
 
 .days .day .day-content-item{
+
+    
     
     background-color: var(--purple-0);
     margin-bottom: 5px;
@@ -100,6 +110,19 @@
 
     border-radius: 10px;
     border: 1px solid var(--purple-1);
+}
+
+.days .day .no-day-content-item{
+    
+    background-color: var(--white-0);
+    margin-bottom: 5px; 
+
+    width: 95%;
+    height: 80px;
+    /* margin: auto; */
+
+    border-radius: 10px;
+    border: 1px solid var(--lightgray-01);
 }
 
 .days .day .day-content-item:hover{
@@ -114,6 +137,8 @@
 
     box-shadow: 0 0 5px var(--lightgray-01);
 }
+
+
 
 .days .day .day-content-item h5{
     
@@ -135,12 +160,64 @@
     border: 1px solid var(--purple-0);
 }
 
+.days .day .day-content-item svg{
+    display: none;
+    width: 60%;
+
+    margin: auto;
+
+}
+
 @media screen and (max-width: 1000px){
+
+    .days .day h3{
+    
+        font-size: 14px;
+        
+    }
+
+
+    .days .day .day-content-item{
+        height: 8vw;
+    }
+
+    .days .day .day-content-item.contain:hover{
+        border: 3px solid var(--purple-2);
+    }
+
+    .days .day .no-day-content-item{
+    
+        height: 8vw;
+    }
+
     .days .day .day-content-item .event{
         display: none;
-        background-color: var(--purple-1);
-        width: 95%;
+        
     }
+
+    .days .day .day-content-item.contain{
+        background-color: var(--purple-1);
+    }
+
+    .days .day .day-content-item svg{
+        display: block;
+    }
+
+}
+
+
+.no-change{
+    background: none;
+    border: none;
+    width: 100%;
+    
+    /* color: var(--white-0); */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* border: 1px solid var(--purple-0); */
 }
     
 

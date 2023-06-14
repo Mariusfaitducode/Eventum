@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, QueryList, ViewChild,  ViewChildren } from '@angular/core';
 import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { EventService } from 'src/app/model/services/event/event.service';
@@ -10,7 +10,7 @@ import { UserService } from 'src/app/model/services/user/user.service';
   templateUrl: './agenda-content.component.html',
   styleUrls: ['./agenda-content.component.css']
 })
-export class AgendaContentComponent {
+export class AgendaContentComponent{
 
   //daysOfWeek = ['Lundi' , 'Mardi', 'Jeudi', 'Mercredi', 'Vendredi', 'Samedi', 'Dimanche'];
 
@@ -30,8 +30,8 @@ export class AgendaContentComponent {
 
   eventOfMonth: Event[] = []; 
 
-  selectedMonth = new Date().getMonth();
-  //selectedMonth = 3;
+  //selectedMonth = new Date().getMonth();
+  selectedMonth = 3;
   selectedYear = new Date().getFullYear();
 
   constructor(
@@ -134,6 +134,15 @@ export class AgendaContentComponent {
     return date.getDate();
   }
 
+  eventOfMonthContain(number: number): boolean {
+    for (let event of this.eventOfMonth) {
+      if (event.date instanceof Date && event.date.getDate() == number){
+        return true;
+      }
+    }
+    return false;
+  }
+
   updateEventDayData(number: number): void {
 
     console.log("updateEventDayData");
@@ -153,30 +162,51 @@ export class AgendaContentComponent {
     this.shareService.setAgendaDayEvent(date, eventOfDay);
   }
 
+  
+
   ngOnInit(): void {  
-    console.log("load agenda");
-    console.log(this.selectedMonth);
+    // console.log("load agenda");
+    // console.log(this.selectedMonth);
     this.getCalendarDays()
     
-    console.log(this.daysOfWeek);
-    console.log("eventOfMonth");
-    console.log(this.eventOfMonth);
+    // console.log(this.daysOfWeek);
+    // console.log("eventOfMonth");
+    // console.log(this.eventOfMonth);
   }
 
-  @ViewChild('event-day', { static: true })
-  maDiv!: ElementRef;
   
-  @HostListener('window:resize', ['$event'])
-  onWindowResize(event: any) {
-    // Code à exécuter lorsque la taille de l'écran change
-    const screenWidth = window.innerWidth;
-    if (screenWidth < 1000) {
-      // Masquer le contenu de la div
-      // Changer la couleur de fond
-    } else {
-      // Rétablir le contenu de la div
-      // Restaurer la couleur de fond
-    }
-  }
+  
+  
+//   @HostListener('window:resize', ['$event'])
+//   onWindowResize(event: any) {
 
-}
+//     const screenWidth = window.innerWidth;
+    
+//     const dayContentItems = Array.from(document.getElementsByClassName('.day-content-item')) as HTMLElement[];
+
+//     for (const dayContentItem of dayContentItems) {
+
+//       const eventElements = Array.from(dayContentItem.getElementsByClassName('.event')) as HTMLElement[];
+
+//       if (eventElements.length > 0) {
+
+//         if (screenWidth < 1000) {
+//           // Masquer le contenu de la div et changer la couleur du background du parent
+
+//           for (const eventElement of eventElements) {
+//             eventElement.style.display = 'none';
+//           }
+//           dayContentItem.style.backgroundColor = 'red'; // Remplacez par la couleur souhaitée
+//         } else {
+//           // Afficher le contenu de la div et restaurer la couleur du background du parent
+//           for (const eventElement of eventElements) {
+//             eventElement.style.display = 'block';
+//           }
+//           dayContentItem.style.backgroundColor = ''; // Rétablir la couleur par défaut du parent
+//         }
+        
+//       }
+//     }
+//   }
+
+ }
