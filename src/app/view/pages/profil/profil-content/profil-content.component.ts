@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Event } from 'src/app/model/classes/event/event';
 
 @Component({
@@ -13,21 +13,23 @@ export class ProfilContentComponent {
 
   selectedEvents!: Event[];
 
-  participate_event: boolean = true;
-  create_event: boolean = false;
+
+  @ViewChild('participate') participate: any;
+
+  @ViewChild('create') create: any;
 
   displayParticipateEvent() {
 
     this.selectedEvents = this.event_participate;
-    this.participate_event = true;
-    this.create_event = false;
+    this.participate.nativeElement.classList.add('selected');
+    this.create.nativeElement.classList.remove('selected');
   }
 
   displayCreateEvent() {
 
     this.selectedEvents = this.event_create;
-    this.participate_event = false;
-    this.create_event = true;
+    this.create.nativeElement.classList.add('selected');
+    this.participate.nativeElement.classList.remove('selected');
   }
 
   
