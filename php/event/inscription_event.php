@@ -58,6 +58,7 @@ if(isset($postdata) && empty($postdata))
         $row = $result->fetch_array();
         $id_createur = $row['id_createur'];
 
+        date_default_timezone_set('Europe/Paris');
 
         // on envoie une notification à l'utilisateur qui a créé l'événement
         $date = date("Y-m-d H:i:s");
@@ -142,6 +143,7 @@ if(isset($postdata) && empty($postdata))
 
         $result=mysqli_query($mysqli,$sql);
 
+        echo json_encode(true);
     }
 }
 
