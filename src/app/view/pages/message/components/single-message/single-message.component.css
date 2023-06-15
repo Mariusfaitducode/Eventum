@@ -1,20 +1,5 @@
 
 
-.d-flex{
-  display: flex;
-  flex-direction: row;
-}
-
-section{
-  border-right: 1px solid var(--purple-1);
-  border-left: 1px solid var(--purple-1);
-  text-align: center;
-}
-
-section h2{
-  margin: 10px;
-}
-
 /* affichage des messages */
 
 
@@ -23,25 +8,9 @@ section h2{
   margin: 5px 10px;
   padding: 10px;
   border-radius: 10px;
-  background: var(--lightgray-0);
+  /* background: var(--lightgray-0); */
   text-align: left;
   font-size: 20px;
-}
-
-img{
-  min-width: 180px;
-  max-width: 60%;
-  margin: 5px 10px;
-
-  border-radius: 10px;
-}
-
-.card-event{
-  /* width: 100%;
-  min-width: 300px;
-  max-width: 500px; */
-  margin: 5px 10px;
-  transition: none;
 }
 
 
@@ -61,7 +30,11 @@ img{
   width: 100%;
 }
 
-.photo-groupe{
-  display: flex;
-  align-items: center;
+.left .message{
+  background: var(--lightgray-0);
+}
+
+
+.right .message{
+  background: var(--blue-00);
 }

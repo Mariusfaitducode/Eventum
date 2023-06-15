@@ -14,7 +14,6 @@
 
   /* Color violet */
 
-
   --purple-00: #efd5f0;
   --purple-0: #dcb3df;
   --purple-1: #9E5CA3;
@@ -22,9 +21,14 @@
   --purple-3: #3c0444;
 
   /* Color bleu */
+  --blue-00: #d5f0f6;
   --blue-0: #86c8f6;
   --blue-1: #5CA4C4;
   --blue-2: #2E6E8E;
+
+  /* Color orange */
+
+  /* --orange-0: #fccbfc; */
 
   /* Color gray */
 
