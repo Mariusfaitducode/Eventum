@@ -20,6 +20,7 @@ export class MessageComponent implements OnInit{
   public name_user_receiver!: string;
   public surname_user_receiver!: string;
   public pseudo_user_receiver!: string;
+  public id_user_receiver!: number;
 
   constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthentificationService) {}
 
@@ -59,6 +60,7 @@ export class MessageComponent implements OnInit{
       this.user_receiver = data;
       console.log("Now connected to " + data.pseudo);
 
+      this.id_user_receiver = this.user_receiver.id_utilisateur
       this.pseudo_user_receiver = this.user_receiver.pseudo
       this.name_user_receiver = this.user_receiver.prenom
       this.surname_user_receiver = this.user_receiver.nom
