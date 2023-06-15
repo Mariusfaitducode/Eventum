@@ -6,7 +6,7 @@
 
 .send-message {
   height: 10%;
-  background-color: var(--purple-0);
+  background-color: var(--purple-00);
   border-top: 2px solid var(--purple-1);
 }
 
@@ -16,7 +16,7 @@
 
 .header {
   height: 10%;
-  background-color: var(--purple-0);
+  background-color: var(--purple-00);
   border-bottom: 2px solid var(--purple-1);
   display: flex;
 }

@@ -1,3 +1,5 @@
+
+
 <?php
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Credentials: true');
@@ -20,7 +22,7 @@ $request = json_decode($postdata);
         - id_utilisateur : l'id de l'utilisateur
         - id_categorie : l'id de la catégorie
 
-    Retourne un objet JSON contenant 10 événements qui pourraient intéresser l'utilisateur (ou moins si pas 
+    Retourne un objet JSON contenant 10 événements qui pourraient intéresser l'utilisateur (ou moins si pas
     assez d'événements)
 */
 
@@ -34,7 +36,7 @@ if(isset($postdata) && empty($postdata))
 
         $sql = "SELECT
                     ev.id_evenement,
-                    ev.id_createur, 
+                    ev.id_createur,
                     ev.titre,
                     ev.id_categorie,
                     ev.description,
@@ -49,7 +51,7 @@ if(isset($postdata) && empty($postdata))
                     ev.id_categorie = '$id_categorie'
                 AND
                     '$id_user' NOT IN (
-                        SELECT 
+                        SELECT
                             id_utilisateur
                         FROM
                             inscription_evenement
@@ -57,15 +59,15 @@ if(isset($postdata) && empty($postdata))
                             id_evenement = ev.id_evenement
                     )
                 ORDER BY (
-                    SELECT 
+                    SELECT
                         COUNT(id_utilisateur)
                     FROM
                         inscription_evenement
                     WHERE
                         id_evenement = ev.id_evenement
-                    AND 
+                    AND
                         id_utilisateur IN (
-                            SELECT 
+                            SELECT
                                 id_suivie
                             FROM
                                 relation
@@ -74,8 +76,8 @@ if(isset($postdata) && empty($postdata))
                             AND
                                 statut = 'accepte'
                         )
-                ) DESC";     
-        
+                ) DESC";
+
         $result=mysqli_query($mysqli,$sql);
         while ($row = $result->fetch_array()) {
 
@@ -94,7 +96,7 @@ if(isset($postdata) && empty($postdata))
 
             );
         }
-                 
+
         echo json_encode($data);
     }
 }
