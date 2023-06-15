@@ -24,10 +24,8 @@ section h2{
   padding: 10px;
   border-radius: 10px;
   background: var(--lightgray-0);
-  /* width: 100%;
-  min-width: 300px;
-  max-width: 500px; */
   text-align: left;
+  font-size: 20px;
 }
 
 img{
@@ -53,7 +51,6 @@ img{
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  /* border: 1px solid #352f2f8a; */
 }
 
 .right{
@@ -62,7 +59,6 @@ img{
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  /* border: 1px solid #352f2f8a; */
 }
 
 .photo-groupe{

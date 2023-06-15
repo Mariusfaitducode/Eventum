@@ -19,6 +19,14 @@ export class ListMessageComponent implements OnInit {
 
   ngOnInit(): void {
 
+    if (this.id_sender!= null && this.id_receiver != null) {
+      // Get the messages
+      this.service.getMessages(this.id_sender, this.id_receiver).subscribe((data: Message[]) => {
+        console.log(data);
+        this.messages = data;
+      });
+    }
+
     const loggedIn: boolean = this.authService.isLoggedIn();
 
     //if (loggedIn)
