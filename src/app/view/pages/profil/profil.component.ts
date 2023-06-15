@@ -12,6 +12,8 @@ import { AuthentificationService } from 'src/app/model/services/authentification
 import { OnInit } from '@angular/core';
 import { UserService } from 'src/app/model/services/user/user.service';
 
+import { firstValueFrom } from 'rxjs';
+
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
@@ -21,7 +23,11 @@ import { UserService } from 'src/app/model/services/user/user.service';
 export class ProfilComponent {
   connectedUser!: User;
   user!: User; // Assurez-vous d'importer le modèle User depuis votre API ou de le définir correctement
-  relation!: [Relation, Relation];
+  //relation!: [Relation, Relation];
+
+  following: boolean = false;
+  followed: boolean = false;
+
   
 
   personnal_page: boolean = false;
@@ -34,7 +40,6 @@ export class ProfilComponent {
   ) {}
 
   ngOnInit() {
-
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 
@@ -54,8 +59,6 @@ export class ProfilComponent {
 
           this.service.getUserByToken().subscribe((user) => {
 
-            console.log(user); // Check if the user object is retrieved correctly
-            console.log("user"); // Check if the user object is retrieved correctly
             this.user = user;
           });
         }
@@ -64,55 +67,53 @@ export class ProfilComponent {
 
           this.service.getUserById(id).subscribe((user) => {
 
-            console.log("user ="+user); // Check if the user object is retrieved correctly
+            console.log(user); // Check if the user object is retrieved correctly
             this.user = user;
 
-            this.service.getUserByToken().subscribe((user) => {
+            this.service.getUserByToken().subscribe(async (user) => {
 
-              console.log(user); // Check if the user object is retrieved correctly
-              console.log("user"); // Check if the user object is retrieved correctly
               this.connectedUser = user;
 
-              this.service.getRelation(id, this.connectedUser.id_utilisateur).subscribe((relation) => {
-            
-                console.log("relation ="+relation); // Check if the user object is retrieved correctly
-                console.log("relation statut ="+relation.statut); // Check if the user object is retrieved correctly
-                this.relation[0] = relation;
+              //const relation1 = await this.service.getRelation(id, this.connectedUser.id_utilisateur).toPromise();
 
-                this.service.getRelation(this.connectedUser.id_utilisateur, id).subscribe((relation) => {
-            
-                  console.log("relation ="+relation); // Check if the user object is retrieved correctly
-                  console.log("relation statut ="+relation.statut); // Check if the user object is retrieved correctly
-                  this.relation[1] = relation;
-                  
-                });
-              });
+              this.loadRelationData();
+              
             });
           });
+          console.log("folllowed ="+this.followed); // Check if the user object is retrieved correctly
+          console.log("folllowing ="+this.following); // Check if the user object is retrieved correctly
         }
 
-
-
-        
       });
+    } 
+  }
 
-
-
-      // L'utilisateur est connecté, vous pouvez charger les données du profil
-      // Si c'est le profil de l'utilisateur actuel, vous pouvez le traiter différemment
-
-      //const currentUserId = getUserIdFromToken(); // Obtenez l'ID de l'utilisateur à partir du token
-      //if currentUserId === this.user.Id_utilisateur -> C'est le profil de l'utilisateur actuel
-
-      if (false) {
-        // C'est le profil de l'utilisateur actuel
-      } else {
-        // C'est le profil d'un autre utilisateur
-      }
-    } else {
-      // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
+  async loadRelationData() {
+    this.followed = false;
+    this.following = false;
+    
+    const relation0 = await firstValueFrom(this.service.getRelation(this.user.id_utilisateur, this.connectedUser.id_utilisateur));
+    console.log("relation 0 =", relation0);
+    console.log("relation statut =", relation0.statut);
+    
+    if (relation0.statut == "accepte") {
+      console.log("relation 0 accepte");
+      this.followed = true;
+    }
+  
+    const relation1 = await firstValueFrom(this.service.getRelation(this.connectedUser.id_utilisateur, this.user.id_utilisateur));
+    console.log("relation 1 =", relation1);
+    console.log("relation statut =", relation1.statut);
+    
+    if (relation1.statut == "accepte") {
+      console.log("relation 1 accepte");
+      this.following = true;
     }
   }
+  
+
 }
+
+
 
 

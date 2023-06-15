@@ -10,7 +10,8 @@ import { Relation } from 'src/app/model/classes/relation/relation';
 export class ProfilSectionComponent {
   @Input() user!: User; // Assurez-vous d'importer le modèle User depuis votre API ou de le définir correctement
   @Input() connectedUser!: User;
-  @Input() relation!: [Relation, Relation];
+  @Input() followed!: boolean;
+  @Input() following!: boolean;
   @Input() personnal_page!: boolean;
 
   constructor() {

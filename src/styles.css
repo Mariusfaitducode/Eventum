@@ -95,13 +95,43 @@ html, body {
 /* Button */
 
 .button {
-  padding: 10px 35px;
-  font-size: 25px;
   cursor: pointer;
   background-color: var(--purple-1);
   color: var(--white-0);
   border: none;
   border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.button:hover {
+  background: var(--purple-2);
+}
+
+.inverse{
+  background-color: var(--white-0);
+  color: var(--purple-1);
+  border: 2px solid var(--purple-1);
+}
+
+.button.inverse:hover {
+  
+  background: var(--purple-1);
+  color: var(--white-0);
+}
+
+.big{
+  padding: 10px 35px;
+  font-size: 25px;
+}
+
+.middle{
+  padding: 5px 20px;
+  font-size: 20px;
+}
+
+.little{
+  padding: 5px 15px;
+  font-size: 15px;
 }
 
 .middlePane{
