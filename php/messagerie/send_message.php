@@ -19,15 +19,33 @@ $request = json_decode($postdata);
 // Requete GET
 if(isset($postdata) && empty($postdata))
 {
-  if (!empty($_GET['id_sender']) && !empty($_GET['id_receiver']) && !empty($_GET['message'])) {
+  if (!empty($_GET['id_sender']) && !empty($_GET['id_receiver']) && !empty($_GET['message']) && !empty($_GET['id_event'])) {
 
     // Sécurisation des données saisies
     $id_sender = SecurizeString_ForSQL($_GET['id_sender']);
     $id_receiver = SecurizeString_ForSQL($_GET['id_receiver']);
     $message = SecurizeString_ForSQL($_GET['message']);
+    $id_event = SecurizeString_ForSQL($_GET['id_event']);
 
-    // Insertion des données dans la base de données
-    $sql = "INSERT INTO message_prive (id_utilisateur_envoyeur, id_utilisateur_destinataire, date_envoi, contenu, vue) VALUES ('$id_sender', '$id_receiver', CURRENT_TIMESTAMP, '$message', 0)";
+    // Insertion des données dans la base de données des messages
+    $sql = "INSERT INTO message_prive (id_utilisateur_envoyeur, id_utilisateur_destinataire, date_envoi, contenu, vue, id_evenement) VALUES ('$id_sender', '$id_receiver', CURRENT_TIMESTAMP, '$message', 0, $id_event)";
+    $result = mysqli_query($mysqli, $sql);
+
+    $sql = "SELECT id_message FROM message_prive ORDER BY date_envoi DESC LIMIT 1";
+    $result = mysqli_query($mysqli, $sql);
+    $row = $result->fetch_array();
+    $id_message = $row["id_message"];
+
+    // Insertion des données dans la base de données des notifications
+    $sql = "INSERT INTO notifications (id_utilisateur, date_notif, vue) VALUE ('$id_receiver', CURRENT_TIMESTAMP, 0)";
+    $result = mysqli_query($mysqli, $sql);
+
+    $sql = "SELECT id_notif FROM notifications ORDER BY date_notif DESC LIMIT 1";
+    $result = mysqli_query($mysqli, $sql);
+    $row = $result->fetch_array();
+    $id_notif = $row["id_notif"];
+
+    $sql = "INSERT INTO notification_message_prive (id_notif, id_message) VALUE ('$id_notif', '$id_message')";
     $result = mysqli_query($mysqli, $sql);
 
     if ($result) {
@@ -37,6 +55,7 @@ if(isset($postdata) && empty($postdata))
       // Erreur lors de l'enregistrement
       echo json_encode(false);
     }
+
 
     // Arrêter l'exécution ultérieure
     exit();

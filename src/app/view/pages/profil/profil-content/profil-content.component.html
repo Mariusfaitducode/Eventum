@@ -1,0 +1,24 @@
+
+
+<section>
+
+    <div class="selector-event">
+
+        <div #participate class="event-selector" (click)="displayParticipateEvent()">
+            <h3>Evenements participés</h3>
+        </div>
+        <div #create class="event-selector" (click)="displayCreateEvent()">
+            <h3>Evenements organisés</h3>
+        </div>
+
+    </div>
+
+    <app-container-event [events]="selectedEvents"></app-container-event>
+
+    <!-- <div class="container-events">
+        <div *ngFor="let event of selectedEvents">
+            <app-card-event [event]="event" [id]="event.id_evenement"></app-card-event>
+        </div>
+    </div> -->
+    
+</section>

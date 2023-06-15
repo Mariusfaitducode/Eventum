@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../../../model/classes/user/user';
+import { Relation } from 'src/app/model/classes/relation/relation';
 
 @Component({
   selector: 'app-profil-section',
@@ -8,9 +9,16 @@ import { User } from '../../../../model/classes/user/user';
 })
 export class ProfilSectionComponent {
   @Input() user!: User; // Assurez-vous d'importer le modèle User depuis votre API ou de le définir correctement
-  @Input() link_img!: string
-  @Input() name!: string
-  @Input() id!: number
+  @Input() connectedUser!: User;
+  @Input() followed!: boolean;
+  @Input() following!: boolean;
+  @Input() personnal_page!: boolean;
+  @Input() number_events!: [number, number];
+
   constructor() {
+  }
+
+  ngOnInit() {
+
   }
 }

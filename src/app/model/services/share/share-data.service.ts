@@ -7,12 +7,13 @@ import { Subject } from 'rxjs';
 })
 export class ShareDataService {
 
-  agendaDayEvent: Subject<Event[]> = new Subject<Event[]>();
+  agendaDayEvent: Subject<[Date, Event[]]> = new Subject<[Date, Event[]]>();
 
   constructor() { }
 
-  public setAgendaDayEvent(events: Event[]) {
-    this.agendaDayEvent.next(events);
+  public setAgendaDayEvent(date: Date, events: Event[]) {
+    const data:[Date, Event[]] = [date, events];
+    this.agendaDayEvent.next(data);
   }
 
   public getAgendaDayEvent() {

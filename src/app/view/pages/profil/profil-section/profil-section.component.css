@@ -1,7 +1,30 @@
 .profil-bar {
     display: flex;
     border-bottom: solid 1px var(--purple-1);
+
+    justify-content: space-between;
 }
+
+
+.profil-bar .profil-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    
+    width: 50%;
+}
+
+.profil-bar .profil-infos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+    
+    
+}
+
+
 
 
 .profil-bar img{
@@ -9,7 +32,7 @@
     height: 100px; */
     border-radius: 50%;
     margin: 20px;
-    margin-left: 50px;
+    margin-left: 20px;
 
 }
 
@@ -19,7 +42,17 @@
     justify-content: center;
     /* align-items: center; */
     margin: 10px;
-    margin-left: 50px;
+    margin-left: 20px;
+}
+
+
+.profil-bar .profil-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* align-items: center; */
+    
+    
 }
 
 .profil-bar .profil-button{
@@ -27,11 +60,11 @@
     display: flex;
 }
 
-.profil-bar .profil-button button{
+.profil-bar .profil-buttons button1{
 
-    color : var(--color2-text);
+    color : var(--blue-0);
 
-    background: var(--color2);
+    background: var(--blue-1);
     border: none;
     border-radius: 10px;
     padding: 8px;
@@ -49,7 +82,7 @@
     /* transition: 0.5s ease; */
 }
 
-.profil-bar .profil-button button:hover{
+.profil-bar .profil-buttons button1:hover{
     background: var(--color2-hover);
     color: var(--color2-text);
     box-shadow: 0 0 7px rgba(0,0,0,0.5);
@@ -58,6 +91,47 @@
 .ecart-button{
     margin-right: 10px;
 }
+
+
+.profil-bar .profil-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    width: 50%;
+}
+
+
+.profil-bar .profil-right .stats-event{
+    
+    margin-left: 50px;
+    margin-top: 50px;
+
+}
+
+.profil-bar .profil-right .stats{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.profil-bar .profil-right .stats p{
+    
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Partie inférieur de la page profil */
 

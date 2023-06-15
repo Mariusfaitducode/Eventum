@@ -56,8 +56,28 @@ export class EventService {
       return Events;
     }));
   }
-  
 
+  public getEventsByUser(id: number) {
+    return this.httpClient.get<Event[]>(this.baseUrl + '/event/event_by_user.php?id_user=' + id).pipe(map(Events => {
+      
+      return Events;
+    }));
+  }
+  
+  getRecommendedEvents(id: number) {
+    return this.httpClient.get<Event[]>(this.baseUrl + '/event/event_reco.php?id_utilisateur=' + id).pipe(map(Events => {
+      
+      return Events;
+    }));
+  }
+
+  getEventsByCategorie(id_user: number, id_categorie: number) {
+    return this.httpClient.get<Event[]>
+    (this.baseUrl + '/event/event_by_cat.php?id_utilisateur=' + id_user+'&id_categorie='+id_categorie).pipe(map(Events => {
+      
+      return Events;
+    }));
+  }
 }
 
 

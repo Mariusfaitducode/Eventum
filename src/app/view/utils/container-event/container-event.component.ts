@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Event } from 'src/app/model/classes/event/event';
 import { EventService } from 'src/app/model/services/event/event.service';
 
@@ -8,12 +8,11 @@ import { EventService } from 'src/app/model/services/event/event.service';
   styleUrls: ['./container-event.component.css']
 })
 export class ContainerEventComponent {
-  public events : Event[] = [];
+  @Input() events : Event[] = [];
+
+
   constructor(service: EventService) {
-    service.getEvents().subscribe((data: Event[]) => {
-      console.log(data);
-      this.events = data;
-    });
+    
   }
 
 }

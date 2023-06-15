@@ -1,9 +1,11 @@
 <app-left-pane></app-left-pane>
 <div class="central-pane">
 
-    <app-profil-section  [user]="user"></app-profil-section>
+    <app-profil-section  [user]="user" [connectedUser]="connectedUser" 
+    [followed]="followed" [following]="following" [personnal_page]="personnal_page"
+    [number_events]="[event_create.length, event_participate.length]"></app-profil-section>
 
-<!--    statut = {{relation.statut}}-->
+    <app-profil-content [event_participate]="event_participate" [event_create]="event_create"></app-profil-content>
 
 </div>
 <app-right-pane></app-right-pane>

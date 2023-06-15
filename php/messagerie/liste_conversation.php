@@ -20,7 +20,7 @@ $request = json_decode($postdata);
     Paramètres de la requete GET:
         - id_utilisateur : l'id de l'utilisateur
 
-    Retourne un objet JSON contenant les id des personnes avec qui l'utilisateur a une discussion
+    Retourne un objet JSON contenant les utilisateur avec qui l'utilisateur a une discussion
 */
 
 // Requete GET

@@ -1,0 +1,44 @@
+
+.selector-event{
+    display: flex;
+    flex-direction: row;
+    
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+    /* border: 1px solid black; */
+    
+}
+
+.event-selector{
+    width: 100%;
+    margin: auto;
+
+    height: 50px;
+    /* color: var(--white-0); */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid var(--purple-1);   
+
+    cursor: pointer;
+} 
+
+.selected{
+    background-color: var(--purple-0);
+    /* color: var(--white-0); */
+}
+
+.container-events{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+   
+    overflow: hidden;
+
+    /* border: 1px solid black; */
+}

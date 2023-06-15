@@ -2,9 +2,12 @@
 
 .container-event{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: row;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     padding: 10px;
+
+    overflow: hidden;
+    overflow-x: scroll;
 }

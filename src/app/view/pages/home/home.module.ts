@@ -5,8 +5,10 @@ import {HomeRoutingModule} from "./home-routing.module";
 import {LeftPaneComponent} from "../../left-pane/left-pane.component";
 import {RightPaneComponent} from "../../right-pane/right-pane.component";
 import { SearchBarComponent } from "../../utils/search-bar/search-bar.component";
+
 import { ProfilComponent } from "../profil/profil.component";
 import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
+import { ProfilContentComponent } from "../profil/profil-content/profil-content.component";
 
 import { MessageComponent } from "../message/message.component";
 
@@ -28,8 +30,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de
 import { UserService } from 'src/app/model/services/user/user.service'; // Ajout de UserService
 import { AuthentificationService } from "src/app/model/services/authentification/authentification.service";
 import { EventService } from "src/app/model/services/event/event.service";
+
 import { ContainerEventComponent } from "../../utils/container-event/container-event.component";
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
+import { LittleCardEventComponent } from "../../utils/little-card-event/little-card-event.component";
+
 import { MainEventComponent } from "../../utils/main-event/main-event.component";
 import { FormsModule } from "@angular/forms";
 import {SendMessageComponent} from "../../utils/send-message/send-message.component";
@@ -44,13 +49,13 @@ import {ListConversationComponent} from "../message/components/list-conversation
     LeftPaneComponent,
     RightPaneComponent,
     SearchBarComponent,
-    ProfilComponent,
+    
     MessageComponent,
 
     AgendaComponent,
     AgendaContentComponent,
     DaySectionComponent,
-    
+
     AddEventComponent,
 
     NotifPageComponent,
@@ -58,15 +63,22 @@ import {ListConversationComponent} from "../message/components/list-conversation
 
     UserCardComponent,
     SugestFriendComponent,
+
+    ProfilComponent,
     ProfilSectionComponent,
+    ProfilContentComponent,
+
     ContainerEventComponent,
     CardEventComponent,
+    LittleCardEventComponent,
+    
     MainEventComponent,
     EventComponent,
     EventSectionComponent,
     SendMessageComponent,
     ListMessageComponent,
     ListConversationComponent,
+    SingleMessageComponent,
   ],
   providers: [
     UserService,

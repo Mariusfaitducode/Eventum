@@ -19,7 +19,7 @@ $request = json_decode($postdata);
     Paramètres de la requete GET:
         - id_utilisateur : l'id de l'utilisateur
 
-    Retourne un objet JSON contenant une liste de 6 utilisateurs
+    Retourne un objet JSON contenant une liste de entre 6 et 10 utilisateurs
 */
 
 // Requete GET

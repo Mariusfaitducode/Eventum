@@ -4,6 +4,8 @@ import {UserService} from "../../../model/services/user/user.service";
 import {AuthentificationService} from "../../../model/services/authentification/authentification.service";
 import {ActivatedRoute} from "@angular/router";
 import {User} from "../../../model/classes/user/user";
+import {EventService} from "../../../model/services/event/event.service";
+import { Event } from '../../../model/classes/event/event'
 
 @Component({
   selector: 'app-send-message',
@@ -16,8 +18,14 @@ export class SendMessageComponent implements OnInit {
   public message: string = ""
   public image: string = ""
   public id_event: number = 0
+  showPopup: boolean = false
+  public events!: Event[]
 
-  constructor(private service: MessagerieService, private userService: UserService, private authService: AuthentificationService, private route: ActivatedRoute) {}
+  constructor(private service: MessagerieService,
+              private userService: UserService,
+              private authService: AuthentificationService,
+              private route: ActivatedRoute,
+              private eventService: EventService) {}
 
   ngOnInit(): void {
 
@@ -45,14 +53,33 @@ export class SendMessageComponent implements OnInit {
       this.userService.getUserByToken().subscribe((data: User) => {
         console.log(data);
         this.id_sender = data.id_utilisateur;
+
+        this.eventService.getEventsByUser(this.id_sender).subscribe((data: Event[]) => {
+          console.log(data);
+          this.events = data;
+        });
       });
     }
   }
 
   OnConfirm(): void {
-    console.log("id sender : " + this.id_sender + ", is receiver : " + this.id_receiver + ", message : '" + this.message + "'");
-    this.service.sendMessage(this.id_sender, this.id_receiver, this.message).subscribe((data: boolean) => {
+    console.log("id sender : " + this.id_sender + ", is receiver : " + this.id_receiver + ", message : '" + this.message + "', id event : " + this.id_event);
+    this.service.sendMessage(this.id_sender, this.id_receiver, this.message, this.id_event).subscribe((data: boolean) => {
       console.log(data);
     });
+  }
+
+  openPopup() {
+    this.showPopup = true;
+  }
+
+  closePopup() {
+    this.showPopup = false;
+  }
+
+  setIdEvent(idEvent: number) {
+    console.log("Set ID event : "+ idEvent)
+    this.id_event = idEvent;
+    this.showPopup = false;
   }
 }
