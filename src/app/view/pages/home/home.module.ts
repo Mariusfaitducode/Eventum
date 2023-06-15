@@ -5,8 +5,10 @@ import {HomeRoutingModule} from "./home-routing.module";
 import {LeftPaneComponent} from "../../left-pane/left-pane.component";
 import {RightPaneComponent} from "../../right-pane/right-pane.component";
 import { SearchBarComponent } from "../../utils/search-bar/search-bar.component";
+
 import { ProfilComponent } from "../profil/profil.component";
 import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
+import { ProfilContentComponent } from "../profil/profil-content/profil-content.component";
 
 import { MessageComponent } from "../message/message.component";
 
@@ -49,7 +51,7 @@ import {SingleMessageComponent} from "../message/components/single-message/singl
     LeftPaneComponent,
     RightPaneComponent,
     SearchBarComponent,
-    ProfilComponent,
+    
     MessageComponent,
 
     AgendaComponent,
@@ -63,7 +65,10 @@ import {SingleMessageComponent} from "../message/components/single-message/singl
 
     UserCardComponent,
     SugestFriendComponent,
+
+    ProfilComponent,
     ProfilSectionComponent,
+    ProfilContentComponent,
 
     ContainerEventComponent,
     CardEventComponent,

@@ -3,6 +3,7 @@ import { RightPaneComponent } from '../../right-pane/right-pane.component';
 import { LeftPaneComponent } from '../../left-pane/left-pane.component';
 import { User } from '../../../model/classes/user/user';
 import { Relation } from '../../../model/classes/relation/relation';
+import { Event } from '../../../model/classes/event/event';
 
 import { ApiService } from 'src/app/api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +14,7 @@ import { OnInit } from '@angular/core';
 import { UserService } from 'src/app/model/services/user/user.service';
 
 import { firstValueFrom } from 'rxjs';
+import { EventService } from 'src/app/model/services/event/event.service';
 
 @Component({
   selector: 'app-profil',
@@ -28,15 +30,17 @@ export class ProfilComponent {
   following: boolean = false;
   followed: boolean = false;
 
-  
-
   personnal_page: boolean = false;
+
+  event_participate: Event[] = [];
+  event_create: Event[] = [];
 
 
   constructor(
     private route: ActivatedRoute,
     private service: UserService,
     private authService : AuthentificationService,
+    private eventService : EventService,
   ) {}
 
   ngOnInit() {
@@ -60,6 +64,8 @@ export class ProfilComponent {
           this.service.getUserByToken().subscribe((user) => {
 
             this.user = user;
+
+            this.setEvents();
           });
         }
         else{
@@ -73,6 +79,7 @@ export class ProfilComponent {
             this.service.getUserByToken().subscribe(async (user) => {
 
               this.connectedUser = user;
+              this.setEvents();
 
               //const relation1 = await this.service.getRelation(id, this.connectedUser.id_utilisateur).toPromise();
 
@@ -110,6 +117,23 @@ export class ProfilComponent {
       this.following = true;
     }
   }
+
+  setEvents(){
+    this.eventService.getEventsByUser(this.user.id_utilisateur).subscribe((events) => {
+
+      for (let event of events) {
+        if (event.id_createur == this.user.id_utilisateur) {
+          this.event_create.push(event);
+        }
+        else {
+          this.event_participate.push(event);
+        }
+      }
+    });
+  }
+
+
+
   
 
 }

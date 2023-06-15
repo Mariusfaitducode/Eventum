@@ -56,6 +56,13 @@ export class EventService {
       return Events;
     }));
   }
+
+  public getEventsByUser(id: number) {
+    return this.httpClient.get<Event[]>(this.baseUrl + '/event/event_by_user.php?id_user=' + id).pipe(map(Events => {
+      
+      return Events;
+    }));
+  }
   
 
 }
