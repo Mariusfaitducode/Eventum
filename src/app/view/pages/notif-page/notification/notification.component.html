@@ -1,1 +1,45 @@
-<p>notification works!</p>
+
+
+<div class="notification">
+
+    <div [ngSwitch]="true">
+
+        <div *ngSwitchCase="notif.type_notif == 'notif_mp'" class="notification-content">
+
+            
+            <img src="/assets/{{notif.content.photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
+
+
+            
+                <h3>{{notif.content.pseudo}} </h3>
+
+            
+
+            <div>vous a envoyé un nouveau message</div>
+        </div>
+
+        <div *ngSwitchCase="notif.type_notif == 'notif_mpg'">
+
+            <div>new message</div>
+        </div>
+
+        <div *ngSwitchCase="notif.type_notif == 'notif_friend'">
+
+            <div>new friend</div>
+        </div>
+
+        <div *ngSwitchCase="notif.type_notif == 'notif_event'">
+
+            <div>event change</div>
+        </div>
+
+        <div *ngSwitchCase="notif.type_notif == 'notif_event_participant'">
+
+
+            <div>new participant</div>
+
+        </div>
+
+    </div>
+
+</div>

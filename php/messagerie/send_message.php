@@ -49,7 +49,7 @@ if(isset($postdata) && empty($postdata))
     $id_message = $row["id_message"];
 
     // Insertion des données dans la base de données des notifications
-    $sql = "INSERT INTO notifications (id_utilisateur, date_notif, vue) VALUE ('$id_receiver', CURRENT_TIMESTAMP, 0)";
+    $sql = "INSERT INTO notifications (id_utilisateur, date_notif, vue, type_notif) VALUE ('$id_receiver', CURRENT_TIMESTAMP, 0, 'notif_mp')";
     $result = mysqli_query($mysqli, $sql);
 
     $sql = "SELECT id_notif FROM notifications ORDER BY date_notif DESC LIMIT 1";

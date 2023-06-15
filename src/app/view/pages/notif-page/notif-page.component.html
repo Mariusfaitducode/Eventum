@@ -1,8 +1,17 @@
 <app-left-pane></app-left-pane>
 <div class="central-pane">
 
-    <div class="notif-titre">NOTIFICATIONS</div>
+    <h1 class="notif-titre">NOTIFICATIONS</h1>
 
-    <app-notification></app-notification>
+    <div class="list-notifs">
+
+        <div *ngFor="let notif of notifs" class="no-change">
+            <app-notification [notif]="notif" class="no-change"></app-notification >
+        </div>
+    </div>
+
+    
+
+    
 </div>
 <app-right-pane></app-right-pane>
