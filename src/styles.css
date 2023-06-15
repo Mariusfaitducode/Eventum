@@ -77,6 +77,8 @@ html, body {
   margin-left: 240px;
   margin-right: 240px;
 
+  position: relative;
+
   /* height: 100%; */
 }
 

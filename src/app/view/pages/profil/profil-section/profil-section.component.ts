@@ -13,6 +13,7 @@ export class ProfilSectionComponent {
   @Input() followed!: boolean;
   @Input() following!: boolean;
   @Input() personnal_page!: boolean;
+  @Input() number_events!: [number, number];
 
   constructor() {
   }

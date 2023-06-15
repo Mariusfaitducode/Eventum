@@ -121,6 +121,9 @@ export class ProfilComponent {
   setEvents(){
     this.eventService.getEventsByUser(this.user.id_utilisateur).subscribe((events) => {
 
+      this.event_create = [];
+      this.event_participate = [];
+      
       for (let event of events) {
         if (event.id_createur == this.user.id_utilisateur) {
           this.event_create.push(event);

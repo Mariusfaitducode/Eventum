@@ -2,7 +2,7 @@
 
 <div class="central-pane">
     <app-search-bar></app-search-bar>
-    <app-main-event></app-main-event>
+    <app-main-event [event]="recommendedEvents[0]"></app-main-event>
 
     <app-container-event [events]="recommendedEvents"></app-container-event>
     <app-container-event [events]="categorieEvents"></app-container-event>

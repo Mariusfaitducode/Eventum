@@ -3,6 +3,8 @@
     width: 240px;
     height: 100%;
     position: fixed;
+
+    z-index: 20;
     top: 0;
     right: 0;
     background-color: var(--white-0);

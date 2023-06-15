@@ -2,8 +2,10 @@
 header{
     background: var(--transparent-gray);
     width: 100%;
-    position: sticky;
+    position: absolute;
     top: 0;
+
+    z-index: 1;
 
     /* border-bottom: 1px solid var(--ligneSection); */
 
