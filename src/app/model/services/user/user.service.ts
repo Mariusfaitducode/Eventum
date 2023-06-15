@@ -44,6 +44,12 @@ public getRelation(id_1: number, id_2: number) {
     }));
 }
 
+public isUserInEvent(id_user: number, id_event: number) {
+  return this.httpClient.get<boolean>(this.baseUrl + '/user/is_user_in_event.php?id_user=' + id_user + '&id_event=' + id_event).pipe(map(Boolean => {
+      return Boolean;
+  }));
+
+}
 }
 
 

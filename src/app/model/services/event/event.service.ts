@@ -78,6 +78,14 @@ export class EventService {
       return Events;
     }));
   }
+
+  registerToEvent(id_user: number, id_event: number) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/event/inscription_event.php?id_utilisateur=' + id_user + '&id_evenement=' + id_event);
+  }
+
+  unregisterToEvent(id_user: number, id_event: number) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/event/desinscription_event.php?id_utilisateur=' + id_user + '&id_evenement=' + id_event);
+  }
 }
 
 

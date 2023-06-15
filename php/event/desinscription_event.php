@@ -74,6 +74,7 @@ if(isset($postdata) && empty($postdata))
 
         $result=mysqli_query($mysqli,$sql);
 
+        echo json_encode(true);
     }
 }
 
