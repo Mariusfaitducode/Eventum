@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 15 juin 2023 à 23:01
+-- Généré le : jeu. 15 juin 2023 à 23:16
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -196,7 +196,7 @@ CREATE TABLE `notifications` (
   `id_utilisateur` int(11) NOT NULL,
   `date_notif` datetime NOT NULL,
   `vue` tinyint(1) DEFAULT NULL,
-  `type_notif` enum('notif_mp','notif_mpg','notif_friend','notif_event','notif_event_participant') DEFAULT NULL
+  `type_notif` enum('notif_mp','notif_mpg','notif_friend','notif_change_event','notif_event_participant') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
