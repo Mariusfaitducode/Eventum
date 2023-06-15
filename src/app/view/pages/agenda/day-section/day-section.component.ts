@@ -13,7 +13,7 @@ export class DaySectionComponent implements OnInit {
   eventOfDay: Event[] = [];
   date: Date = new Date();
 
-  day: string[] = ['Lundi' , 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  day: string[] = ['Lundi' , 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
   constructor(
     private shareService: ShareDataService,
