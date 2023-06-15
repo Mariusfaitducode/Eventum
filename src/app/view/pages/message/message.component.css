@@ -1,36 +1,31 @@
 .flex-column {
   display: flex;
   flex-direction: column;
+
+  /* position: relative; */
   height: 100vh;
 }
 
-.send-message {
-  height: 10%;
-  background-color: var(--purple-00);
-  border-top: 2px solid var(--purple-1);
-}
 
-.list-messages {
-  height: 80%;
-  overflow-y: scroll;
-}
+
+
 
 .header {
-  height: 10%;
+  height: 80px;
   background-color: var(--purple-00);
   border-bottom: 2px solid var(--purple-1);
   display: flex;
 }
 
-.row-user img{
+.header img{
   border-radius: 50%;
   margin: 10px 25px;
 }
 
-.row-user:hover{
+/* .row-user:hover{
   background: var(--purple-0);
   border-radius: 10px;
-}
+} */
 
 .infos-user{
 
@@ -45,7 +40,27 @@
   text-align: left;
 }
 
-.userName {
-  font-size: 25px;
+.userPseudo{
+  font-size: 20px;
+  font-weight: bold;
+  /* color: var(--purple-2); */
+}
 
+.userName {
+  font-size: 15px;
+
+}
+
+.list-messages {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.send-message {
+  height: 100px;
+  background-color: var(--purple-00);
+  border-top: 2px solid var(--purple-1);
+
+  /* position: absolute;
+  bottom: 0; */
 }
