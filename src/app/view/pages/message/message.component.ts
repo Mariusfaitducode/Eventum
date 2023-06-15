@@ -15,6 +15,12 @@ export class MessageComponent implements OnInit{
   public user_sender!: User;
   public user_receiver!: User;
 
+  public link: string = "profil";
+  public link_img_user_receiver!: string;
+  public name_user_receiver!: string;
+  public surname_user_receiver!: string;
+  public pseudo_user_receiver!: string;
+
   constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthentificationService) {}
 
   ngOnInit(): void {
@@ -52,6 +58,11 @@ export class MessageComponent implements OnInit{
       console.log(data);
       this.user_receiver = data;
       console.log("Now connected to " + data.pseudo);
+
+      this.pseudo_user_receiver = this.user_receiver.pseudo
+      this.name_user_receiver = this.user_receiver.prenom
+      this.surname_user_receiver = this.user_receiver.nom
+      this.link_img_user_receiver = this.user_receiver.photo_profil
     });
   }
 
