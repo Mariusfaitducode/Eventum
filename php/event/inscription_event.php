@@ -64,9 +64,9 @@ if(isset($postdata) && empty($postdata))
         $date = date("Y-m-d H:i:s");
 
         $sql = "INSERT INTO 
-                    notifications(id_utilisateur, date_notif, vue)
+                    notifications(id_utilisateur, date_notif, vue, type_notif)
                 VALUES
-                    ('$id_createur', '$date', '0')";
+                    ('$id_createur', '$date', '0', 'notif_event_participant')";
                      
         $result=mysqli_query($mysqli,$sql);
                 
