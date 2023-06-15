@@ -34,9 +34,9 @@ import { MainEventComponent } from "../../utils/main-event/main-event.component"
 import { FormsModule } from "@angular/forms";
 import {SendMessageComponent} from "../../utils/send-message/send-message.component";
 import {ListMessageComponent} from "../message/components/list-message/list-message.component";
-
+import {FileService} from "../../../model/services/file/file.service";
 import { ShareDataService } from "src/app/model/services/share/share-data.service";
-
+import {ListConversationComponent} from "../message/components/list-conversation/list-conversation.component";
 
 @NgModule({
   declarations: [
@@ -72,8 +72,7 @@ import { ShareDataService } from "src/app/model/services/share/share-data.servic
     UserService,
     AuthentificationService,
     EventService,
-    FileService
-
+    FileService,
     ShareDataService,
   ],
   imports: [

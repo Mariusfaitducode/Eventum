@@ -12,6 +12,7 @@ export class UserCardComponent {
   @Input() link!: string;
 
   constructor() {
+    
   }
 
 }
