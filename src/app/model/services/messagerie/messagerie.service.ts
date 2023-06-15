@@ -12,9 +12,9 @@ export class MessagerieService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public sendMessage(id_sender: number, id_receiver: number, message: string) {
+  public sendMessage(id_sender: number, id_receiver: number, message: string, id_event:number) {
 
-    return this.httpClient.get<boolean>(this.baseUrl + '/send_message.php?id_sender=' + id_sender + '&id_receiver=' + id_receiver + '&message=' + message).pipe(map(is_correct => {
+    return this.httpClient.get<boolean>(this.baseUrl + '/send_message.php?id_sender=' + id_sender + '&id_receiver=' + id_receiver + '&message=' + message + '&id_event=' + id_event).pipe(map(is_correct => {
       return is_correct;
     }));
   }

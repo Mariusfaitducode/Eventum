@@ -1,7 +1,11 @@
 <div [ngClass]="message.id_utilisateur_envoyeur == id_user ? 'left' : 'right'">
+  <div>
+    <p class="message">
+      {{message.contenu}}
+    </p>
 
-  <p class="message">
-    {{message.contenu}}
-  </p>
-
+    <div *ngIf="message.id_evenement != null">
+      <app-card-event [event]="event" [id]="message.id_evenement"></app-card-event>
+    </div>
+  </div>
 </div>

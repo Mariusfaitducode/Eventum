@@ -33,16 +33,7 @@ if(isset($postdata) && empty($postdata))
                     mp.contenu,
                     mp.image as image_mp,
                     mp.vue,
-                    ev.id_evenement,
-                    ev.id_createur,
-                    ev.titre,
-                    ev.id_categorie,
-                    ev.description,
-                    ev.image as image_ev,
-                    ev.date,
-                    ev.heure,
-                    ev.lieu,
-                    ev.is_public
+                    ev.id_evenement
                 FROM
                     message_prive mp
                 LEFT OUTER JOIN
@@ -65,16 +56,7 @@ if(isset($postdata) && empty($postdata))
         "contenu" => $row['contenu'],
         "image_mp" => $row['image_mp'],
         "vue" => $row['vue'],
-        "id_evenement" => $row['id_evenement'],
-        "id_createur" => $row['id_createur'],
-        "titre" => $row['titre'],
-        "id_categorie" => $row['id_categorie'],
-        "description" => $row['description'],
-        "image_ev" => $row['image_ev'],
-        "date" => $row['date'],
-        "heure" => $row['heure'],
-        "lieu" => $row['lieu'],
-        "is_public" => $row['is_public']
+        "id_evenement" => $row['id_evenement']
       );
 
     }

@@ -18,7 +18,7 @@ export class SendMessageComponent implements OnInit {
   public message: string = ""
   public image: string = ""
   public id_event: number = 0
-  showPopup: boolean = true
+  showPopup: boolean = false
   public events!: Event[]
 
   constructor(private service: MessagerieService,
@@ -63,8 +63,8 @@ export class SendMessageComponent implements OnInit {
   }
 
   OnConfirm(): void {
-    console.log("id sender : " + this.id_sender + ", is receiver : " + this.id_receiver + ", message : '" + this.message + "'");
-    this.service.sendMessage(this.id_sender, this.id_receiver, this.message).subscribe((data: boolean) => {
+    console.log("id sender : " + this.id_sender + ", is receiver : " + this.id_receiver + ", message : '" + this.message + "', id event : " + this.id_event);
+    this.service.sendMessage(this.id_sender, this.id_receiver, this.message, this.id_event).subscribe((data: boolean) => {
       console.log(data);
     });
   }
