@@ -42,6 +42,9 @@ import {ListMessageComponent} from "../message/components/list-message/list-mess
 import {FileService} from "../../../model/services/file/file.service";
 import { ShareDataService } from "src/app/model/services/share/share-data.service";
 import {ListConversationComponent} from "../message/components/list-conversation/list-conversation.component";
+import {SingleMessageComponent} from "../message/components/single-message/single-message.component";
+import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-profil.component";
+
 
 @NgModule({
   declarations: [
@@ -79,6 +82,7 @@ import {ListConversationComponent} from "../message/components/list-conversation
     ListMessageComponent,
     ListConversationComponent,
     SingleMessageComponent,
+    ModifierProfilComponent
   ],
   providers: [
     UserService,

@@ -20,6 +20,13 @@
         <br/>
         <input type="submit" class="button middle" value="Ajouter" (click)="OnConfirm()"/>
       </form>
+
+    <div class="success" *ngIf="success">
+        <p> Evénement ajouté avec succès </p>
+    </div>
+    <div class="error" *ngIf="error">
+        <p> Erreur dans l'ajout de l'évènement </p>
+    </div>
 </div>
 
   

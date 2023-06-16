@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'messages', component: MessageComponent },
   { path: 'messages/:id', component: MessageComponent },
   { path: 'profil/:id', component: ProfilComponent },
-  { path: 'profil', component: ProfilComponent},
+  { path: 'profil', component: ProfilComponent,
+},
 
   { path: 'event/:id', component: EventComponent},
   {

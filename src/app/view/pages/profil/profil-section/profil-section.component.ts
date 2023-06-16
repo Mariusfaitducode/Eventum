@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../../../model/classes/user/user';
 import { Relation } from 'src/app/model/classes/relation/relation';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil-section',
@@ -14,11 +15,17 @@ export class ProfilSectionComponent {
   @Input() following!: boolean;
   @Input() personnal_page!: boolean;
   @Input() number_events!: [number, number];
+  public modifier_profil: boolean = false;
 
-  constructor() {
+  constructor(public router: Router) {
   }
 
   ngOnInit() {
 
   }
+
+  modifier(){
+    this.modifier_profil = true;
+  }
+
 }

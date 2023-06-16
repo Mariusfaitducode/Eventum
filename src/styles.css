@@ -40,6 +40,10 @@
   --transparent-gray: #333a;
   --transparent-black: #0000008a;
   --black: #000000;
+
+  /* Transparence */
+  --transparent-green: #38b00031;
+  --transparent-red: #68174a62;
   
 }
 
@@ -231,4 +235,31 @@ html, body {
   right: 0;
   margin: 10px;
   cursor: pointer;
+}
+
+/*banderole pour annoncer le suggès d'un formulaire*/
+.success{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh;
+  padding-top: 20px;
+  justify-content: center;
+  background-color: var(--transparent-green);
+  z-index: 1;
+  display: flex;
+}
+
+.error{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh;
+  padding-top: 20px;
+  justify-content: center;
+  background-color: var(--transparent-red);
+  z-index: 1;
+  display: flex;
 }

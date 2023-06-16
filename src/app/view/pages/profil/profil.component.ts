@@ -9,7 +9,6 @@ import { ApiService } from 'src/app/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthentificationService } from 'src/app/model/services/authentification/authentification.service';
 
-
 import { OnInit } from '@angular/core';
 import { UserService } from 'src/app/model/services/user/user.service';
 
@@ -34,6 +33,8 @@ export class ProfilComponent {
 
   event_participate: Event[] = [];
   event_create: Event[] = [];
+
+  modifier_profil : boolean = false;
 
 
   constructor(

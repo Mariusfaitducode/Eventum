@@ -6,11 +6,13 @@ import { UserService } from 'src/app/model/services/user/user.service';
 import { Observable } from 'rxjs';
 import { FileService } from 'src/app/model/services/file/file.service';
 import { HttpClient } from '@angular/common/http';
+import { trigger, transition, style, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
-  styleUrls: ['./add-event.component.css']
+  styleUrls: ['./add-event.component.css'],
 })
 export class AddEventComponent implements OnInit{
   public titre: string = ""
@@ -25,6 +27,8 @@ export class AddEventComponent implements OnInit{
 
   public list_categorie!: Categorie[]
   
+  public success: boolean = false;
+  public error: boolean = false;
 
   constructor(private service: EventService, private userService: UserService, private fileService: FileService, private http: HttpClient) {
     this.service.getCategories().subscribe((data: Categorie[]) => {
@@ -41,14 +45,29 @@ export class AddEventComponent implements OnInit{
     this.heure = this.heure.padStart(5, '0') + ':00';
 
     this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.is_public, this.id_categorie, this.id_user, 'images/evenements/' + this.selectedImage.name).subscribe((data: boolean) => {
-      console.log(data);
-      if(data) {
-        this.http.post('https://file.io', this.selectedImage)
-        .subscribe(event => {
-          console.log('done')
-        })
+        this.success = data;
+        this.error = !data;
+        
+        // Hide the success/error messages after 3 seconds
+        setTimeout(() => {
+          this.success = false;
+          this.error = false;
+        }, 3000);
+      },
+      (error: any) => {
+        // Handle the error here
+        console.error(error);
+        this.success = false;
+        this.error = true;
+        
+        // Hide the success/error messages after 3 seconds
+        setTimeout(() => {
+          this.success = false;
+          this.error = false;
+        }, 3000);
       }
-    });
+    );
+    
   }
 
   ngOnInit(): void {
@@ -56,9 +75,9 @@ export class AddEventComponent implements OnInit{
   }
 
   onImageChange(event: any): void {
-     this.http.post('http://localhost/eventum/Eventum_Angular', event.target.files[0])
+     this.http.post('http://localhost/', event.target.files[0])
      .subscribe(event => {
-       console.log('done')
+       console.log('done') // Base64 encoded image data
      })
   }
 
