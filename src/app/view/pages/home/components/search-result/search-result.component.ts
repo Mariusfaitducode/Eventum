@@ -16,15 +16,16 @@ export class SearchResultComponent {
   constructor() { }
 
   selectEvent(){
-    
+
     this.chooseEvent = true;
-    
+
   }
 
   selectUser(){
     this.chooseEvent = false;
     this.chooseDate = false;
     this.chooseLieu = false;
+    this.chooseCategorie = false;
   }
 
   selectCategorie(){
@@ -35,7 +36,7 @@ export class SearchResultComponent {
     else{
       if (this.chooseEvent == false){
         this.chooseEvent = true;
-        
+
       }
       this.chooseCategorie = true;
       this.chooseDate = false;
@@ -50,7 +51,7 @@ export class SearchResultComponent {
     else{
       if (this.chooseEvent == false){
         this.chooseEvent = true;
-        
+
       }
       this.chooseDate = true;
       this.chooseCategorie = false;
@@ -65,7 +66,7 @@ export class SearchResultComponent {
     else{
       if (this.chooseEvent == false){
         this.chooseEvent = true;
-        
+
       }
       this.chooseLieu = true;
       this.chooseDate = false;
