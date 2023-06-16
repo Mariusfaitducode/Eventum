@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../../../model/classes/user/user';
 import { Relation } from 'src/app/model/classes/relation/relation';
+import { UserService } from 'src/app/model/services/user/user.service';
 
 @Component({
   selector: 'app-profil-section',
@@ -15,7 +16,18 @@ export class ProfilSectionComponent {
   @Input() personnal_page!: boolean;
   @Input() number_events!: [number, number];
 
-  constructor() {
+  constructor(private userService: UserService) {
+  }
+
+  follow() {
+    
+    this.userService.follow(this.connectedUser.id_utilisateur, this.user.id_utilisateur).subscribe();
+  }
+
+  unfollow() {
+
+    this.userService.unfollow(this.connectedUser.id_utilisateur, this.user.id_utilisateur).subscribe();
+
   }
 
   ngOnInit() {

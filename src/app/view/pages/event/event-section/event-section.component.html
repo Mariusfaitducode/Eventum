@@ -21,12 +21,12 @@
 
                 <div *ngIf="isRegistered; else no_registered" >
                     <!-- Si utilisateur inscrit -->
-                    <button class="button middle" (click)="unregisterToEvent(connectedUser.id_utilisateur, event.id_evenement)">Se désinscrire</button>
+                    <button class="button middle" (click)="unregisterToEvent()">Se désinscrire</button>
                 </div>
             
                 <ng-template #no_registered>
                     <!-- Si utilisateur non inscrit -->
-                    <button class="button middle" (click)="registerToEvent(connectedUser.id_utilisateur, event.id_evenement)">S'inscrire</button>
+                    <button class="button middle" (click)="registerToEvent()">S'inscrire</button>
                 </ng-template>
                 
 

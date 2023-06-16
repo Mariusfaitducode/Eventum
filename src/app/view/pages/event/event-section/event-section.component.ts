@@ -17,7 +17,7 @@ export class EventSectionComponent {
 
   constructor( private eventService: EventService) { }
 
-  registerToEvent(id_user: number, id_event: number) {
+  registerToEvent() {
 
     console.log("registerToEvent")
     this.eventService.registerToEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((isRegistered) => { 
@@ -25,7 +25,7 @@ export class EventSectionComponent {
     });
   }
 
-  unregisterToEvent(id_user: number, id_event: number) {
+  unregisterToEvent() {
     this.eventService.unregisterToEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((result) => {
       this.isRegistered = !result;
     });

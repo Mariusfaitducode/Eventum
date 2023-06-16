@@ -43,13 +43,13 @@
 
 
                 <div *ngIf="!followed && !following">
-                    <button class="button middle"  > Suivre</button>
+                    <button class="button middle" (click)="follow()"> Suivre</button>
                 </div>
                 <div *ngIf="followed && !following">
-                    <button class="button middle"  > Suivre en retour</button>
+                    <button class="button middle" (click)="follow()"> Suivre en retour</button>
                 </div>
                 <div *ngIf="following">
-                    <button class="button middle" > Ne plus suivre</button>
+                    <button class="button middle" (click)="unfollow()"> Ne plus suivre</button>
                 </div>
             </div>
 
