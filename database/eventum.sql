@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 15 juin 2023 à 23:16
+-- Généré le : ven. 16 juin 2023 à 10:26
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -67,23 +67,24 @@ CREATE TABLE `evenement` (
   `heure` time DEFAULT NULL,
   `lieu` varchar(255) DEFAULT NULL,
   `is_public` tinyint(1) NOT NULL,
-  `max_participant` int(11) DEFAULT NULL
+  `max_participant` int(11) DEFAULT NULL,
+  `is_disponible` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `evenement`
 --
 
-INSERT INTO `evenement` (`id_evenement`, `id_createur`, `titre`, `id_categorie`, `description`, `image`, `date`, `heure`, `lieu`, `is_public`, `max_participant`) VALUES
-(23, 1, 'Sortie CinÃ©ma', 17, 'Allons voir un nouveau film ensemble ! ', 'images/evenements/IMG-644c2ecbc04ff9.57666740.jpg', '2023-04-14', '20:00:00', 'Belfort', 0, NULL),
-(24, 1, 'Mega Party', 14, 'On va faire une grosse fÃªte ramenez autant de monde possible', 'images/evenements/IMG-644b95b4b9e8d3.49155054.jpg', '2023-04-07', '20:00:00', 'Belfort', 1, NULL),
-(25, 3, 'Sortie vÃ©lo', 20, 'Venez pÃ©daler !!', 'images/evenements/IMG-644b9929aa32d5.35988112.jpg', '2023-04-14', '12:00:00', 'Belfort', 1, NULL),
-(27, 4, 'Anniversaire', 14, 'On fete mes 21ans', NULL, '2024-02-26', '18:00:00', 'Saint Louis', 0, NULL),
-(28, 4, 'Anniversaire2', 14, 'test anniv', NULL, '2023-04-26', '18:00:00', 'Testville', 0, NULL),
-(35, 8, 'SoirÃ©e Bowling', 15, 'A vos strikes', 'images/evenements/IMG-644c2f2e7fe7d7.34379310.jpg', '2023-04-25', '19:30:00', '4as', 1, NULL),
-(39, 3, 'SoirÃ©e animÃ©s', 17, 'test avec image', 'images/evenements/IMG-643e9e90d6cdc9.57236055.jpg', '2023-04-19', '12:05:00', 'Chez moi', 1, NULL),
-(46, 11, 'SoirÃ©e jeux vidÃ©os', 22, 'Venez jouez avec moi Ã  League of Legends', '', '2023-05-25', '21:00:00', 'UTBM', 1, NULL),
-(47, 12, 'Concert', 16, '', 'images/evenements/IMG-644c2e68563480.13514690.jpg', '2023-06-15', '19:00:00', 'Noumatrouff', 1, NULL);
+INSERT INTO `evenement` (`id_evenement`, `id_createur`, `titre`, `id_categorie`, `description`, `image`, `date`, `heure`, `lieu`, `is_public`, `max_participant`, `is_disponible`) VALUES
+(23, 1, 'Sortie CinÃ©ma', 17, 'Allons voir un nouveau film ensemble ! ', 'images/evenements/IMG-644c2ecbc04ff9.57666740.jpg', '2023-04-14', '20:00:00', 'Belfort', 0, NULL, NULL),
+(24, 1, 'Mega Party', 14, 'On va faire une grosse fÃªte ramenez autant de monde possible', 'images/evenements/IMG-644b95b4b9e8d3.49155054.jpg', '2023-04-07', '20:00:00', 'Belfort', 1, NULL, NULL),
+(25, 3, 'Sortie vÃ©lo', 20, 'Venez pÃ©daler !!', 'images/evenements/IMG-644b9929aa32d5.35988112.jpg', '2023-04-14', '12:00:00', 'Belfort', 1, NULL, NULL),
+(27, 4, 'Anniversaire', 14, 'On fete mes 21ans', NULL, '2024-02-26', '18:00:00', 'Saint Louis', 0, NULL, NULL),
+(28, 4, 'Anniversaire2', 14, 'test anniv', NULL, '2023-04-26', '18:00:00', 'Testville', 0, NULL, NULL),
+(35, 8, 'SoirÃ©e Bowling', 15, 'A vos strikes', 'images/evenements/IMG-644c2f2e7fe7d7.34379310.jpg', '2023-04-25', '19:30:00', '4as', 1, NULL, NULL),
+(39, 3, 'SoirÃ©e animÃ©s', 17, 'test avec image', 'images/evenements/IMG-643e9e90d6cdc9.57236055.jpg', '2023-04-19', '12:05:00', 'Chez moi', 1, NULL, NULL),
+(46, 11, 'SoirÃ©e jeux vidÃ©os', 22, 'Venez jouez avec moi Ã  League of Legends', '', '2023-05-25', '21:00:00', 'UTBM', 1, NULL, NULL),
+(47, 12, 'Concert', 16, '', 'images/evenements/IMG-644c2e68563480.13514690.jpg', '2023-06-15', '19:00:00', 'Noumatrouff', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
