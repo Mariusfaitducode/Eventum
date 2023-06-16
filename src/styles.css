@@ -30,6 +30,10 @@
   --blue-1: #5CA4C4;
   --blue-2: #2E6E8E;
 
+  --blue-event: #639FAB;
+  --blue-event-light: #58A6B6;
+  --blue-event-dark: #182e33;
+
   /* Color orange */
 
   /* --orange-0: #fccbfc; */
@@ -39,10 +43,12 @@
   --lightgray-0: #dfdddd;
   --lightgray-01: #ccc;
   --lightgray-1: #b3b3b3;
-
-
+  --lightgray-purple: #F3EFF3;
 
   --gray-0: #352f2f8a;
+  --gray-card: #2B192D;
+  --gray-event-selector: #9B9B9B;
+  --gray-event-selector-selected: #F5F4F5;
 
   /* Color black */
   --transparent-gray: #333a;
@@ -82,8 +88,8 @@ html, body {
 /* Central Pane */
 
 .central-pane{
-  margin-left: 240px;
-  margin-right: 240px;
+  margin-left: 270px;
+  margin-right: 270px;
 
   position: relative;
 
@@ -104,7 +110,7 @@ html, body {
 
 /* Button */
 
-.button {
+.button, .blue-button {
   cursor: pointer;
   background-color: var(--purple-1);
   color: var(--white-0);
@@ -115,6 +121,11 @@ html, body {
 
 .button:hover {
   background: var(--purple-2);
+}
+
+.blue-button {
+  background-color: var(--blue-event);
+  padding:10px 20px;
 }
 
 .inverse{
@@ -193,7 +204,7 @@ html, body {
   flex-direction: column;
   border: solid 1px var(--lightgray-0);
   border-radius: 5px;
-  background-color: var(---white-1);
+  background-color: var(--white-1);
   outline: none;
   width: 80%;
   padding: 10px 15px;

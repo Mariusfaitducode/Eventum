@@ -1,24 +1,22 @@
-
-
 <section>
 
-    <div class="selector-event">
+  <div class="selector-event">
 
-        <div #participate class="event-selector" (click)="displayParticipateEvent()">
-            <h3>Evenements participés</h3>
-        </div>
-        <div #create class="event-selector" (click)="displayCreateEvent()">
-            <h3>Evenements organisés</h3>
-        </div>
-
+    <div #participate (click)="displayParticipateEvent()" class="event-selector">
+      <p>Evenements participés</p>
+    </div>
+    <div #create (click)="displayCreateEvent()" class="event-selector">
+      <p>Evenements organisés</p>
     </div>
 
-    <app-container-event [events]="selectedEvents"></app-container-event>
+  </div>
 
-    <!-- <div class="container-events">
-        <div *ngFor="let event of selectedEvents">
-            <app-card-event [event]="event" [id]="event.id_evenement"></app-card-event>
-        </div>
-    </div> -->
-    
+  <app-container-event [events]="selectedEvents"></app-container-event>
+
+  <!-- <div class="container-events">
+      <div *ngFor="let event of selectedEvents">
+          <app-card-event [event]="event" [id]="event.id_evenement"></app-card-event>
+      </div>
+  </div> -->
+
 </section>

@@ -1,5 +1,5 @@
 .card-event{
-    
+
     background: var(--color2);
     width: 200px;
     height: 250px;
@@ -18,12 +18,12 @@
     height: 50%; */
     width: 180px;
     border-radius: 10px;
-    
+
 }
 
 .card-event:hover{
     color: var(--color2-text);
-   
+
     background: var(--color2-hover);
     box-shadow: 0 0 7px rgba(0,0,0,0.5);
 }

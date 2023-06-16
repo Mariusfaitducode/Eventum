@@ -1,8 +1,8 @@
 
 header{
     background: var(--transparent-gray);
-    width: 100%;
-    position: absolute;
+    width: calc(100vw - 540px);
+    position: fixed;
     top: 0;
 
     z-index: 1;
@@ -14,15 +14,17 @@ header{
     justify-content: space-between;
 }
 
-
+@media (max-width: 1200px) {
+  header {
+    width: calc(100vw - 370px);
+  }
+}
 
 .search-box{
-
     background: var(--white-1);
     margin: 10px;
-   
-    /* height: 30px;    */
-    width: 50%;
+
+    width: 55%;
     min-width: 250px;
     border-radius: 50px;
     padding: 7px 15px 5px 15px;
@@ -31,7 +33,6 @@ header{
 }
 
 .search-btn{
-
     float: right;
 
     /* display: flex;
@@ -45,18 +46,16 @@ header{
     outline: none;
     background: none;
     float: left;
-    
+
     font-size: 16px;
     transition: 0.4s;
     line-height: 20px;
     width: 90%;
 
-    /* border: 1px solid var(--ligneSection); */
 }
 
 .theme-color-button{
     padding: 10px;
-    
 }
 
 .theme-color-button button{

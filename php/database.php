@@ -11,15 +11,15 @@ $db_password = 'root';
 $db_name = 'eventum';
 
 try { // on essaie une connexion avec les paramètres XAMPP
-    $mysqli = new mysqli($db_host, $db_username, $db_password,$db_name);
-} catch (Exception $e ) {
-    try { // si ça ne marche pas, on essaie une connexion avec les paramètres UWAMP
-        $db_password = '';
-        $mysqli = new mysqli($db_host, $db_username, $db_password,$db_name);
-    } catch (Exception $e ) {
-        // pas de connexion possible
-        die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
-}
+  $mysqli = new mysqli($db_host, $db_username, $db_password, $db_name);
+} catch (Exception $e) {
+  try { // si ça ne marche pas, on essaie une connexion avec les paramètres UWAMP
+    $db_password = '';
+    $mysqli = new mysqli($db_host, $db_username, $db_password, $db_name);
+  } catch (Exception $e) {
+    // pas de connexion possible
+    die('Error : (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+  }
 }
 
 

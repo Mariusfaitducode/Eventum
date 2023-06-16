@@ -1,13 +1,22 @@
 
+.container-event {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 10px;
 
-.container-event{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    /* justify-content: center; */
-    align-items: center;
-    padding: 10px;
+  overflow: hidden;
+  overflow-x: scroll;
 
-    overflow: hidden;
-    overflow-x: scroll;
+}
+
+.container-event::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+h2 {
+  margin: 30px 0 0 30px;
+  font-weight: 200;
 }

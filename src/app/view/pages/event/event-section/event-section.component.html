@@ -1,78 +1,63 @@
-
 <div class="page-event">
 
-    <div class="event-header" [ngStyle]="{'background-image': 'url(/assets/' + event.image + ')'}">
+  <div [ngStyle]="{'background-image': 'url(/assets/' + event.image + ')'}" class="event-header">
 
-        <!-- <div class="event-infos">
-            
-            <h2>{{event.date}}</h2>
-            <h1>{{event.titre}}</h1>
-            <h2>{{event.lieu}}</h2>
-        </div> -->
-        <div class="event-buttons">
+    <div class="event-buttons">
 
-            <div *ngIf="event.id_createur == connectedUser.id_utilisateur; else no_creator">
-                <button class="button middle">Modifier</button>
-                
-            </div>
+      <div *ngIf="event.id_createur == connectedUser.id_utilisateur; else no_creator">
+        <button class="button middle">Modifier</button>
 
-            <ng-template #no_creator>
-                
+      </div>
 
-                <div *ngIf="isRegistered; else no_registered" >
-                    <!-- Si utilisateur inscrit -->
-                    <button class="button middle" (click)="unregisterToEvent(connectedUser.id_utilisateur, event.id_evenement)">Se désinscrire</button>
-                </div>
-            
-                <ng-template #no_registered>
-                    <!-- Si utilisateur non inscrit -->
-                    <button class="button middle" (click)="registerToEvent(connectedUser.id_utilisateur, event.id_evenement)">S'inscrire</button>
-                </ng-template>
-                
-
-                
-            </ng-template>
+      <ng-template #no_creator>
 
 
-            
-
-            
-            
-
-        </div>
-    </div>
-
-    
-    
-
-    <div class="infos-section">
-
-        <div class="event-infos purple-2">
-            <h1 >{{event.titre}}</h1>
-        </div>
-        
-        
-        <div class="event-infos">
-            <div class="info purple-1">
-                <h3>{{event.lieu}}</h3>
-            </div>
-            <div class="info purple-1">
-                <h3>{{event.date}}</h3>
-            </div>
-            <div class="info purple-1">
-                <h3>{{event.heure}}</h3>
-            </div>
+        <div *ngIf="isRegistered; else no_registered">
+          <!-- Si utilisateur inscrit -->
+          <button (click)="unregisterToEvent(connectedUser.id_utilisateur, event.id_evenement)" class="button middle">Se
+            désinscrire
+          </button>
         </div>
 
-        <div class="description purple-0">
-            <p>{{event.description}}</p>
+        <ng-template #no_registered>
+          <!-- Si utilisateur non inscrit -->
+          <button (click)="registerToEvent(connectedUser.id_utilisateur, event.id_evenement)" class="button middle">
+            S'inscrire
+          </button>
+        </ng-template>
 
-            <!-- Si utilisateur non inscrit mais plus de places -->
-            <!-- <p>Nombre de participants maximum atteints</p> -->
-        </div>
 
-        
+      </ng-template>
 
 
     </div>
+  </div>
+
+
+  <div class="infos-section">
+
+    <h1>{{event.titre}}</h1>
+
+    <table class="event-information">
+      <tr class="blue-border">
+        <th>Lieu</th>
+        <th>Date</th>
+        <th>Heure</th>
+      </tr>
+      <tr>
+        <th class="blue">{{event.lieu}}</th>
+        <th class="blue-light">{{event.date}}</th>
+        <th class="blue">{{event.heure}}</th>
+      </tr>
+    </table>
+
+    <div class="description">
+      <p>{{event.description}}</p>
+      <!-- Si utilisateur non inscrit mais plus de places -->
+      <!-- <p>Nombre de participants maximum atteints</p> -->
+    </div>
+
+    <div class = "blue-button">N participants</div>
+
+  </div>
 </div>
