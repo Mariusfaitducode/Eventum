@@ -22,7 +22,7 @@ export class AddEventComponent implements OnInit{
   public heure: string=""
   public lieu: string=""
   public is_public: boolean = false
-  public id_categorie: number = 0
+  public id_categorie: number = -1
   public id_user: number = 0
   public selectedImage: File = new File([], "");
   
@@ -32,13 +32,15 @@ export class AddEventComponent implements OnInit{
   // Messages de succès/erreur
   public success: boolean = false;
   public error: boolean = false;
+  // Message d'erreur
+  error_message: string = "";
 
   // Verification des champs vides
-  public empty_titre: boolean = false;
+  public empty_title: boolean = false;
   public empty_description: boolean = false;
   public empty_date: boolean = false;
-  public empty_heure: boolean = false;
-  public empty_lieu: boolean = false;
+  public empty_hour: boolean = false;
+  public empty_location: boolean = false;
   public empty_categorie: boolean = false;
 
 
@@ -56,9 +58,9 @@ export class AddEventComponent implements OnInit{
   OnConfirm(): void {
     // Vérification des champs requis
   if (this.titre == "") {
-    this.empty_titre = true;
+    this.empty_title = true;
   } else {
-    this.empty_titre = false;
+    this.empty_title = false;
   }
 
   if (this.description == "") {
@@ -67,11 +69,36 @@ export class AddEventComponent implements OnInit{
     this.empty_description = false;
   }
 
+  if (this.date == null) {
+    this.empty_date = true;
+  }else{
+    this.empty_date = false;
+  }
+
+  if (this.heure == "") {
+    this.empty_hour = true;
+  }else{
+    this.empty_hour = false;
+  }
+
+  if (this.lieu == "") {
+    this.empty_location = true;
+  }else{
+    this.empty_location = false;
+  }
+
+  if (this.id_categorie == -1) {
+    this.empty_categorie = true;
+  }else{
+    this.empty_categorie = false;
+  }
+
   // Vérifiez les autres champs requis de la même manière
 
   // Si un champ requis est vide, arrêtez ici et affichez le message d'erreur
-  if (this.empty_titre || this.empty_description /* ajoutez les autres variables de contrôle */) {
+  if (this.empty_title || this.empty_description || this.empty_date || this.empty_hour || this.empty_location || this.empty_categorie) {
     this.error = true;
+    this.error_message = "Veuillez remplir tous les champs obligatoires";
   }else{
 
     this.heure = this.heure.padStart(5, '0') + ':00';

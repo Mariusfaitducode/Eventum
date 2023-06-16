@@ -9,8 +9,11 @@
     <div *ngSwitchCase="page == 'event'">
       <app-participants></app-participants>
     </div>
+    <div *ngSwitchCase="page == 'profil'">
+      <app-follows></app-follows>
+    </div>
     <div *ngSwitchDefault>
-      <app-sugest-friend></app-sugest-friend>
+      <app-sugest-friend ></app-sugest-friend>
     </div>
   </ng-container>
 

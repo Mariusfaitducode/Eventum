@@ -49,10 +49,6 @@ export class ProfilComponent {
   ) {}
 
   ngOnInit() {
-    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
-      // redirection vers la page hub
-      this.router.navigateByUrl('hub');
-    }
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 
@@ -101,7 +97,14 @@ export class ProfilComponent {
         }
 
       });
-    } 
+    
+    }else{
+      // L'utilisateur n'est pas connecté
+        // redirection vers la page hub
+        this.router.navigateByUrl('hub');
+      }
+      
+
   }
 
   async loadRelationData() {

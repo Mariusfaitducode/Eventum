@@ -48,8 +48,10 @@ if(isset($postdata) && empty($postdata))
                     id_suivie = '$id_suivie'";
         
         $result=mysqli_query($mysqli,$sql);
+        $row = $result->fetch_array();
         
-        if($result == NULL) {
+        if($row == NULL) {
+
 
             // on ajoute une relation entre les deux utilisateurs
             $sql = "INSERT INTO 
