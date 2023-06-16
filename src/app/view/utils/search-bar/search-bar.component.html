@@ -2,8 +2,8 @@
   <!-- Recherche d'événements -->
 
   <div class="search-box">
-    <input class="search-text" id="search_evenement" name="search_evenement" placeholder="Chercher des événements"
-           type="text">
+    <input class="search-text" placeholder="Recherche événements, utilisateurs..."
+           type="text" (focus)="onSearchBarFocus()" [(ngModel)]="text" (keyup)="onSearch()">
 
     <!-- <input class="search-text hide"  type="search" id="search_utilisateur" name="search_utilisateur" placeholder="Chercher des utilisateurs"> -->
     <a class="search-btn" href="#">
@@ -29,8 +29,10 @@
     </button>
 
   </div>
-
-
   <!-- div dans laquelle les résultats de la recherche ajax s'afficheront -->
-
 </header>
+
+<div *ngIf="isSearching">
+  <app-search-result></app-search-result>
+</div>
+
