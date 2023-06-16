@@ -39,6 +39,11 @@ export class ParticipantsComponent {
         console.log("event ="+event); // Check if the user object is retrieved correctly
         this.event = event;
 
+        this.eventService.getParticipantsByEvent(this.event.id_evenement).subscribe((participants) => {
+          console.log(participants); // Check if the user object is retrieved correctly
+          this.participants = participants;
+        });
+
         this.userService.getUserById(this.event.id_createur).subscribe((creatorEvent) => {
           console.log("creatorEvent ="+creatorEvent); // Check if the user object is retrieved correctly
           this.creatorEvent = creatorEvent;

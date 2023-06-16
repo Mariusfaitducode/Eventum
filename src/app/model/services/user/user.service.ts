@@ -40,7 +40,7 @@ export class UserService {
   }
 
   public getRelation(id_1: number, id_2: number) {
-      return this.httpClient.get<Relation>(this.baseUrl + '/relation.php?id_suiveur=' + id_1 + '&id_suivie=' + id_2).pipe(map(Relation => {
+      return this.httpClient.get<Relation>(this.baseUrl + '/relation/relation.php?id_suiveur=' + id_1 + '&id_suivie=' + id_2).pipe(map(Relation => {
           return Relation;
       }));
   }
@@ -51,11 +51,7 @@ export class UserService {
     }));
   }
 
-  public getUsersByEvent(id_event: number) {
-    return this.httpClient.get<User[]>(this.baseUrl + '/user/user_by_event.php?id_event=' + id_event).pipe(map(Users => {
-        return Users;
-    }));
-  }
+ 
 
   
 
