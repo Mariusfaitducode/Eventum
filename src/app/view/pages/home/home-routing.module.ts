@@ -3,7 +3,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./components/home.component";
 import {ProfilComponent} from "../profil/profil.component";
 import {MessageComponent} from "../message/message.component";
-import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-profil.component";
 
 
 const routes: Routes = [
@@ -11,16 +10,8 @@ const routes: Routes = [
     path: '', component: HomeComponent,
 
   },
-  { path: 'profil/:id', component: ProfilComponent,
- },
   { path: 'messages', component: MessageComponent },
 
-  { path: 'profil', component: ProfilComponent,
-  children : [
-    {path: 'modifier', loadChildren: () => import('../../forms/modifier-profil/modifier-profil.module')
-      .then(m => m.ModifierProfilModule)},
-  ]
-  },
 
 
 ]
