@@ -51,6 +51,12 @@ export class UserService {
     }));
   }
 
+  public getUsersByEvent(id_event: number) {
+    return this.httpClient.get<User[]>(this.baseUrl + '/user/user_by_event.php?id_event=' + id_event).pipe(map(Users => {
+        return Users;
+    }));
+  }
+
   
 
 
