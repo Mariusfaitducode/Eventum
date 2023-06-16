@@ -15,7 +15,7 @@ import { Notif } from '../../classes/notif/notif';
 export class UserService {
   //redirectUrl!: string;
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
-  
+
   constructor(private httpClient: HttpClient) { }
 
   public getUsers() {
@@ -53,11 +53,11 @@ export class UserService {
 
 
   public follow(id_suiveur: number, id_suivi: number) {
-    return this.httpClient.get<boolean>(this.baseUrl + '/relation/suivre.php?id_suiveur=' + id_suiveur + '&id_suivi=' + id_suivi);
+    return this.httpClient.get<boolean>(this.baseUrl + '/relation/suivre.php?id_suiveur=' + id_suiveur + '&id_suivie=' + id_suivi);
   }
 
   public unfollow(id_suiveur: number, id_suivi: number) {
-    return this.httpClient.get<boolean>(this.baseUrl + '/relation/ne_plus_suivre.php?id_suiveur=' + id_suiveur + '&id_suivi=' + id_suivi);
+    return this.httpClient.get<boolean>(this.baseUrl + '/relation/ne_plus_suivre.php?id_suiveur=' + id_suiveur + '&id_suivie=' + id_suivi);
   }
 
   public modifyUser(nom:string, prenom:string, email:string, pseudo:string, password:string){
@@ -68,7 +68,7 @@ export class UserService {
       return any;
     }));
   }
-  
+
 
 
 }

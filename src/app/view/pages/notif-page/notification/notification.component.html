@@ -24,9 +24,18 @@
             <div>new message</div>
         </div>
 
-        <div *ngSwitchCase="notif.type_notif == 'notif_friend'" class="notification-content">
+        <div *ngSwitchCase="notif.type_notif == 'notif_friend'" class="notification-content" [routerLink]="'/profil/' + notif.content.id_utilisateur">
 
-            <div>new friend</div>
+            <div class="notif-infos">
+                <img src="/assets/{{notif.content.photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
+
+                <h3>{{notif.content.pseudo}} </h3>
+
+                <div>vous a suivi</div>
+            </div>
+            <div class="notif-time">
+                {{notif.duration}}
+            </div>
         </div>
 
         <div *ngSwitchCase="notif.type_notif == 'notif_event'" class="notification-content">

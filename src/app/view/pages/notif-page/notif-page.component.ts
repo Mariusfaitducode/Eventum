@@ -49,13 +49,7 @@ export class NotifPageComponent {
 
           for (let notif of data) {
 
-            notif.date_notif = new Date(notif.date_notif);
-
-
-
-            const difference = new Date().getTime() - notif.date_notif.getTime();
-
-            notif.duration = this.determineDuration(difference);
+            notif.duration = this.determineDuration(notif);
 
             console.log(notif.duration);
 
@@ -100,10 +94,11 @@ export class NotifPageComponent {
                 this.notifService.getNotifFriend(notif.id_notif).subscribe((data: any) => {
 
                     // Retourne id user
-                    console.log(data.id_user);
+                    console.log(data.id_suiveur);
 
-                    this.userService.getUserById(data.id_user).subscribe((data: any) => {
+                    this.userService.getUserById(data.id_suiveur).subscribe((data: any) => {
 
+                      console.log("test")
                       console.log(data);
                       notif.content = data;
                     });
@@ -154,7 +149,10 @@ export class NotifPageComponent {
     }
   }
 
-  determineDuration(difference : number) {
+  determineDuration(notif : Notif) {
+
+    notif.date_notif = new Date(notif.date_notif);
+    const difference = new Date().getTime() - notif.date_notif.getTime();
 
     // Calculez les différences en jours, heures et minutes
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));

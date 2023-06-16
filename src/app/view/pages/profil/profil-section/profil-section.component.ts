@@ -26,13 +26,15 @@ export class ProfilSectionComponent {
   }
 
   follow() {
-    
+    console.log("follow")
     this.userService.follow(this.connectedUser.id_utilisateur, this.user.id_utilisateur).subscribe();
+    this.following = true;
   }
 
   unfollow() {
 
     this.userService.unfollow(this.connectedUser.id_utilisateur, this.user.id_utilisateur).subscribe();
+    this.following = false;
   }
 
 

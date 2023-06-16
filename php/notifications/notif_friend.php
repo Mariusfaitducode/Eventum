@@ -15,7 +15,7 @@ $request = json_decode($postdata);
 
 /*
     Cette requete permet de récupérer l'id de l'utilisateur qui a fait la demande d'ami
-    
+
     Paramètres de la requete GET:
         - id_notif : l'id de la notification
 
@@ -28,21 +28,21 @@ if(isset($postdata) && empty($postdata))
     if (isset($_GET['id_notif'])) {
 
         $id_notif = $_GET['id_notif'];
-        $sql = "SELECT 
-                    rel.id_suiveur 
-                FROM 
+        $sql = "SELECT
+                    rel.id_suiveur
+                FROM
                     notification_change_relation as ncr INNER JOIN relation as rel
                         on ncr.id_relation = rel.id_relation
                 WHERE
-                    nmp.id_notif = '$id_notif'";
+                    ncr.id_notif = '$id_notif'";
 
         $result=mysqli_query($mysqli,$sql);
         $row = $result->fetch_array();
 
-        $data = [               
+        $data = [
                 "id_suiveur" => $row['id_suiveur']
         ];
-                  
+
         echo json_encode($data);
     }
 }

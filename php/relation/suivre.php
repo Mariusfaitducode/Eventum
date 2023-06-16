@@ -21,8 +21,8 @@ $request = json_decode($postdata);
     Paramètres de la requete GET:
         - id_suiveur : l'id de l'utilisateur actuel
         - id_suivie : l'id de l'utilisateur à suivre
-        
-    Cette requete s'occupe de : 
+
+    Cette requete s'occupe de :
         - ajouter une relation entre les deux utilisateurs
         - faire une notification (notif_friend) à l'utilisateur suivi
 
@@ -46,13 +46,15 @@ if(isset($postdata) && empty($postdata))
                     id_suiveur = '$id_suiveur'
                 AND
                     id_suivie = '$id_suivie'";
-        
-        $result=mysqli_query($mysqli,$sql);
-        
-        if($result == NULL) {
+
+        $result=mysqli_query($mysqli, $sql);
+        $row = $result->fetch_array();
+
+
+        if($row == NULL) {
 
             // on ajoute une relation entre les deux utilisateurs
-            $sql = "INSERT INTO 
+            $sql = "INSERT INTO
                     relation(id_suiveur, id_suivie, statut)
                 VALUES
                     ('$id_suiveur', '$id_suivie', 'accepte')";
@@ -60,9 +62,9 @@ if(isset($postdata) && empty($postdata))
             $result=mysqli_query($mysqli,$sql);
 
         } else {
-            
+
             // on met à jour la relation entre les deux utilisateurs
-            $sql = "UPDATE 
+            $sql = "UPDATE
                         relation
                     SET
                         statut = 'accepte'
@@ -89,17 +91,17 @@ if(isset($postdata) && empty($postdata))
         $row = $result->fetch_array();
         $id_relation = $row['id_relation'];
 
-        // on envoie une notification à l'utilisateur suivi        
+        // on envoie une notification à l'utilisateur suivi
         date_default_timezone_set('Europe/Paris');
         $date = date("Y-m-d H:i:s");
 
-        $sql = "INSERT INTO 
+        $sql = "INSERT INTO
                     notifications(id_utilisateur, date_notif, vue, type_notif)
                 VALUES
                     ('$id_suivie', '$date', '0', 'notif_friend')";
 
         $result=mysqli_query($mysqli,$sql);
-                
+
 
         // on récupère l'id de la notification qu'on vient d'ajouter
         $sql = "SELECT
@@ -117,7 +119,7 @@ if(isset($postdata) && empty($postdata))
 
 
         // on ajoute la notification à la table notification_change_relation
-        $sql = "INSERT INTO 
+        $sql = "INSERT INTO
                     notification_change_relation(id_notif, id_relation)
                 VALUES
                     ('$id_notif', '$id_relation')";

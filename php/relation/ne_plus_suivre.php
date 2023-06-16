@@ -21,8 +21,8 @@ $request = json_decode($postdata);
     Paramètres de la requete GET:
         - id_suiveur : l'id de l'utilisateur actuel
         - id_suivie : l'id de l'utilisateur à suivre
-        
-    Cette requete s'occupe de : 
+
+    Cette requete s'occupe de :
         - faire une notification (notif_friend) à l'utilisateur suivi
         - supprimer la relation entre les deux utilisateurs
 
@@ -41,13 +41,15 @@ if(isset($postdata) && empty($postdata))
         $sql = "UPDATE
                     relation
                 SET
-                    statut = 'null'
+                    statut = NULL
                 WHERE
                     id_suiveur = '$id_suiveur'
                 AND
                     id_suivie = '$id_suivie'";
-        
+
         $result=mysqli_query($mysqli,$sql);
+
+        echo $result;
 
         echo json_encode(true);
     }
