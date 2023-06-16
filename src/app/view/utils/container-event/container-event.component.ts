@@ -9,10 +9,11 @@ import { EventService } from 'src/app/model/services/event/event.service';
 })
 export class ContainerEventComponent {
   @Input() events : Event[] = [];
+  @Input() title!: string;
 
 
   constructor(service: EventService) {
-    
+
   }
 
 }

@@ -3,8 +3,8 @@
 <div class="main-event" [ngStyle]="{'background-image': 'url(/assets/' + event.image + ')'}">
 
     <div class="event-infos">
-        
-        <h2>{{event.date}}</h2>
+
+        <h2>{{event.date | date:'dd/MM/YYYY'}}</h2>
         <h1>{{event.titre}}</h1>
         <h2>{{event.lieu}}</h2>
         <!-- <h4>{{event.description}}</h4> -->

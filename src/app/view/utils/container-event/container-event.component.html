@@ -1,10 +1,8 @@
 
+<h2>{{this.title}}</h2>
 <div class="container-event">
-
     <div *ngFor="let event of events" >
-
         <app-card-event [event]="event" [id]="event.id_evenement"></app-card-event>
-        
     </div>
 </div>
 

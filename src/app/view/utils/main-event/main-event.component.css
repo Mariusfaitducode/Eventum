@@ -7,7 +7,7 @@
     background-position: center;
 
     /* background-attachment: fixed;  */
-    
+
     height: 400px;
 
     top: 0;
@@ -18,7 +18,7 @@
     color: var(--white-0);
 
     position: absolute;
-    
+
     bottom: 0;
 
     height: 60px;
@@ -44,13 +44,13 @@
 }
 
 @media screen and (max-width: 1000px){
-    
+
     .event-infos h1{
         width: 100%;
     }
     .event-infos h2{
         display: none;
-        width: 0%;
+        width: 0;
     }
 }
-    
+

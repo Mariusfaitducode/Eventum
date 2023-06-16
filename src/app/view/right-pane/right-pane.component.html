@@ -1,19 +1,17 @@
 <div id="rightPane">
+  <ng-container [ngSwitch]="true">
+    <div *ngSwitchCase="page =='agenda'">
+      <app-day-section></app-day-section>
+    </div>
+    <div *ngSwitchCase="page == 'messages'">
+      <app-list-conversation></app-list-conversation>
+    </div>
+    <div *ngSwitchCase="page == 'event'">
+      <app-participants></app-participants>
+    </div>
+    <div *ngSwitchDefault>
+      <app-sugest-friend></app-sugest-friend>
+    </div>
+  </ng-container>
 
-    <ng-container [ngSwitch]="true">
-        <div *ngSwitchCase="page =='agenda'">
-            <app-day-section></app-day-section>
-        </div>
-
-        <div *ngSwitchCase="page == 'messages'">
-          <app-list-conversation></app-list-conversation>
-        </div>
-        <div *ngSwitchCase="page == 'event'">
-          <app-participants></app-participants>
-        </div>
-        <div *ngSwitchDefault>
-            <app-sugest-friend></app-sugest-friend>
-        </div>
-      </ng-container>
-      
 </div>

@@ -1,25 +1,21 @@
-
-
 <div [routerLink]="'/event/' + id">
-    <button type="submit" class="card-event">
-        
-        <div class="event-infos">
+  <button class="card-event" type="submit">
+    <div *ngIf="event.image != null">
+      <img alt="" alt="Image de l'événement" height="100px" src="/assets/{{event.image}}" width="180px">
 
-            <div *ngIf="event.image != null; else no_image">
-                <img src="/assets/{{event.image}}" alt="" width="180px" height="100px" alt="Image de l'événement">
-                <h3>{{event.titre}}</h3>
-
-            </div>
-            <ng-template #no_image> 
-                
-                <h3>{{event.titre}}</h3>
-                <p>{{event.description}}</p>
-            </ng-template>
-
-            <p>{{event.date}}</p>
-            <p>{{event.heure}}</p>
-            <p>{{event.lieu}}</p>
-            
+    </div>
+    <div class="event-infos">
+      <h3 class = "title">{{event.titre}}</h3>
+      <div class="more-information">
+        <div class = "second-line">
+          <p>{{event.date}}</p>
         </div>
-    </button>
+        <div class="last-line">
+          <p>{{event.heure}}</p>
+          <p class = "emplacement">{{event.lieu}}</p>
+        </div>
+      </div>
+
+    </div>
+  </button>
 </div>
