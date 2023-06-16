@@ -67,6 +67,7 @@ export class SendMessageComponent implements OnInit {
     this.service.sendMessage(this.id_sender, this.id_receiver, this.message, this.id_event).subscribe((data: boolean) => {
       console.log(data);
     });
+    this.service.sendMessageObservable('message');
   }
 
   openPopup() {
