@@ -32,7 +32,7 @@ $request = json_decode($postdata);
 // Requete GET
 if(isset($postdata) && empty($postdata))
 {
-    if (isset($_GET['id_utilisateur']) && isset($_GET['id_evenement'])) {
+    if (isset($_GET['id_evenement'])) {
 
         $id_event = $_GET['id_evenement'];
 
