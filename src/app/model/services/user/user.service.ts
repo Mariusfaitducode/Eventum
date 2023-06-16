@@ -51,6 +51,14 @@ export class UserService {
     }));
   }
 
+  public follow(id_suiveur: number, id_suivi: number) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/relation/suivre.php?id_suiveur=' + id_suiveur + '&id_suivi=' + id_suivi);
+  }
+
+  public unfollow(id_suiveur: number, id_suivi: number) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/relation/ne_plus_suivre.php?id_suiveur=' + id_suiveur + '&id_suivi=' + id_suivi);
+  }
+
  
 
   

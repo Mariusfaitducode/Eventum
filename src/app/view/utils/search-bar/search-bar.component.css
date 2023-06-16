@@ -21,7 +21,7 @@ header{
 
     background: var(--white-1);
     margin: 10px;
-   
+
     /* height: 30px;    */
     width: 50%;
     min-width: 250px;
@@ -46,7 +46,7 @@ header{
     outline: none;
     background: none;
     float: left;
-    
+
     font-size: 16px;
     transition: 0.4s;
     line-height: 20px;
@@ -57,7 +57,7 @@ header{
 
 .theme-color-button{
     padding: 10px;
-    
+
 }
 
 .theme-color-button button{

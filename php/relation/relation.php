@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header("Content-Type: application/json; charset=UTF-8");
 
 //Connexion database
-include_once("database.php");
+include_once("../database.php");
 
 //Récupère données envoyés depuis angular surtout pour POST
 $postdata = file_get_contents("php://input");

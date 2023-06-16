@@ -3,12 +3,15 @@ import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {User} from "../../classes/user/user";
 import {Message} from "../../classes/message/message";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessagerieService {
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php/messagerie";
+  private messageSource = new BehaviorSubject<string>('');
+  message$ = this.messageSource.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,9 +34,14 @@ export class MessagerieService {
     }));
   }
 
-  // public getMessageById(id_message: number) {
-  //   return this.httpClient.get<Message[]>(this.baseUrl + '/load_message_by_id.php?id_message=' + id_message).pipe(map(messages => {
-  //     return messages;
-  //   }));
-  // }
+  sendMessageObservable(message: string) {
+    this.messageSource.next(message);
+  }
+
+  public getSearchedUsers(text: string) {
+    return this.httpClient.get<User[]>(this.baseUrl + '/search_user.php?text=' + text).pipe(map(users => {
+      console.log(users);
+      return users;
+    }));
+  }
 }

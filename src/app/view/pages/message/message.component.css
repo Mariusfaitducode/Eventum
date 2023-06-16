@@ -56,6 +56,14 @@
   overflow-y: scroll;
 }
 
+.list-messages-empty {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .send-message {
   height: 100px;
   background-color: var(--purple-00);
@@ -63,4 +71,18 @@
 
   /* position: absolute;
   bottom: 0; */
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+svg {
+  width: 100px;
+  height: 100px;
+  fill: var(--purple-2);
+}
+
+p {
+  color: var(--purple-2);
 }
