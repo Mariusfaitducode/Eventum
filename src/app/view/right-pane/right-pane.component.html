@@ -8,6 +8,9 @@
         <div *ngSwitchCase="page == 'messages'">
           <app-list-conversation></app-list-conversation>
         </div>
+        <div *ngSwitchCase="page == 'event'">
+          <app-participants></app-participants>
+        </div>
         <div *ngSwitchDefault>
             <app-sugest-friend></app-sugest-friend>
         </div>

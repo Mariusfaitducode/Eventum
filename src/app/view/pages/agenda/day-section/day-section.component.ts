@@ -28,4 +28,13 @@ export class DaySectionComponent implements OnInit {
     });
   }
 
+  getDay(date: Date): number {
+    if (date.getDay() == 0){
+      return 6;
+    }
+    else{
+      return date.getDay() - 1
+    }
+  }
+
 }
