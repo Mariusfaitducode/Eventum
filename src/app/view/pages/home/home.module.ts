@@ -44,6 +44,7 @@ import {ListConversationComponent} from "../message/components/list-conversation
 
 import { ShareDataService } from "src/app/model/services/share/share-data.service";
 import {SingleMessageComponent} from "../message/components/single-message/single-message.component";
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import {SingleMessageComponent} from "../message/components/single-message/singl
     ListMessageComponent,
     ListConversationComponent,
     SingleMessageComponent,
+    SearchResultComponent,
   ],
   providers: [
     UserService,

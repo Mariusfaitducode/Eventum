@@ -1,0 +1,65 @@
+
+
+.organisateur{
+
+    width: 100%;
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--purple-2);
+    color: var(--white-0);
+    
+    border-bottom: solid 1px var(--purple-1);
+    
+    padding-top: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.row-creator{
+    display: flex;
+
+    margin: 10px 30px;
+
+    padding: 5px 10px;
+
+    background: none;
+    border: none;
+}
+
+.row-creator img{
+    border-radius: 50%;
+}
+
+.row-creator:hover{
+    background: var(--purple-1);
+    border-radius: 10px;
+}
+
+.infos-user{
+
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: var(--white-0);
+}
+
+.infos-user p{
+    text-align: left;
+}
+
+.nombre-participant{
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

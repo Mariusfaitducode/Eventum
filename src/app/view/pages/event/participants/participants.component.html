@@ -1,7 +1,23 @@
 
 
-<div class="list-header">
-  <h2>{{creatorEvent.pseudo}}</h2>
+<div class="organisateur">
+    <h2>Organisateur</h2>
+
+    <a class="row-creator" [routerLink]="'/profil/' + creatorEvent.id_utilisateur">
+
+        <img src="/assets/{{creatorEvent.photo_profil}}" width="65px" height="65px" alt="Avatar" class="avatar">
+      
+        <div class="infos-user">
+          <h3 class="userName">{{creatorEvent.pseudo}}</h3>
+      
+        </div>
+    </a>
+
+    <!-- <app-user-card class="inverse-color" [link]="'profil'" [link_img]="connectedUser.photo_profil" [name]="connectedUser.pseudo" [id]="connectedUser.id_utilisateur"></app-user-card> -->
+</div>
+
+<div class="nombre-participant">
+    <h3>{{participants.length}} Participants</h3>
 </div>
 
 <div *ngFor="let user of participants">
