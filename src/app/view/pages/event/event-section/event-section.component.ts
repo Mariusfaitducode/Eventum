@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { EventService } from 'src/app/model/services/event/event.service';
@@ -15,7 +16,7 @@ export class EventSectionComponent {
 
  
 
-  constructor( private eventService: EventService) { }
+  constructor( private eventService: EventService, private router: Router) { }
 
   registerToEvent() {
 
@@ -29,5 +30,9 @@ export class EventSectionComponent {
     this.eventService.unregisterToEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((result) => {
       this.isRegistered = !result;
     });
+  }
+
+  modifier(){
+    this.router.navigateByUrl('event/' + this.event.id_evenement + '/modifier');
   }
 }

@@ -52,13 +52,6 @@ if(isset($postdata) && empty($postdata))
 
 
         if($row == NULL) {
-
-            // on ajoute une relation entre les deux utilisateurs
-            $sql = "INSERT INTO
-                    relation(id_suiveur, id_suivie, statut)
-                VALUES
-                    ('$id_suiveur', '$id_suivie', 'accepte')";
-
             $result=mysqli_query($mysqli,$sql);
 
         } else {

@@ -49,7 +49,8 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-profil.component";
 import { ModifierProfilModule } from "../../forms/modifier-profil/modifier-profil.module";
 import { ProfilService } from "src/app/model/services/profil/profil.service";
-
+import { FollowsComponent } from "../profil/follows/follows.component";
+import { ModifierEvenementModule } from "../../forms/modifier-evenement/modifier-evenement.module";
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { ProfilService } from "src/app/model/services/profil/profil.service";
     ListConversationComponent,
     SingleMessageComponent,
     SearchResultComponent,
+    FollowsComponent,
   ],
   providers: [
     UserService,
@@ -106,8 +108,7 @@ import { ProfilService } from "src/app/model/services/profil/profil.service";
     HttpClientModule, // Ajout de HttpClientModule
     FormsModule,
     ModifierProfilModule,
-
-
+    ModifierEvenementModule,
   ]
 })
 export class HomeModule {

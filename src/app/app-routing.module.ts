@@ -31,7 +31,11 @@ const routes: Routes = [
 { path: 'profil/:id', component: ProfilComponent },
 
 
-  { path: 'event/:id', component: EventComponent},
+  { path: 'event/:id', component: EventComponent,
+  children : [
+    {path: 'modifier', loadChildren: () => import('./view/forms/modifier-evenement/modifier-evenement.module').then(m => m.ModifierEvenementModule)},
+  ]
+},
   {
     path: '**', redirectTo: 'hub', pathMatch: 'full'
   },
