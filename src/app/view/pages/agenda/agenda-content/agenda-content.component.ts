@@ -28,7 +28,7 @@ export class AgendaContentComponent{
 
   user!: User;
 
-  eventOfMonth: Event[] = []; 
+  eventOfMonth: Event[] = [];
 
   //selectedMonth = new Date().getMonth();
   selectedMonth = 3;
@@ -66,15 +66,15 @@ export class AgendaContentComponent{
     for (let day of this.daysOfWeek) {
       day.number = [];
     }
-    
+
     const daysInMonth = new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate();
-    
+
     //Nombre de jours dans le mois
     const totalDays = Array.from({ length: daysInMonth }, (_, index) => index + 1);
 
     //Affecte au bon jour de la semaine le bon nombre de jour
     for (let day of totalDays) {
-      const dayOfWeek = new Date(this.selectedYear, this.selectedMonth, day).getDay();
+      const dayOfWeek = new Date(this.selectedYear, this.selectedMonth, day-1).getDay();
       this.daysOfWeek[dayOfWeek].number.push(day);
     }
 
@@ -130,6 +130,7 @@ export class AgendaContentComponent{
     });
   }
 
+
   getDayOfEvent(date: Date): number {
     return date.getDate();
   }
@@ -148,9 +149,9 @@ export class AgendaContentComponent{
     console.log("updateEventDayData");
 
     var eventOfDay : Event[] = [];
-    
+
     for (let event of this.eventOfMonth) {
-      
+
       if (event.date instanceof Date && event.date.getDate() == number){
         eventOfDay.push(event);
       }
@@ -162,26 +163,26 @@ export class AgendaContentComponent{
     this.shareService.setAgendaDayEvent(date, eventOfDay);
   }
 
-  
 
-  ngOnInit(): void {  
+
+  ngOnInit(): void {
     // console.log("load agenda");
     // console.log(this.selectedMonth);
     this.getCalendarDays()
-    
+
     // console.log(this.daysOfWeek);
     // console.log("eventOfMonth");
     // console.log(this.eventOfMonth);
   }
 
-  
-  
-  
+
+
+
 //   @HostListener('window:resize', ['$event'])
 //   onWindowResize(event: any) {
 
 //     const screenWidth = window.innerWidth;
-    
+
 //     const dayContentItems = Array.from(document.getElementsByClassName('.day-content-item')) as HTMLElement[];
 
 //     for (const dayContentItem of dayContentItems) {
@@ -204,7 +205,7 @@ export class AgendaContentComponent{
 //           }
 //           dayContentItem.style.backgroundColor = ''; // Rétablir la couleur par défaut du parent
 //         }
-        
+
 //       }
 //     }
 //   }

@@ -24,6 +24,7 @@ import { UserCardComponent } from "../../utils/user-card/user-card.component";
 
 import { EventComponent} from "../event/event.component";
 import { EventSectionComponent } from "../event/event-section/event-section.component";
+import { ParticipantsComponent } from '../event/participants/participants.component';
 
 import { SugestFriendComponent } from "../../utils/sugest-friend/sugest-friend.component";
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // Ajout de HttpClientModule et HttpClient
@@ -77,6 +78,8 @@ import {SingleMessageComponent} from "../message/components/single-message/singl
     MainEventComponent,
     EventComponent,
     EventSectionComponent,
+    ParticipantsComponent,
+
     SendMessageComponent,
     ListMessageComponent,
     ListConversationComponent,

@@ -2,15 +2,15 @@
 
 <section>
     <div class="day-header">
-       <h2> {{day[date.getDay()] + ' ' + date.getDate()}}</h2> 
+       <h2> {{ day[getDay(date)] + ' ' + date.getDate()}}</h2>
     </div>
     <div class="container-event">
         <div *ngFor="let event of eventOfDay">
 
             <app-little-card-event [event]="event" [id]="event.id_evenement"></app-little-card-event>
 
-            
+
         </div>
     </div>
-    
+
 </section>

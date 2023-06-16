@@ -30,4 +30,10 @@ export class MessagerieService {
       return messages;
     }));
   }
+
+  // public getMessageById(id_message: number) {
+  //   return this.httpClient.get<Message[]>(this.baseUrl + '/load_message_by_id.php?id_message=' + id_message).pipe(map(messages => {
+  //     return messages;
+  //   }));
+  // }
 }

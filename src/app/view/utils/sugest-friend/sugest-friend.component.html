@@ -1,3 +1,8 @@
+
+<div class="suggest-header">
+    <h2>Suggestion</h2>
+</div>
+
 <div *ngFor="let user of getRandomUsers(UserArray, 5)">
     <app-user-card [link]="link" [link_img]="user.photo_profil" [name]="user.pseudo" [id]="user.id_utilisateur"></app-user-card>
 </div>

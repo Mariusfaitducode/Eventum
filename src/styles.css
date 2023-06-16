@@ -12,6 +12,10 @@
   --white-0: #ffffff;
   --white-1: #fcfaff;
 
+  /* Color orange */
+  --orange-00: #fffafa;
+  --orange-0: #eed8d8;
+
   /* Color violet */
 
   --purple-00: #efd5f0;
@@ -35,7 +39,7 @@
   --lightgray-0: #dfdddd;
   --lightgray-01: #ccc;
   --lightgray-1: #b3b3b3;
-  
+
 
 
   --gray-0: #352f2f8a;
@@ -44,7 +48,7 @@
   --transparent-gray: #333a;
   --transparent-black: #0000008a;
   --black: #000000;
-  
+
 }
 
 /* Basic style */
@@ -120,7 +124,7 @@ html, body {
 }
 
 .button.inverse:hover {
-  
+
   background: var(--purple-1);
   color: var(--white-0);
 }
