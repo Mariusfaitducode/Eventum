@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Notif } from 'src/app/model/classes/notif/notif';
 
 @Component({
   selector: 'app-notification',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent {
-
+  @Input() notif!: Notif;
 }

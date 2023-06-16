@@ -45,7 +45,14 @@ if(isset($postdata) && empty($postdata))
     if (isset($_GET['id_user'])) {
 
         $id_user = $_GET['id_user'];
-        $sql = "SELECT * FROM notifications WHERE id_utilisateur = '$id_user'";
+        $sql = "SELECT 
+                    * 
+                FROM 
+                    notifications 
+                WHERE 
+                    id_utilisateur = '$id_user'
+                ORDER BY
+                    date_notif DESC";
 
         $result=mysqli_query($mysqli,$sql);
 

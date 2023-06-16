@@ -12,8 +12,11 @@
   --white-0: #ffffff;
   --white-1: #fcfaff;
 
-  /* Color violet */
+  /* Color orange */
+  --orange-00: #fffafa;
+  --orange-0: #eed8d8;
 
+  /* Color violet */
 
   --purple-00: #efd5f0;
   --purple-0: #dcb3df;
@@ -22,16 +25,21 @@
   --purple-3: #3c0444;
 
   /* Color bleu */
+  --blue-00: #d5f0f6;
   --blue-0: #86c8f6;
   --blue-1: #5CA4C4;
   --blue-2: #2E6E8E;
+
+  /* Color orange */
+
+  /* --orange-0: #fccbfc; */
 
   /* Color gray */
 
   --lightgray-0: #dfdddd;
   --lightgray-01: #ccc;
   --lightgray-1: #b3b3b3;
-  
+
 
 
   --gray-0: #352f2f8a;
@@ -120,7 +128,7 @@ html, body {
 }
 
 .button.inverse:hover {
-  
+
   background: var(--purple-1);
   color: var(--white-0);
 }

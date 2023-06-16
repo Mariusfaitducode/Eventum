@@ -19,13 +19,25 @@ $request = json_decode($postdata);
 // Requete GET
 if(isset($postdata) && empty($postdata))
 {
-  if (!empty($_GET['id_sender']) && !empty($_GET['id_receiver']) && !empty($_GET['message']) && !empty($_GET['id_event'])) {
+  if (!empty($_GET['id_sender']) && !empty($_GET['id_receiver'])) {
 
     // Sécurisation des données saisies
     $id_sender = SecurizeString_ForSQL($_GET['id_sender']);
     $id_receiver = SecurizeString_ForSQL($_GET['id_receiver']);
-    $message = SecurizeString_ForSQL($_GET['message']);
-    $id_event = SecurizeString_ForSQL($_GET['id_event']);
+
+    if (!empty($_GET['message'])){
+      $message = SecurizeString_ForSQL($_GET['message']);
+    }
+    else {
+      $message = "";
+    }
+    if (!empty($_GET['id_event'])){
+      $id_event = SecurizeString_ForSQL($_GET['id_event']);
+    }
+    else {
+      $id_event = "NULL";
+    }
+    
 
     // Insertion des données dans la base de données des messages
     $sql = "INSERT INTO message_prive (id_utilisateur_envoyeur, id_utilisateur_destinataire, date_envoi, contenu, vue, id_evenement) VALUES ('$id_sender', '$id_receiver', CURRENT_TIMESTAMP, '$message', 0, $id_event)";
@@ -37,7 +49,7 @@ if(isset($postdata) && empty($postdata))
     $id_message = $row["id_message"];
 
     // Insertion des données dans la base de données des notifications
-    $sql = "INSERT INTO notifications (id_utilisateur, date_notif, vue) VALUE ('$id_receiver', CURRENT_TIMESTAMP, 0)";
+    $sql = "INSERT INTO notifications (id_utilisateur, date_notif, vue, type_notif) VALUE ('$id_receiver', CURRENT_TIMESTAMP, 0, 'notif_mp')";
     $result = mysqli_query($mysqli, $sql);
 
     $sql = "SELECT id_notif FROM notifications ORDER BY date_notif DESC LIMIT 1";

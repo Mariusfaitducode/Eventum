@@ -1,19 +1,24 @@
 import { Component } from '@angular/core';
-import { Event } from '../../../model/classes/event/event';
 
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from 'src/app/model/services/event/event.service';
 import { User } from 'src/app/model/classes/user/user';
 import { UserService } from 'src/app/model/services/user/user.service';
+import { Event } from 'src/app/model/classes/event/event';
 
 @Component({
-  selector: 'app-event',
-  templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css']
+  selector: 'app-participants',
+  templateUrl: './participants.component.html',
+  styleUrls: ['./participants.component.css']
 })
-export class EventComponent {
+export class ParticipantsComponent {
+
   event!: Event; 
+
+  creatorEvent!: User;
   connectedUser!: User;
+
+  participants!: User[];
 
   isRegistered: boolean = false;
 
@@ -34,6 +39,16 @@ export class EventComponent {
         console.log("event ="+event); // Check if the user object is retrieved correctly
         this.event = event;
 
+        this.eventService.getParticipantsByEvent(this.event.id_evenement).subscribe((participants) => {
+          console.log(participants); // Check if the user object is retrieved correctly
+          this.participants = participants;
+        });
+
+        this.userService.getUserById(this.event.id_createur).subscribe((creatorEvent) => {
+          console.log("creatorEvent ="+creatorEvent); // Check if the user object is retrieved correctly
+          this.creatorEvent = creatorEvent;
+        });
+
         this.userService.getUserByToken().subscribe((user) => {
 
           console.log("user ="+user); // Check if the user object is retrieved correctly
@@ -50,5 +65,4 @@ export class EventComponent {
     });
   }
 
-  
 }

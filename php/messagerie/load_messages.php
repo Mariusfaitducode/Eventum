@@ -19,7 +19,7 @@ $request = json_decode($postdata);
 // Requete GET
 if(isset($postdata) && empty($postdata))
 {
-  if (!empty($_GET['id_sender']) && !empty($_GET['id_receiver'])) {
+  if (isset($_GET['id_sender']) && isset($_GET['id_receiver'])) {
 
     // Sécurisation des données saisies
     $id_sender = SecurizeString_ForSQL($_GET['id_sender']);
@@ -44,6 +44,48 @@ if(isset($postdata) && empty($postdata))
                     (id_utilisateur_envoyeur = '$id_receiver' AND id_utilisateur_destinataire = '$id_sender')
                 ORDER BY
                     date_envoi ASC";
+    $result = mysqli_query($mysqli, $sql);
+    $data = array();
+    while($row = $result->fetch_array()) {
+
+      $data[] = array(
+        "id_message" => $row['id_message'],
+        "id_utilisateur_envoyeur" => $row['id_utilisateur_envoyeur'],
+        "id_utilisateur_destinataire" => $row['id_utilisateur_destinataire'],
+        "date_envoi" => $row['date_envoi'],
+        "contenu" => $row['contenu'],
+        "image_mp" => $row['image_mp'],
+        "vue" => $row['vue'],
+        "id_evenement" => $row['id_evenement']
+      );
+
+    }
+
+    echo json_encode($data);
+
+    // Arrêter l'exécution ultérieure
+    exit();
+  }
+  else if (isset($_GET['id_message'])){
+
+    $id_message = $_GET['id_message'];
+
+    $sql = "SELECT
+                    mp.id_message,
+                    mp.id_utilisateur_envoyeur,
+                    mp.id_utilisateur_destinataire,
+                    mp.date_envoi,
+                    mp.contenu,
+                    mp.image as image_mp,
+                    mp.vue,
+                    ev.id_evenement
+                FROM
+                    message_prive mp
+                LEFT OUTER JOIN
+                    evenement ev ON mp.id_evenement = ev.id_evenement
+                WHERE
+                    mp.id_message = '$id_message'";
+                    
     $result = mysqli_query($mysqli, $sql);
     $data = array();
     while($row = $result->fetch_array()) {

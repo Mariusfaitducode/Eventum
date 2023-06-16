@@ -11,9 +11,11 @@ import { RegisterComponent } from './view/forms/register/register.component';
 import {HomeModule} from "./view/pages/home/home.module";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    
     //NotificationComponent,
   ],
   imports: [

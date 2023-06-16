@@ -1,0 +1,16 @@
+.list-header{
+
+    width: 100%;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: var(--purple-0); */
+    
+    border-bottom: solid 1px var(--purple-1);
+    
+
+    margin-bottom: 30px;
+}

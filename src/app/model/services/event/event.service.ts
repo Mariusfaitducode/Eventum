@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Event } from '../../classes/event/event'
 import { Categorie } from '../../classes/categorie/categorie';
+import { User } from '../../classes/user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,20 @@ export class EventService {
       
       return Events;
     }));
+  }
+
+  public getParticipantsByEvent(id_event: number) {
+    return this.httpClient.get<User[]>(this.baseUrl + '/event/liste_participant.php?id_evenement=' + id_event).pipe(map(Users => {
+        return Users;
+    }));
+  }
+
+  registerToEvent(id_user: number, id_event: number) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/event/inscription_event.php?id_utilisateur=' + id_user + '&id_evenement=' + id_event);
+  }
+
+  unregisterToEvent(id_user: number, id_event: number) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/event/desinscription_event.php?id_utilisateur=' + id_user + '&id_evenement=' + id_event);
   }
 }
 

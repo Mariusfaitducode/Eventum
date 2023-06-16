@@ -13,7 +13,7 @@ export class DaySectionComponent implements OnInit {
   eventOfDay: Event[] = [];
   date: Date = new Date();
 
-  day: string[] = ['Lundi' , 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  day: string[] = ['Lundi' , 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
   constructor(
     private shareService: ShareDataService,
@@ -26,6 +26,15 @@ export class DaySectionComponent implements OnInit {
 
       this.eventOfDay = data[1];
     });
+  }
+
+  getDay(date: Date): number {
+    if (date.getDay() == 0){
+      return 6;
+    }
+    else{
+      return date.getDay() - 1
+    }
   }
 
 }
