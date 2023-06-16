@@ -45,6 +45,8 @@ import { ShareDataService } from "src/app/model/services/share/share-data.servic
 import {ListConversationComponent} from "../message/components/list-conversation/list-conversation.component";
 import {SingleMessageComponent} from "../message/components/single-message/single-message.component";
 import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-profil.component";
+import { ModifierProfilModule } from "../../forms/modifier-profil/modifier-profil.module";
+import { ProfilService } from "src/app/model/services/profil/profil.service";
 
 
 @NgModule({
@@ -85,7 +87,6 @@ import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-pr
     ListMessageComponent,
     ListConversationComponent,
     SingleMessageComponent,
-    ModifierProfilComponent
   ],
   providers: [
     UserService,
@@ -93,12 +94,14 @@ import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-pr
     EventService,
     FileService,
     ShareDataService,
+    ProfilService,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     HttpClientModule, // Ajout de HttpClientModule
-    FormsModule
+    FormsModule,
+    ModifierProfilModule,
 
 
   ]

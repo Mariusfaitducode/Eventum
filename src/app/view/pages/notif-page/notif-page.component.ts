@@ -6,6 +6,7 @@ import { EventService } from 'src/app/model/services/event/event.service';
 import { MessagerieService } from 'src/app/model/services/messagerie/messagerie.service';
 import { NotifService } from 'src/app/model/services/notif/notif.service';
 import { UserService } from 'src/app/model/services/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notif-page',
@@ -23,9 +24,14 @@ export class NotifPageComponent {
     private notifService: NotifService,
     private eventService: EventService,
     private messageService: MessagerieService,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
+    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
+      // redirection vers la page hub
+      this.router.navigateByUrl('hub');
+    }
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 

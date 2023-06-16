@@ -2,8 +2,8 @@
 <div class="central-pane">
     <form class = "formulaire">
         <h1>Ajouter un événement</h1>
-        <input type = "text" name="titre" placeholder="Nom de l'évènement" [(ngModel)]="titre">
-        <textarea name="text" name="description" placeholder="Description" [(ngModel)]="description"></textarea>
+        <input type = "text" name="titre" placeholder="Nom de l'évènement" [(ngModel)]="titre"  [ngClass]="{ 'input-error': empty_titre }">
+        <textarea name="text" name="description" placeholder="Description" [(ngModel)]="description"  [ngClass]="{ 'input-error': empty_description }"></textarea>
         <input type = "date" name="date" placeholder="Date" [(ngModel)]="date">
         <input type="file" name="image" id="image" (change)="onImageChange($event)">
         <select name="categorie" id="categorie" [(ngModel)]="id_categorie">

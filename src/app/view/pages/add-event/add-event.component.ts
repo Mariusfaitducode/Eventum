@@ -15,6 +15,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   styleUrls: ['./add-event.component.css'],
 })
 export class AddEventComponent implements OnInit{
+  // Récupération des données du formulaire
   public titre: string = ""
   public description: string = ""
   public date: Date = new Date()
@@ -24,13 +25,24 @@ export class AddEventComponent implements OnInit{
   public id_categorie: number = 0
   public id_user: number = 0
   public selectedImage: File = new File([], "");
-
+  
+  // Récupération des catégories
   public list_categorie!: Categorie[]
   
+  // Messages de succès/erreur
   public success: boolean = false;
   public error: boolean = false;
 
-  constructor(private service: EventService, private userService: UserService, private fileService: FileService, private http: HttpClient) {
+  // Verification des champs vides
+  public empty_titre: boolean = false;
+  public empty_description: boolean = false;
+  public empty_date: boolean = false;
+  public empty_heure: boolean = false;
+  public empty_lieu: boolean = false;
+  public empty_categorie: boolean = false;
+
+
+  constructor(private service: EventService, private userService: UserService, private router: Router, private http: HttpClient) {
     this.service.getCategories().subscribe((data: Categorie[]) => {
       console.log(data);
       this.list_categorie = data;
@@ -42,6 +54,26 @@ export class AddEventComponent implements OnInit{
   }
 
   OnConfirm(): void {
+    // Vérification des champs requis
+  if (this.titre == "") {
+    this.empty_titre = true;
+  } else {
+    this.empty_titre = false;
+  }
+
+  if (this.description == "") {
+    this.empty_description = true;
+  } else {
+    this.empty_description = false;
+  }
+
+  // Vérifiez les autres champs requis de la même manière
+
+  // Si un champ requis est vide, arrêtez ici et affichez le message d'erreur
+  if (this.empty_titre || this.empty_description /* ajoutez les autres variables de contrôle */) {
+    this.error = true;
+  }else{
+
     this.heure = this.heure.padStart(5, '0') + ':00';
 
     this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.is_public, this.id_categorie, this.id_user, 'images/evenements/' + this.selectedImage.name).subscribe((data: boolean) => {
@@ -60,18 +92,22 @@ export class AddEventComponent implements OnInit{
         this.success = false;
         this.error = true;
         
-        // Hide the success/error messages after 3 seconds
-        setTimeout(() => {
-          this.success = false;
-          this.error = false;
-        }, 3000);
       }
     );
     
   }
+  // Hide the success/error messages after 3 seconds
+  setTimeout(() => {
+    this.success = false;
+    this.error = false;
+  }, 3000);
+}
 
   ngOnInit(): void {
-
+    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
+      // redirection vers la page hub
+      this.router.navigateByUrl('hub');
+    }
   }
 
   onImageChange(event: any): void {

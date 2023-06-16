@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Event } from '../../../model/classes/event/event';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from 'src/app/model/services/event/event.service';
 import { User } from 'src/app/model/classes/user/user';
 import { UserService } from 'src/app/model/services/user/user.service';
@@ -20,9 +20,14 @@ export class EventComponent {
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
-    private userService: UserService) {}
+    private userService: UserService,
+    private router: Router) {}
     
   ngOnInit() {
+    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
+      // redirection vers la page hub
+      this.router.navigateByUrl('hub');
+    }
 
     this.route.params.subscribe((params) => {
       const id = +params['id'];

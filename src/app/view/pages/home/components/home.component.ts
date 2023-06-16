@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { AuthentificationService } from 'src/app/model/services/authentification/authentification.service';
@@ -19,9 +20,15 @@ export class HomeComponent {
   constructor(
     private eventService : EventService,
     private userService: UserService,
-    private authService : AuthentificationService) { }
+    private authService : AuthentificationService,
+    private router : Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
+      // redirection vers la page hub
+      this.router.navigateByUrl('hub');
+    }
+
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 

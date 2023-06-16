@@ -72,7 +72,7 @@
         <div *ngIf="personnal_page" class="profil-buttons">
 
                 
-            <button class="button middle inverse">Se déconnecter</button>
+            <button class="button middle inverse" (click)="deconnexion()">Se déconnecter</button>
                 
             
         </div>
@@ -81,4 +81,3 @@
     
 </div>
 
-<app-modifier-profil *ngIf="this.modifier_profil"></app-modifier-profil>

@@ -22,9 +22,13 @@ export class MessageComponent implements OnInit{
   public pseudo_user_receiver!: string;
   public id_user_receiver!: number;
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthentificationService) {}
+  constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthentificationService, private router: Router) {}
 
   ngOnInit(): void {
+    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
+      // redirection vers la page hub
+      this.router.navigateByUrl('hub');
+    }
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 

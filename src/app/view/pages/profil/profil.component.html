@@ -6,5 +6,12 @@
     [number_events]="[event_create.length, event_participate.length]"></app-profil-section>
 
     <app-profil-content [event_participate]="event_participate" [event_create]="event_create"></app-profil-content>
+
+    <div class="success" *ngIf="successService.getSuccess()">
+        <p> Modifications enregistrés avec succès</p>
+    </div>
+
 </div>
 <app-right-pane></app-right-pane>
+
+<router-outlet></router-outlet>

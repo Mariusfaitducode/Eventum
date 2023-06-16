@@ -23,9 +23,13 @@ const routes: Routes = [
   { path: 'notifications', component: NotifPageComponent },
   { path: 'messages', component: MessageComponent },
   { path: 'messages/:id', component: MessageComponent },
-  { path: 'profil/:id', component: ProfilComponent },
   { path: 'profil', component: ProfilComponent,
+  children : [
+    {path: 'modifier', loadChildren: () => import('./view/forms/modifier-profil/modifier-profil.module').then(m => m.ModifierProfilModule)},
+  ]
 },
+{ path: 'profil/:id', component: ProfilComponent },
+
 
   { path: 'event/:id', component: EventComponent},
   {

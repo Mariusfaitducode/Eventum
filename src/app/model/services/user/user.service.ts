@@ -50,9 +50,15 @@ export class UserService {
         return Boolean;
     }));
   }
-
  
+  public modifyUser(nom:string, prenom:string, email:string, pseudo:string, password:string){
+    // récupérer l'utilisateur connecté
+    const token = localStorage.getItem('token');
 
+    return this.httpClient.get<any>(this.baseUrl + '/user/modify_profil.php?token='+ token + '&nom=' + nom + '&prenom=' + prenom + '&email=' + email + '&pseudo=' + pseudo + '&password=' + password).pipe(map(any => {
+      return any;
+    }));
+  }
   
 
 

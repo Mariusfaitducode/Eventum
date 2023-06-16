@@ -25,7 +25,11 @@ export class ProfilSectionComponent {
   }
 
   modifier(){
-    this.modifier_profil = true;
+    this.router.navigateByUrl('profil/modifier');
   }
 
+  deconnexion(){
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('hub');
+  }
 }

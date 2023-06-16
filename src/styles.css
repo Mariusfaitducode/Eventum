@@ -51,7 +51,7 @@
 
   /* Transparence */
   --transparent-green: #38b00031;
-  --transparent-red: #68174a62;
+  --transparent-red: #a9267962;
   
 }
 
@@ -169,6 +169,12 @@ html, body {
   border-radius: 8px;
 
   border: 1px solid var(--ligneSection);
+
+
+  /* Centering */
+  position: absolute;
+  top: 50%;
+  left: 25%;
 }
 
 .formulaire input:not(.button), textarea, select{
@@ -255,7 +261,7 @@ html, body {
   padding-top: 20px;
   justify-content: center;
   background-color: var(--transparent-green);
-  z-index: 1;
+  z-index: 20;
   display: flex;
 }
 
@@ -268,6 +274,8 @@ html, body {
   padding-top: 20px;
   justify-content: center;
   background-color: var(--transparent-red);
-  z-index: 1;
+  z-index: 20;
   display: flex;
 }
+
+

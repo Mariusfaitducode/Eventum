@@ -9,12 +9,17 @@ import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-pr
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
+
   },
   { path: 'profil/:id', component: ProfilComponent,
  },
   { path: 'messages', component: MessageComponent },
 
   { path: 'profil', component: ProfilComponent,
+  children : [
+    {path: 'modifier', loadChildren: () => import('../../forms/modifier-profil/modifier-profil.module')
+      .then(m => m.ModifierProfilModule)},
+  ]
   },
 
 
