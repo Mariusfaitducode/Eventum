@@ -1,4 +1,4 @@
-import {AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { RightPaneComponent } from '../../right-pane/right-pane.component';
 import { LeftPaneComponent } from '../../left-pane/left-pane.component';
