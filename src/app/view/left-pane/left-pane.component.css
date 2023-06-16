@@ -17,6 +17,9 @@
   padding-top: 20px;
   border-right: 1px solid var(--purple-1);
 
+  background: var(--color1);
+  z-index: 10;
+
 }
 
 @media screen and (max-width: 1200px) {

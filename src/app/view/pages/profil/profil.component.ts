@@ -9,12 +9,13 @@ import { ApiService } from 'src/app/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthentificationService } from 'src/app/model/services/authentification/authentification.service';
 
-
 import { OnInit } from '@angular/core';
 import { UserService } from 'src/app/model/services/user/user.service';
 
 import { firstValueFrom } from 'rxjs';
 import { EventService } from 'src/app/model/services/event/event.service';
+import { Router } from '@angular/router';
+import { ProfilService } from 'src/app/model/services/profil/profil.service';
 
 @Component({
   selector: 'app-profil',
@@ -32,6 +33,8 @@ export class ProfilComponent {
 
   personnal_page: boolean = false;
 
+  public success: boolean = false;
+
   event_participate: Event[] = [];
   event_create: Event[] = [];
 
@@ -41,9 +44,15 @@ export class ProfilComponent {
     private service: UserService,
     private authService : AuthentificationService,
     private eventService : EventService,
+    private router: Router,
+    public successService: ProfilService
   ) {}
 
   ngOnInit() {
+    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
+      // redirection vers la page hub
+      this.router.navigateByUrl('hub');
+    }
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 

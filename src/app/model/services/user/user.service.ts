@@ -51,6 +51,7 @@ export class UserService {
     }));
   }
 
+
   public follow(id_suiveur: number, id_suivi: number) {
     return this.httpClient.get<boolean>(this.baseUrl + '/relation/suivre.php?id_suiveur=' + id_suiveur + '&id_suivi=' + id_suivi);
   }
@@ -59,8 +60,14 @@ export class UserService {
     return this.httpClient.get<boolean>(this.baseUrl + '/relation/ne_plus_suivre.php?id_suiveur=' + id_suiveur + '&id_suivi=' + id_suivi);
   }
 
- 
+  public modifyUser(nom:string, prenom:string, email:string, pseudo:string, password:string){
+    // récupérer l'utilisateur connecté
+    const token = localStorage.getItem('token');
 
+    return this.httpClient.get<any>(this.baseUrl + '/user/modify_profil.php?token='+ token + '&nom=' + nom + '&prenom=' + prenom + '&email=' + email + '&pseudo=' + pseudo + '&password=' + password).pipe(map(any => {
+      return any;
+    }));
+  }
   
 
 

@@ -57,6 +57,10 @@
   --transparent-black: #0000008a;
   --black: #000000;
 
+  /* Transparence */
+  --transparent-green: #38b00031;
+  --transparent-red: #a9267962;
+  
 }
 
 /* Basic style */
@@ -178,6 +182,12 @@ html, body {
   border-radius: 8px;
 
   border: 1px solid var(--ligneSection);
+
+
+  /* Centering */
+  position: absolute;
+  top: 50%;
+  left: 25%;
 }
 
 .formulaire input:not(.button), textarea, select{
@@ -253,3 +263,32 @@ html, body {
   margin: 10px;
   cursor: pointer;
 }
+
+/*banderole pour annoncer le suggès d'un formulaire*/
+.success{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh;
+  padding-top: 20px;
+  justify-content: center;
+  background-color: var(--transparent-green);
+  z-index: 20;
+  display: flex;
+}
+
+.error{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh;
+  padding-top: 20px;
+  justify-content: center;
+  background-color: var(--transparent-red);
+  z-index: 20;
+  display: flex;
+}
+
+

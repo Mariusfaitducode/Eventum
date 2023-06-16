@@ -17,7 +17,8 @@
 
       <button class="button middle">Amis</button>
 
-      <button class="button middle">Modifier</button>
+      <button class="button middle" (click)="modifier()">Modifier</button>
+
 
       <!-- <button type="submit">Se déconnecter</button> -->
 
@@ -102,8 +103,7 @@
 
     <div *ngIf="personnal_page" class="profil-buttons">
 
-
-      <button class="button middle inverse">Se déconnecter</button>
+      <button class="button middle inverse" (click)="deconnexion()">Se déconnecter</button>
 
 
     </div>

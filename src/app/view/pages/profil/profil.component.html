@@ -7,5 +7,11 @@
 
   <app-profil-content [event_create]="event_create" [event_participate]="event_participate"></app-profil-content>
 
+    <div class="success" *ngIf="successService.getSuccess()">
+        <p> Modifications enregistrés avec succès</p>
+    </div>
+
 </div>
 <app-right-pane></app-right-pane>
+
+<router-outlet></router-outlet>

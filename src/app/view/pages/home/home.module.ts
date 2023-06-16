@@ -40,11 +40,16 @@ import { MainEventComponent } from "../../utils/main-event/main-event.component"
 import { FormsModule } from "@angular/forms";
 import {SendMessageComponent} from "../../utils/send-message/send-message.component";
 import {ListMessageComponent} from "../message/components/list-message/list-message.component";
-import {ListConversationComponent} from "../message/components/list-conversation/list-conversation.component";
-
+import {FileService} from "../../../model/services/file/file.service";
 import { ShareDataService } from "src/app/model/services/share/share-data.service";
+import {ListConversationComponent} from "../message/components/list-conversation/list-conversation.component";
 import {SingleMessageComponent} from "../message/components/single-message/single-message.component";
+
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-profil.component";
+import { ModifierProfilModule } from "../../forms/modifier-profil/modifier-profil.module";
+import { ProfilService } from "src/app/model/services/profil/profil.service";
+
 
 
 @NgModule({
@@ -91,13 +96,16 @@ import { SearchResultComponent } from './components/search-result/search-result.
     UserService,
     AuthentificationService,
     EventService,
+    FileService,
     ShareDataService,
+    ProfilService,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     HttpClientModule, // Ajout de HttpClientModule
-    FormsModule
+    FormsModule,
+    ModifierProfilModule,
 
 
   ]

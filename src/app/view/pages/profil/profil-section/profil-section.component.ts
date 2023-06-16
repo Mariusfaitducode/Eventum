@@ -1,7 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../../../model/classes/user/user';
 import { Relation } from 'src/app/model/classes/relation/relation';
+
 import { UserService } from 'src/app/model/services/user/user.service';
+
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profil-section',
@@ -15,8 +19,10 @@ export class ProfilSectionComponent {
   @Input() following!: boolean;
   @Input() personnal_page!: boolean;
   @Input() number_events!: [number, number];
+  public modifier_profil: boolean = false;
 
-  constructor(private userService: UserService) {
+
+  constructor(private userService: UserService, public router: Router) {
   }
 
   follow() {
@@ -27,10 +33,19 @@ export class ProfilSectionComponent {
   unfollow() {
 
     this.userService.unfollow(this.connectedUser.id_utilisateur, this.user.id_utilisateur).subscribe();
-
   }
+
 
   ngOnInit() {
 
+  }
+
+  modifier(){
+    this.router.navigateByUrl('profil/modifier');
+  }
+
+  deconnexion(){
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('hub');
   }
 }

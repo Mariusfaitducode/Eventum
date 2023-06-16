@@ -2,13 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categorie } from 'src/app/model/classes/categorie/categorie';
 import { EventService } from 'src/app/model/services/event/event.service';
+import { UserService } from 'src/app/model/services/user/user.service';
+import { Observable } from 'rxjs';
+import { FileService } from 'src/app/model/services/file/file.service';
+import { HttpClient } from '@angular/common/http';
+import { trigger, transition, style, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
-  styleUrls: ['./add-event.component.css']
+  styleUrls: ['./add-event.component.css'],
 })
 export class AddEventComponent implements OnInit{
+  // Récupération des données du formulaire
   public titre: string = ""
   public description: string = ""
   public date: Date = new Date()
@@ -16,41 +23,109 @@ export class AddEventComponent implements OnInit{
   public lieu: string=""
   public is_public: boolean = false
   public id_categorie: number = 0
-  public imageFileName: string = ""
-
+  public id_user: number = 0
+  public selectedImage: File = new File([], "");
+  
+  // Récupération des catégories
   public list_categorie!: Categorie[]
   
+  // Messages de succès/erreur
+  public success: boolean = false;
+  public error: boolean = false;
 
-  constructor(private router: Router, private service: EventService) {
+  // Verification des champs vides
+  public empty_titre: boolean = false;
+  public empty_description: boolean = false;
+  public empty_date: boolean = false;
+  public empty_heure: boolean = false;
+  public empty_lieu: boolean = false;
+  public empty_categorie: boolean = false;
+
+
+  constructor(private service: EventService, private userService: UserService, private router: Router, private http: HttpClient) {
     this.service.getCategories().subscribe((data: Categorie[]) => {
+      console.log(data);
       this.list_categorie = data;
+    });
+    this.userService.getUserByToken().subscribe((data: any) => {
+      console.log(data);
+      this.id_user = data.id_utilisateur;
     });
   }
 
   OnConfirm(): void {
-    console.log(this.titre);
-    console.log(this.description);
-    console.log(this.date);
-    console.log(this.heure);
-    console.log(this.lieu);
-    console.log(this.is_public);
-    console.log(this.id_categorie);
-    console.log(this.imageFileName);
-    this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.is_public, this.id_categorie, 0, this.imageFileName).subscribe((data: boolean) => {
-      console.log(data);
+    // Vérification des champs requis
+  if (this.titre == "") {
+    this.empty_titre = true;
+  } else {
+    this.empty_titre = false;
+  }
 
-    });
-    }
+  if (this.description == "") {
+    this.empty_description = true;
+  } else {
+    this.empty_description = false;
+  }
+
+  // Vérifiez les autres champs requis de la même manière
+
+  // Si un champ requis est vide, arrêtez ici et affichez le message d'erreur
+  if (this.empty_titre || this.empty_description /* ajoutez les autres variables de contrôle */) {
+    this.error = true;
+  }else{
+
+    this.heure = this.heure.padStart(5, '0') + ':00';
+
+    this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.is_public, this.id_categorie, this.id_user, 'images/evenements/' + this.selectedImage.name).subscribe((data: boolean) => {
+        this.success = data;
+        this.error = !data;
+        
+        // Hide the success/error messages after 3 seconds
+        setTimeout(() => {
+          this.success = false;
+          this.error = false;
+        }, 3000);
+      },
+      (error: any) => {
+        // Handle the error here
+        console.error(error);
+        this.success = false;
+        this.error = true;
+        
+      }
+    );
+    
+  }
+  // Hide the success/error messages after 3 seconds
+  setTimeout(() => {
+    this.success = false;
+    this.error = false;
+  }, 3000);
+}
 
   ngOnInit(): void {
-
+    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
+      // redirection vers la page hub
+      this.router.navigateByUrl('hub');
+    }
   }
 
   onImageChange(event: any): void {
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      this.imageFileName = files[0].name;
-    }
+     this.http.post('http://localhost/', event.target.files[0])
+     .subscribe(event => {
+       console.log('done') // Base64 encoded image data
+     })
   }
+
+  upload(files: File[]){
+    var formData = new FormData();
+    Array.from(files).forEach(f => formData.append('file', f))
+    this.http.post('http://localhost/eventum/Eventum_Angular', formData)
+      .subscribe(event => {
+        console.log('done')
+      })
+  }
+
+
 
 }
