@@ -88,13 +88,13 @@ if(isset($postdata) && empty($postdata))
         $result=mysqli_query($mysqli,$sql);
 
 
-        // on supprime la relation entre les deux utilisateurs
-        $sql = "DELETE FROM 
+        // on passe le statut de la relation à null
+        $sql = "UPDATE 
                     relation
+                SET
+                    statut = 'null'
                 WHERE
-                    id_suiveur = '$id_suiveur'
-                AND
-                    id_suivie = '$id_suivie'";
+                    id_relation = '$id_relation'";
 
         echo json_encode(true);
     }
