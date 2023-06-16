@@ -19,6 +19,14 @@ export class ListMessageComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.service.message$.subscribe((message) => {
+      // Mettez à jour votre liste de messages ou effectuez d'autres actions nécessaires
+      this.service.getMessages(this.id_sender, this.id_receiver).subscribe((data: Message[]) => {
+        console.log(data);
+        this.messages = data;
+      });
+    });
+
     if (this.id_sender!= null && this.id_receiver != null) {
       // Get the messages
       this.service.getMessages(this.id_sender, this.id_receiver).subscribe((data: Message[]) => {

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { RightPaneComponent } from '../../right-pane/right-pane.component';
 import { LeftPaneComponent } from '../../left-pane/left-pane.component';
@@ -11,7 +11,8 @@ import {AuthentificationService} from "../../../model/services/authentification/
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit{
+export class MessageComponent implements OnInit, AfterViewChecked{
+  @ViewChild('scrollMe') myScrollContainer!: ElementRef;
   public user_sender!: User;
   public user_receiver!: User;
 
@@ -66,6 +67,17 @@ export class MessageComponent implements OnInit{
       this.surname_user_receiver = this.user_receiver.nom
       this.link_img_user_receiver = this.user_receiver.photo_profil
     });
+  }
+
+  scrollToBottom() {
+    console.log('scroll');
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
 }
