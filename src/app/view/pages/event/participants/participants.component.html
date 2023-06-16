@@ -1,1 +1,15 @@
-<p>participants works!</p>
+
+
+<div class="list-header">
+  <h2>{{creatorEvent.pseudo}}</h2>
+</div>
+
+<div *ngFor="let user of participants">
+
+    <div *ngIf="connectedUser.id_utilisateur != user.id_utilisateur">
+        <app-user-card [link]="'profil'" [link_img]="user.photo_profil" [name]="user.pseudo" [id]="user.id_utilisateur"></app-user-card>
+
+    </div>
+</div>
+
+

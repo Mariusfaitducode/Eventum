@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Event } from '../../classes/event/event'
 import { Categorie } from '../../classes/categorie/categorie';
+import { User } from '../../classes/user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +77,12 @@ export class EventService {
     (this.baseUrl + '/event/event_by_cat.php?id_utilisateur=' + id_user+'&id_categorie='+id_categorie).pipe(map(Events => {
       
       return Events;
+    }));
+  }
+
+  public getParticipantsByEvent(id_event: number) {
+    return this.httpClient.get<User[]>(this.baseUrl + '/event/liste_participant.php?id_evenement=' + id_event).pipe(map(Users => {
+        return Users;
     }));
   }
 
