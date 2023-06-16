@@ -74,7 +74,9 @@ if(isset($postdata) && empty($postdata))
                     ev.date,
                     ev.heure,
                     ev.lieu,
-                    ev.is_public
+                    ev.is_public,
+                    ev.max_participant,
+                    ev.is_disponible
                 FROM
                     evenement as ev INNER JOIN categorie as cat ON ev.id_categorie = cat.id_categorie
                 WHERE
@@ -132,7 +134,9 @@ if(isset($postdata) && empty($postdata))
                 "date" => $row['date'],
                 "heure" => $row['heure'],
                 "lieu" => $row['lieu'],
-                "is_public" => $row['is_public']
+                "is_public" => $row['is_public'],
+                "max_participant" => $row['max_participant'],
+                "is_disponible" => $row['is_disponible']
             );
         }
 
@@ -157,7 +161,9 @@ if(isset($postdata) && empty($postdata))
                         ev.date,
                         ev.heure,
                         ev.lieu,
-                        ev.is_public
+                        ev.is_public,
+                        ev.max_participant,
+                        ev.is_disponible
                     FROM
                         evenement as ev
                     WHERE
@@ -206,7 +212,9 @@ if(isset($postdata) && empty($postdata))
                     "date" => $row['date'],
                     "heure" => $row['heure'],
                     "lieu" => $row['lieu'],
-                    "is_public" => $row['is_public']
+                    "is_public" => $row['is_public'],
+                    "max_participant" => $row['max_participant'],
+                    "is_disponible" => $row['is_disponible']
                 );
 
             }

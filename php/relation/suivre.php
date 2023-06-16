@@ -37,13 +37,43 @@ if(isset($postdata) && empty($postdata))
         $id_suiveur = $_GET['id_suiveur'];
         $id_suivie = $_GET['id_suivie'];
 
-        // on ajoute une relation entre les deux utilisateurs
-        $sql = "INSERT INTO 
+        // on vérifie que la relation n'existe pas déjà
+        $sql = "SELECT
+                    id_relation
+                FROM
+                    relation
+                WHERE
+                    id_suiveur = '$id_suiveur'
+                AND
+                    id_suivie = '$id_suivie'";
+        
+        $result=mysqli_query($mysqli,$sql);
+        
+        if($result == NULL) {
+
+            // on ajoute une relation entre les deux utilisateurs
+            $sql = "INSERT INTO 
                     relation(id_suiveur, id_suivie, statut)
                 VALUES
                     ('$id_suiveur', '$id_suivie', 'accepte')";
 
-        $result=mysqli_query($mysqli,$sql);
+            $result=mysqli_query($mysqli,$sql);
+
+        } else {
+            
+            // on met à jour la relation entre les deux utilisateurs
+            $sql = "UPDATE 
+                        relation
+                    SET
+                        statut = 'accepte'
+                    WHERE
+                        id_suiveur = '$id_suiveur'
+                    AND
+                        id_suivie = '$id_suivie'";
+
+            $result=mysqli_query($mysqli,$sql);
+
+        }
 
         // on récupère l'id de la relation qu'on vient d'ajouter
         $sql = "SELECT
