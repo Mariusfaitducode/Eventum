@@ -24,7 +24,7 @@ export class NotifService {
   }
 
   public getNotifChangeEvent(id_notif: number) {
-    return this.httpClient.get<Notif[]>(this.baseUrl + '/notifications/notif_event.php?id_notif=' + id_notif).pipe(map(Notifs => {
+    return this.httpClient.get<Notif[]>(this.baseUrl + '/notifications/notif_change_event.php?id_notif=' + id_notif).pipe(map(Notifs => {
       return Notifs;
     }));
   }

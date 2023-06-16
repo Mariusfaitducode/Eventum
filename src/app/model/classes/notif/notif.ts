@@ -8,5 +8,6 @@ export class Notif {
         public vue: boolean,
 
         public content: any,
+        public duration: string,
     ){}
 }
