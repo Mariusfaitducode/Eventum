@@ -12,6 +12,8 @@ import {AuthentificationService} from "../../../../../model/services/authentific
 export class ListConversationComponent implements OnInit {
   public UserArray : User[] = [];
   public link: string = "messages";
+  public text: string = "";
+  public searchedUsers: User[] = [];
 
   constructor(private service: MessagerieService, private userService: UserService, private authService: AuthentificationService) {}
 
@@ -35,5 +37,25 @@ export class ListConversationComponent implements OnInit {
       console.log("data"+data2);
       this.UserArray = data2;
     })
+  }
+
+  searchUsers(): void {
+    if (this.text == "") {
+      this.userService.getUserByToken().subscribe((data: User) => {
+        console.log(data);
+        this.getListConversationOfUser(data.id_utilisateur);
+      });
+    } else {
+      this.service.getSearchedUsers(this.text).subscribe((data: User[]) => {
+        this.UserArray = [];
+        this.UserArray = data;
+      })
+    }
+
+  }
+
+  public setTextToEmpty() {
+    this.text = "";
+    this.searchUsers();
   }
 }
