@@ -37,7 +37,7 @@ section h2{
   resize: none;
 }
 
-.message-form button{
+.message-form svg{
 
   height: 40%;
 
@@ -64,17 +64,30 @@ input[type="file"] {
 
   /* border: 1px solid #ccc; */
   display: inline-block;
-  padding: 6px 12px;
   cursor: pointer;
 }
 
 .popup {
   position: absolute;
-  top: -300px;
-  right: -300px;
+  bottom: calc(100% + 20px);
   background-color: var(--lightgray-purple);
   border-radius: 20px;
   padding: 20px;
+}
+
+.showEvent {
+  position: absolute;
+  bottom: calc(100% + 16px);
+  left: 0;
+
+  background-color: var(--purple-1);
+  border-top-right-radius: 20px;
+  color: var(--lightgray-0);
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .relative {
@@ -86,7 +99,30 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.border {
-  border: 1px solid black;
-  border-radius: 10%;
+.popup p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--purple-2);
+  font-weight: bold;
+}
+
+.button {
+  margin-bottom: 10px;
+}
+
+.svg2 {
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.label svg {
+  margin-top: 0;
+}
+
+.svg {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  fill: var(--lightgray-0);
 }
