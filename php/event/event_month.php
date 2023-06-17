@@ -35,9 +35,9 @@ if(isset($postdata) && empty($postdata))
             $id_evenement = $row['id_evenement'];
 
             //Récupère les événements auxquels l'utilisateur est inscrit et qui ont le mois et l'année demandés
-            $sql_event = "SELECT * FROM evenement 
+            $sql_event = "SELECT * FROM evenement
                             WHERE id_evenement = '$id_evenement'
-                            AND MONTH(date) = '$month' 
+                            AND MONTH(date) = '$month'
                             AND YEAR(date) = '$year'";
 
             $result_event=mysqli_query($mysqli,$sql_event);
@@ -46,17 +46,19 @@ if(isset($postdata) && empty($postdata))
             {
 
                 if ($row_event['image'] == null) {
-                
+
+                    $cat = $row_event['id_categorie'];
+
                     $sql = "SELECT
                                 image_cat
-                            FROM    
+                            FROM
                                 categorie
                             WHERE
-                                id_categorie = ".$row_event['id_categorie']."'";
-              
+                                id_categorie = '$cat'";
+
                     $result_image=mysqli_query($mysqli,$sql);
                     $row_image = $result_image->fetch_array();
-        
+
                     $row['image'] = $row_image['image_cat'];
                 }
 
@@ -72,13 +74,13 @@ if(isset($postdata) && empty($postdata))
                     "heure" => $row_event['heure'],
                     "lieu" => $row_event['lieu'],
                     "is_public" => $row_event['is_public']
-                );                    
-            }                   
+                );
+            }
         }
 
         echo json_encode($data);
         }
-    }   
+    }
 
 
 ?>

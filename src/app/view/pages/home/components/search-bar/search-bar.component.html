@@ -83,7 +83,7 @@
 
           <div  *ngFor="let user of userArray; let i = index">
 
-              <div *ngIf="i < 10" class="row-user">
+              <div *ngIf="i < 10" class="row-user" [routerLink]="'/profil/' + user.id_utilisateur">
                   
                   <img src="/assets/{{user.photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
                   
