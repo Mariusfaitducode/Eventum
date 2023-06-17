@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Event } from '../../classes/event/event'
 import { Categorie } from '../../classes/categorie/categorie';
 import { User } from '../../classes/user/user';
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,12 @@ import { User } from '../../classes/user/user';
 export class EventService {
   redirectUrl!: string;
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
+
+  private messageSource = new BehaviorSubject<string>('');
+  message$ = this.messageSource.asObservable();
+
+  private messageSource2 = new BehaviorSubject<string>('');
+  message2$ = this.messageSource2.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -49,7 +56,7 @@ export class EventService {
 
   public getEventsByMonthAndUser(id: number, month: number, year: number) {
     return this.httpClient.get<Event[]>(this.baseUrl + '/event/event_month.php?id_user=' + id + '&month=' + month + '&year=' + year).pipe(map(Events => {
-      
+
       Events.forEach(event => {
         event.date = new Date(event.date);
       });
@@ -59,14 +66,14 @@ export class EventService {
 
   public getEventsByUser(id: number) {
     return this.httpClient.get<Event[]>(this.baseUrl + '/event/event_by_user.php?id_user=' + id).pipe(map(Events => {
-      
+
       return Events;
     }));
   }
-  
+
   getRecommendedEvents(id: number) {
     return this.httpClient.get<Event[]>(this.baseUrl + '/event/event_reco.php?id_utilisateur=' + id).pipe(map(Events => {
-      
+
       return Events;
     }));
   }
@@ -74,7 +81,7 @@ export class EventService {
   getEventsByCategorie(id_user: number, id_categorie: number) {
     return this.httpClient.get<Event[]>
     (this.baseUrl + '/event/event_by_cat.php?id_utilisateur=' + id_user+'&id_categorie='+id_categorie).pipe(map(Events => {
-      
+
       return Events;
     }));
   }
@@ -87,6 +94,14 @@ export class EventService {
 
   registerToEvent(id_user: number, id_event: number) {
     return this.httpClient.get<boolean>(this.baseUrl + '/event/inscription_event.php?id_utilisateur=' + id_user + '&id_evenement=' + id_event);
+  }
+
+  registerToEventObservable(message: string) {
+    this.messageSource.next(message);
+  }
+
+  removeToEventObservable(message: string) {
+    this.messageSource2.next(message);
   }
 
   unregisterToEvent(id_user: number, id_event: number) {

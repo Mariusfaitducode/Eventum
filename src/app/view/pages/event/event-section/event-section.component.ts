@@ -16,22 +16,24 @@ export class EventSectionComponent {
   @Input() isRegistered!: boolean;
   @Input() numberParticipants!: number;
 
- 
+
 
   constructor( private eventService: EventService, private router: Router) { }
 
   registerToEvent() {
 
     console.log("registerToEvent")
-    this.eventService.registerToEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((isRegistered) => { 
+    this.eventService.registerToEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((isRegistered) => {
       this.isRegistered = isRegistered;
     });
+    this.eventService.registerToEventObservable("message")
   }
 
   unregisterToEvent() {
     this.eventService.unregisterToEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((result) => {
       this.isRegistered = !result;
     });
+    this.eventService.removeToEventObservable("message")
   }
 
   modifier(){

@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class UserService {
   //redirectUrl!: string;
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
+  baseUrl2: string = "http://localhost/eventum/Eventum_Angular/php/forum";
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -74,7 +75,7 @@ export class UserService {
       return any;
     }));
   }
-  
+
   // Récupérer les followers d'un utilisateur
   public getFollowings(id_user: number) {
     return this.httpClient.get<User[]>(this.baseUrl + '/user/liste_suivie.php?id_utilisateur=' + id_user).pipe(map(Users => {
@@ -92,6 +93,12 @@ export class UserService {
   public getRecommendedUsers(id_user: number) {
     return this.httpClient.get<User[]>(this.baseUrl + '/user/liste_reco.php?id_utilisateur=' + id_user).pipe(map(Users => {
         return Users;
+    }));
+  }
+
+  public getUserByIdEvent(id_event: number) {
+    return this.httpClient.get<User[]>(this.baseUrl2 + '/users_in_event.php?id_evenement=' + id_event).pipe(map(Users => {
+      return Users;
     }));
   }
 

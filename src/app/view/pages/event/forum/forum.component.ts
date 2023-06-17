@@ -21,26 +21,51 @@ export class ForumComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') myScrollContainer!: ElementRef;
 
   public messages: Message[] = []
+  public users: User[] = []
   public message!: string
+  public link: string = "profil"
 
 
   constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthentificationService, private router: Router, private serviceEvent: EventService, private service: MessagerieService) {}
 
   ngOnInit(): void {
+
+    // Check user connected
+    console.log("user : " + this.connectedUser.id_utilisateur + ", " + this.connectedUser.nom)
+
     if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
       // redirection vers la page hub
       this.router.navigateByUrl('hub');
     }
 
+    // check l'event
+    console.log("event : " + this.event.id_evenement + ", " + this.event.titre)
 
-    if (this.connectedUser != null && this.event != null) {
+    this.service.message$.subscribe((message) => {
+      // récupère la liste des messages
+      if (this.connectedUser != null && this.users != null) {
+        // Get the messages
+        this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
+          console.log("messages : " + data);
+          this.messages = data;
+        });
+      }
+    });
+
+
+    // récupère la liste des messages
+    if (this.connectedUser != null && this.users != null) {
       // Get the messages
       this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
-        console.log(data);
+        console.log("messages : " + data);
         this.messages = data;
       });
     }
 
+  // recupère la liste des users
+    this.userService.getUserByIdEvent(this.event.id_evenement).subscribe((data: User[]) => {
+      this.users = data;
+    });
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 
@@ -65,6 +90,7 @@ export class ForumComponent implements OnInit, AfterViewChecked {
     this.service.sendMessagesForEvent(this.connectedUser.id_utilisateur, this.event.id_evenement, this.message).subscribe((data: boolean) => {
       console.log(data);
     });
+    this.service.sendMessageObservable('message');
     this.message = "";
   }
 
@@ -77,5 +103,15 @@ export class ForumComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     this.scrollToBottom();
+  }
+
+  getUser(id_user: number): User {
+    for(let user of this.users) {
+      if (user.id_utilisateur == id_user) {
+        console.log("user found : " + user.pseudo)
+        return user;
+      }
+    }
+    return this.users[0];
   }
 }

@@ -10,6 +10,8 @@ import {BehaviorSubject} from "rxjs";
 })
 export class MessagerieService {
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php/messagerie";
+  baseUrl2: string = "http://localhost/eventum/Eventum_Angular/php/forum";
+
   private messageSource = new BehaviorSubject<string>('');
   message$ = this.messageSource.asObservable();
 
@@ -39,13 +41,13 @@ export class MessagerieService {
   }
 
   public getMessagesForEvent(id_event: number) {
-    return this.httpClient.get<Message[]>(this.baseUrl + '/forum_send_message.php?id_evenement=' + id_event).pipe(map(messages => {
+    return this.httpClient.get<Message[]>(this.baseUrl2 + '/forum_load_message.php?id_evenement=' + id_event).pipe(map(messages => {
       return messages;
     }));
   }
 
   public sendMessagesForEvent(id_sender: number, id_event: number, message: string) {
-    return this.httpClient.get<boolean>(this.baseUrl + '/forum_load_messages.php?id_sender=' + id_sender + '&id_evenement=' + id_event + "&message=" + message).pipe(map(messages => {
+    return this.httpClient.get<boolean>(this.baseUrl2 + '/forum_send_message.php?id_sender=' + id_sender + '&id_evenement=' + id_event + "&message=" + message).pipe(map(messages => {
       return messages;
     }));
   }
