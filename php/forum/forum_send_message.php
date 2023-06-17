@@ -58,28 +58,6 @@ if(isset($postdata) && empty($postdata))
     // $row = $result->fetch_array();
     // $id_message = $row["id_message"];
 
-    // // Insertion des données dans la base de données des notifications
-    // $sql = "INSERT INTO notifications (id_utilisateur, date_notif, vue, type_notif) VALUE ('$id_receiver', CURRENT_TIMESTAMP, 0, 'notif_mpg')";
-    // $result = mysqli_query($mysqli, $sql);
-
-    // // Récupération de l'id de la notification
-    // $sql = "SELECT 
-    //           id_notif 
-    //         FROM
-    //           notifications 
-    //         WHERE
-    //           id_utilisateur = '$id_receiver'
-    //         ORDER BY 
-    //           date_notif 
-    //         DESC LIMIT 1";
-
-    // $result = mysqli_query($mysqli, $sql);
-    // $row = $result->fetch_array();
-    // $id_notif = $row["id_notif"];
-
-    // $sql = "INSERT INTO notification_message_groupe (id_notif, id_message) VALUE ('$id_notif', '$id_message')";
-    // $result = mysqli_query($mysqli, $sql);
-
     if ($result) {
       // Enregistrement réussi
       echo json_encode(true);
