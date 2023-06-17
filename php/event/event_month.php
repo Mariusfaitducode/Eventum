@@ -76,30 +76,6 @@ if(isset($postdata) && empty($postdata))
             }                   
         }
 
-        //Récupère les événements créés par l'utilisateur et qui ont le mois et l'année demandés
-        $sql = "SELECT * FROM evenement 
-                    WHERE id_createur = '$id_user'
-                    AND MONTH(date) = '$month' 
-                    AND YEAR(date) = '$year'";
-
-        $result=mysqli_query($mysqli,$sql);
-
-        while( $row = $result->fetch_array())
-        {
-            $data[] = array(
-                "id_evenement" => $row['id_evenement'],
-                "id_createur" => $row['id_createur'],
-                "titre" => $row['titre'],
-                "id_categorie" => $row['id_categorie'],
-                "description" => $row['description'],
-                "image" => $row['image'],
-                "date" => $row['date'],
-                "heure" => $row['heure'],
-                "lieu" => $row['lieu'],
-                "is_public" => $row['is_public']
-            );                    
-        }
-
         echo json_encode($data);
         }
     }   
