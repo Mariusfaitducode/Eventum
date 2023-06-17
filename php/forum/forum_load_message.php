@@ -35,7 +35,7 @@ if(isset($postdata) && empty($postdata))
             WHERE
                 id_evenement = '$id_evenement'
             ORDER BY
-                date_envoi ASC";
+                date_envoi DESC";
 
     $result = mysqli_query($mysqli, $sql);
     $data = array();
