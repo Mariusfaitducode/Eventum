@@ -30,8 +30,8 @@ export class AgendaContentComponent{
 
   eventOfMonth: Event[] = [];
 
-  //selectedMonth = new Date().getMonth();
-  selectedMonth = 3;
+  selectedMonth = new Date().getMonth();
+  // selectedMonth = 3;
   selectedYear = new Date().getFullYear();
 
   constructor(

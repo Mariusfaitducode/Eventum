@@ -32,9 +32,9 @@
   --blue-1: #5CA4C4;
   --blue-2: #2E6E8E;
 
-  --blue-event: #639FAB;
+  --blue-event: #669ea9;
   --blue-event-light: #58A6B6;
-  --blue-event-dark: #182e33;
+  --blue-event-dark: #437a88;
 
   /* Color orange */
 
@@ -130,8 +130,11 @@ html, body {
 }
 
 .blue-button {
-  background-color: var(--blue-event);
-  padding:10px 20px;
+  background: var(--blue-event-light);
+}
+
+.blue-button:hover {
+  background: var(--blue-event);
 }
 
 .inverse{

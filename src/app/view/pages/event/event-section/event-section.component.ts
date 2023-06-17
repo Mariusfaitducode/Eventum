@@ -13,6 +13,7 @@ export class EventSectionComponent {
   @Input() event!: Event;
   @Input() connectedUser!: User;
   @Input() isRegistered!: boolean;
+  @Input() numberParticipants!: number;
 
  
 

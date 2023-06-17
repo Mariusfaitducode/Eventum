@@ -14,6 +14,7 @@ import { UserService } from 'src/app/model/services/user/user.service';
 export class EventComponent {
   event!: Event; 
   connectedUser!: User;
+  numberParticipants!: number;
 
   isRegistered: boolean = false;
 
@@ -32,6 +33,11 @@ export class EventComponent {
     this.route.params.subscribe((params) => {
       const id = +params['id'];
       console.log(id); // Check if the id is correct
+
+      this.eventService.getParticipantsByEvent(id).subscribe((participants) => {
+        console.log(participants); // Check if the user object is retrieved correctly
+        this.numberParticipants = participants.length;
+      });
 
       this.eventService.getEventById(id).subscribe((event) => {
       
