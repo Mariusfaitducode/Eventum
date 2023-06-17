@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { User } from '../../classes/user/user'
 import { Relation } from '../../classes/relation/relation'
 import { Notif } from '../../classes/notif/notif';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class UserService {
   //redirectUrl!: string;
   baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   public getUsers() {
     return this.httpClient.get<User[]>(this.baseUrl + '/utilisateur.php').pipe(map(Users => {
@@ -35,6 +36,11 @@ export class UserService {
     const token = localStorage.getItem('token');
     console.log("token ="+token); // Check if the user object is retrieved correctly
     return this.httpClient.get<User>(this.baseUrl + '/utilisateur.php?token=' + token).pipe(map(User => {
+        console.log("ezfezfezfezfzef" + User);
+        if(User.id_utilisateur == null){
+          // redirection vers la page hub
+          this.router.navigateByUrl('hub');
+        }
         return User;
     }));
   }

@@ -7,6 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //Connexion database
 include_once("database.php");
+include_once("./utils.php");
 
 //Récupère données envoyés depuis angular surtout pour POST
 $postdata = file_get_contents("php://input");
@@ -18,19 +19,19 @@ $request = json_decode($postdata);
 if(isset($postdata) && empty($postdata))
 {
 // Insérer un événement
-    if (isset($_GET['titre'], $_GET['description'], $_GET['date'], $_GET['heure'], $_GET['lieu'], $_GET['is_public'], $_GET['id_categorie'], $_GET['id_createur'], $_GET['image'])) {
-        $titre = $_GET['titre'];
-        $description = $_GET['description'];
-        $date = $_GET['date'];
-        $heure = $_GET['heure'];
-        $lieu = $_GET['lieu'];
-        $is_public = $_GET['is_public'];
-        $id_categorie = $_GET['id_categorie'];
-        $id_createur = $_GET['id_createur'];
-        $image = $_GET['image'];
+    // Insérer un événement
+if (isset($_GET['titre'], $_GET['description'], $_GET['date'], $_GET['heure'], $_GET['lieu'], $_GET['id_categorie'], $_GET['id_createur'], $_GET['max_participants'])) {
+    $titre = SecurizeString_ForSQL($_GET['titre']);
+    $description = SecurizeString_ForSQL($_GET['description']);
+    $date = SecurizeString_ForSQL($_GET['date']);
+    $heure = SecurizeString_ForSQL($_GET['heure']);
+    $lieu = SecurizeString_ForSQL($_GET['lieu']);
+    $id_categorie = SecurizeString_ForSQL($_GET['id_categorie']);
+    $id_createur = SecurizeString_ForSQL($_GET['id_createur']);
+    $max = SecurizeString_ForSQL($_GET['max_participants']);
 
-        $sql = "INSERT INTO evenement (titre, `description`, `date`, heure, lieu, is_public, id_categorie, id_createur, `image`) VALUES ('$titre', '$description', '$date', '$heure', '$lieu', '$is_public', '$id_categorie', '$id_createur', '$image')";
-        $result1 = mysqli_query($mysqli, $sql);
+    $sql = "INSERT INTO evenement (titre, `description`, `date`, heure, lieu, id_categorie, id_createur, max_participant) VALUES ('$titre', '$description', '$date', '$heure', '$lieu', '$id_categorie', '$id_createur', '$max')";
+    $result1 = mysqli_query($mysqli, $sql);
 
         // on retrouve l'id de l'événement qu'on vient d'insérer
         $sql = "SELECT 
@@ -40,9 +41,9 @@ if(isset($postdata) && empty($postdata))
                 WHERE
                     titre = '$titre'
                 AND
-                    'id_createur' = '$id_createur'
+                    id_createur = '$id_createur'
                 AND
-                    'date' = '$date'";
+                    date = '$date'";
 
         $result = mysqli_query($mysqli, $sql);
         $row = $result->fetch_array();

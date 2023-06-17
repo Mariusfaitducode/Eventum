@@ -25,11 +25,6 @@ export class HomeComponent {
     private router : Router) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
-      // redirection vers la page hub
-      this.router.navigateByUrl('hub');
-    }
-
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 
@@ -62,6 +57,9 @@ export class HomeComponent {
 
 
       });
+    }else{
+      // redirect to hub
+      this.router.navigate(['/hub']);
     }
   }
 

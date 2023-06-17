@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { FileService } from 'src/app/model/services/file/file.service';
 import { HttpClient } from '@angular/common/http';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 
 
 @Component({
@@ -21,19 +22,19 @@ export class AddEventComponent implements OnInit{
   public date: Date = new Date()
   public heure: string=""
   public lieu: string=""
-  public is_public: boolean = false
+  //public is_public: boolean = false
   public id_categorie: number = -1
   public id_user: number = 0
   public selectedImage: File = new File([], "");
+  public max_participants: number = 0;
   
   // Récupération des catégories
   public list_categorie!: Categorie[]
   
   // Messages de succès/erreur
-  public success: boolean = false;
   public error: boolean = false;
   // Message d'erreur
-  error_message: string = "";
+  public error_message: string = "";
 
   // Verification des champs vides
   public empty_title: boolean = false;
@@ -42,9 +43,11 @@ export class AddEventComponent implements OnInit{
   public empty_hour: boolean = false;
   public empty_location: boolean = false;
   public empty_categorie: boolean = false;
+  public empty_max_participants: boolean = false;
 
 
-  constructor(private service: EventService, private userService: UserService, private router: Router, private http: HttpClient) {
+  constructor(private service: EventService, private userService: UserService, private router: Router, private shareService : ShareDataService, private fileService: FileService){
+
     this.service.getCategories().subscribe((data: Categorie[]) => {
       console.log(data);
       this.list_categorie = data;
@@ -58,12 +61,14 @@ export class AddEventComponent implements OnInit{
   OnConfirm(): void {
     // Vérification des champs requis
   if (this.titre == "") {
+    console.log("titre vide");
     this.empty_title = true;
   } else {
     this.empty_title = false;
   }
 
   if (this.description == "") {
+    console.log("description vide");
     this.empty_description = true;
   } else {
     this.empty_description = false;
@@ -72,44 +77,56 @@ export class AddEventComponent implements OnInit{
   if (this.date == null) {
     this.empty_date = true;
   }else{
+    console.log(this.date);
     this.empty_date = false;
   }
 
   if (this.heure == "") {
+    console.log("heure vide");
     this.empty_hour = true;
   }else{
     this.empty_hour = false;
   }
 
   if (this.lieu == "") {
+    console.log("lieu vide");
     this.empty_location = true;
   }else{
     this.empty_location = false;
   }
 
   if (this.id_categorie == -1) {
+    console.log("categorie vide");
     this.empty_categorie = true;
   }else{
     this.empty_categorie = false;
   }
 
+  if (this.max_participants == 0) {
+    console.log("max_participants vide");
+    this.empty_max_participants = true;
+  }else{
+    this.empty_max_participants = false;
+  }
+
   // Vérifiez les autres champs requis de la même manière
 
   // Si un champ requis est vide, arrêtez ici et affichez le message d'erreur
-  if (this.empty_title || this.empty_description || this.empty_date || this.empty_hour || this.empty_location || this.empty_categorie) {
+  if (this.empty_title || this.empty_description || this.empty_date || this.empty_hour || this.empty_location || this.empty_categorie || this.empty_max_participants) {
     this.error = true;
     this.error_message = "Veuillez remplir tous les champs obligatoires";
   }else{
-
-    this.heure = this.heure.padStart(5, '0') + ':00';
-
-    this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.is_public, this.id_categorie, this.id_user, 'images/evenements/' + this.selectedImage.name).subscribe((data: boolean) => {
-        this.success = data;
+    this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.id_categorie, this.id_user, this.max_participants).subscribe((data: boolean) => {
         this.error = !data;
         
+        if(data){
+          // redirection vers l'agenda
+          this.shareService.setSuccessEvent();
+          this.router.navigateByUrl('agenda');
+        }
+
         // Hide the success/error messages after 3 seconds
         setTimeout(() => {
-          this.success = false;
           this.error = false;
         }, 3000);
       });
@@ -124,7 +141,6 @@ export class AddEventComponent implements OnInit{
   }
   // Hide the success/error messages after 3 seconds
   setTimeout(() => {
-    this.success = false;
     this.error = false;
   }, 3000);
 }
@@ -135,23 +151,5 @@ export class AddEventComponent implements OnInit{
       this.router.navigateByUrl('hub');
     }
   }
-
-  onImageChange(event: any): void {
-     this.http.post('http://localhost/', event.target.files[0])
-     .subscribe(event => {
-       console.log('done') // Base64 encoded image data
-     })
-  }
-
-  upload(files: File[]){
-    var formData = new FormData();
-    Array.from(files).forEach(f => formData.append('file', f))
-    this.http.post('http://localhost/eventum/Eventum_Angular', formData)
-      .subscribe(event => {
-        console.log('done')
-      })
-  }
-
-
 
 }

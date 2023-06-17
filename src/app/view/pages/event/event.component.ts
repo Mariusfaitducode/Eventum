@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from 'src/app/model/services/event/event.service';
 import { User } from 'src/app/model/classes/user/user';
 import { UserService } from 'src/app/model/services/user/user.service';
+import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 
 @Component({
   selector: 'app-event',
@@ -18,11 +19,14 @@ export class EventComponent {
 
   isRegistered: boolean = false;
 
+
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
     private userService: UserService,
-    private router: Router) {}
+    private router: Router,
+    public shareService: ShareDataService
+    ) {}
     
   ngOnInit() {
     if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
