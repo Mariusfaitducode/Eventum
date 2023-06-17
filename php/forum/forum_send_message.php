@@ -42,21 +42,6 @@ if(isset($postdata) && empty($postdata))
 
     $result = mysqli_query($mysqli, $sql);
 
-    
-    // // Récupération de l'id du message
-    // $sql = "SELECT
-    //           id_message 
-    //         FROM 
-    //           message_groupe
-    //         WHERE
-    //           id_utilisateur_envoyeur = '$id_sender'
-    //         ORDER BY
-    //           date_envoi DESC
-    //         LIMIT 1";
-                    
-    // $result = mysqli_query($mysqli, $sql);
-    // $row = $result->fetch_array();
-    // $id_message = $row["id_message"];
 
     if ($result) {
       // Enregistrement réussi
