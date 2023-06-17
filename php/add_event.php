@@ -30,9 +30,35 @@ if(isset($postdata) && empty($postdata))
         $image = $_GET['image'];
 
         $sql = "INSERT INTO evenement (titre, `description`, `date`, heure, lieu, is_public, id_categorie, id_createur, `image`) VALUES ('$titre', '$description', '$date', '$heure', '$lieu', '$is_public', '$id_categorie', '$id_createur', '$image')";
-        $result = mysqli_query($mysqli, $sql);
+        $result1 = mysqli_query($mysqli, $sql);
 
-        if ($result) {
+        // on retrouve l'id de l'événement qu'on vient d'insérer
+        $sql = "SELECT 
+                    id_evenement
+                FROM
+                    evenement
+                WHERE
+                    titre = '$titre'
+                AND
+                    'id_createur' = '$id_createur'
+                AND
+                    'date' = '$date'";
+
+        $result = mysqli_query($mysqli, $sql);
+        $row = $result->fetch_array();
+        $id_evenement = $row['id_evenement'];
+
+                  
+        $sql ="INSERT INTO
+                    inscription_evenement(id_utilisateur, id_evenement)
+                VALUES
+                    ('$id_createur', '$id_evenement')";
+        
+
+        $result = mysqli_query($mysqli, $sql);
+        
+
+        if ($result1) {
             // Enregistrement réussi
             echo json_encode(true);
         } else {

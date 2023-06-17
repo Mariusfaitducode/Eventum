@@ -28,6 +28,7 @@ if(isset($postdata) && empty($postdata))
     if (isset($_GET['id_utilisateur'])) {
 
         $id_user = $_GET['id_utilisateur'];
+        $data = array();
 
         // renvoie les utilisateurs qui sont suivis par des utilisateurs que l'utilisateur suit
         $sql = "SELECT 
@@ -87,7 +88,11 @@ if(isset($postdata) && empty($postdata))
 
         $result=mysqli_query($mysqli,$sql);
 
+        $id_users = array();
+
         while ($row = $result->fetch_array()) {
+
+            $id_users[] = $row['id_utilisateur'];
 
             $data[] = array(
                 "id_utilisateur" => $row['id_utilisateur'],
@@ -102,6 +107,7 @@ if(isset($postdata) && empty($postdata))
             );
         }
 
+        $string_id_users = implode("','", $id_users);
 
         // renvoie la liste des utilisateurs qui suivent l'utilisateur et qui ne sont pas suivis par l'utilisateur
         $sql = "SELECT
@@ -121,6 +127,8 @@ if(isset($postdata) && empty($postdata))
                 AND
                     statut = 'accepte'
                 AND
+                    rel.id_suiveur NOT IN ('$string_id_users')     
+                AND
                     id_suiveur NOT IN (
                         SELECT 
                             id_suivie
@@ -136,6 +144,8 @@ if(isset($postdata) && empty($postdata))
         $result=mysqli_query($mysqli,$sql);
 
         while($row = $result->fetch_array()) {
+
+                $id_users[] = $row['id_utilisateur'];
                 
                 $data[] = array(
                     "id_utilisateur" => $row['id_utilisateur'],
@@ -149,6 +159,8 @@ if(isset($postdata) && empty($postdata))
                     "role" => $row['role']
                 );
         }
+
+        $string_id_users = implode("','", $id_users);
 
         // complète la liste avec des utilisateurs aléatoires
         $number_of_users = count($data);
@@ -168,6 +180,8 @@ if(isset($postdata) && empty($postdata))
                         utilisateur as uti
                     WHERE
                         id_utilisateur != '$id_user'
+                    AND
+                        id_utilisateur NOT IN ('$string_id_users')
                     AND
                         id_utilisateur NOT IN (
                             SELECT 
