@@ -27,3 +27,8 @@ form {
   padding: 20px 30px;
   width: 46%;
 }
+
+a:hover {
+  color: #621768;
+  text-decoration: underline;
+}
