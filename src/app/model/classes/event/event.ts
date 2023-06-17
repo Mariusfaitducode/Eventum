@@ -9,6 +9,7 @@ export class Event {
         public date: Date,
         public heure: string,
         public lieu: string,
-        public is_public: boolean
+        public is_public: boolean,
+        public max_participants: number,
       ) {}
 }

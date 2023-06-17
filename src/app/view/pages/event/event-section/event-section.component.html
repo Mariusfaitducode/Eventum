@@ -5,20 +5,24 @@
     <div class="event-buttons">
 
       <div *ngIf="event.id_createur == connectedUser.id_utilisateur; else no_creator">
-        <button class="button middle" (click)="modifier()">Modifier</button>
+        <button class="blue-button middle" (click)="modifier()">Modifier</button>
 
       </div>
       <ng-template #no_creator>
 
-          <div *ngIf="isRegistered; else no_registered" >
+        <div *ngIf="event.max_participants == null || numberParticipants <= event.max_participants">
+            <div *ngIf="isRegistered; else no_registered" >
               <!-- Si utilisateur inscrit -->
-              <button class="button middle" (click)="unregisterToEvent()">Se désinscrire</button>
-          </div>
-      
-          <ng-template #no_registered>
-              <!-- Si utilisateur non inscrit -->
-              <button class="button middle" (click)="registerToEvent()">S'inscrire</button>
-          </ng-template>
+                <button class="blue-button middle" (click)="unregisterToEvent()">Se désinscrire</button>
+            </div>
+        
+            <ng-template #no_registered>
+                <!-- Si utilisateur non inscrit -->
+                <button class="blue-button middle" (click)="registerToEvent()">S'inscrire</button>
+            </ng-template>
+        </div>
+
+          
           
       </ng-template>
     </div>
@@ -30,11 +34,7 @@
     <h1>{{event.titre}}</h1>
 
     <table class="event-information">
-      <tr class="blue-border">
-        <th>Lieu</th>
-        <th>Date</th>
-        <th>Heure</th>
-      </tr>
+      
       <tr>
         <th class="blue">{{event.lieu}}</th>
         <th class="blue-light">{{event.date}}</th>
@@ -48,7 +48,7 @@
       <!-- <p>Nombre de participants maximum atteints</p> -->
     </div>
 
-    <div class = "blue-button">N participants</div>
+   
 
   </div>
 </div>

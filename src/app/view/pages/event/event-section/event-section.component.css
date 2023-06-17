@@ -100,6 +100,10 @@
   padding-bottom: 10px;
 }
 
+.description p{
+  font-size: 20px;
+}
+
 .blue {
   background: var(--blue-event);
   color: var(--white-0);
