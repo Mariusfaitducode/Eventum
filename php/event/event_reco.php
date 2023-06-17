@@ -124,6 +124,23 @@ if(isset($postdata) && empty($postdata))
 
             $id_events[] = $row['id_evenement'];
 
+            if ($row['image'] == null) {
+
+                $cat = $row['id_categorie'];
+                
+                $sql = "SELECT
+                            image_cat
+                        FROM    
+                            categorie
+                        WHERE
+                            id_categorie = '$cat'";
+              
+                $result_image=mysqli_query($mysqli,$sql);
+                $row_image = $result_image->fetch_array();
+    
+                $row['image'] = $row_image['image_cat'];
+            }
+
             $data[] = array(
                 "id_evenement" => $row['id_evenement'],
                 "id_createur" => $row['id_createur'],
@@ -201,6 +218,23 @@ if(isset($postdata) && empty($postdata))
             $result=mysqli_query($mysqli,$sql);
 
             while($row = $result->fetch_array()) {
+
+                if ($row['image'] == null) {
+
+                    $cat = $row['id_categorie'];
+                
+                    $sql = "SELECT
+                                image_cat
+                            FROM    
+                                categorie
+                            WHERE
+                                id_categorie = '$cat'";
+                  
+                    $result_image=mysqli_query($mysqli,$sql);
+                    $row_image = $result_image->fetch_array();
+        
+                    $row['image'] = $row_image['image_cat'];
+                }
 
                 $data[] = array(
                     "id_evenement" => $row['id_evenement'],

@@ -78,8 +78,25 @@ if(isset($postdata) && empty($postdata))
                         )
                 ) DESC";
 
+        
         $result=mysqli_query($mysqli,$sql);
         while ($row = $result->fetch_array()) {
+
+
+            if ($row['image'] == null) {
+                
+                $sql = "SELECT
+                            image_cat
+                        FROM    
+                            categorie
+                        WHERE
+                            id_categorie = '$id_categorie'";
+          
+            $result_image=mysqli_query($mysqli,$sql);
+            $row_image = $result_image->fetch_array();
+
+            $row['image'] = $row_image['image_cat'];
+            }
 
             $data[] = array(
 

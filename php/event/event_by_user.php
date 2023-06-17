@@ -39,6 +39,22 @@ if(isset($postdata) && empty($postdata))
 
             while( $row_event = $result_event->fetch_array())
             {
+
+                if ($row_event['image'] == null) {
+                
+                    $sql = "SELECT
+                                image_cat
+                            FROM    
+                                categorie
+                            WHERE
+                                id_categorie = ".$row_event['id_categorie']."'";
+              
+                    $result_image=mysqli_query($mysqli,$sql);
+                    $row_image = $result_image->fetch_array();
+        
+                    $row['image'] = $row_image['image_cat'];
+                }
+
                 $data[] = array(
                     "id_evenement" => $row_event['id_evenement'],
                     "id_createur" => $row_event['id_createur'],
@@ -53,6 +69,8 @@ if(isset($postdata) && empty($postdata))
                 );                    
             }                   
         }
+
+
         //Récupère les événements créés par l'utilisateur et qui ont le mois et l'année demandés
         $sql = "SELECT * FROM evenement 
                     WHERE id_createur = '$id_user'";
@@ -61,6 +79,24 @@ if(isset($postdata) && empty($postdata))
 
         while( $row = $result->fetch_array())
         {
+
+            if ($row['image'] == null) {
+
+                $cat = $row['id_categorie'];
+                
+                $sql = "SELECT
+                            image_cat
+                        FROM    
+                            categorie
+                        WHERE
+                            id_categorie = '$cat'";
+          
+                $result_image=mysqli_query($mysqli,$sql);
+                $row_image = $result_image->fetch_array();
+    
+                $row['image'] = $row_image['image_cat'];
+            }
+
             $data[] = array(
                 "id_evenement" => $row['id_evenement'],
                 "id_createur" => $row['id_createur'],

@@ -44,6 +44,23 @@ if(isset($postdata) && empty($postdata))
 
             while( $row_event = $result_event->fetch_array())
             {
+
+                if ($row_event['image'] == null) {
+                
+                    $sql = "SELECT
+                                image_cat
+                            FROM    
+                                categorie
+                            WHERE
+                                id_categorie = ".$row_event['id_categorie']."'";
+              
+                    $result_image=mysqli_query($mysqli,$sql);
+                    $row_image = $result_image->fetch_array();
+        
+                    $row['image'] = $row_image['image_cat'];
+                }
+
+
                 $data[] = array(
                     "id_evenement" => $row_event['id_evenement'],
                     "id_createur" => $row_event['id_createur'],
