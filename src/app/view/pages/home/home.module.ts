@@ -50,6 +50,7 @@ import { ModifierProfilModule } from "../../forms/modifier-profil/modifier-profi
 import { ProfilService } from "src/app/model/services/profil/profil.service";
 import { FollowsComponent } from "../profil/follows/follows.component";
 import { ModifierEvenementModule } from "../../forms/modifier-evenement/modifier-evenement.module";
+import {ForumComponent} from "../event/forum/forum.component";
 
 
 @NgModule({
@@ -58,7 +59,7 @@ import { ModifierEvenementModule } from "../../forms/modifier-evenement/modifier
     LeftPaneComponent,
     RightPaneComponent,
     SearchBarComponent,
-    
+
     MessageComponent,
 
     AgendaComponent,
@@ -80,7 +81,7 @@ import { ModifierEvenementModule } from "../../forms/modifier-evenement/modifier
     ContainerEventComponent,
     CardEventComponent,
     LittleCardEventComponent,
-    
+
     MainEventComponent,
     EventComponent,
     EventSectionComponent,
@@ -91,6 +92,7 @@ import { ModifierEvenementModule } from "../../forms/modifier-evenement/modifier
     ListConversationComponent,
     SingleMessageComponent,
     FollowsComponent,
+    ForumComponent,
   ],
   providers: [
     UserService,

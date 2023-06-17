@@ -38,5 +38,16 @@ export class MessagerieService {
     this.messageSource.next(message);
   }
 
-  
+  public getMessagesForEvent(id_event: number) {
+    return this.httpClient.get<Message[]>(this.baseUrl + '/forum_send_message.php?id_evenement=' + id_event).pipe(map(messages => {
+      return messages;
+    }));
+  }
+
+  public sendMessagesForEvent(id_sender: number, id_event: number, message: string) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/forum_load_messages.php?id_sender=' + id_sender + '&id_evenement=' + id_event + "&message=" + message).pipe(map(messages => {
+      return messages;
+    }));
+  }
+
 }

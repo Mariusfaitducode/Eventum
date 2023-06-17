@@ -1,6 +1,7 @@
 <app-left-pane></app-left-pane>
 <div class="central-pane">
     <app-event-section [event]="event" [connectedUser]="connectedUser" [isRegistered]="isRegistered"></app-event-section>
+    <app-forum *ngIf="isRegistered" [event]="event" [connectedUser]="connectedUser" [isRegistered]="isRegistered"></app-forum>
 </div>
 
 <app-right-pane></app-right-pane>
