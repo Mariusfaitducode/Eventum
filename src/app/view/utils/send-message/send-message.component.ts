@@ -18,8 +18,11 @@ export class SendMessageComponent implements OnInit {
   public message: string = ""
   public image: string = ""
   public id_event: number = 0
+  public name_event!: string
   showPopup: boolean = false
   public events!: Event[]
+  popupStyles: any = {}
+  public selectedEvent!: Event;
 
   constructor(private service: MessagerieService,
               private userService: UserService,
@@ -68,6 +71,8 @@ export class SendMessageComponent implements OnInit {
       console.log(data);
     });
     this.service.sendMessageObservable('message');
+    this.message = "";
+    this.id_event = 0;
   }
 
   openPopup() {
@@ -82,5 +87,14 @@ export class SendMessageComponent implements OnInit {
     console.log("Set ID event : "+ idEvent)
     this.id_event = idEvent;
     this.showPopup = false;
+
+    this.eventService.getEventById(this.id_event).subscribe((data: Event) => {
+      console.log(data);
+      this.selectedEvent = data;
+    });
+  }
+
+  resetIdEvent() {
+    this.id_event = 0;
   }
 }
