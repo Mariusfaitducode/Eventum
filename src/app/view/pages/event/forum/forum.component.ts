@@ -41,6 +41,18 @@ export class ForumComponent implements OnInit, AfterViewChecked {
     // check l'event
     console.log("event : " + this.event.id_evenement + ", " + this.event.titre)
 
+    this.service.message$.subscribe((message) => {
+      // récupère la liste des messages
+      if (this.connectedUser != null && this.users != null) {
+        // Get the messages
+        this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
+          console.log("messages : " + data);
+          this.messages = data;
+        });
+      }
+    });
+
+
     // récupère la liste des messages
     if (this.connectedUser != null && this.users != null) {
       // Get the messages
@@ -51,6 +63,9 @@ export class ForumComponent implements OnInit, AfterViewChecked {
     }
 
   // recupère la liste des users
+    this.userService.getUserByIdEvent(this.event.id_evenement).subscribe((data: User[]) => {
+      this.users = data;
+    });
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 
@@ -93,6 +108,7 @@ export class ForumComponent implements OnInit, AfterViewChecked {
   getUser(id_user: number): User {
     for(let user of this.users) {
       if (user.id_utilisateur == id_user) {
+        console.log("user found : " + user.pseudo)
         return user;
       }
     }

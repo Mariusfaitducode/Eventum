@@ -13,7 +13,10 @@
 
             <a *ngIf="message.id_utilisateur_envoyeur != connectedUser.id_utilisateur" class="row-user" [routerLink]="'/' + link + '/' + message.id_utilisateur_envoyeur">
 
-              <img src="/assets/{{getUser(message.id_utilisateur_envoyeur).photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
+              <div *ngIf="getUser(message.id_utilisateur_envoyeur).photo_profil != null">
+                <img src="/assets/{{getUser(message.id_utilisateur_envoyeur).photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
+
+              </div>
 
             </a>
 

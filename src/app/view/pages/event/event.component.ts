@@ -13,7 +13,7 @@ import { ShareDataService } from 'src/app/model/services/share/share-data.servic
   styleUrls: ['./event.component.css']
 })
 export class EventComponent {
-  event!: Event; 
+  event!: Event;
   connectedUser!: User;
   numberParticipants!: number;
 
@@ -27,12 +27,20 @@ export class EventComponent {
     private router: Router,
     public shareService: ShareDataService
     ) {}
-    
+
   ngOnInit() {
     if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
       // redirection vers la page hub
       this.router.navigateByUrl('hub');
     }
+
+    this.eventService.message$.subscribe((message)=> {
+      this.isRegistered = true;
+    });
+
+    this.eventService.message2$.subscribe((message)=> {
+      this.isRegistered = false;
+    });
 
     this.route.params.subscribe((params) => {
       const id = +params['id'];
@@ -44,7 +52,7 @@ export class EventComponent {
       });
 
       this.eventService.getEventById(id).subscribe((event) => {
-      
+
 
         console.log("event ="+event); // Check if the user object is retrieved correctly
         this.event = event;
@@ -53,17 +61,17 @@ export class EventComponent {
 
           console.log("user ="+user); // Check if the user object is retrieved correctly
           this.connectedUser = user;
-  
+
           this.userService.isUserInEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((isRegistered) => {
-  
+
             console.log("isRegistered ="+isRegistered); // Check if the user object is retrieved correctly
             this.isRegistered = isRegistered;
-          
+
           });
         });
       });
     });
   }
 
-  
+
 }
