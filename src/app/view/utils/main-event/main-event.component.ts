@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { EventService } from 'src/app/model/services/event/event.service';
 import { Event } from 'src/app/model/classes/event/event';
+import { User } from 'src/app/model/classes/user/user';
 
 @Component({
   selector: 'app-main-event',
@@ -8,9 +9,8 @@ import { Event } from 'src/app/model/classes/event/event';
   styleUrls: ['./main-event.component.css']
 })
 export class MainEventComponent {
-  @Input() event!: Event; // Assurez-vous d'importer le modèle Event depuis votre API ou de le définir correctement
+  @Input() event!: Event; 
+  @Input() participantsNumber!: number; 
 
-  constructor(service: EventService) {
-    
-  }
+  
 }
