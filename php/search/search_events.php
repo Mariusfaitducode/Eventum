@@ -26,7 +26,7 @@ $request = json_decode($postdata);
             - date
             - categorie
 
-    Soit on recherche le titre 
+    Soit on recherche le titre
     Soit on recherche le lieu
     Soit on recherche la date
     Soit on recherche la catégorie
@@ -43,14 +43,16 @@ if(isset($postdata) && empty($postdata))
         $type = $_GET['type'];
 
         if ($type == 'titre') {
-            
+
+            //echo "titre";
+
             $sql = "SELECT
                         *
                     FROM
                         evenement
                     WHERE
                         titre LIKE '%$recherche%'
-                    AND 
+                    AND
                         is_disponible = 1
                     ORDER BY
                         date_debut ASC";
@@ -63,7 +65,7 @@ if(isset($postdata) && empty($postdata))
                         evenement
                     WHERE
                         lieu LIKE '%$recherche%'
-                    AND 
+                    AND
                         is_disponible = 1
                     ORDER BY
                         date_debut ASC";
@@ -97,12 +99,12 @@ if(isset($postdata) && empty($postdata))
 
         }
 
-    
+
         $result=mysqli_query($mysqli,$sql);
         $data = array();
 
         while($row = $result->fetch_array()) {
-            
+
             $data[] = array(
                 "id_evenement" => $row['id_evenement'],
                 "id_createur" => $row['id_createur'],

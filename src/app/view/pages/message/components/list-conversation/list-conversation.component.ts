@@ -3,6 +3,7 @@ import {User} from "../../../../../model/classes/user/user";
 import {MessagerieService} from "../../../../../model/services/messagerie/messagerie.service";
 import {UserService} from "../../../../../model/services/user/user.service";
 import {AuthentificationService} from "../../../../../model/services/authentification/authentification.service";
+import { SearchService } from 'src/app/model/services/search/search.service';
 
 @Component({
   selector: 'app-list-conversation',
@@ -15,7 +16,11 @@ export class ListConversationComponent implements OnInit {
   public text: string = "";
   public searchedUsers: User[] = [];
 
-  constructor(private service: MessagerieService, private userService: UserService, private authService: AuthentificationService) {}
+  constructor(
+    private service: MessagerieService, 
+    private userService: UserService, 
+    private authService: AuthentificationService,
+    private searchService: SearchService) {}
 
   ngOnInit(): void {
 
@@ -46,7 +51,7 @@ export class ListConversationComponent implements OnInit {
         this.getListConversationOfUser(data.id_utilisateur);
       });
     } else {
-      this.service.getSearchedUsers(this.text).subscribe((data: User[]) => {
+      this.searchService.getSearchedUsers(this.text).subscribe((data: User[]) => {
         this.UserArray = [];
         this.UserArray = data;
       })

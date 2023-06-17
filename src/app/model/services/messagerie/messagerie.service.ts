@@ -38,10 +38,5 @@ export class MessagerieService {
     this.messageSource.next(message);
   }
 
-  public getSearchedUsers(text: string) {
-    return this.httpClient.get<User[]>(this.baseUrl + '/search_user.php?text=' + text).pipe(map(users => {
-      console.log(users);
-      return users;
-    }));
-  }
+  
 }

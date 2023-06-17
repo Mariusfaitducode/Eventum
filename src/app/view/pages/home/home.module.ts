@@ -4,7 +4,7 @@ import {HomeComponent} from "./components/home.component";
 import {HomeRoutingModule} from "./home-routing.module";
 import {LeftPaneComponent} from "../../left-pane/left-pane.component";
 import {RightPaneComponent} from "../../right-pane/right-pane.component";
-import { SearchBarComponent } from "../../utils/search-bar/search-bar.component";
+import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 
 import { ProfilComponent } from "../profil/profil.component";
 import { ProfilSectionComponent } from "../profil/profil-section/profil-section.component";
@@ -45,7 +45,6 @@ import { ShareDataService } from "src/app/model/services/share/share-data.servic
 import {ListConversationComponent} from "../message/components/list-conversation/list-conversation.component";
 import {SingleMessageComponent} from "../message/components/single-message/single-message.component";
 
-import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-profil.component";
 import { ModifierProfilModule } from "../../forms/modifier-profil/modifier-profil.module";
 import { ProfilService } from "src/app/model/services/profil/profil.service";
@@ -91,7 +90,6 @@ import { ModifierEvenementModule } from "../../forms/modifier-evenement/modifier
     ListMessageComponent,
     ListConversationComponent,
     SingleMessageComponent,
-    SearchResultComponent,
     FollowsComponent,
   ],
   providers: [
