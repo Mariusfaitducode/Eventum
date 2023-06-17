@@ -121,25 +121,20 @@ export class SearchBarComponent {
 
   onSearch(){
 
-   
+    this.userArray = [];
+      this.eventArray = [];
 
     if (this.text == "") {
 
-      this.userArray = [];
+      
 
-      // No research
-
-      // this.userService.getUserByToken().subscribe((data: User) => {
-      //   console.log(data);
-      //   this.getListConversationOfUser(data.id_utilisateur);
-      // });
     } else {
 
       if (!this.chooseEvent){
         // Search for users
         this.searchService.getSearchedUsers(this.text).subscribe((data: User[]) => {
-          this.userArray = [];
-          this.userArray = data;
+          // this.userArray = [];
+          this.userArray = data.slice(0, 10);
         })
       }
       else{
@@ -148,29 +143,29 @@ export class SearchBarComponent {
         if (this.chooseCategorie){
           this.searchService.getSearchedEvents(this.text, "categorie").subscribe((data: Event[]) => {
             
-            this.eventArray = [];
-            this.eventArray = data;
+            // this.eventArray = [];
+            this.eventArray = data.slice(0, 10);
           });
         }
         else if (this.chooseDate){
           this.searchService.getSearchedEvents(this.text, "date").subscribe((data: Event[]) => {
             
-            this.eventArray = [];
-            this.eventArray = data;
+            // this.eventArray = [];
+            this.eventArray = data.slice(0, 10);;
           });
         }
         else if (this.chooseLieu){
           this.searchService.getSearchedEvents(this.text, "lieu").subscribe((data: Event[]) => {
             
-            this.eventArray = [];
-            this.eventArray = data;
+            // this.eventArray = [];
+            this.eventArray = data.slice(0, 10);;
           });
         }
         else{
           this.searchService.getSearchedEvents(this.text, "titre").subscribe((data: Event[]) => {
           
-            this.eventArray = [];
-            this.eventArray = data;
+            // this.eventArray = [];
+            this.eventArray = data.slice(0, 10);;
           });
         } 
       }

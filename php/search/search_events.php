@@ -44,8 +44,6 @@ if(isset($postdata) && empty($postdata))
 
         if ($type == 'titre') {
 
-            echo "titre";
-
             $sql = "SELECT
                         *
                     FROM
@@ -103,24 +101,28 @@ if(isset($postdata) && empty($postdata))
         $result=mysqli_query($mysqli,$sql);
         $data = array();
 
+
+
+
+
         while($row = $result->fetch_array()) {
 
-            if ($row['image'] == null) {
-
-                $cat = $row['id_categorie'];
-
-                $sql = "SELECT
-                            image_cat
-                        FROM
-                            categorie
-                        WHERE
-                            id_categorie = '$cat'";
-
-                $result_image=mysqli_query($mysqli,$sql);
-                $row_image = $result_image->fetch_array();
-
-                $row['image'] = $row_image['image_cat'];
-            }
+//            if ($row['image'] == null) {
+//
+//                $cat = $row['id_categorie'];
+//
+//                $sql = "SELECT
+//                            image_cat
+//                        FROM
+//                            categorie
+//                        WHERE
+//                            id_categorie = '$cat'";
+//
+//                $result_image=mysqli_query($mysqli,$sql);
+//                $row_image = $result_image->fetch_array();
+//
+//                $row['image'] = $row_image['image_cat'];
+//            }
 
 
             $data[] = array(
@@ -139,11 +141,7 @@ if(isset($postdata) && empty($postdata))
             );
 
         }
-
-
-
-
-
+        echo json_encode($data);
     }
 }
 

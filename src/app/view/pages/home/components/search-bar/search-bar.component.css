@@ -130,7 +130,7 @@ header{
    
 }
 
-.result .row-user{
+.result .row-search{
 
     cursor: pointer;
 
@@ -144,18 +144,18 @@ header{
     border-bottom: 1px solid var(--ligneSection);
 }
 
-.result .row-user:hover{
+.result .row-search:hover{
 
     background-color: var(--orange-0);
     
 }
 
-.result .row-user img{
+.result .row-search img{
     border-radius: 50%;
     margin-right: 20px;
 }
 
-.result .row-user h3{
+.result .row-search h3{
     margin-right: 15px;
 }
 
@@ -173,3 +173,4 @@ header{
         width: calc(100vw - 370px);
     }
   }
+
