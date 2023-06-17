@@ -15,7 +15,9 @@ export class HomeComponent {
 
   recommendedEvents: Event[] = [];
   numberParticipants!: number;
-  categorieEvents: Event[] = [];
+  categorieEvents_1: Event[] = [];
+  categorieEvents_2: Event[] = [];
+  categorieEvents_3: Event[] = [];
   connectedUser!: User;
 
   constructor(
@@ -51,9 +53,23 @@ export class HomeComponent {
           
         });
 
-        this.eventService.getEventsByCategorie(this.connectedUser.id_utilisateur, 20).subscribe(events => {
-          this.categorieEvents = events;
+        this.eventService.getPreferredCategories(this.connectedUser.id_utilisateur).subscribe(categories => {
+          
+          
+          this.eventService.getEventsByCategorie(this.connectedUser.id_utilisateur, categories[0]).subscribe(events => {
+            this.categorieEvents_1 = events;
+          });
+          this.eventService.getEventsByCategorie(this.connectedUser.id_utilisateur, categories[1]).subscribe(events => {
+            this.categorieEvents_2 = events;
+          });
+          this.eventService.getEventsByCategorie(this.connectedUser.id_utilisateur, categories[2]).subscribe(events => {
+            this.categorieEvents_3 = events;
+          });
+          
         });
+
+
+        
 
 
       });

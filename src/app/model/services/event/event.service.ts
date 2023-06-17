@@ -121,6 +121,12 @@ export class EventService {
       return is_correct;
     }));
   }
+
+  getPreferredCategories(id_user: number) {
+    return this.httpClient.get<number[]>(this.baseUrl + '/event/cat_pref.php?id_utilisateur=' + id_user).pipe(map(Categories => {
+      return Categories;
+    }));
+  }
 }
 
 

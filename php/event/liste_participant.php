@@ -34,25 +34,26 @@ if(isset($postdata) && empty($postdata))
         // on récupère l'id des inscrits à l'événement
         $sql = "SELECT
                     uti.id_utilisateur,
-                    uti.nom, 
+                    uti.nom,
                     uti.prenom,
-                    uti.pseudo, 
+                    uti.pseudo,
                     uti.email,
                     uti.password,
                     uti.photo_profil,
                     uti.is_darkmode,
-                    uti.role,
-                    uti.token
+                    uti.role
                 FROM
-                    inscription_evenement ie INNER JOIN utilisateur uti 
+                    inscription_evenement ie INNER JOIN utilisateur uti
                         ON ie.id_utilisateur = uti.id_utilisateur
                 WHERE
                     id_evenement = '$id_event'";
-            
-        $result=mysqli_query($mysqli,$sql);
-        
+
+        $result=mysqli_query($mysqli, $sql);
+
+
+
         while ($row = $result->fetch_array()) {
-            echo 'blabla';
+            //echo 'blabla';
 
             $data[] = array(
                 'id_utilisateur' => $row['id_utilisateur'],
@@ -64,11 +65,11 @@ if(isset($postdata) && empty($postdata))
                 'photo_profil' => $row['photo_profil'],
                 'is_darkmode' => $row['is_darkmode'],
                 'role' => $row['role'],
-                'token' => $row['token']
             );
 
         }
-        
+
+
         echo json_encode($data);
     }
 }
