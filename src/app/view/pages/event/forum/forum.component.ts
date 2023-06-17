@@ -20,24 +20,35 @@ export class ForumComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('scrollMe') myScrollContainer!: ElementRef;
 
-  public messages: Message[] = []
+  public messages: [Message, User][] = []
   public message!: string
+  public link: string = "profil"
 
 
   constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthentificationService, private router: Router, private serviceEvent: EventService, private service: MessagerieService) {}
 
   ngOnInit(): void {
+
+    console.log("user : " + this.connectedUser.id_utilisateur + ", " + this.connectedUser.nom)
+
     if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
       // redirection vers la page hub
       this.router.navigateByUrl('hub');
     }
 
+    console.log("event : " + this.event.id_evenement + ", " + this.event.titre)
 
     if (this.connectedUser != null && this.event != null) {
       // Get the messages
       this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
-        console.log(data);
-        this.messages = data;
+        console.log("messages : " + data);
+        for (let message of data){
+
+          this.userService.getUserById(message.id_utilisateur_envoyeur).subscribe((data: User) => {
+
+            this.messages.push([message, data])
+          });
+        }
       });
     }
 
@@ -77,5 +88,14 @@ export class ForumComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     this.scrollToBottom();
+  }
+
+  getPhotoUser(id_user: number): string {
+    var photo_profil: string;
+    this.userService.getUserById(id_user).subscribe((data: User)=> {
+      photo_profil = data.photo_profil;
+      return photo_profil;
+    });
+    return "";
   }
 }

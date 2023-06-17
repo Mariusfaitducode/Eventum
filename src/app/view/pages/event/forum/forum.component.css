@@ -6,6 +6,23 @@
   align-items: center;
 }
 
+.flex2 {
+  display: flex;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  background-color: var(--purple-00);
+  border-radius: 10px;
+}
+
+.left .flex2{
+  background-color: var(--purple-00);
+}
+
+
+.right .flex2{
+  background: var(--blue-00);
+}
+
 .message-form{
 
   min-width: 300px;
@@ -60,3 +77,62 @@ input[type="file"] {
   cursor: pointer;
 }
 
+.left{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.right{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+
+
+/*user css*/
+
+
+
+.row-user{
+  display: flex;
+
+  /*margin: 10px 30px;*/
+
+  /*padding: 5px 10px;*/
+
+  background: none;
+  border: none;
+  /* border: 1px solid var(--ligneSection); */
+}
+
+.row-user img{
+  border-radius: 50%;
+}
+
+.row-user:hover{
+  background: var(--purple-0);
+  border-radius: 10px;
+}
+
+
+/*liste-essage*/
+
+.list-messages {
+  border: 2px solid var(--purple-1);
+  border-radius: 50px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.send-message {
+  border: 2px solid var(--purple-1);
+  background-color: var(--purple-0);
+  padding: 20px;
+  border-radius: 20px;
+}
