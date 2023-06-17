@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { EventService } from 'src/app/model/services/event/event.service';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-event-section',
@@ -34,6 +35,19 @@ export class EventSectionComponent {
   }
 
   modifier(){
-    this.router.navigateByUrl('event/' + this.event.id_evenement + '/modifier');
+    console.log("modifier")
+    console.log(this.event.id_evenement);
+    const navigationExtras: NavigationExtras = {
+      queryParams: { 'id': this.event.id_evenement }
+    };
+    this.router.navigate(['/event/'+ this.event.id_evenement + '/modifier'], navigationExtras);
+  }
+
+  delete(){
+    this.eventService.deleteEvent(this.event.id_evenement).subscribe((result) => {
+      console.log("delete")
+      console.log(result);
+    });
   }
 }
+

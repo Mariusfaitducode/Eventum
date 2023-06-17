@@ -34,9 +34,8 @@ export class EventService {
   public getEventbyUser(id: number) {
   }
 
-  public addEvent(title: string, description: string, date: Date, heure: string, lieu: string, is_public: boolean, id_categorie: number, id_createur: number, image: string) {
-
-    return this.httpClient.get<boolean>(this.baseUrl + '/add_event.php?titre=' + title + '&description=' + description + '&date=' + date + '&heure=' + heure + '&lieu=' + lieu + '&is_public=' + is_public + '&id_categorie=' + id_categorie + '&id_createur=' + id_createur + '&image=' + image).pipe(map(is_correct => {
+  public addEvent(title: string, description: string, date: Date, heure: string, lieu: string, id_categorie: number, id_createur: number, max_participants: number) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/add_event.php?titre=' + title + '&description=' + description + '&date=' + date + '&heure=' + heure + '&lieu=' + lieu + '&id_categorie=' + id_categorie + '&id_createur=' + id_createur + '&max_participants=' + max_participants).pipe(map(is_correct => {
       return is_correct;
     }));
   }
@@ -92,6 +91,20 @@ export class EventService {
 
   unregisterToEvent(id_user: number, id_event: number) {
     return this.httpClient.get<boolean>(this.baseUrl + '/event/desinscription_event.php?id_utilisateur=' + id_user + '&id_evenement=' + id_event);
+  }
+
+  public modifyEvent(id_event: number, title: string, description: string, date: Date, heure: string, lieu: string, id_categorie: number, id_createur: number, max_participants: number) {
+
+      return this.httpClient.get<boolean>(this.baseUrl + '/event/modify_event.php?id_evenement=' + id_event + '&titre=' + title + '&description=' + description + '&date=' + date + '&heure=' + heure + '&lieu=' + lieu + '&id_categorie=' + id_categorie + '&id_createur=' + id_createur + '&max_participants=' + max_participants).pipe(map(is_correct => {
+        return is_correct;
+      }));
+    }
+
+  // Supression d'un événement
+  public deleteEvent(id_event: number) {
+    return this.httpClient.get<boolean>(this.baseUrl + '/event/delete_event.php?id_evenement=' + id_event).pipe(map(is_correct => {
+      return is_correct;
+    }));
   }
 }
 

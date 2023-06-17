@@ -41,3 +41,7 @@ form {
     display: flex;
   }
   
+
+.input-error {
+    border: solid 2px var(--purple-2) !important;
+}

@@ -45,6 +45,9 @@ if(isset($postdata) && empty($postdata))
                     id_evenement = '$id_event'";
             
         $result=mysqli_query($mysqli,$sql);
+
+        $id_inscrits = array();
+
         while ($row = $result->fetch_array()) {
 
             $id_inscrits[] = array(

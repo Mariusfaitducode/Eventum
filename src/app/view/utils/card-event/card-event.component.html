@@ -8,7 +8,7 @@
       <h3 class = "title">{{event.titre}}</h3>
       <div class="more-information">
         <div class = "second-line">
-          <p>{{event.date | date:'dd-MM-YYYY'}}</p>
+          <p>{{ event.date | date: 'd MMMM' }}</p>
         </div>
         <div class="last-line">
           <p>{{event.heure | slice:0:5}}</p>

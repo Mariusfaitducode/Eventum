@@ -10,6 +10,12 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './view/forms/register/register.component';
 import {HomeModule} from "./view/pages/home/home.module";
 
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+import { LOCALE_ID } from '@angular/core';
+
+
 
 @NgModule({
   declarations: [
@@ -26,6 +32,14 @@ import {HomeModule} from "./view/pages/home/home.module";
   ],
   exports: [
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr' }
+  ]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor() {
+    registerLocaleData(localeFr, 'fr');
+  }
+}

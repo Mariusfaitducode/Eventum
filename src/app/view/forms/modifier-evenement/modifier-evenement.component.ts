@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Categorie } from 'src/app/model/classes/categorie/categorie';
 import { EventService } from 'src/app/model/services/event/event.service';
 import { UserService } from 'src/app/model/services/user/user.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Event } from 'src/app/model/classes/event/event';
+import { User } from 'src/app/model/classes/user/user';
+import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 
 @Component({
   selector: 'app-modifier-evenement',
   templateUrl: './modifier-evenement.component.html',
   styleUrls: ['./modifier-evenement.component.css']
 })
-export class ModifierEvenementComponent {
+export class ModifierEvenementComponent implements OnInit{
     //Récupération de l'evenement
     public event!: Event;
 
@@ -21,9 +23,10 @@ export class ModifierEvenementComponent {
     public date: Date = new Date()
     public heure: string=""
     public lieu: string=""
-    public is_public: boolean = false
+    //public is_public: boolean = false
     public id_categorie: number = -1
     public id_user: number = 0
+    public max_participants: number = 0
 
     // Verification des champs vides
     public empty_title: boolean = false;
@@ -32,6 +35,7 @@ export class ModifierEvenementComponent {
     public empty_hour: boolean = false;
     public empty_location: boolean = false;
     public empty_categorie: boolean = false;
+    public empty_max_participants: boolean = false;
 
     // Messages de succès/erreur
     public success: boolean = false;
@@ -44,35 +48,126 @@ export class ModifierEvenementComponent {
   
 
     //constructor
-    constructor(private service: EventService, private userService: UserService, private router: Router, private route: ActivatedRoute) {
-      // Récupération de l'evenement
-      this.route.params.subscribe((params) => {
-        var id = +params['id'];
-        console.log('id' + id);
-        this.service.getEventById(id).subscribe((data: Event) => {
-          this.event = data;
-          this.titre = data.titre;
-          this.description = this.event.description;
-          this.date = this.event.date;
-          this.heure = this.event.heure;
-          this.lieu = this.event.lieu;
-          this.is_public = this.event.is_public;
-          this.id_categorie = this.event.id_categorie;
+    constructor(private service: EventService, private userService: UserService, private router: Router, private route: ActivatedRoute, private shareService: ShareDataService) {
+      if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
+        // redirection vers la page hub
+        this.router.navigateByUrl('hub');
+      }
+  
+    }
+
+    ngOnInit(): void {
+
+       this.route.queryParams.subscribe((params) => {
+         var id = +params['id'];
+         console.log(id);
+        
+         try{
+          this.service.getEventById(id).subscribe((data: Event) => {
+
+            // Vérification que l'utilisateur est bien l'auteur de l'evenement
+            this.userService.getUserByToken().subscribe((user: User) => {
+              if(user.id_utilisateur != data.id_createur){
+                this.router.navigate(['/event/' + id ]);
+              }
+            });
+
+            this.event = data;
+            this.titre = data.titre;
+            this.description = this.event.description;
+            this.date = this.event.date;
+            this.heure = this.event.heure;
+            this.lieu = this.event.lieu;
+            this.id_categorie = this.event.id_categorie;
+            this.max_participants = this.event.max_participants;
+          },
+          (error) => {
+            this.router.navigate(['/home']);
+          });
+         }catch(e){
+          this.router.navigate(['/home']);
+        }
         });
-      });
 
-
-      this.service.getCategories().subscribe((data: Categorie[]) => {
+       this.service.getCategories().subscribe((data: Categorie[]) => {
         console.log(data);
         this.list_categorie = data;
       });
-      this.userService.getUserByToken().subscribe((data: any) => {
+      
+      this.userService.getUserByToken().subscribe((data: User) => {
         console.log(data);
         this.id_user = data.id_utilisateur;
       });
-    }
+ 
+
+     }
 
     OnConfirm(): void {
-    }
+      // Vérification des champs vides
+      if(this.titre == ""){
+        this.empty_title = true;
+      }else{
+        this.empty_title = false;
+      }
 
+      if(this.description == ""){
+        this.empty_description = true;
+      }else{
+        this.empty_description = false;
+      }
+
+      if(this.date == null){
+        this.empty_date = true;
+      }else{
+        this.empty_date = false;
+      }
+
+      if(this.heure == ""){
+        this.empty_hour = true;
+      }else{
+        this.empty_hour = false;
+      }
+
+      if(this.lieu == ""){
+        this.empty_location = true;
+      }else{
+        this.empty_location = false;
+      }
+
+      if(this.id_categorie == -1){
+        this.empty_categorie = true;
+      }else{
+        this.empty_categorie = false;
+      }
+
+      if(this.max_participants == 0 || this.max_participants == null){
+        this.empty_max_participants = true;
+      }else{
+        this.empty_max_participants = false;
+      }
+
+
+      // Si tous les champs sont remplis
+      if(!this.empty_title && !this.empty_description && !this.empty_date && !this.empty_hour && !this.empty_location && !this.empty_categorie && !this.empty_max_participants){
+        this.service.modifyEvent(this.event.id_evenement, this.titre, this.description, this.date, this.heure, this.lieu, this.id_categorie, this.id_user, this.max_participants).subscribe((data: any) => {
+          this.success= data.success;
+          this.error_message = data.message;
+          if(this.success){
+            this.shareService.setSuccessEvent();
+            this.router.navigate(['/event/' + this.event.id_evenement ]);
+          }
+      }
+      );
+      }else{
+        this.error = true;
+        this.error_message = "Veuillez remplir tous les champs";
+      }
+
+       // Hide the success/error messages after 3 seconds
+      setTimeout(() => {
+        this.success = false;
+        this.error = false;
+      }, 3000);
+
+    }
 }

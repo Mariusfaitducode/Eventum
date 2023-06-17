@@ -7,6 +7,8 @@
       <div *ngIf="event.id_createur == connectedUser.id_utilisateur; else no_creator">
         <button class="blue-button middle" (click)="modifier()">Modifier</button>
 
+        <button class="button middle" (click)="delete()">Supprimer</button>
+
       </div>
       <ng-template #no_creator>
 
@@ -37,7 +39,7 @@
       
       <tr>
         <th class="blue">{{event.lieu}}</th>
-        <th class="blue-light">{{event.date}}</th>
+        <th class="blue-light">{{event.date | date: 'd MMMM' }}</th>
         <th class="blue">{{event.heure}}</th>
       </tr>
     </table>

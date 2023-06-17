@@ -23,6 +23,12 @@ if(isset($postdata) && empty($postdata))
         $sql = "SELECT * FROM evenement WHERE id_evenement = '$id_evenement'";
 
         $result=mysqli_query($mysqli,$sql);
+
+        if (!$result) {
+            echo json_encode(null);
+            exit;
+        }
+
         $row = $result->fetch_array();
 
         if ($row['image'] == null) {
@@ -52,7 +58,8 @@ if(isset($postdata) && empty($postdata))
                 "date" => $row['date'],
                 "heure" => $row['heure'],
                 "lieu" => $row['lieu'],
-                "is_public" => $row['is_public']
+                "is_public" => $row['is_public'],
+                "max_participants" => $row['max_participant']
             ];
 
         echo json_encode($data);
@@ -93,7 +100,8 @@ if(isset($postdata) && empty($postdata))
                 "date" => $row['date'],
                 "heure" => $row['heure'],
                 "lieu" => $row['lieu'],
-                "is_public" => $row['is_public']
+                "is_public" => $row['is_public'],
+                "max_participants" => $row['max_participant']
             );                    
             
         }

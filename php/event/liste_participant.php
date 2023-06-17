@@ -50,7 +50,9 @@ if(isset($postdata) && empty($postdata))
                     id_evenement = '$id_event'";
             
         $result=mysqli_query($mysqli,$sql);
+        
         while ($row = $result->fetch_array()) {
+            echo 'blabla';
 
             $data[] = array(
                 'id_utilisateur' => $row['id_utilisateur'],
