@@ -40,7 +40,7 @@
       <tr>
         <th class="blue">{{event.lieu}}</th>
         <th class="blue-light">{{event.date | date: 'd MMMM' }}</th>
-        <th class="blue">{{event.heure}}</th>
+        <th class="blue">{{event.heure | slice:0:2}}h{{event.heure | slice:3:5}}</th>
       </tr>
     </table>
 

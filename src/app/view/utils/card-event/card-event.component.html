@@ -11,7 +11,7 @@
           <p>{{ event.date | date: 'd MMMM' }}</p>
         </div>
         <div class="last-line">
-          <p>{{event.heure | slice:0:5}}</p>
+          <p>{{event.heure | slice:0:2}}h{{event.heure | slice:3:5}}</p>
           <p class = "emplacement">{{event.lieu}}</p>
         </div>
       </div>
