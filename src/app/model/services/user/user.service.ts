@@ -76,14 +76,14 @@ export class UserService {
   }
   
   // Récupérer les followers d'un utilisateur
-  public getFollowers(id_user: number) {
+  public getFollowings(id_user: number) {
     return this.httpClient.get<User[]>(this.baseUrl + '/user/liste_suivie.php?id_utilisateur=' + id_user).pipe(map(Users => {
         return Users;
     }));
   }
 
   // Récupérer les followings d'un utilisateur
-  public getFollowings(id_user: number) {
+  public getFollowers(id_user: number) {
     return this.httpClient.get<User[]>(this.baseUrl + '/user/liste_suiveur.php?id_utilisateur=' + id_user).pipe(map(Users => {
         return Users;
     }));

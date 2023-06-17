@@ -9,7 +9,7 @@
     <div *ngSwitchCase="page == 'event'">
       <app-participants></app-participants>
     </div>
-    <div *ngSwitchCase="page == 'profil'">
+    <div *ngSwitchCase="page == 'profil' && visit == null">
       <app-follows></app-follows>
     </div>
     <div *ngSwitchDefault>

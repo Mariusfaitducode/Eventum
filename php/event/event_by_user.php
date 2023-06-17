@@ -41,13 +41,15 @@ if(isset($postdata) && empty($postdata))
             {
 
                 if ($row_event['image'] == null) {
+
+                    $cat = $row_event['id_categorie'];
                 
                     $sql = "SELECT
                                 image_cat
                             FROM    
                                 categorie
                             WHERE
-                                id_categorie = ".$row_event['id_categorie']."'";
+                                id_categorie = '$cat'";
               
                     $result_image=mysqli_query($mysqli,$sql);
                     $row_image = $result_image->fetch_array();

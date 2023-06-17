@@ -52,6 +52,12 @@ if(isset($postdata) && empty($postdata))
 
 
         if($row == NULL) {
+
+            $sql = "INSERT INTO
+                        relation (id_suiveur, id_suivie, statut)
+                    VALUES
+                        ('$id_suiveur', '$id_suivie', 'accepte')";
+
             $result=mysqli_query($mysqli,$sql);
 
         } else {
