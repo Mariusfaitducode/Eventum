@@ -132,8 +132,6 @@ export class AddEventComponent implements OnInit{
       });
       (error: any) => {
         // Handle the error here
-        console.error(error);
-        this.success = false;
         this.error = true;
         
       }
