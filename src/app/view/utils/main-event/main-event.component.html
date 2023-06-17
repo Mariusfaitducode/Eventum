@@ -2,11 +2,28 @@
 
 <div class="main-event" [ngStyle]="{'background-image': 'url(/assets/' + event.image + ')'}">
 
-    <div class="event-infos">
+    <div class="event-content" [routerLink]="'/event/'+event.id_evenement">
 
-        <h2>{{event.date | date:'dd/MM/YYYY'}}</h2>
-        <h1>{{event.titre}}</h1>
-        <h2>{{event.lieu}}</h2>
+        <div class="event-titre">
+            <h1>{{event.titre}}</h1>
+        </div>
+
+        
+            <div class="event-infos">
+                <h2>{{event.date | date:'dd-MM-YYYY'}}</h2>
+            
+                <h2>{{event.lieu}}</h2>
+
+                <h2>{{participantsNumber}} participants</h2>
+            </div>
+    
+            <div class="event-description">
+                <p>{{event.description}}</p>
+            </div>
+        
+        
+
+        
         <!-- <h4>{{event.description}}</h4> -->
     </div>
 </div>

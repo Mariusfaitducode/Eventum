@@ -34,7 +34,6 @@ import { EventService } from "src/app/model/services/event/event.service";
 
 import { ContainerEventComponent } from "../../utils/container-event/container-event.component";
 import { CardEventComponent } from "../../utils/card-event/card-event.component";
-import { LittleCardEventComponent } from "../../utils/little-card-event/little-card-event.component";
 
 import { MainEventComponent } from "../../utils/main-event/main-event.component";
 import { FormsModule } from "@angular/forms";
@@ -79,7 +78,6 @@ import { ModifierEvenementModule } from "../../forms/modifier-evenement/modifier
 
     ContainerEventComponent,
     CardEventComponent,
-    LittleCardEventComponent,
     
     MainEventComponent,
     EventComponent,

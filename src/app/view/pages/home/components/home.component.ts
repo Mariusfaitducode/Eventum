@@ -14,6 +14,7 @@ import { UserService } from 'src/app/model/services/user/user.service';
 export class HomeComponent {
 
   recommendedEvents: Event[] = [];
+  numberParticipants!: number;
   categorieEvents: Event[] = [];
   connectedUser!: User;
 
@@ -43,6 +44,15 @@ export class HomeComponent {
 
         this.eventService.getRecommendedEvents(this.connectedUser.id_utilisateur).subscribe(events => {
           this.recommendedEvents = events;
+
+          
+          this.eventService.getParticipantsByEvent(this.recommendedEvents[0].id_evenement).subscribe((participants) => {
+      
+            
+            console.log(participants); // Check if the user object is retrieved correctly
+            this.numberParticipants = participants.length;
+          });
+          
           
         });
 

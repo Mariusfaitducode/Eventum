@@ -112,7 +112,7 @@ export class AddEventComponent implements OnInit{
           this.success = false;
           this.error = false;
         }, 3000);
-      },
+      });
       (error: any) => {
         // Handle the error here
         console.error(error);
@@ -120,7 +120,6 @@ export class AddEventComponent implements OnInit{
         this.error = true;
         
       }
-    );
     
   }
   // Hide the success/error messages after 3 seconds
