@@ -179,12 +179,9 @@ html, body {
   background-color: var(--color1);
   /* margin-top: 20px; */
   padding: 40px 60px;
-  min-width: 400px;
-  max-width: 600px;
-  max-height: 80%;
+  min-width: 600px;
+  max-width: 8%;
   border-radius: 8px;
-
-  border: 1px solid var(--ligneSection);
 
 
   /* Centering */
@@ -195,6 +192,23 @@ html, body {
 
 .formulaire input:not(.button), textarea, select{
   color: var(--black);
+}
+
+.formulaire select{
+  display: flex;
+  flex-direction: column;
+  border: solid 1px var(--lightgray-0);
+  border-radius: 5px;
+  background-color: var(--white-1);
+  outline: none;
+  width: 80%;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.formulaire select option::selection {
+  background-color: var(--purple-2) !important;
+  color: black;
 }
 
 /* particularités pour evenement */

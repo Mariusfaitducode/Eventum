@@ -7,6 +7,8 @@
       <div *ngIf="event.id_createur == connectedUser.id_utilisateur; else no_creator">
         <button class="blue-button middle" (click)="modifier()">Modifier</button>
 
+        <button class="button middle" (click)="delete()">Supprimer</button>
+
       </div>
       <ng-template #no_creator>
 

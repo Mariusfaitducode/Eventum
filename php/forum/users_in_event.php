@@ -1,5 +1,3 @@
-
-
 <?php
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Credentials: true');
@@ -16,12 +14,12 @@ $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
 /*
-    Cette requete permet de récupérer la liste des participants à un événement
-
+    Cette requete permet de récupérer toutes les personnes inscrits à un événement
+    
     Paramètres de la requete GET:
         - id_evenement : l'id de l'événement
 
-    Cette requete retourne un objet JSON contenant la liste des participants
+    Retourne un objet JSON contenant les utilisateurs inscrits à l'événement
 */
 
 // Requete GET
@@ -31,28 +29,27 @@ if(isset($postdata) && empty($postdata))
 
         $id_event = $_GET['id_evenement'];
 
-        // on récupère l'id des inscrits à l'événement
         $sql = "SELECT
                     uti.id_utilisateur,
-                    uti.nom, 
+                    uti.nom,
                     uti.prenom,
-                    uti.pseudo, 
+                    uti.pseudo,   
                     uti.email,
                     uti.password,
                     uti.photo_profil,
                     uti.is_darkmode,
-                    uti.role,
-                    uti.token
+                    uti.role
                 FROM
-                    inscription_evenement ie INNER JOIN utilisateur uti 
-                        ON ie.id_utilisateur = uti.id_utilisateur
+                    inscription_evenement as ins INNER JOIN utilisateur as uti 
+                        ON ins.id_utilisateur = uti.id_utilisateur
                 WHERE
-                    id_evenement = '$id_event'";
-            
+                    id_evenement = '$id_event'";        
+
         $result=mysqli_query($mysqli,$sql);
-        
+
+        $data = array();
+
         while ($row = $result->fetch_array()) {
-            echo 'blabla';
 
             $data[] = array(
                 'id_utilisateur' => $row['id_utilisateur'],
@@ -63,12 +60,11 @@ if(isset($postdata) && empty($postdata))
                 'password' => $row['password'],
                 'photo_profil' => $row['photo_profil'],
                 'is_darkmode' => $row['is_darkmode'],
-                'role' => $row['role'],
-                'token' => $row['token']
+                'role' => $row['role']
             );
 
         }
-        
+                 
         echo json_encode($data);
     }
 }

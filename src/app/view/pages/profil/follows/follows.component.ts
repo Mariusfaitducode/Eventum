@@ -13,38 +13,37 @@ export class FollowsComponent implements OnInit {
   public followingArray: User [] = [];
   public link: string = "profil";
 
+  public isFollowers: boolean = true;
+
   public id!: number;
 
   constructor(private service : UserService, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
     // V"rifier si on est sur notre profil ou sur un autre
-    this.route.params.subscribe((params) => {
-      var id = +params['id'];
-      // Check if the id is correct
-      console.log("id ="+id);
+    
 
-      if (Number.isNaN(id)){
-        this.service.getUserByToken().subscribe((user) => {
-          this.id = user.id_utilisateur;
+    this.service.getUserByToken().subscribe((user) => {
+      this.id = user.id_utilisateur;
 
-        });
+      console.log(this.id);
+      this.service.getFollowers(this.id).subscribe((data: User[]) => {
+
+        console.log(data)
+
+        this.followersArray = data;
       }
-      else{
-        this.id = id;
-      }
+      );
 
+      this.service.getFollowings(this.id).subscribe((data: User[]) => {
+        this.followingArray = data;
+      }
+      );
     });
-    console.log(this.id);
-    this.service.getFollowers(this.id).subscribe((data: User[]) => {
-      this.followersArray = data;
-    }
-    );
+  }
 
-    this.service.getFollowings(this.id).subscribe((data: User[]) => {
-      this.followingArray = data;
-    }
-    );
+  public changeFollows(){
+      this.isFollowers = !this.isFollowers;
   }
 
 }

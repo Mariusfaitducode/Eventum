@@ -1,5 +1,10 @@
 <app-left-pane></app-left-pane>
 <div class="central-pane">
+    
+    <div class="success" *ngIf="shareService.getSuccessEvent()">
+        <p> Evénement modifié avec succès </p>
+    </div>
+    
     <div class="agenda-titre">
         <h1>AGENDA</h1>
 

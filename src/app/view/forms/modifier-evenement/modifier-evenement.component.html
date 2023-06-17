@@ -10,20 +10,14 @@
         </select>
         <input type = "time" name="heure" placeholder="Heure" [(ngModel)]="heure" [ngClass]="{ 'input-error': empty_hour }">
         <input type = "text" name="lieu" placeholder="Lieu" [(ngModel)]="lieu" [ngClass]="{ 'input-error': empty_location }">
-        <!--button class = "button">Connexion</button-->
-        <select name="type" id="type" [(ngModel)]="is_public">
-            <option value="true">Public</option>
-            <option value="false">Privé</option>
-        </select>
+        <input type = "number" name="max_participants" placeholder="Nombre de participants maximum" [(ngModel)]="max_participants" [ngClass]="{ 'input-error': empty_max_participants }">
         <br/>
-        <input type="submit" class="button middle" value="Ajouter" (click)="OnConfirm()"/>
-      <a routerLink="/profil" class="exit-button">
+        <input type="submit" class="button middle" value="Modifier" (click)="OnConfirm()"/>
+      <a [routerLink]="'/event/' + this.event.id_evenement" class="exit-button">
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#b9b9b9}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a>
   
     </form>
     
-    <div class="whiteDiv" *ngIf="error">
-    </div>
     <div class="error" *ngIf="error">
       <p> {{this.error_message}}</p>
     </div>

@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 export class ShareDataService {
 
   agendaDayEvent: Subject<[Date, Event[]]> = new Subject<[Date, Event[]]>();
+  success: boolean = false;
 
   constructor() { }
 
@@ -19,4 +20,16 @@ export class ShareDataService {
   public getAgendaDayEvent() {
     return this.agendaDayEvent;
   }
+
+  // verification succès ou échec de modification d'un événement
+  public setSuccessEvent(){
+    this.success = true;
+
+
+  }
+
+  public getSuccessEvent(){
+    return this.success;
+  }
+
 }

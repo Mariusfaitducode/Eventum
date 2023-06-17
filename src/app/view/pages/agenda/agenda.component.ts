@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
+import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 
 @Component({
   selector: 'app-agenda',
@@ -9,7 +10,7 @@ import { OnInit } from '@angular/core';
 })
 export class AgendaComponent implements OnInit{
   
-    constructor(private router: Router) {
+    constructor(private router: Router, public shareService: ShareDataService) {
     }
   
     ngOnInit(): void {
