@@ -83,6 +83,12 @@ export class UserService {
     }));
   }
 
+  public getRecommendedUsers(id_user: number) {
+    return this.httpClient.get<User[]>(this.baseUrl + '/user/liste_reco.php?id_utilisateur=' + id_user).pipe(map(Users => {
+        return Users;
+    }));
+  }
+
 }
 
 
