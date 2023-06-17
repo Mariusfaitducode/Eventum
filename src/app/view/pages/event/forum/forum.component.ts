@@ -20,7 +20,8 @@ export class ForumComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('scrollMe') myScrollContainer!: ElementRef;
 
-  public messages: [Message, User][] = []
+  public messages: Message[] = []
+  public users: User[] = []
   public message!: string
   public link: string = "profil"
 
@@ -29,6 +30,7 @@ export class ForumComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
 
+    // Check user connected
     console.log("user : " + this.connectedUser.id_utilisateur + ", " + this.connectedUser.nom)
 
     if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
@@ -36,38 +38,19 @@ export class ForumComponent implements OnInit, AfterViewChecked {
       this.router.navigateByUrl('hub');
     }
 
+    // check l'event
     console.log("event : " + this.event.id_evenement + ", " + this.event.titre)
 
-    if (this.connectedUser != null && this.event != null) {
+    // récupère la liste des messages
+    if (this.connectedUser != null && this.users != null) {
       // Get the messages
       this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
         console.log("messages : " + data);
-        for (let message of data){
-
-          this.userService.getUserById(message.id_utilisateur_envoyeur).subscribe((data: User) => {
-
-            this.messages.push([message, data])
-          });
-        }
+        this.messages = data;
       });
     }
 
-    this.service.message$.subscribe((message) => {
-      if (this.connectedUser != null && this.event != null) {
-        // Get the messages
-        this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
-          console.log("messages : " + data);
-          for (let message of data){
-
-            this.userService.getUserById(message.id_utilisateur_envoyeur).subscribe((data: User) => {
-
-              this.messages.push([message, data])
-            });
-          }
-        });
-      }
-    });
-
+  // recupère la liste des users
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 
@@ -107,12 +90,12 @@ export class ForumComponent implements OnInit, AfterViewChecked {
     this.scrollToBottom();
   }
 
-  getPhotoUser(id_user: number): string {
-    var photo_profil: string;
-    this.userService.getUserById(id_user).subscribe((data: User)=> {
-      photo_profil = data.photo_profil;
-      return photo_profil;
-    });
-    return "";
+  getUser(id_user: number): User {
+    for(let user of this.users) {
+      if (user.id_utilisateur == id_user) {
+        return user;
+      }
+    }
+    return this.users[0];
   }
 }

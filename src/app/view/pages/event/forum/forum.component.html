@@ -8,19 +8,19 @@
 
 
 
-        <div [ngClass]="message[0].id_utilisateur_envoyeur == connectedUser.id_utilisateur ? 'right' : 'left'">
+        <div [ngClass]="message.id_utilisateur_envoyeur == connectedUser.id_utilisateur ? 'right' : 'left'">
           <div class="flex2">
 
-            <a *ngIf="message[0].id_utilisateur_envoyeur != connectedUser.id_utilisateur" class="row-user" [routerLink]="'/' + link + '/' + message[1].id_utilisateur">
+            <a *ngIf="message.id_utilisateur_envoyeur != connectedUser.id_utilisateur" class="row-user" [routerLink]="'/' + link + '/' + message.id_utilisateur_envoyeur">
 
-              <img src="/assets/{{message[1].photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
+              <img src="/assets/{{getUser(message.id_utilisateur_envoyeur).photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
 
             </a>
 
 
-            <div *ngIf="message[0].contenu != ''">
+            <div *ngIf="message.contenu != ''">
               <p class="message">
-                {{message[0].contenu}}
+                {{message.contenu}}
               </p>
             </div>
           </div>
