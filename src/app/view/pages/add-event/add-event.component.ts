@@ -116,13 +116,15 @@ export class AddEventComponent implements OnInit{
     this.error = true;
     this.error_message = "Veuillez remplir tous les champs obligatoires";
   }else{
-    this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.id_categorie, this.id_user, this.max_participants).subscribe((data: boolean) => {
-        this.error = !data;
+    this.service.addEvent(this.titre, this.description, this.date, this.heure, this.lieu, this.id_categorie, this.id_user, this.max_participants).subscribe((data: any) => {
         
-        if(data){
+        if(data != null){
           // redirection vers l'agenda
-          this.shareService.setSuccessEvent();
-          this.router.navigateByUrl('agenda');
+          this.shareService.setSuccessAddEvent();
+          this.router.navigateByUrl('event/'+ data);
+        }else{
+          this.error = true;
+          this.error_message = "Une erreur est survenue lors de l'ajout de l'évènement";
         }
 
         // Hide the success/error messages after 3 seconds
@@ -132,6 +134,7 @@ export class AddEventComponent implements OnInit{
       });
       (error: any) => {
         // Handle the error here
+
         this.error = true;
         
       }

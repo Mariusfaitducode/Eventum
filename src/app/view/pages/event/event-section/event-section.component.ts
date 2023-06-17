@@ -35,8 +35,6 @@ export class EventSectionComponent {
   }
 
   modifier(){
-    console.log("modifier")
-    console.log(this.event.id_evenement);
     const navigationExtras: NavigationExtras = {
       queryParams: { 'id': this.event.id_evenement }
     };
@@ -44,10 +42,10 @@ export class EventSectionComponent {
   }
 
   delete(){
-    this.eventService.deleteEvent(this.event.id_evenement).subscribe((result) => {
-      console.log("delete")
-      console.log(result);
-    });
+    const navigationExtras: NavigationExtras = {
+      queryParams: { 'id': this.event.id_evenement }
+    };
+    this.router.navigate(['/event/'+ this.event.id_evenement + '/confirmer'], navigationExtras);
   }
 }
 

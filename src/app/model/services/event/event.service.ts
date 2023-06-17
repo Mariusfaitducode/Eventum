@@ -35,7 +35,7 @@ export class EventService {
   }
 
   public addEvent(title: string, description: string, date: Date, heure: string, lieu: string, id_categorie: number, id_createur: number, max_participants: number) {
-    return this.httpClient.get<boolean>(this.baseUrl + '/add_event.php?titre=' + title + '&description=' + description + '&date=' + date + '&heure=' + heure + '&lieu=' + lieu + '&id_categorie=' + id_categorie + '&id_createur=' + id_createur + '&max_participants=' + max_participants).pipe(map(is_correct => {
+    return this.httpClient.get<any>(this.baseUrl + '/add_event.php?titre=' + title + '&description=' + description + '&date=' + date + '&heure=' + heure + '&lieu=' + lieu + '&id_categorie=' + id_categorie + '&id_createur=' + id_createur + '&max_participants=' + max_participants).pipe(map(is_correct => {
       return is_correct;
     }));
   }

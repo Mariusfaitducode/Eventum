@@ -34,6 +34,8 @@ const routes: Routes = [
   { path: 'event/:id', component: EventComponent,
   children : [
     {path: 'modifier', loadChildren: () => import('./view/forms/modifier-evenement/modifier-evenement.module').then(m => m.ModifierEvenementModule)},
+    {path: 'confirmer', loadChildren: () => import('./view/forms/confirmer/confirmer.module').then(m => m.ConfirmerModule)},
+ 
   ]
 },
   {
