@@ -139,4 +139,8 @@
       width: 60px;
     align-items: center;
   }
+  .logo{
+    margin: 0 0 0 20px;
+    transition: transform 0.2s ease-in-out;
+  }
 }
