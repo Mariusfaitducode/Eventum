@@ -25,10 +25,28 @@ export class ShareDataService {
   public setSuccessEvent(){
     this.success = true;
 
+    // timer
+    setTimeout(() => {
+      this.success = false;
+    }, 3000);
 
   }
 
   public getSuccessEvent(){
+    return this.success;
+  }
+
+  public setSuccessAddEvent(){
+    this.success = true;
+
+    // timer
+    setTimeout(() => {
+      this.success = false;
+    }, 3000);
+
+  }
+
+  public getSuccessAddEvent(){
     return this.success;
   }
 

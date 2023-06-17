@@ -30,7 +30,7 @@ if (isset($_GET['titre'], $_GET['description'], $_GET['date'], $_GET['heure'], $
     $id_createur = SecurizeString_ForSQL($_GET['id_createur']);
     $max = SecurizeString_ForSQL($_GET['max_participants']);
 
-    $sql = "INSERT INTO evenement (titre, `description`, `date`, heure, lieu, id_categorie, id_createur, max_participant) VALUES ('$titre', '$description', '$date', '$heure', '$lieu', '$id_categorie', '$id_createur', '$max')";
+    $sql = "INSERT INTO evenement (titre, `description`, `date`, heure, lieu, id_categorie, id_createur, max_participant, is_disponible) VALUES ('$titre', '$description', '$date', '$heure', '$lieu', '$id_categorie', '$id_createur', '$max', true)";
     $result1 = mysqli_query($mysqli, $sql);
 
         // on retrouve l'id de l'événement qu'on vient d'insérer
@@ -61,12 +61,25 @@ if (isset($_GET['titre'], $_GET['description'], $_GET['date'], $_GET['heure'], $
 
         if ($result1) {
             // Enregistrement réussi
-            echo json_encode(true);
+            $data = array(
+                "success" => true,
+                "id" => $id_evenement,
+            );
+            
+            echo json_encode($row['id_evenement']);
         } else {
+            $data = array(
+                "success" => false,
+                "message" => " Remplissez tous les champs"
+            );
             // Erreur lors de l'enregistrement
-            echo json_encode(false);
+            echo json_encode($data);
         }
     }else{
-        echo json_encode(false);
+        $data = array(
+            "success" => false,
+            "message" => " Remplissez tous les champs"
+        );
+        echo json_encode($data);
     }
 }

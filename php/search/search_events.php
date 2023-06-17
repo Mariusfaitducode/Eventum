@@ -44,7 +44,7 @@ if(isset($postdata) && empty($postdata))
 
         if ($type == 'titre') {
 
-            //echo "titre";
+            echo "titre";
 
             $sql = "SELECT
                         *
@@ -55,7 +55,7 @@ if(isset($postdata) && empty($postdata))
                     AND
                         is_disponible = 1
                     ORDER BY
-                        date_debut ASC";
+                        date ASC";
 
         } else if ($type == 'lieu') {
 
@@ -68,7 +68,7 @@ if(isset($postdata) && empty($postdata))
                     AND
                         is_disponible = 1
                     ORDER BY
-                        date_debut ASC";
+                        date ASC";
 
         } else if ($type == 'date') {
 
@@ -81,7 +81,7 @@ if(isset($postdata) && empty($postdata))
                     AND
                         ev.is_disponible = 1
                     ORDER BY
-                        ev.date_debut ASC";
+                        ev.date ASC";
 
         } else if ($type == 'categorie') {
 
@@ -95,7 +95,7 @@ if(isset($postdata) && empty($postdata))
                     AND
                         ev.is_disponible = 1
                     ORDER BY
-                        ev.date_debut ASC";
+                        ev.date ASC";
 
         }
 
@@ -108,17 +108,17 @@ if(isset($postdata) && empty($postdata))
             if ($row['image'] == null) {
 
                 $cat = $row['id_categorie'];
-                
+
                 $sql = "SELECT
                             image_cat
-                        FROM    
+                        FROM
                             categorie
                         WHERE
                             id_categorie = '$cat'";
-              
+
                 $result_image=mysqli_query($mysqli,$sql);
                 $row_image = $result_image->fetch_array();
-    
+
                 $row['image'] = $row_image['image_cat'];
             }
 

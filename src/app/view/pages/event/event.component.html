@@ -3,8 +3,15 @@
     <app-event-section [event]="event" [connectedUser]="connectedUser" 
     [isRegistered]="isRegistered" [numberParticipants]="numberParticipants"></app-event-section>
     <app-forum *ngIf="isRegistered" [event]="event" [connectedUser]="connectedUser" [isRegistered]="isRegistered"></app-forum>
+    
+    <!-- Confirmation de modification -->
     <div class="success" *ngIf="shareService.getSuccessEvent()">
         <p> Evénement modifié avec succès </p>
+    </div>
+
+    <!-- Confirmation d'ajout-->
+    <div class="success" *ngIf="shareService.getSuccessAddEvent()">
+        <p> Evénement ajouté avec succès </p>
     </div>
 </div>
 

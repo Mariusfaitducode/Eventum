@@ -77,22 +77,41 @@ export class ProfilComponent {
         else{
           //Visite page profil
 
-          this.service.getUserById(id).subscribe((user) => {
+          this.service.getUserByToken().subscribe(async (user) => {
 
-            console.log(user); // Check if the user object is retrieved correctly
-            this.user = user;
+            this.connectedUser = user;
+            
 
-            this.service.getUserByToken().subscribe(async (user) => {
-
-              this.connectedUser = user;
+            if (this.connectedUser.id_utilisateur == id) {
+              // L'utilisateur visite sa propre page
+              this.personnal_page = true;
+              this.user = this.connectedUser;
               this.setEvents();
+            }
+            else{
+              this.service.getUserById(id).subscribe((user) => {
 
-              //const relation1 = await this.service.getRelation(id, this.connectedUser.id_utilisateur).toPromise();
+                this.personnal_page = false;
 
-              this.loadRelationData();
-              
-            });
+                console.log(user); // Check if the user object is retrieved correctly
+                this.user = user;
+  
+                this.setEvents();
+  
+                this.loadRelationData();
+              });
+            }
+            
+
+            //const relation1 = await this.service.getRelation(id, this.connectedUser.id_utilisateur).toPromise();
+
+            
+            
           });
+
+          
+
+          
           console.log("folllowed ="+this.followed); // Check if the user object is retrieved correctly
           console.log("folllowing ="+this.following); // Check if the user object is retrieved correctly
         }
