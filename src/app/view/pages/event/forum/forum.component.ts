@@ -52,6 +52,22 @@ export class ForumComponent implements OnInit, AfterViewChecked {
       });
     }
 
+    this.service.message$.subscribe((message) => {
+      if (this.connectedUser != null && this.event != null) {
+        // Get the messages
+        this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
+          console.log("messages : " + data);
+          for (let message of data){
+
+            this.userService.getUserById(message.id_utilisateur_envoyeur).subscribe((data: User) => {
+
+              this.messages.push([message, data])
+            });
+          }
+        });
+      }
+    });
+
 
     const loggedIn: boolean = this.authService.isLoggedIn();
 
@@ -76,6 +92,7 @@ export class ForumComponent implements OnInit, AfterViewChecked {
     this.service.sendMessagesForEvent(this.connectedUser.id_utilisateur, this.event.id_evenement, this.message).subscribe((data: boolean) => {
       console.log(data);
     });
+    this.service.sendMessageObservable('message');
     this.message = "";
   }
 
