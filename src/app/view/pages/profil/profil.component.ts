@@ -69,6 +69,7 @@ export class ProfilComponent {
           this.service.getUserByToken().subscribe((user) => {
 
             this.user = user;
+            console.log(this.user);
 
             this.setEvents();
           });
@@ -132,6 +133,8 @@ export class ProfilComponent {
 
   setEvents(){
     this.eventService.getEventsByUser(this.user.id_utilisateur).subscribe((events) => {
+
+      console.log(events)
 
       this.event_create = [];
       this.event_participate = [];
