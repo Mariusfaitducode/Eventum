@@ -79,6 +79,13 @@ if(isset($postdata) && empty($postdata))
                                                 preferences
                                             WHERE
                                                 id_utilisateur = '$id_user')
+                    AND 
+                        id_categorie IN (SELECT
+                                            id_categorie
+                                        FROM
+                                            evenement
+                                        WHERE
+                                            is_disponible = 1)
                     ORDER BY
                         RAND()
                     LIMIT $max";
