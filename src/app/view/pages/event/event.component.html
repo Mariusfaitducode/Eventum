@@ -5,7 +5,7 @@
     <app-forum *ngIf="isRegistered" [event]="event" [connectedUser]="connectedUser" [isRegistered]="isRegistered"></app-forum>
     
     <!-- Confirmation de modification -->
-    <div class="success" *ngIf="shareService.getSuccessEvent()">
+    <div class="success" *ngIf="shareService.getSuccessModifyEvent()">
         <p> Evénement modifié avec succès </p>
     </div>
 

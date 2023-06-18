@@ -100,7 +100,6 @@ export class ForumComponent implements OnInit, AfterViewChecked {
   }
 
   scrollToBottom() {
-    console.log('scroll');
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch(err) { }

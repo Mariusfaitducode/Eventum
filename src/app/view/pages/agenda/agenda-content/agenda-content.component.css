@@ -97,6 +97,9 @@
   height: 80px;
   /* margin: auto; */
 
+  /* overflow-y: scroll; */
+  overflow: hidden;
+
   border-radius: 10px;
   transition: background-color 0.3s ease-in-out;
 }
@@ -113,6 +116,7 @@
 }
 
 .days .day .day-content-item:hover {
+  overflow: visible;
   background-color: var(--purple-1);
 }
 
@@ -123,25 +127,43 @@
 
 .days .day .day-content-item .event {
 
-  background-color: var(--purple-1);
+  background-color: var(--purple-2);
+
+  color: var(--white-0);
 
 
-  width: 95%;
-  margin-left: 2px;
-  padding-left: 2px;
+  width: 90%;
+  margin-left: 3px;
+  padding-left: 3px;
+
+  font-size: 14px;
 
   /* margin: auto; */
 
   border-radius: 10px;
-  border: 1px solid var(--purple-0);
+  /* border: 1px solid var(--purple-0); */
 }
 
 .days .day .day-content-item svg {
-  display: none;
-  width: 60%;
+  display: block;
+  width: 50px;
 
   margin: auto;
 
+}
+
+.days .day .day-content-item.contain:hover {
+  border: 3px solid var(--purple-2);
+}
+
+.selected{
+  border: 3px solid var(--purple-2);
+}
+
+
+
+.days .day .day-content-item.contain {
+  background-color: var(--purple-1);
 }
 
 @media screen and (max-width: 1000px) {
@@ -157,9 +179,7 @@
     height: 8vw;
   }
 
-  .days .day .day-content-item.contain:hover {
-    border: 3px solid var(--purple-2);
-  }
+  
 
   .days .day .no-day-content-item {
 
@@ -171,12 +191,11 @@
 
   }
 
-  .days .day .day-content-item.contain {
-    background-color: var(--purple-1);
-  }
+  
 
   .days .day .day-content-item svg {
     display: block;
+    width: 60%;
   }
 
 }

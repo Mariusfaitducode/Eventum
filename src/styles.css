@@ -192,13 +192,18 @@ html, body {
 
 
   /* Centering */
-  position: absolute;
+  /* position: absolute; */
   top: 50%;
-  left: 25%;
+  margin: auto;
+  /* left: 25%; */
 }
 
 .formulaire input:not(.button), textarea, select{
   color: var(--black);
+}
+
+.formulaire select{
+  
 }
 
 .formulaire select{
