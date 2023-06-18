@@ -16,6 +16,7 @@ export class ConfirmerComponent implements OnInit {
   public id: number = 0;
   public password : string = "";
   public error : boolean = false;
+  public error_message : string = "";
   public empty_password : boolean = false;
 
    //constructor
@@ -63,6 +64,12 @@ export class ConfirmerComponent implements OnInit {
     // verification des champs vides
     if(this.password == ""){
       this.empty_password = true;
+      this.error = true;
+      this.error_message = "Veuillez saisir votre mot de passe";
+      setTimeout(() => {
+        this.error = false;
+        this.error_message = " ";
+    }, 3000);
     }else{
       // vérification du mot de passe
       this.userService.getUserByToken().subscribe((user: User) => {
@@ -71,19 +78,30 @@ export class ConfirmerComponent implements OnInit {
             this.service.deleteEvent(this.id).subscribe((data) => {
               if(data){
                 this.router.navigate(['/home']);
+                }else{
+                  this.error = true;
+                  this.error_message = "Une erreur est survenue lors de la suppression de l'évènement";
+                  setTimeout(() => {
+                    this.error = false;
+                    this.error_message = " ";
+                }, 3000);
                 }
               });
             }else{
               this.error = true;
+              this.error_message = "Le mot de passe est incorrect";
               setTimeout(() => {
                 this.error = false;
+                this.error_message = " ";
             }, 3000);
             }
           },
           (error) => {
             this.error = true;
+            this.error_message = "Une erreur est survenue lors de la suppression de l'évènement";
             setTimeout(() => {
               this.error = false;
+              this.error_message = " ";
           }, 3000);
           }
         );
