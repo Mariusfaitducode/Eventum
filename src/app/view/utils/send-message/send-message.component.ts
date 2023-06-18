@@ -69,8 +69,10 @@ export class SendMessageComponent implements OnInit {
     console.log("id sender : " + this.id_sender + ", is receiver : " + this.id_receiver + ", message : '" + this.message + "', id event : " + this.id_event);
     this.service.sendMessage(this.id_sender, this.id_receiver, this.message, this.id_event).subscribe((data: boolean) => {
       console.log(data);
+
+      this.service.sendMessageObservable('message');
     });
-    this.service.sendMessageObservable('message');
+    
     this.message = "";
     this.id_event = 0;
   }

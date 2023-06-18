@@ -6,7 +6,10 @@
     <div class="list-notifs">
 
         <div *ngFor="let notif of notifs" class="no-change">
-            <app-notification [notif]="notif" class="no-change"></app-notification >
+            <div *ngIf="showNotif(notif)">
+                <app-notification [notif]="notif" class="no-change"></app-notification >
+            </div>
+            
         </div>
     </div>
 

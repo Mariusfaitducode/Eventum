@@ -15,6 +15,9 @@ export class MessagerieService {
   private messageSource = new BehaviorSubject<string>('');
   message$ = this.messageSource.asObservable();
 
+  private forumSource = new BehaviorSubject<string>('');
+  forum$ = this.messageSource.asObservable();
+
   constructor(private httpClient: HttpClient) { }
 
   public sendMessage(id_sender: number, id_receiver: number, message: string, id_event:number) {
@@ -37,6 +40,10 @@ export class MessagerieService {
   }
 
   sendMessageObservable(message: string) {
+    this.messageSource.next(message);
+  }
+
+  sendForumObservable(message: string) {
     this.messageSource.next(message);
   }
 

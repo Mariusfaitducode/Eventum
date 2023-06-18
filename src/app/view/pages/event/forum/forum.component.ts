@@ -30,6 +30,19 @@ export class ForumComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
 
+    this.service.forum$.subscribe((message) => {
+
+      console.log("message envoyé !!!!!!!!!!: " + message)
+      // récupère la liste des messages
+      
+      // Get the messages
+      this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
+        console.log(data);
+        this.messages = data;
+      });
+      
+    });
+
     // Check user connected
     console.log("user : " + this.connectedUser.id_utilisateur + ", " + this.connectedUser.nom)
 
@@ -41,16 +54,7 @@ export class ForumComponent implements OnInit, AfterViewChecked {
     // check l'event
     console.log("event : " + this.event.id_evenement + ", " + this.event.titre)
 
-    this.service.message$.subscribe((message) => {
-      // récupère la liste des messages
-      if (this.connectedUser != null && this.users != null) {
-        // Get the messages
-        this.service.getMessagesForEvent(this.event.id_evenement).subscribe((data: Message[]) => {
-          console.log("messages : " + data);
-          this.messages = data;
-        });
-      }
-    });
+    
 
 
     // récupère la liste des messages
@@ -89,8 +93,9 @@ export class ForumComponent implements OnInit, AfterViewChecked {
   sendMessage() {
     this.service.sendMessagesForEvent(this.connectedUser.id_utilisateur, this.event.id_evenement, this.message).subscribe((data: boolean) => {
       console.log(data);
+      this.service.sendForumObservable('message');
     });
-    this.service.sendMessageObservable('message');
+    
     this.message = "";
   }
 

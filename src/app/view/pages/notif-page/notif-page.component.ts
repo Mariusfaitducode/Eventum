@@ -7,6 +7,7 @@ import { MessagerieService } from 'src/app/model/services/messagerie/messagerie.
 import { NotifService } from 'src/app/model/services/notif/notif.service';
 import { UserService } from 'src/app/model/services/user/user.service';
 import { Router } from '@angular/router';
+import { distinct } from 'rxjs';
 
 @Component({
   selector: 'app-notif-page',
@@ -69,6 +70,8 @@ export class NotifPageComponent {
 
                     console.log(data);
                     notif.content = data;
+
+                    //this.notifs.push(notif);
                   });
                 });
                 // notif.type_notif = "a aimé votre publication";
@@ -91,16 +94,19 @@ export class NotifPageComponent {
               case "notif_friend":
                 // notif.type_notif = "a aimé votre publication";
 
-                this.notifService.getNotifFriend(notif.id_notif).subscribe((data: any) => {
+                this.notifService.getNotifFriend(notif.id_notif).subscribe((data1: any) => {
 
                     // Retourne id user
-                    console.log(data.id_suiveur);
+                    console.log(data1.id_suiveur);
 
-                    this.userService.getUserById(data.id_suiveur).subscribe((data: any) => {
+
+                    this.userService.getUserById(data1.id_suiveur).subscribe((data: any) => {
 
                       console.log("test")
                       console.log(data);
                       notif.content = data;
+
+                      // this.notifs.push(notif);
                     });
                 });
 
@@ -118,6 +124,8 @@ export class NotifPageComponent {
 
                     console.log(data);
                     notif.content = data;
+
+                    //this.notifs.push(notif);
                   });
                 });
                 break;
@@ -134,6 +142,8 @@ export class NotifPageComponent {
 
                     console.log(data);
                     notif.content = data;
+
+                    //this.notifs.push(notif);
                   });
                 });
                 break;
@@ -144,10 +154,50 @@ export class NotifPageComponent {
 
           }
         });
-      });
 
+        // this.notifs = this.notifs.pipe(distinct((notification: Notification) => notification.id));
+        
+      });
+    }
+  
+  }
+
+  showNotif(notif: Notif): boolean {
+
+    if (notif.content == null) {
+      return false;
+    }
+    switch (notif.type_notif) {
+      case "notif_mp":
+        return true;
+      case "notif_mpg":
+        return true;
+      case "notif_friend":
+        for (let not of this.notifs){
+
+          if (not.content != null){
+            if(notif.content.id_utilisateur == not.content.id_utilisateur ){
+
+              if (this.notifs.indexOf(not) < this.notifs.indexOf(notif)){
+                return false;
+              }
+              else{
+                return true;
+              }
+            }
+          }
+        }
+
+        return true;
+      case "notif_change_event":
+        return true;
+      case "notif_event_participant":
+        return true;
+      default:
+        return true;
     }
   }
+
 
   determineDuration(notif : Notif) {
 
