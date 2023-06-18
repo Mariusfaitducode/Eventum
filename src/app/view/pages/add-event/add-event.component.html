@@ -6,13 +6,12 @@
         <input type = "text" name="titre" placeholder="Nom de l'évènement" [(ngModel)]="titre"  [ngClass]="{ 'input-error': empty_title }">
         <textarea type="text" name="description" placeholder="Description" [(ngModel)]="description"  [ngClass]="{ 'input-error': empty_description }"></textarea>
         <input type = "date" name="date" placeholder="Date" [(ngModel)]="date" [ngClass]="{ 'input-error': empty_date }">
+        <input type = "time" name="heure" placeholder="Heure" [(ngModel)]="heure" [ngClass]="{ 'input-error': empty_hour }">
         <select name="categorie" id="categorie" [(ngModel)]="id_categorie" [ngClass]="{ 'input-error': empty_categorie }" onfocus='backgroun'>
             <option *ngFor="let categorie of list_categorie" [value]="categorie.id_categorie">{{categorie.categorie}}</option>
-
         </select>
-        <input type = "time" name="heure" placeholder="Heure" [(ngModel)]="heure" [ngClass]="{ 'input-error': empty_hour }">
         <input type = "text" name="lieu" placeholder="Lieu" [(ngModel)]="lieu" [ngClass]="{ 'input-error': empty_location }">
-        <input type = "number" name="max_participants" placeholder="Nombre de participants maximum" [(ngModel)]="max_participants" [ngClass]="{ 'input-error': empty_max_participants }">
+        <input type = "number" name="max_participants" placeholder="Nombre de participants maximum" [(ngModel)]="max_participants">
         <br/>
         <input type="submit" class="button middle" value="Ajouter" (click)="OnConfirm()"/>
       </form>

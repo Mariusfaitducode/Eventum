@@ -212,6 +212,18 @@ html, body {
   margin-bottom: 15px;
 }
 
+.formulaire textarea{
+  flex-direction: column;
+  border: solid 1px var(--lightgray-0);
+  border-radius: 5px;
+  background-color: var(--white-1) ;
+  outline: none;
+  width: 80%;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  resize: none;
+}
+
 .formulaire select option::selection {
   background-color: var(--purple-2) !important;
   color: black;
@@ -245,17 +257,6 @@ html, body {
   margin-bottom: 15px;
 }
 
-.formulaire textarea{
-  font-size: 13px;
-  flex-direction: column;
-  border: none;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  outline: none;
-  width: 80%;
-  padding: 10px 15px;
-  margin-bottom: 15px;
-}
 
 
 
