@@ -32,6 +32,34 @@ if(isset($postdata) && empty($postdata))
         $sql = "UPDATE evenement SET titre = '$titre', description = '$description', date = '$date', heure = '$heure', lieu = '$lieu', id_categorie = '$id_categorie', id_createur = '$id_createur', max_participant = '$max_participants' WHERE id_evenement = '$id_evenement'";
         $result=mysqli_query($mysqli,$sql);
 
+
+        //On envoie la notif à tous les participants
+
+        $sql2 = "SELECT id_utilisateur FROM inscription_evenement WHERE id_evenement = '$id_evenement'";
+
+        $result2=mysqli_query($mysqli,$sql2);
+
+        date_default_timezone_set('Europe/Paris');
+        $date = date("Y-m-d H:i:s");
+
+        while($row = $result2->fetch_array()){
+            $id_user = $row['id_utilisateur'];
+
+            $sql3 = "INSERT INTO notifications(id_utilisateur, date_notif, vue, type_notif) VALUES ('$id_user', '$date', '0', 'notif_change_event')";
+
+            $result3=mysqli_query($mysqli,$sql3);
+
+
+            $id = $mysqli->insert_id;
+
+            $sql4 = "INSERT INTO notification_change_evenement(id_notif, id_evenement) VALUES ('$id', '$id_evenement')";
+
+            $result4=mysqli_query($mysqli,$sql4);
+
+            
+        }
+
+
         // return true ou false avec message d'erreur si erreur
         if (!$result) {
             echo json_encode(array(

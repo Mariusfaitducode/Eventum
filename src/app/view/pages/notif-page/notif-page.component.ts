@@ -106,7 +106,7 @@ export class NotifPageComponent {
 
                 break;
 
-              case "notif_event":
+              case "notif_change_event":
                 // notif.type_notif = "a aimé votre publication";
 
                 this.notifService.getNotifChangeEvent(notif.id_notif).subscribe((data: any) => {

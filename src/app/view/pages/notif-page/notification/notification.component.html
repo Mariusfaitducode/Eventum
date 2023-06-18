@@ -21,7 +21,8 @@
 
         <div *ngSwitchCase="notif.type_notif == 'notif_mpg'" class="notification-content">
 
-            <div>new message</div>
+          <!-- Pas encore implémenté -->
+            <div>new message groupe</div>
         </div>
 
         <div *ngSwitchCase="notif.type_notif == 'notif_friend'" class="notification-content" [routerLink]="'/profil/' + notif.content.id_utilisateur">
@@ -38,15 +39,26 @@
             </div>
         </div>
 
-        <div *ngSwitchCase="notif.type_notif == 'notif_event'" class="notification-content">
+        <div *ngSwitchCase="notif.type_notif == 'notif_change_event'" class="notification-content"  [routerLink]="'/event/' + notif.content.id_evenement">
 
-            <div>event change</div>
+          <div class="notif-infos">
+            <img src="/assets/{{notif.content.image}}" width="55px" height="55px" alt="Avatar" class="avatar">
+
+            <h3>{{notif.content.titre}} :</h3>
+
+            <div>a été modifié</div>
+          </div>
+          <div class="notif-time">
+            {{notif.duration}}
+          </div>
         </div>
 
         <div *ngSwitchCase="notif.type_notif == 'notif_event_participant'" class="notification-content" [routerLink]="'/event/' + notif.content.id_evenement">
 
 
           <div class="notif-infos">
+            <img src="/assets/{{notif.content.image}}" width="55px" height="55px" alt="Avatar" class="avatar">
+
 
             <h3>{{notif.content.titre}} :</h3>
 

@@ -67,7 +67,7 @@ if(isset($postdata) && empty($postdata))
         if ($result->num_rows < 3) {
 
             $max = 3 - $result->num_rows;
-            
+
             $sql2 = "SELECT
                         id_categorie, categorie
                     FROM
@@ -93,8 +93,8 @@ if(isset($postdata) && empty($postdata))
                 );
             }
         }
-        
-        
+
+
 
         echo json_encode($data);
     }
