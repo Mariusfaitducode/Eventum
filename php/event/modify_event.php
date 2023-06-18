@@ -29,8 +29,12 @@ if(isset($postdata) && empty($postdata))
         $id_createur = securizeString_ForSQL($_GET['id_createur']);
 
         // Requête SQL
-        $sql = "UPDATE evenement SET titre = '$titre', description = '$description', date = '$date', heure = '$heure', lieu = '$lieu', id_categorie = '$id_categorie', id_createur = '$id_createur', max_participant = '$max_participants' WHERE id_evenement = '$id_evenement'";
-        $result=mysqli_query($mysqli,$sql);
+        if($max_participants == null || $max_participants == "" || $max_participants == "null" || $_GET['max_participants'] == "undefined"){
+            $sql = "UPDATE evenement SET titre = '$titre', description = '$description', date = '$date', heure = '$heure', lieu = '$lieu', id_categorie = '$id_categorie', id_createur = '$id_createur', max_participant = NULL WHERE id_evenement = '$id_evenement'";
+        }else{
+            $sql = "UPDATE evenement SET titre = '$titre', description = '$description', date = '$date', heure = '$heure', lieu = '$lieu', id_categorie = '$id_categorie', id_createur = '$id_createur', max_participant = '$max_participants' WHERE id_evenement = '$id_evenement'";
+        }
+            $result=mysqli_query($mysqli,$sql);
 
 
         //On envoie la notif à tous les participants

@@ -8,6 +8,7 @@ import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 import { NavigationExtras } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-modifier-evenement',

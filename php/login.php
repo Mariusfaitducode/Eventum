@@ -8,6 +8,7 @@ header("Content-Type: application/json; charset=UTF-8");
 //Connexion database
 include_once("database.php");
 include_once("utils.php");
+include_once("./event/past_event.php");
 
 //Récupère données envoyés depuis angular surtout pour POST
 $postdata = file_get_contents("php://input");
@@ -16,6 +17,9 @@ $request = json_decode($postdata);
 
 if(isset($postdata))
 {
+
+  past_events($mysqli);
+
     if (isset($_GET['password']) && isset($_GET['email']) && !empty($_GET['email']) && !empty($_GET['password'])) {
 
         // Sécuriser l'entrée des données
@@ -39,9 +43,11 @@ if(isset($postdata))
 
                 $sql = "UPDATE utilisateur SET token = ('$token') WHERE id_utilisateur = '$row[id_utilisateur]'";
                 $result = mysqli_query($mysqli, $sql);
-                
+
+
+
                 echo json_encode($token);
-        
+
             }else{
                 // Mauvais mdp
                 echo json_encode(false);
@@ -50,6 +56,8 @@ if(isset($postdata))
             // Mauvais email
             echo json_encode(false);
         }
+
+
 
         // Stop further execution
         exit();
