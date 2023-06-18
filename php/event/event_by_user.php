@@ -36,7 +36,7 @@ if(isset($postdata) && empty($postdata))
 
         while( $row = $result->fetch_array())
         {
-            
+
             $id_evenement = $row['id_evenement'];
 
             //Récupère les événements auxquels l'utilisateur est inscrit et qui ont le mois et l'année demandés
@@ -62,7 +62,7 @@ if(isset($postdata) && empty($postdata))
                     $result_image=mysqli_query($mysqli,$sql);
                     $row_image = $result_image->fetch_array();
         
-                    $row['image'] = $row_image['image_cat'];
+                    $row_event['image'] = $row_image['image_cat'];
                 }
 
                 $data[] = array(
