@@ -50,6 +50,8 @@ if(isset($postdata) && empty($postdata))
                 WHERE
                     ev.id_categorie = '$id_categorie'
                 AND
+                    ev.is_disponible = 1
+                AND
                     '$id_user' NOT IN (
                         SELECT
                             id_utilisateur

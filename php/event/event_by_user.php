@@ -22,13 +22,21 @@ if(isset($postdata) && empty($postdata))
         $id_user = $_GET['id_user'];
 
         //Récupère les événements auxquels l'utilisateur est inscrit
-        $sql = "SELECT id_evenement FROM inscription_evenement WHERE id_utilisateur = '$id_user'";
+        $sql = "SELECT 
+                    ie.id_evenement 
+                FROM 
+                    inscription_evenement ie INNER JOIN evenement ev
+                        ON ie.id_evenement = ev.id_evenement
+                WHERE 
+                    ie.id_utilisateur = '$id_user'
+                AND 
+                    ev.is_disponible=1";
 
         $result=mysqli_query($mysqli,$sql);
 
         while( $row = $result->fetch_array())
         {
-
+            
             $id_evenement = $row['id_evenement'];
 
             //Récupère les événements auxquels l'utilisateur est inscrit et qui ont le mois et l'année demandés
@@ -74,8 +82,14 @@ if(isset($postdata) && empty($postdata))
 
 
         //Récupère les événements créés par l'utilisateur et qui ont le mois et l'année demandés
-        $sql = "SELECT * FROM evenement 
-                    WHERE id_createur = '$id_user'";
+        $sql = "SELECT 
+                    * 
+                FROM 
+                    evenement 
+                WHERE 
+                    id_createur = '$id_user'
+                AND 
+                    is_disponible=1";
 
         $result=mysqli_query($mysqli,$sql);
 
