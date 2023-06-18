@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 18 juin 2023 à 15:54
+-- Généré le : dim. 18 juin 2023 à 18:06
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.0.28
 
@@ -79,17 +79,12 @@ CREATE TABLE `evenement` (
 --
 
 INSERT INTO `evenement` (`id_evenement`, `id_createur`, `titre`, `id_categorie`, `description`, `image`, `date`, `heure`, `lieu`, `is_public`, `max_participant`, `is_disponible`) VALUES
-(23, 1, 'Sortie Cinéma', 17, 'Allons voir un nouveau film ensemble ! ', NULL, '2023-04-14', '20:00:00', 'Belfort', 0, NULL, 0),
-(24, 1, 'Mega Party', 27, 'On va faire une grosse fête ramenez autant de monde possible', NULL, '2023-04-07', '20:00:00', 'Belfort', 1, NULL, 0),
-(25, 3, 'Sortie vélo', 20, 'Venez pédaler !!', NULL, '2023-04-14', '12:00:00', 'Belfort', 1, NULL, 0),
-(27, 4, 'Anniversaire', 14, 'On fete mes 21ans', NULL, '2024-02-26', '18:00:00', 'Saint Louis', 0, NULL, 1),
-(28, 4, 'Anniversaire2', 14, 'test anniv', NULL, '2023-04-26', '18:00:00', 'Testville', 0, NULL, 0),
-(35, 8, 'Soirée Bowling', 15, 'A vos strikes', NULL, '2023-04-25', '19:30:00', '4as', 1, NULL, 0),
-(39, 3, 'Soirée animés', 17, 'test avec image', NULL, '2023-04-19', '12:05:00', 'Chez moi', 1, NULL, 0),
-(46, 11, 'Soirée jeux vidéos', 22, 'Venez jouer avec moi à  League of Legends', NULL, '2023-05-25', '21:00:00', 'UTBM', 1, NULL, 0),
-(47, 12, 'Concert', 16, '', NULL, '2023-06-15', '19:00:00', 'Noumatrouff', 1, NULL, 0),
-(50, 7, 'Soutenance WE4B', 23, 'Soutenance du projet Eventum', NULL, '2023-06-23', '10:15:00', 'UTBM', 0, 20, 1),
-(51, 7, 'rgzfgd', 15, 'zdgzdg', NULL, '2023-06-23', '14:53:00', 'zdfz', 0, 10, 0);
+(52, 15, 'Soutenance WE4B', 23, 'Venez à la soutenance avec nous !!', NULL, '2023-06-23', '10:00:00', 'UTBM', 0, 4, 1),
+(53, 15, 'Soirée des finaux', 27, 'Venez à la plus grosse soirée de l\'année !!! Ça va être le feu je vous promets !!', NULL, '2023-06-23', '21:00:00', 'MDE', 0, 300, 1),
+(54, 18, 'Petite marche', 24, 'On va aller faire un tour en forêt pour se vider la tête avant le final d\'IT45', NULL, '2023-06-24', '14:00:00', 'Belfort', 0, NULL, 1),
+(55, 19, 'Soirée karaoké', 15, 'Venez à l\'ABC pour un karaoké tous ensemble', NULL, '2023-06-22', '20:30:00', 'Belfort', 0, 50, 1),
+(56, 19, 'Marathon', 20, 'La ville de Belfort à l\'honneur d\'organiser son premier marathon !! Avis à tout les sportifs de la ville : n\'hésitez pas à nous rejoindre', NULL, '2023-07-02', '13:00:00', 'Belfort', 0, 150, 1),
+(57, 19, 'Inauguration du musée de Belfort', 19, 'La ville de Belfort ouvre son musée, venez nombreux à l\'inauguration', NULL, '2023-07-01', '15:00:00', 'Belfort', 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -108,14 +103,16 @@ CREATE TABLE `inscription_evenement` (
 --
 
 INSERT INTO `inscription_evenement` (`id_relation`, `id_utilisateur`, `id_evenement`) VALUES
-(28, 3, 23),
-(31, 1, 28),
-(34, 2, 24),
-(35, 1, 35),
-(44, 7, 23),
-(45, 7, 39),
-(46, 7, 28),
-(48, 7, 24);
+(50, 15, 52),
+(51, 17, 52),
+(52, 15, 53),
+(53, 17, 53),
+(54, 18, 52),
+(55, 18, 54),
+(56, 16, 53),
+(57, 19, 55),
+(58, 19, 56),
+(59, 19, 57);
 
 -- --------------------------------------------------------
 
@@ -137,19 +134,10 @@ CREATE TABLE `message_groupe` (
 --
 
 INSERT INTO `message_groupe` (`id_message`, `id_utilisateur_envoyeur`, `id_evenement`, `date_envoi`, `contenu`, `image`) VALUES
-(1, 1, 23, '2023-04-09 09:23:16', 'Salut Victor', NULL),
-(2, 1, 23, '2023-04-09 09:32:35', '', 'IMG-64326a13e11f72.22220322.jpg'),
-(3, 1, 23, '2023-04-18 12:28:29', 'Heyyy', NULL),
-(4, 1, 23, '2023-04-18 13:22:53', 'Ca va ?\r\n', NULL),
-(5, 3, 23, '2023-04-18 13:24:05', 'Super et toi ?\r\n', NULL),
-(6, 1, 23, '2023-04-18 14:13:42', 'Ouais trÃ¨s bien', NULL),
-(7, 1, 23, '2023-04-18 14:52:30', '', 'IMG-643e928ede56c1.53752740.jpg'),
-(8, 1, 23, '2023-04-26 23:23:17', 'helllo\r\nca va ?\r\ncool', NULL),
-(9, 1, 23, '2023-04-26 23:24:40', ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, officia, non minima cum autem fuga voluptatem error, quisquam illum accusamus ea? Iure, quo nemo explicabo eligendi numquam a beatae temporibus?\r\n            Sapiente, inventore? Magni similique fuga eos necessitatibus eligendi. Illum praesentium dolores in eos, distinctio ex commodi ducimus dolorem eum placeat tenetur provident? Nihil quos minus, veniam reprehenderit dignissimos consequatur quibusdam.\r\n            Consequatur ducimus praesentium ipsam fuga placeat voluptas error iusto fugit laboriosam nemo. Magnam accusamus placeat quas nisi facere eum consequuntur aperiam asperiores incidunt et, a natus possimus quibusdam aspernatur fuga.\r\n            Minima nam, pariatur illum atque nisi tempore ab recusandae nemo, eaque libero culpa? Expedita harum iusto et quaerat officiis modi nulla. Corporis nostrum quis ducimus vitae placeat, sint ab voluptate.\r\n            Rerum aspernatur eos repudiandae doloribus quia? Ex dolor laboriosam provident culpa nihil dignissimos deserunt nemo est nobis, distinctio at. Repellat ipsam corrupti dicta explicabo eligendi consequuntur eum veritatis quos quod!', NULL),
-(10, 7, 28, '2023-06-18 14:27:10', 'coucou', NULL),
-(11, 7, 28, '2023-06-18 14:27:19', 'vous serez là ?', NULL),
-(12, 7, 24, '2023-06-18 14:30:17', 'coucou', NULL),
-(13, 7, 23, '2023-06-18 15:34:57', 'coucouuu', NULL);
+(14, 17, 52, '2023-06-18 16:40:12', 'Noooon c\'est déjà vendredi ???!!!', NULL),
+(15, 15, 52, '2023-06-18 16:54:42', 'oui !! il va falloir se dépêcher...', NULL),
+(16, 17, 52, '2023-06-18 16:55:21', 'rolala il nous reste quoi à faire ?', NULL),
+(17, 15, 52, '2023-06-18 16:55:59', 'préparer la soutenance', NULL);
 
 -- --------------------------------------------------------
 
@@ -173,75 +161,16 @@ CREATE TABLE `message_prive` (
 --
 
 INSERT INTO `message_prive` (`id_message`, `id_utilisateur_envoyeur`, `id_utilisateur_destinataire`, `date_envoi`, `contenu`, `image`, `vue`, `id_evenement`) VALUES
-(1, 1, 3, '2023-04-04 17:05:00', 'Salut !', NULL, NULL, NULL),
-(2, 2, 1, '2023-04-04 18:11:06', 'salut', NULL, NULL, NULL),
-(3, 4, 1, '2023-04-06 10:24:37', 'Salut', NULL, NULL, NULL),
-(4, 1, 3, '2023-04-06 16:29:20', 'Comment Ã§a va ?\r\n', NULL, NULL, NULL),
-(5, 1, 7, '2023-04-06 16:49:18', 'hey', NULL, NULL, NULL),
-(6, 1, 7, '2023-04-06 16:49:33', 'salut', NULL, NULL, NULL),
-(7, 1, 7, '2023-04-06 16:50:38', 'salut', NULL, NULL, NULL),
-(8, 1, 7, '2023-04-06 16:53:53', 'hey', NULL, NULL, NULL),
-(9, 3, 7, '2023-04-06 17:02:13', 'salut', NULL, NULL, NULL),
-(10, 1, 2, '2023-04-08 22:57:31', 'Yooo', NULL, NULL, NULL),
-(11, 1, 2, '2023-04-08 23:02:39', 'test', NULL, NULL, NULL),
-(12, 1, 2, '2023-04-08 23:03:16', 'test2', NULL, NULL, NULL),
-(15, 1, 2, '2023-04-08 23:25:59', '', 'IMG-6431dbe7c44045.30300560.jpg', NULL, NULL),
-(17, 1, 3, '2023-04-08 23:30:19', '', 'IMG-6431dceb975de7.12011784.jpg', NULL, NULL),
-(18, 1, 4, '2023-04-09 13:22:33', 'hey', NULL, NULL, NULL),
-(19, 1, 4, '2023-04-09 13:25:22', 'Tas pas reÃ§u mon invitation ?\r\n', NULL, NULL, NULL),
-(20, 1, 2, '2023-04-09 14:13:16', 'message', NULL, NULL, NULL),
-(21, 1, 4, '2023-04-09 14:21:21', 'ola', NULL, NULL, NULL),
-(22, 3, 1, '2023-04-18 13:28:32', 'Trop cool !', NULL, NULL, NULL),
-(23, 1, 6, '2023-04-18 14:42:42', 'yoo', NULL, NULL, NULL),
-(24, 1, 4, '2023-04-27 18:25:54', 'hey\r\n', NULL, NULL, NULL),
-(25, 3, 1, '2023-04-28 23:42:48', 'Sympa y\'a super mario en plus !\r\n', NULL, NULL, NULL),
-(26, 3, 1, '2023-04-28 23:43:22', '', 'IMG-644c3dfa5a7938.89404068.jpg', NULL, NULL),
-(27, 1, 3, '2023-04-29 20:12:23', 'okay\r\n', NULL, NULL, NULL),
-(28, 7, 3, '2023-06-16 22:12:57', 'salut', NULL, 0, NULL),
-(29, 7, 3, '2023-06-16 22:12:57', 'salut', NULL, 0, NULL),
-(30, 7, 3, '2023-06-16 22:13:06', 'salut', NULL, 0, 24),
-(31, 7, 3, '2023-06-17 14:35:06', '', NULL, 0, 50),
-(32, 7, 3, '2023-06-17 14:35:08', '', NULL, 0, 50),
-(33, 7, 3, '2023-06-17 14:35:14', 'coucou', NULL, 0, 50),
-(34, 7, 3, '2023-06-17 14:35:52', '', NULL, 0, 23),
-(35, 7, 3, '2023-06-17 14:36:16', '', NULL, 0, 24),
-(36, 7, 3, '2023-06-17 14:36:51', 'hello', NULL, 0, 24),
-(37, 7, 3, '2023-06-17 14:37:14', 'COUCOU', NULL, 0, 50),
-(38, 7, 3, '2023-06-17 14:37:32', 'normaux', NULL, 0, NULL),
-(39, 7, 1, '2023-06-17 14:38:29', 'hello', NULL, 0, NULL),
-(40, 7, 1, '2023-06-17 14:38:32', 'hello', NULL, 0, NULL),
-(41, 7, 1, '2023-06-17 14:38:40', 'coucou', NULL, 0, NULL),
-(42, 7, 1, '2023-06-17 14:38:47', 'coucou', NULL, 0, NULL),
-(43, 7, 1, '2023-06-17 14:39:09', 'bonsoir', NULL, 0, NULL),
-(44, 7, 1, '2023-06-17 14:39:12', 'bonsoir', NULL, 0, NULL),
-(45, 7, 1, '2023-06-17 14:39:13', 'bonsoir', NULL, 0, NULL),
-(46, 7, 1, '2023-06-17 14:39:14', 'bonsoir', NULL, 0, NULL),
-(47, 7, 1, '2023-06-17 14:39:18', 'bouuu', NULL, 0, NULL),
-(48, 7, 3, '2023-06-17 14:39:39', '1', NULL, 0, NULL),
-(49, 7, 1, '2023-06-17 14:39:52', '1', NULL, 0, NULL),
-(50, 7, 1, '2023-06-17 14:40:00', '2', NULL, 0, NULL),
-(51, 7, 1, '2023-06-17 14:40:01', '2', NULL, 0, NULL),
-(52, 7, 1, '2023-06-17 14:40:01', '2', NULL, 0, NULL),
-(53, 7, 1, '2023-06-17 14:40:01', '2', NULL, 0, NULL),
-(54, 7, 1, '2023-06-17 14:40:06', '3', NULL, 0, NULL),
-(55, 7, 1, '2023-06-17 14:40:10', '4', NULL, 0, NULL),
-(56, 7, 1, '2023-06-17 14:40:22', '5', NULL, 0, NULL),
-(57, 7, 1, '2023-06-17 14:40:26', '6', NULL, 0, NULL),
-(58, 7, 1, '2023-06-17 14:40:34', '7', NULL, 0, NULL),
-(59, 7, 3, '2023-06-17 15:13:18', 'ééé test â @ ê è ç', NULL, 0, NULL),
-(60, 7, 1, '2023-06-18 14:26:11', 'coucou', NULL, 0, NULL),
-(61, 7, 1, '2023-06-18 14:26:15', 'hello', NULL, 0, NULL),
-(62, 7, 1, '2023-06-18 14:26:26', 'coucou', NULL, 0, NULL),
-(63, 7, 1, '2023-06-18 14:26:38', 'viens avec moi', NULL, 0, 24),
-(64, 7, 1, '2023-06-18 14:26:52', 'tu es prêt ?', NULL, 0, 50),
-(65, 7, 9, '2023-06-18 14:28:25', 'coucou', NULL, 0, NULL),
-(66, 7, 9, '2023-06-18 14:28:31', 'comment tu vas ?', NULL, 0, NULL),
-(67, 7, 9, '2023-06-18 14:28:39', 'ça avance ton projet ?', NULL, 0, NULL),
-(68, 7, 9, '2023-06-18 14:29:00', 'Viens passer cette soutenance avec moi', NULL, 0, 50),
-(69, 7, 9, '2023-06-18 14:29:08', 'oulaaaaaaa', NULL, 0, NULL),
-(70, 7, 9, '2023-06-18 14:29:13', 'c', NULL, 0, 28),
-(71, 7, 9, '2023-06-18 14:29:28', 'ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', NULL, 0, 24),
-(72, 7, 2, '2023-06-18 15:51:06', 'coucou', NULL, 0, NULL);
+(73, 17, 15, '2023-06-18 17:01:50', 'Hello comment tu vas ?', NULL, 0, NULL),
+(74, 17, 15, '2023-06-18 17:02:00', 'Dit moi on passe quand le final de WEB ?', NULL, 0, NULL),
+(75, 15, 17, '2023-06-18 17:02:19', 'Salut Salut', NULL, 0, NULL),
+(76, 15, 17, '2023-06-18 17:02:29', 'On passe le vendredi matin', NULL, 0, NULL),
+(77, 15, 17, '2023-06-18 17:02:45', 'regarde l\'événement c\'est marqué', NULL, 0, NULL),
+(78, 17, 15, '2023-06-18 17:03:06', 'Super et t\'as quelque chose de prévu le soir ?', NULL, 0, NULL),
+(79, 15, 17, '2023-06-18 17:03:17', 'euuh non pourquoi ?', NULL, 0, NULL),
+(80, 15, 17, '2023-06-18 17:06:58', 'aaah si pardon c\'est la soirée des finaux !!', NULL, 0, NULL),
+(81, 17, 15, '2023-06-18 17:07:13', 'la soirée des finaux ???', NULL, 0, NULL),
+(82, 15, 17, '2023-06-18 17:07:23', '', NULL, 0, 53);
 
 -- --------------------------------------------------------
 
@@ -262,75 +191,29 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id_notif`, `id_utilisateur`, `date_notif`, `vue`, `type_notif`) VALUES
-(1, 1, '2023-06-15 00:00:00', 0, NULL),
-(2, 1, '2023-06-15 00:00:00', 0, NULL),
-(3, 1, '2023-06-15 00:00:00', 0, NULL),
-(4, 1, '2023-06-15 00:00:00', 0, NULL),
-(5, 1, '2023-06-15 00:00:00', 0, NULL),
-(6, 1, '2023-06-15 18:48:58', 0, NULL),
-(7, 1, '2023-06-15 19:04:40', 0, NULL),
-(10, 1, '2023-06-16 15:27:07', 0, 'notif_event_participant'),
-(11, 1, '2023-06-16 15:42:31', 0, 'notif_friend'),
-(12, 1, '2023-06-16 15:43:06', 0, 'notif_friend'),
-(13, 1, '2023-06-16 15:45:00', 0, 'notif_friend'),
-(14, 1, '2023-06-16 15:45:17', 0, 'notif_friend'),
-(15, 1, '2023-06-16 15:45:30', 0, 'notif_friend'),
-(16, 1, '2023-06-16 16:22:34', 0, 'notif_event_participant'),
-(17, 3, '2023-06-16 22:12:18', 0, 'notif_event_participant'),
-(18, 3, '2023-06-16 22:12:57', 0, 'notif_mp'),
-(19, 3, '2023-06-16 22:12:58', 0, 'notif_mp'),
-(20, 3, '2023-06-16 22:13:06', 0, 'notif_mp'),
-(21, 3, '2023-06-17 14:34:32', 0, 'notif_friend'),
-(22, 3, '2023-06-17 14:34:35', 0, 'notif_friend'),
-(23, 3, '2023-06-17 14:35:06', 0, 'notif_mp'),
-(24, 3, '2023-06-17 14:35:08', 0, 'notif_mp'),
-(25, 3, '2023-06-17 14:35:14', 0, 'notif_mp'),
-(26, 3, '2023-06-17 14:35:52', 0, 'notif_mp'),
-(27, 3, '2023-06-17 14:36:17', 0, 'notif_mp'),
-(28, 3, '2023-06-17 14:36:51', 0, 'notif_mp'),
-(29, 3, '2023-06-17 14:37:14', 0, 'notif_mp'),
-(30, 3, '2023-06-17 14:37:32', 0, 'notif_mp'),
-(31, 1, '2023-06-17 14:38:29', 0, 'notif_mp'),
-(32, 1, '2023-06-17 14:38:32', 0, 'notif_mp'),
-(33, 1, '2023-06-17 14:38:40', 0, 'notif_mp'),
-(34, 1, '2023-06-17 14:38:47', 0, 'notif_mp'),
-(35, 1, '2023-06-17 14:39:09', 0, 'notif_mp'),
-(36, 1, '2023-06-17 14:39:12', 0, 'notif_mp'),
-(37, 1, '2023-06-17 14:39:13', 0, 'notif_mp'),
-(38, 1, '2023-06-17 14:39:14', 0, 'notif_mp'),
-(39, 1, '2023-06-17 14:39:19', 0, 'notif_mp'),
-(40, 3, '2023-06-17 14:39:39', 0, 'notif_mp'),
-(41, 1, '2023-06-17 14:39:53', 0, 'notif_mp'),
-(42, 1, '2023-06-17 14:40:00', 0, 'notif_mp'),
-(43, 1, '2023-06-17 14:40:01', 0, 'notif_mp'),
-(44, 1, '2023-06-17 14:40:01', 0, 'notif_mp'),
-(45, 1, '2023-06-17 14:40:01', 0, 'notif_mp'),
-(46, 1, '2023-06-17 14:40:06', 0, 'notif_mp'),
-(47, 1, '2023-06-17 14:40:10', 0, 'notif_mp'),
-(48, 1, '2023-06-17 14:40:22', 0, 'notif_mp'),
-(49, 1, '2023-06-17 14:40:26', 0, 'notif_mp'),
-(50, 1, '2023-06-17 14:40:34', 0, 'notif_mp'),
-(51, 3, '2023-06-17 15:13:19', 0, 'notif_mp'),
-(52, 1, '2023-06-17 16:06:19', 0, 'notif_friend'),
-(53, 1, '2023-06-18 14:26:11', 0, 'notif_mp'),
-(54, 1, '2023-06-18 14:26:16', 0, 'notif_mp'),
-(55, 1, '2023-06-18 14:26:26', 0, 'notif_mp'),
-(56, 1, '2023-06-18 14:26:38', 0, 'notif_mp'),
-(57, 1, '2023-06-18 14:26:53', 0, 'notif_mp'),
-(58, 4, '2023-06-18 14:27:06', 0, 'notif_event_participant'),
-(59, 9, '2023-06-18 14:28:25', 0, 'notif_mp'),
-(60, 9, '2023-06-18 14:28:31', 0, 'notif_mp'),
-(61, 9, '2023-06-18 14:28:39', 0, 'notif_mp'),
-(62, 9, '2023-06-18 14:29:00', 0, 'notif_mp'),
-(63, 9, '2023-06-18 14:29:08', 0, 'notif_mp'),
-(64, 9, '2023-06-18 14:29:14', 0, 'notif_mp'),
-(65, 9, '2023-06-18 14:29:28', 0, 'notif_mp'),
-(66, 1, '2023-06-18 14:30:12', 0, 'notif_event_participant'),
-(67, 1, '2023-06-18 14:30:19', 0, 'notif_event_participant'),
-(68, 1, '2023-06-18 14:41:47', 0, 'notif_change_event'),
-(69, 7, '2023-06-18 14:52:52', 0, 'notif_change_event'),
-(70, 2, '2023-06-18 15:50:50', 0, 'notif_friend'),
-(71, 2, '2023-06-18 15:51:06', 0, 'notif_mp');
+(72, 15, '2023-06-18 16:39:52', 0, 'notif_event_participant'),
+(73, 15, '2023-06-18 16:59:37', 0, 'notif_friend'),
+(74, 17, '2023-06-18 16:59:50', 0, 'notif_friend'),
+(75, 15, '2023-06-18 17:01:50', 0, 'notif_mp'),
+(76, 15, '2023-06-18 17:02:00', 0, 'notif_mp'),
+(77, 17, '2023-06-18 17:02:19', 0, 'notif_mp'),
+(78, 17, '2023-06-18 17:02:30', 0, 'notif_mp'),
+(79, 17, '2023-06-18 17:02:45', 0, 'notif_mp'),
+(80, 15, '2023-06-18 17:03:06', 0, 'notif_mp'),
+(81, 17, '2023-06-18 17:03:17', 0, 'notif_mp'),
+(82, 17, '2023-06-18 17:06:59', 0, 'notif_mp'),
+(83, 15, '2023-06-18 17:07:13', 0, 'notif_mp'),
+(84, 17, '2023-06-18 17:07:23', 0, 'notif_mp'),
+(85, 15, '2023-06-18 17:07:36', 0, 'notif_event_participant'),
+(86, 15, '2023-06-18 17:11:09', 0, 'notif_event_participant'),
+(87, 18, '2023-06-18 17:13:13', 0, 'notif_change_event'),
+(88, 15, '2023-06-18 17:16:33', 0, 'notif_event_participant'),
+(89, 19, '2023-06-18 17:21:38', 0, 'notif_change_event'),
+(90, 19, '2023-06-18 17:29:59', 0, 'notif_change_event'),
+(91, 19, '2023-06-18 17:30:09', 0, 'notif_change_event'),
+(92, 19, '2023-06-18 17:30:12', 0, 'notif_change_event'),
+(93, 19, '2023-06-18 17:30:17', 0, 'notif_change_event'),
+(94, 19, '2023-06-18 17:30:24', 0, 'notif_change_event');
 
 -- --------------------------------------------------------
 
@@ -348,8 +231,13 @@ CREATE TABLE `notification_change_evenement` (
 --
 
 INSERT INTO `notification_change_evenement` (`id_notif`, `id_evenement`) VALUES
-(68, 25),
-(69, 51);
+(87, 54),
+(89, 55),
+(90, 57),
+(91, 57),
+(92, 57),
+(93, 57),
+(94, 57);
 
 -- --------------------------------------------------------
 
@@ -367,13 +255,8 @@ CREATE TABLE `notification_change_relation` (
 --
 
 INSERT INTO `notification_change_relation` (`id_notif`, `id_relation`) VALUES
-(11, 25),
-(12, 25),
-(13, 25),
-(14, 25),
-(15, 25),
-(52, 25),
-(70, 26);
+(73, 27),
+(74, 28);
 
 -- --------------------------------------------------------
 
@@ -402,51 +285,16 @@ CREATE TABLE `notification_message_prive` (
 --
 
 INSERT INTO `notification_message_prive` (`id_notif`, `id_message`) VALUES
-(18, 28),
-(19, 28),
-(20, 30),
-(23, 31),
-(24, 32),
-(25, 33),
-(26, 34),
-(27, 35),
-(28, 36),
-(29, 37),
-(30, 38),
-(31, 39),
-(32, 40),
-(33, 41),
-(34, 42),
-(35, 43),
-(36, 44),
-(37, 45),
-(38, 46),
-(39, 47),
-(40, 48),
-(41, 49),
-(42, 50),
-(43, 51),
-(44, 51),
-(45, 51),
-(46, 54),
-(47, 55),
-(48, 56),
-(49, 57),
-(50, 58),
-(51, 59),
-(53, 60),
-(54, 61),
-(55, 62),
-(56, 63),
-(57, 64),
-(59, 65),
-(60, 66),
-(61, 67),
-(62, 68),
-(63, 69),
-(64, 70),
-(65, 71),
-(71, 72);
+(75, 73),
+(76, 74),
+(77, 75),
+(78, 76),
+(79, 77),
+(80, 78),
+(81, 79),
+(82, 80),
+(83, 81),
+(84, 82);
 
 -- --------------------------------------------------------
 
@@ -464,15 +312,10 @@ CREATE TABLE `notification_new_participant` (
 --
 
 INSERT INTO `notification_new_participant` (`id_notif`, `id_evenement`) VALUES
-(16, 23),
-(1, 24),
-(6, 24),
-(7, 24),
-(10, 24),
-(66, 24),
-(67, 24),
-(58, 28),
-(17, 39);
+(72, 52),
+(86, 52),
+(85, 53),
+(88, 53);
 
 -- --------------------------------------------------------
 
@@ -491,12 +334,10 @@ CREATE TABLE `preferences` (
 --
 
 INSERT INTO `preferences` (`id_utilisateur`, `id_categorie`, `preference_value`) VALUES
-(1, 14, 1),
-(1, 15, 5),
-(1, 16, 2),
-(7, 14, 3),
-(7, 17, 2),
-(7, 27, 10);
+(16, 27, 1),
+(17, 23, 1),
+(17, 27, 1),
+(18, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -516,19 +357,8 @@ CREATE TABLE `relation` (
 --
 
 INSERT INTO `relation` (`id_relation`, `id_suiveur`, `id_suivie`, `statut`) VALUES
-(3, 4, 1, 'accepte'),
-(4, 5, 1, 'accepte'),
-(5, 6, 1, 'accepte'),
-(6, 6, 5, 'accepte'),
-(8, 3, 7, 'accepte'),
-(10, 8, 1, 'accepte'),
-(11, 8, 4, 'accepte'),
-(12, 8, 6, 'accepte'),
-(14, 1, 9, 'accepte'),
-(16, 9, 1, 'accepte'),
-(17, 9, 7, 'accepte'),
-(25, 7, 1, 'accepte'),
-(26, 7, 2, 'accepte');
+(27, 17, 15, 'accepte'),
+(28, 15, 17, 'accepte');
 
 -- --------------------------------------------------------
 
@@ -573,19 +403,11 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `pseudo`, `email`, `password`, `photo_profil`, `is_darkmode`, `role`, `token`) VALUES
-(1, 'Diguat', 'Marius', 'sk8zen', 'm@d', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-64398b40977e23.71004061.jpg', 1, NULL, '9kQNAgUx9FCrVoAgvXi5gZw1bISxZfROVmUxPICNU'),
-(2, 'Chaussoy', 'Eliséo', 'tatsuya', 'e@c', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c35c0418828.97606205.png', 0, NULL, NULL),
-(3, 'Goudal', 'Victor', 'victrolles', 'v@g', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c381e177c59.98535094.jpg', 1, NULL, NULL),
-(4, 'Esstafa', 'Yasmine', 'yass', 'y@e', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c3902a6f735.59820818.jpg', 0, NULL, NULL),
-(5, 'Marcelin', 'Nicolas', 'nicoco', 'n@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
-(6, 'Royer', 'Albert', 'raryn', 'a@r', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
-(7, 'Maurer', 'Gilles', 'sellig', 'g@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c39793e7f62.50049025.jpg', 0, NULL, '0iClRWeDmeOstekbVJsJN1pCK4Cm04fRg28qJXCvx0'),
-(8, 'Sudaker', 'Veronica', 'greenorica', 'v@s', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
-(9, 'Augustin', 'Athane', 'augustin', 'a@a', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
-(10, 'testeur', 'test', 'test', 't@t', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
-(11, 'Melon', 'Eleonore', 'unity', 'u@c', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c3d0ee50f67.49967731.jpg', 1, NULL, NULL),
-(12, 'Organisateur', 'Super', 'orga2000', 's@o', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 1, NULL, NULL),
-(14, 'Diguat', 'Marius', 'mario', 'mario@mail', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 1, NULL, NULL);
+(15, 'Maurer', 'Gilles', 'gilles_mr', 'gilles.maurer@mail.fr', '$2y$10$G851079Ab4SCYxK6.X0EUeJaqavR4HxtY9LDHbRM7HOYDmdLMbEna', 'images/avatars/admin_avatar2.jpg', 0, NULL, 'QLh0zrA0K1QE5dL5ZQFzEF8tfCDawxBV6ajW07E'),
+(16, 'Diguat', 'Marius', 'SkateZen', 'marius.diguat@mail.fr', '$2y$10$ReWf9qxJ2REvnRXo4uz0HetAQCnsW5iGGoMkRYNb9neHu835jl8Rm', 'images/avatars/admin_avatar1.jpg', 0, NULL, 'qGlOSUsoxrKg3j67PQihmtyeYuuK9zJOYTWseOWngKo'),
+(17, 'Athane', 'Augustin', 'august2', 'augustin.athane@mail.fr', '$2y$10$9a9ROzrBiA/gOJwqgdWl1Onuq8ySwFvzbx2BqRVfWmxEIvqAjGUyC', 'images/avatars/admin_avatar4.jpg', 0, NULL, 'ibMQbUBf9mLhORIdBEU5jNaGxXsvpmdgNRthOYT8'),
+(18, 'Victor', 'Goudal', 'vitrolles', 'victor.goudal@mail.fr', '$2y$10$7fLOxzQ0UrM7DqeOJkprZ.a8r489YKVt4syqVdSUq5psCktOFvZzu', 'images/avatars/avatar5.jpg', 0, NULL, '0u8s9an2B7d0Qmem8UU4r1gbZcdcgp7x8J3Untsw'),
+(19, 'de Belfort', 'Mairie', 'mairie2belfort', 'mairie.belfort@mail.fr', '$2y$10$g9hngZBwukDGVaJpUsdh6eI497SIaaazUh0c8tpYrecF4oEcEN3be', 'images/avatars/avatar16.jpg', 0, NULL, 'onxmeDXAMIs56KQ4oQ1SrBb8MuAi9Hx6is9o4Rp9ZM');
 
 --
 -- Index pour les tables déchargées
@@ -715,43 +537,43 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id_evenement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_evenement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT pour la table `inscription_evenement`
 --
 ALTER TABLE `inscription_evenement`
-  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT pour la table `message_groupe`
 --
 ALTER TABLE `message_groupe`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `message_prive`
 --
 ALTER TABLE `message_prive`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT pour la table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT pour la table `relation`
 --
 ALTER TABLE `relation`
-  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Contraintes pour les tables déchargées
