@@ -1,14 +1,24 @@
 <div class = "background">
   <form class = "formulaire">
     <h2>Connexion</h2>
-    <input type = "text" name="login" [(ngModel)]="login" placeholder="Email">
-    <input type = "password" name="password"  [(ngModel)]="password" placeholder="Mot de passe">
+    <input type = "text" name="login" [(ngModel)]="login" placeholder="Email" [ngClass]="{ 'input-error': is_login_empty }">
+    <input type = "password" name="password"  [(ngModel)]="password" placeholder="Mot de passe" [ngClass]="{ 'input-error': is_password_empty}">
     <!--button class = "button">Connexion</button-->
     <input type="submit" class="button big" value="Connexion" (click)="onConnect()" />
     <br/>
     <a routerLink="/hub" class="exit-button">
-      <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-    </a>
+
+      <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#b9b9b9}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a>
+
     <p>Vous n'avez pas de compte ? <a routerLink="/hub/register">Cliquez ici</a></p>
   </form>
+  
+<div class="error" *ngIf="error">
+  <p>{{error_message}}</p>
+  </div>
+
+  <div class="success" *ngIf="success">
+    <p>Compte créer avec succès</p>
+    </div>
 </div>
+
