@@ -15,7 +15,7 @@ import { ShareDataService } from 'src/app/model/services/share/share-data.servic
 export class EventComponent {
   event!: Event;
   connectedUser!: User;
-  numberParticipants!: number;
+  numberParticipants: number = 0;
 
   isRegistered: boolean = false;
 
@@ -49,6 +49,8 @@ export class EventComponent {
       this.eventService.getParticipantsByEvent(id).subscribe((participants) => {
         console.log(participants); // Check if the user object is retrieved correctly
         this.numberParticipants = participants.length;
+
+        
       });
 
       this.eventService.getEventById(id).subscribe((event) => {

@@ -16,18 +16,18 @@
         <ng-template #no_creator>
   
           
-              <div *ngIf="isRegistered; else no_registered" >
-                <!-- Si utilisateur inscrit -->
-                  <button class="blue-button middle" (click)="unregisterToEvent()">Se désinscrire</button>
-              </div>
-          
-              <ng-template #no_registered>
-                  <!-- Si utilisateur non inscrit -->
-                  <div *ngIf="event.max_participants == null || numberParticipants <  event.max_participants">
-                    <button class="blue-button middle" (click)="registerToEvent()">S'inscrire</button>
-                  </div>
-                  
-              </ng-template>
+            <div *ngIf="isRegistered; else no_registered" >
+              <!-- Si utilisateur inscrit -->
+                <button class="blue-button middle" (click)="unregisterToEvent()">Se désinscrire</button>
+            </div>
+        
+            <ng-template #no_registered>
+                <!-- Si utilisateur non inscrit -->
+                <div *ngIf="event.max_participants == null || numberParticipants <  event.max_participants">
+                  <button class="blue-button middle" (click)="registerToEvent()">S'inscrire</button>
+                </div>
+                
+            </ng-template>
           
         </ng-template>
       </div>
@@ -35,6 +35,12 @@
 
     
   </div>
+<!-- 
+  {{event.is_disponible}}
+
+  {{event.max_participants}}
+
+  {{numberParticipants}} -->
 
 
   <div class="infos-section">
