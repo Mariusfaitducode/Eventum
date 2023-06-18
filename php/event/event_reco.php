@@ -81,7 +81,7 @@ if(isset($postdata) && empty($postdata))
                     evenement as ev INNER JOIN categorie as cat ON ev.id_categorie = cat.id_categorie
                 WHERE
                     cat.id_categorie IN ('$pref')
-                 AND
+                AND
                     '$id_user' NOT IN (
                         SELECT 
                             id_utilisateur
@@ -90,6 +90,8 @@ if(isset($postdata) && empty($postdata))
                         WHERE
                             id_evenement = ev.id_evenement
                     )
+                AND
+                    ev.is_disponible = 1
                 ORDER BY (
                     SELECT 
                         COUNT(id_utilisateur)
@@ -194,6 +196,8 @@ if(isset($postdata) && empty($postdata))
                         )
                     AND 
                         ev.id_evenement NOT IN ('$id_events')
+                    AND
+                        ev.is_disponible = 1
                     ORDER BY (
                         SELECT 
                             COUNT(id_utilisateur)
