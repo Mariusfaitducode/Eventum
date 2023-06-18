@@ -34,6 +34,8 @@ export class AgendaContentComponent{
   // selectedMonth = 3;
   selectedYear = new Date().getFullYear();
 
+  selectedDay = new Date().getDate();
+
   constructor(
     private eventService: EventService,
     private userService: UserService,
@@ -148,6 +150,8 @@ export class AgendaContentComponent{
 
     console.log("updateEventDayData");
 
+    this.selectedDay = number;
+
     var eventOfDay : Event[] = [];
 
     for (let event of this.eventOfMonth) {
@@ -161,6 +165,13 @@ export class AgendaContentComponent{
     const date = new Date(this.selectedYear, this.selectedMonth, number);
 
     this.shareService.setAgendaDayEvent(date, eventOfDay);
+  }
+
+  isSelectedDay(number: number): string {
+    if (this.selectedDay == number){
+      return 'selected';
+    }
+    return '';
   }
 
 
