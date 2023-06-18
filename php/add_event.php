@@ -30,8 +30,13 @@ if (isset($_GET['titre'], $_GET['description'], $_GET['date'], $_GET['heure'], $
     $id_createur = SecurizeString_ForSQL($_GET['id_createur']);
     $max = SecurizeString_ForSQL($_GET['max_participants']);
 
-    $sql = "INSERT INTO evenement (titre, `description`, `date`, heure, lieu, id_categorie, id_createur, max_participant, is_disponible) VALUES ('$titre', '$description', '$date', '$heure', '$lieu', '$id_categorie', '$id_createur', '$max', true)";
-    $result1 = mysqli_query($mysqli, $sql);
+    if('$max' == "" || '$max' == 0 || $_GET['max_participants'] == 'undefined'){
+        $sql = "INSERT INTO evenement (titre, `description`, `date`, heure, lieu, id_categorie, id_createur, is_disponible) VALUES ('$titre', '$description', '$date', '$heure', '$lieu', '$id_categorie', '$id_createur', true)";
+    }else{
+        $sql = "INSERT INTO evenement (titre, `description`, `date`, heure, lieu, id_categorie, id_createur, max_participant, is_disponible) VALUES ('$titre', '$description', '$date', '$heure', '$lieu', '$id_categorie', '$id_createur', '$max', true)";
+    }
+
+      $result1 = mysqli_query($mysqli, $sql);
 
         // on retrouve l'id de l'événement qu'on vient d'insérer
         $sql = "SELECT 
