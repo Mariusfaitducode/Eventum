@@ -50,8 +50,13 @@ if(isset($postdata))
         // Hashage du mot de passe
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+        // Génération d'un avatar aléatoire entre 1 et 20
+        $alea_avatar = rand(1, 20);
+
+        $photo = "images/avatars/avatar" . $alea_avatar . ".jpg";
+
         // Insertion des données dans la base de données
-        $sql = "INSERT INTO utilisateur (nom, prenom, pseudo, email, `password`) VALUES ('$nom', '$prenom', '$username', '$email', '$hashed_password')";
+        $sql = "INSERT INTO utilisateur (nom, prenom, pseudo, email, `password`, photo_profil) VALUES ('$nom', '$prenom', '$username', '$email', '$hashed_password', '$photo')";
         $result = mysqli_query($mysqli, $sql);
 
         if ($result) {
