@@ -149,3 +149,26 @@ th {
 h1 {
   margin-top: 20px;
 }
+
+.error-message{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;
+  color: var(--red);
+  font-size: 20px;
+}
+
+.error-message svg{
+  fill: var(--red);
+}
+
+.red{
+  background-color: var(--red);
+  margin-left: 10px;
+}
+
+.red:hover{
+  background-color: var(--red-2);
+}

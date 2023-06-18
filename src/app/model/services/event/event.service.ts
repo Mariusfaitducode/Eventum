@@ -123,7 +123,8 @@ export class EventService {
   }
 
   getPreferredCategories(id_user: number) {
-    return this.httpClient.get<number[]>(this.baseUrl + '/event/cat_pref.php?id_utilisateur=' + id_user).pipe(map(Categories => {
+    return this.httpClient.get<any[]>(this.baseUrl + '/event/cat_pref.php?id_utilisateur=' + id_user).pipe(map(Categories => {
+      console.log(Categories);
       return Categories;
     }));
   }

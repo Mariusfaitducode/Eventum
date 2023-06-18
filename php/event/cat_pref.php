@@ -31,7 +31,7 @@ if(isset($postdata) && empty($postdata))
 
         $id_user = $_GET['id_utilisateur'];
 
-        $sql = "SELECT 
+        $sql = "SELECT
                     id_categorie
                 FROM
                     preferences
@@ -43,12 +43,58 @@ if(isset($postdata) && empty($postdata))
 
 
         $result=mysqli_query($mysqli,$sql);
+
         while ($row = $result->fetch_array()) {
 
+            $id_cat = $row['id_categorie'];
+
+            $sql3 = "SELECT
+                        categorie
+                    FROM
+                        categorie
+                    WHERE
+                        id_categorie = '$id_cat'";
+
+            $result3=mysqli_query($mysqli,$sql3);
+            $row3 = $result3->fetch_array();
+
             $data[] = array(
-                'id_categorie' => $row['id_categorie']
+                'id_categorie' => $row['id_categorie'],
+                'nom_categorie' => $row3['categorie']
             );
         }
+
+        if ($result->num_rows < 3) {
+
+            $max = 3 - $result->num_rows;
+            
+            $sql2 = "SELECT
+                        id_categorie, categorie
+                    FROM
+                        categorie
+                    WHERE
+                        id_categorie NOT IN (SELECT
+                                                id_categorie
+                                            FROM
+                                                preferences
+                                            WHERE
+                                                id_utilisateur = '$id_user')
+                    ORDER BY
+                        RAND()
+                    LIMIT $max";
+
+            $result2=mysqli_query($mysqli,$sql2);
+
+            while ($row = $result2->fetch_array()) {
+
+                $data[] = array(
+                    'id_categorie' => $row['id_categorie'],
+                    'nom_categorie' => $row['categorie']
+                );
+            }
+        }
+        
+        
 
         echo json_encode($data);
     }
