@@ -73,4 +73,8 @@ export class ShareDataService {
   public getSuccessProfil() {
     return this.successProfile;
   }
+
+  public setSuccessRegisterEvent(){
+    this.emitSuccess(this.successModify);
+  }
 }

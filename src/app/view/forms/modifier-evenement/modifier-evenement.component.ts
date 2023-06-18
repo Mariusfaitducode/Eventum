@@ -49,7 +49,7 @@ export class ModifierEvenementComponent implements OnInit{
   
 
     //constructor
-    constructor(private service: EventService, private zone: NgZone, private userService: UserService, private router: Router, private route: ActivatedRoute, private shareService: ShareDataService) {
+    constructor(private service: EventService, private userService: UserService, private router: Router, private route: ActivatedRoute, private shareService: ShareDataService) {
       if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
         // redirection vers la page hub
         this.router.navigateByUrl('hub');

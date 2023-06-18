@@ -4,6 +4,7 @@ import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { EventService } from 'src/app/model/services/event/event.service';
 import { NavigationExtras } from '@angular/router';
+import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 
 @Component({
   selector: 'app-event-section',
@@ -18,7 +19,7 @@ export class EventSectionComponent {
 
 
 
-  constructor( private eventService: EventService, private router: Router) { }
+  constructor( private eventService: EventService, private router: Router, private shareService: ShareDataService) { }
 
   registerToEvent() {
 
@@ -26,14 +27,16 @@ export class EventSectionComponent {
     this.eventService.registerToEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((isRegistered) => {
       this.isRegistered = isRegistered;
     });
-    this.eventService.registerToEventObservable("message")
+    this.eventService.registerToEventObservable("message");
+    this.shareService.setSuccessRegisterEvent();
   }
 
   unregisterToEvent() {
     this.eventService.unregisterToEvent(this.connectedUser.id_utilisateur, this.event.id_evenement).subscribe((result) => {
       this.isRegistered = !result;
     });
-    this.eventService.removeToEventObservable("message")
+    this.eventService.removeToEventObservable("message");
+    this.shareService.setSuccessRegisterEvent();
   }
 
   modifier(){
