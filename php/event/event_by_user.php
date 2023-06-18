@@ -30,7 +30,9 @@ if(isset($postdata) && empty($postdata))
                 WHERE 
                     ie.id_utilisateur = '$id_user'
                 AND 
-                    ev.is_disponible=1";
+                    ev.is_disponible=1
+                AND
+                    ev.id_utilisateur != '$id_user'";
 
         $result=mysqli_query($mysqli,$sql);
 
