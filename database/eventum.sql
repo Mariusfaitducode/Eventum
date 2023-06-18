@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 17 juin 2023 à 17:43
--- Version du serveur : 10.4.27-MariaDB
--- Version de PHP : 8.2.0
+-- Généré le : dim. 18 juin 2023 à 15:54
+-- Version du serveur : 10.4.28-MariaDB
+-- Version de PHP : 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,8 @@ INSERT INTO `categorie` (`id_categorie`, `categorie`, `image_cat`) VALUES
 (23, 'Professionnel', 'images/categorie/professionnel.jpg'),
 (24, 'Ballade', 'images/categorie/balade.jpg'),
 (25, 'Autres', 'images/categorie/autre.jpg'),
-(26, 'Repas', 'images/categorie/repas.jpeg');
+(26, 'Repas', 'images/categorie/repas.jpeg'),
+(27, 'Méga Soirée', 'images/categorie/mega_soiree.jpg');
 
 -- --------------------------------------------------------
 
@@ -78,16 +79,17 @@ CREATE TABLE `evenement` (
 --
 
 INSERT INTO `evenement` (`id_evenement`, `id_createur`, `titre`, `id_categorie`, `description`, `image`, `date`, `heure`, `lieu`, `is_public`, `max_participant`, `is_disponible`) VALUES
-(23, 1, 'Sortie Cinéma', 17, 'Allons voir un nouveau film ensemble ! ', 'images/evenements/IMG-644c2ecbc04ff9.57666740.jpg', '2023-04-14', '20:00:00', 'Belfort', 0, NULL, NULL),
-(24, 1, 'Mega Party', 14, 'On va faire une grosse fête ramenez autant de monde possible', 'images/evenements/IMG-644b95b4b9e8d3.49155054.jpg', '2023-04-07', '20:00:00', 'Belfort', 1, NULL, NULL),
-(25, 3, 'Sortie vélo', 20, 'Venez pédaler !!', 'images/evenements/IMG-644b9929aa32d5.35988112.jpg', '2023-04-14', '12:00:00', 'Belfort', 1, NULL, NULL),
-(27, 4, 'Anniversaire', 14, 'On fete mes 21ans', NULL, '2024-02-26', '18:00:00', 'Saint Louis', 0, NULL, NULL),
-(28, 4, 'Anniversaire2', 14, 'test anniv', NULL, '2023-04-26', '18:00:00', 'Testville', 0, NULL, NULL),
-(35, 8, 'Soirée Bowling', 15, 'A vos strikes', 'images/evenements/IMG-644c2f2e7fe7d7.34379310.jpg', '2023-04-25', '19:30:00', '4as', 1, NULL, NULL),
-(39, 3, 'Soirée animés', 17, 'test avec image', 'images/evenements/IMG-643e9e90d6cdc9.57236055.jpg', '2023-04-19', '12:05:00', 'Chez moi', 1, NULL, NULL),
-(46, 11, 'Soirée jeux vidéos', 22, 'Venez jouer avec moi à  League of Legends', '', '2023-05-25', '21:00:00', 'UTBM', 1, NULL, NULL),
-(47, 12, 'Concert', 16, '', 'images/evenements/IMG-644c2e68563480.13514690.jpg', '2023-06-15', '19:00:00', 'Noumatrouff', 1, NULL, NULL),
-(50, 7, 'Soutenance WE4B', 25, 'Soutenance du projet Eventum', NULL, '2023-06-23', '10:15:00', 'UTBM', 0, NULL, NULL);
+(23, 1, 'Sortie Cinéma', 17, 'Allons voir un nouveau film ensemble ! ', NULL, '2023-04-14', '20:00:00', 'Belfort', 0, NULL, 0),
+(24, 1, 'Mega Party', 27, 'On va faire une grosse fête ramenez autant de monde possible', NULL, '2023-04-07', '20:00:00', 'Belfort', 1, NULL, 0),
+(25, 3, 'Sortie vélo', 20, 'Venez pédaler !!', NULL, '2023-04-14', '12:00:00', 'Belfort', 1, NULL, 0),
+(27, 4, 'Anniversaire', 14, 'On fete mes 21ans', NULL, '2024-02-26', '18:00:00', 'Saint Louis', 0, NULL, 1),
+(28, 4, 'Anniversaire2', 14, 'test anniv', NULL, '2023-04-26', '18:00:00', 'Testville', 0, NULL, 0),
+(35, 8, 'Soirée Bowling', 15, 'A vos strikes', NULL, '2023-04-25', '19:30:00', '4as', 1, NULL, 0),
+(39, 3, 'Soirée animés', 17, 'test avec image', NULL, '2023-04-19', '12:05:00', 'Chez moi', 1, NULL, 0),
+(46, 11, 'Soirée jeux vidéos', 22, 'Venez jouer avec moi à  League of Legends', NULL, '2023-05-25', '21:00:00', 'UTBM', 1, NULL, 0),
+(47, 12, 'Concert', 16, '', NULL, '2023-06-15', '19:00:00', 'Noumatrouff', 1, NULL, 0),
+(50, 7, 'Soutenance WE4B', 23, 'Soutenance du projet Eventum', NULL, '2023-06-23', '10:15:00', 'UTBM', 0, 20, 1),
+(51, 7, 'rgzfgd', 15, 'zdgzdg', NULL, '2023-06-23', '14:53:00', 'zdfz', 0, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -107,13 +109,13 @@ CREATE TABLE `inscription_evenement` (
 
 INSERT INTO `inscription_evenement` (`id_relation`, `id_utilisateur`, `id_evenement`) VALUES
 (28, 3, 23),
-(30, 1, 25),
 (31, 1, 28),
 (34, 2, 24),
 (35, 1, 35),
-(43, 7, 24),
 (44, 7, 23),
-(45, 7, 39);
+(45, 7, 39),
+(46, 7, 28),
+(48, 7, 24);
 
 -- --------------------------------------------------------
 
@@ -143,7 +145,11 @@ INSERT INTO `message_groupe` (`id_message`, `id_utilisateur_envoyeur`, `id_evene
 (6, 1, 23, '2023-04-18 14:13:42', 'Ouais trÃ¨s bien', NULL),
 (7, 1, 23, '2023-04-18 14:52:30', '', 'IMG-643e928ede56c1.53752740.jpg'),
 (8, 1, 23, '2023-04-26 23:23:17', 'helllo\r\nca va ?\r\ncool', NULL),
-(9, 1, 23, '2023-04-26 23:24:40', ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, officia, non minima cum autem fuga voluptatem error, quisquam illum accusamus ea? Iure, quo nemo explicabo eligendi numquam a beatae temporibus?\r\n            Sapiente, inventore? Magni similique fuga eos necessitatibus eligendi. Illum praesentium dolores in eos, distinctio ex commodi ducimus dolorem eum placeat tenetur provident? Nihil quos minus, veniam reprehenderit dignissimos consequatur quibusdam.\r\n            Consequatur ducimus praesentium ipsam fuga placeat voluptas error iusto fugit laboriosam nemo. Magnam accusamus placeat quas nisi facere eum consequuntur aperiam asperiores incidunt et, a natus possimus quibusdam aspernatur fuga.\r\n            Minima nam, pariatur illum atque nisi tempore ab recusandae nemo, eaque libero culpa? Expedita harum iusto et quaerat officiis modi nulla. Corporis nostrum quis ducimus vitae placeat, sint ab voluptate.\r\n            Rerum aspernatur eos repudiandae doloribus quia? Ex dolor laboriosam provident culpa nihil dignissimos deserunt nemo est nobis, distinctio at. Repellat ipsam corrupti dicta explicabo eligendi consequuntur eum veritatis quos quod!', NULL);
+(9, 1, 23, '2023-04-26 23:24:40', ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, officia, non minima cum autem fuga voluptatem error, quisquam illum accusamus ea? Iure, quo nemo explicabo eligendi numquam a beatae temporibus?\r\n            Sapiente, inventore? Magni similique fuga eos necessitatibus eligendi. Illum praesentium dolores in eos, distinctio ex commodi ducimus dolorem eum placeat tenetur provident? Nihil quos minus, veniam reprehenderit dignissimos consequatur quibusdam.\r\n            Consequatur ducimus praesentium ipsam fuga placeat voluptas error iusto fugit laboriosam nemo. Magnam accusamus placeat quas nisi facere eum consequuntur aperiam asperiores incidunt et, a natus possimus quibusdam aspernatur fuga.\r\n            Minima nam, pariatur illum atque nisi tempore ab recusandae nemo, eaque libero culpa? Expedita harum iusto et quaerat officiis modi nulla. Corporis nostrum quis ducimus vitae placeat, sint ab voluptate.\r\n            Rerum aspernatur eos repudiandae doloribus quia? Ex dolor laboriosam provident culpa nihil dignissimos deserunt nemo est nobis, distinctio at. Repellat ipsam corrupti dicta explicabo eligendi consequuntur eum veritatis quos quod!', NULL),
+(10, 7, 28, '2023-06-18 14:27:10', 'coucou', NULL),
+(11, 7, 28, '2023-06-18 14:27:19', 'vous serez là ?', NULL),
+(12, 7, 24, '2023-06-18 14:30:17', 'coucou', NULL),
+(13, 7, 23, '2023-06-18 15:34:57', 'coucouuu', NULL);
 
 -- --------------------------------------------------------
 
@@ -222,7 +228,20 @@ INSERT INTO `message_prive` (`id_message`, `id_utilisateur_envoyeur`, `id_utilis
 (56, 7, 1, '2023-06-17 14:40:22', '5', NULL, 0, NULL),
 (57, 7, 1, '2023-06-17 14:40:26', '6', NULL, 0, NULL),
 (58, 7, 1, '2023-06-17 14:40:34', '7', NULL, 0, NULL),
-(59, 7, 3, '2023-06-17 15:13:18', 'ééé test â @ ê è ç', NULL, 0, NULL);
+(59, 7, 3, '2023-06-17 15:13:18', 'ééé test â @ ê è ç', NULL, 0, NULL),
+(60, 7, 1, '2023-06-18 14:26:11', 'coucou', NULL, 0, NULL),
+(61, 7, 1, '2023-06-18 14:26:15', 'hello', NULL, 0, NULL),
+(62, 7, 1, '2023-06-18 14:26:26', 'coucou', NULL, 0, NULL),
+(63, 7, 1, '2023-06-18 14:26:38', 'viens avec moi', NULL, 0, 24),
+(64, 7, 1, '2023-06-18 14:26:52', 'tu es prêt ?', NULL, 0, 50),
+(65, 7, 9, '2023-06-18 14:28:25', 'coucou', NULL, 0, NULL),
+(66, 7, 9, '2023-06-18 14:28:31', 'comment tu vas ?', NULL, 0, NULL),
+(67, 7, 9, '2023-06-18 14:28:39', 'ça avance ton projet ?', NULL, 0, NULL),
+(68, 7, 9, '2023-06-18 14:29:00', 'Viens passer cette soutenance avec moi', NULL, 0, 50),
+(69, 7, 9, '2023-06-18 14:29:08', 'oulaaaaaaa', NULL, 0, NULL),
+(70, 7, 9, '2023-06-18 14:29:13', 'c', NULL, 0, 28),
+(71, 7, 9, '2023-06-18 14:29:28', 'ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', NULL, 0, 24),
+(72, 7, 2, '2023-06-18 15:51:06', 'coucou', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -292,7 +311,26 @@ INSERT INTO `notifications` (`id_notif`, `id_utilisateur`, `date_notif`, `vue`, 
 (49, 1, '2023-06-17 14:40:26', 0, 'notif_mp'),
 (50, 1, '2023-06-17 14:40:34', 0, 'notif_mp'),
 (51, 3, '2023-06-17 15:13:19', 0, 'notif_mp'),
-(52, 1, '2023-06-17 16:06:19', 0, 'notif_friend');
+(52, 1, '2023-06-17 16:06:19', 0, 'notif_friend'),
+(53, 1, '2023-06-18 14:26:11', 0, 'notif_mp'),
+(54, 1, '2023-06-18 14:26:16', 0, 'notif_mp'),
+(55, 1, '2023-06-18 14:26:26', 0, 'notif_mp'),
+(56, 1, '2023-06-18 14:26:38', 0, 'notif_mp'),
+(57, 1, '2023-06-18 14:26:53', 0, 'notif_mp'),
+(58, 4, '2023-06-18 14:27:06', 0, 'notif_event_participant'),
+(59, 9, '2023-06-18 14:28:25', 0, 'notif_mp'),
+(60, 9, '2023-06-18 14:28:31', 0, 'notif_mp'),
+(61, 9, '2023-06-18 14:28:39', 0, 'notif_mp'),
+(62, 9, '2023-06-18 14:29:00', 0, 'notif_mp'),
+(63, 9, '2023-06-18 14:29:08', 0, 'notif_mp'),
+(64, 9, '2023-06-18 14:29:14', 0, 'notif_mp'),
+(65, 9, '2023-06-18 14:29:28', 0, 'notif_mp'),
+(66, 1, '2023-06-18 14:30:12', 0, 'notif_event_participant'),
+(67, 1, '2023-06-18 14:30:19', 0, 'notif_event_participant'),
+(68, 1, '2023-06-18 14:41:47', 0, 'notif_change_event'),
+(69, 7, '2023-06-18 14:52:52', 0, 'notif_change_event'),
+(70, 2, '2023-06-18 15:50:50', 0, 'notif_friend'),
+(71, 2, '2023-06-18 15:51:06', 0, 'notif_mp');
 
 -- --------------------------------------------------------
 
@@ -304,6 +342,14 @@ CREATE TABLE `notification_change_evenement` (
   `id_notif` int(11) NOT NULL,
   `id_evenement` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `notification_change_evenement`
+--
+
+INSERT INTO `notification_change_evenement` (`id_notif`, `id_evenement`) VALUES
+(68, 25),
+(69, 51);
 
 -- --------------------------------------------------------
 
@@ -326,7 +372,8 @@ INSERT INTO `notification_change_relation` (`id_notif`, `id_relation`) VALUES
 (13, 25),
 (14, 25),
 (15, 25),
-(52, 25);
+(52, 25),
+(70, 26);
 
 -- --------------------------------------------------------
 
@@ -386,7 +433,20 @@ INSERT INTO `notification_message_prive` (`id_notif`, `id_message`) VALUES
 (48, 56),
 (49, 57),
 (50, 58),
-(51, 59);
+(51, 59),
+(53, 60),
+(54, 61),
+(55, 62),
+(56, 63),
+(57, 64),
+(59, 65),
+(60, 66),
+(61, 67),
+(62, 68),
+(63, 69),
+(64, 70),
+(65, 71),
+(71, 72);
 
 -- --------------------------------------------------------
 
@@ -409,6 +469,9 @@ INSERT INTO `notification_new_participant` (`id_notif`, `id_evenement`) VALUES
 (6, 24),
 (7, 24),
 (10, 24),
+(66, 24),
+(67, 24),
+(58, 28),
 (17, 39);
 
 -- --------------------------------------------------------
@@ -431,8 +494,9 @@ INSERT INTO `preferences` (`id_utilisateur`, `id_categorie`, `preference_value`)
 (1, 14, 1),
 (1, 15, 5),
 (1, 16, 2),
-(7, 14, 2),
-(7, 17, 2);
+(7, 14, 3),
+(7, 17, 2),
+(7, 27, 10);
 
 -- --------------------------------------------------------
 
@@ -463,7 +527,8 @@ INSERT INTO `relation` (`id_relation`, `id_suiveur`, `id_suivie`, `statut`) VALU
 (14, 1, 9, 'accepte'),
 (16, 9, 1, 'accepte'),
 (17, 9, 7, 'accepte'),
-(25, 7, 1, 'accepte');
+(25, 7, 1, 'accepte'),
+(26, 7, 2, 'accepte');
 
 -- --------------------------------------------------------
 
@@ -514,7 +579,7 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `pseudo`, `email`,
 (4, 'Esstafa', 'Yasmine', 'yass', 'y@e', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c3902a6f735.59820818.jpg', 0, NULL, NULL),
 (5, 'Marcelin', 'Nicolas', 'nicoco', 'n@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
 (6, 'Royer', 'Albert', 'raryn', 'a@r', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
-(7, 'Maurer', 'Gilles', 'sellig', 'g@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c39793e7f62.50049025.jpg', 0, NULL, 'QzMTsARWNslkexW7qiIVDsv5yQJYLikBhmDnSgxw'),
+(7, 'Maurer', 'Gilles', 'sellig', 'g@m', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/IMG-644c39793e7f62.50049025.jpg', 0, NULL, '0iClRWeDmeOstekbVJsJN1pCK4Cm04fRg28qJXCvx0'),
 (8, 'Sudaker', 'Veronica', 'greenorica', 'v@s', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
 (9, 'Augustin', 'Athane', 'augustin', 'a@a', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
 (10, 'testeur', 'test', 'test', 't@t', '$2y$10$wVww8OSi/mnRMQ.4jZ/BO.tZDmfCmVaJY.FO9Ef2CgfiOMXi1n82m', 'images/avatars/default-avatar.png', 0, NULL, NULL),
@@ -644,43 +709,43 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id_evenement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_evenement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT pour la table `inscription_evenement`
 --
 ALTER TABLE `inscription_evenement`
-  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT pour la table `message_groupe`
 --
 ALTER TABLE `message_groupe`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `message_prive`
 --
 ALTER TABLE `message_prive`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT pour la table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT pour la table `relation`
 --
 ALTER TABLE `relation`
-  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
