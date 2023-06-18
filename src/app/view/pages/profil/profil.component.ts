@@ -15,7 +15,7 @@ import { UserService } from 'src/app/model/services/user/user.service';
 import { firstValueFrom } from 'rxjs';
 import { EventService } from 'src/app/model/services/event/event.service';
 import { Router } from '@angular/router';
-import { ProfilService } from 'src/app/model/services/profil/profil.service';
+import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 
 @Component({
   selector: 'app-profil',
@@ -45,7 +45,7 @@ export class ProfilComponent {
     private authService : AuthentificationService,
     private eventService : EventService,
     private router: Router,
-    public successService: ProfilService
+    public shareService: ShareDataService
   ) {}
 
   ngOnInit() {

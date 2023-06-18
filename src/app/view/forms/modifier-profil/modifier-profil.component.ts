@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/classes/user/user';
 import { UserService } from 'src/app/model/services/user/user.service';
-import { ProfilService } from 'src/app/model/services/profil/profil.service';
-
+import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 @Component({
   selector: 'app-modifier-profil',
   templateUrl: './modifier-profil.component.html',
@@ -21,7 +20,7 @@ export class ModifierProfilComponent {
   public error : boolean = false;
   public error_message : string = "";
   
-    constructor(private router: Router, private service : UserService, public successService: ProfilService) {
+    constructor(private router: Router, private service : UserService, public shareService: ShareDataService) {
       this.service.getUserByToken().subscribe((data: User) => {
         this.user = data;
         this.nom = data.nom;
@@ -39,7 +38,7 @@ export class ModifierProfilComponent {
     OnConfirm(){
       this.service.modifyUser( this.nom, this.prenom, this.email, this.pseudo, this.password).subscribe((data: any) => {
         if (data.success) {
-          this.successService.setSuccess();
+          this.shareService.setSuccessProfil();
           this.router.navigateByUrl('profil');
         } else {
           this.error = true;

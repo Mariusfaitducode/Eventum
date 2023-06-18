@@ -7,7 +7,7 @@
 
   <app-profil-content [event_create]="event_create" [event_participate]="event_participate"></app-profil-content>
 
-    <div class="success" *ngIf="successService.getSuccess()">
+    <div class="success" *ngIf="shareService.getSuccessProfil()">
         <p> Modifications enregistrés avec succès</p>
     </div>
 

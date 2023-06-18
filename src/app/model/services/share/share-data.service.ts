@@ -9,6 +9,8 @@ export class ShareDataService {
 
   agendaDayEvent: Subject<[Date, Event[]]> = new Subject<[Date, Event[]]>();
   success: boolean = false;
+  successAdd: boolean = false;
+  successProfile: boolean = false;
 
   constructor() { }
 
@@ -37,17 +39,31 @@ export class ShareDataService {
   }
 
   public setSuccessAddEvent(){
-    this.success = true;
+    this.successAdd = true;
 
     // timer
     setTimeout(() => {
-      this.success = false;
-    }, 3000);
-
+      this.successAdd = false;
+    }
+    , 3000);
   }
 
   public getSuccessAddEvent(){
-    return this.success;
+    return this.successAdd;
+  }
+
+  public setSuccessProfil(){
+    this.successProfile = true;
+
+    // timer
+    setTimeout(() => {
+      this.successProfile = false;
+    }
+    , 3000);
+  }
+
+  public getSuccessProfil(){
+    return this.successProfile;
   }
 
 }
