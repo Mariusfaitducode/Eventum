@@ -1,11 +1,11 @@
 <div class = "background">
   <form class = "formulaire">
     <h2>Modifier profil</h2>
-    <input type = "text" name="nom" [(ngModel)]="nom" placeholder="Nom">
-    <input type = "text" name="prenom" [(ngModel)]="prenom" placeholder="Prénom">
-    <input type = "text" name="pseudo" [(ngModel)]="pseudo" placeholder="Pseudo">
-    <input type = "text" name="email" [(ngModel)]="email" placeholder="Mail">
-    <input type = "password" name="password"  [(ngModel)]="password" placeholder="Mot de passe">
+    <input type = "text" name="nom" [(ngModel)]="nom" placeholder="Nom" required="required">
+    <input type = "text" name="prenom" [(ngModel)]="prenom" placeholder="Prénom" required>
+    <input type = "text" name="pseudo" [(ngModel)]="pseudo" placeholder="Pseudo" required>
+    <input type = "text" name="email" [(ngModel)]="email" placeholder="Mail" required>
+    <input type = "password" name="password"  [(ngModel)]="password" placeholder="Mot de passe" required>
 
     <!--button class = "button">Connexion</button-->
     <input type="submit" class="button big" value="Modifier" (click)="OnConfirm()" />

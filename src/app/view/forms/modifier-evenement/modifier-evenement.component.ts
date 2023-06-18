@@ -170,4 +170,8 @@ export class ModifierEvenementComponent implements OnInit{
       }, 3000);
 
     }
+
+    public Delete(){
+      this.router.navigate(['/event/' + this.event.id_evenement + '/confirmer'], { queryParams: { id: this.event.id_evenement } });
+    }
 }

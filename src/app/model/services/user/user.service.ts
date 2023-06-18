@@ -102,6 +102,12 @@ export class UserService {
     }));
   }
 
+  public isPasswordCorrect(id_user: number, password: string){
+    return this.httpClient.get<Boolean>(this.baseUrl + '/user/is_password_correct.php?id_user=' + id_user + '&password=' + password).pipe(map(Boolean => {
+      return Boolean;
+    }));
+  }
+
 }
 
 

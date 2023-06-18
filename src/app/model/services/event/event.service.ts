@@ -117,6 +117,7 @@ export class EventService {
 
   // Supression d'un événement
   public deleteEvent(id_event: number) {
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + id_event);
     return this.httpClient.get<boolean>(this.baseUrl + '/event/delete_event.php?id_evenement=' + id_event).pipe(map(is_correct => {
       return is_correct;
     }));
