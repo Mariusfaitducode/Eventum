@@ -46,7 +46,6 @@ import {SingleMessageComponent} from "../message/components/single-message/singl
 
 import { ModifierProfilComponent } from "../../forms/modifier-profil/modifier-profil.component";
 import { ModifierProfilModule } from "../../forms/modifier-profil/modifier-profil.module";
-import { ProfilService } from "src/app/model/services/profil/profil.service";
 import { FollowsComponent } from "../profil/follows/follows.component";
 import { ModifierEvenementModule } from "../../forms/modifier-evenement/modifier-evenement.module";
 import {ForumComponent} from "../event/forum/forum.component";
@@ -98,7 +97,6 @@ import {ForumComponent} from "../event/forum/forum.component";
     EventService,
     FileService,
     ShareDataService,
-    ProfilService,
   ],
   imports: [
     CommonModule,

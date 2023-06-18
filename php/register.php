@@ -15,22 +15,35 @@ $request = json_decode($postdata);
 
 if(isset($postdata))
 {
-    if (isset($_GET['nom']) && isset($_GET['prenom']) && isset($_GET['pseudo']) && isset($_GET['email']) && isset($_GET['password']) && !empty($_GET['nom']) && !empty($_GET['prenom']) && !empty($_GET['pseudo']) && !empty($_GET['email']) && !empty($_GET['password'])) {
+    if (isset($_GET['nom']) && isset($_GET['prenom']) && isset($_GET['username']) && isset($_GET['email']) && isset($_GET['password'])) {
         
         // Sécurisation des données saisies
         $nom = SecurizeString_ForSQL($_GET['nom']);
         $prenom = SecurizeString_ForSQL($_GET['prenom']);
-        $pseudo = SecurizeString_ForSQL($_GET['pseudo']);
+        $username = SecurizeString_ForSQL($_GET['username']);
         $email = SecurizeString_ForSQL($_GET['email']);
         $password = SecurizeString_ForSQL($_GET['password']);
 
         // Vérification si l'utilisateur existe déjà
-        $sql = "SELECT * FROM utilisateur WHERE email = '$email' or username = '$pseudo'";
+        $sql = "SELECT * FROM utilisateur WHERE email = '$email'";
         $result = mysqli_query($mysqli, $sql);
 
         if ($result->num_rows > 0) {
             // Utilisateur existant
-            echo json_encode(false);
+            $data = array('success' => false,
+                          'message' => 'Cet email est déjà associé à un compte!');
+            echo json_encode($data);
+            exit();
+        }
+
+        $sql = "SELECT * FROM utilisateur WHERE pseudo = '$username'";
+        $result = mysqli_query($mysqli, $sql);
+
+        if ($result->num_rows > 0) {
+            // Utilisateur existant
+            $data = array('success' => false,
+                          'message' => 'Ce pseudo est déjà utilisé par un autre utilisateur!');
+            echo json_encode($data);
             exit();
         }
 
@@ -38,15 +51,19 @@ if(isset($postdata))
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insertion des données dans la base de données
-        $sql = "INSERT INTO utilisateur (nom, prenom, pseudo, email, `password`) VALUES ('$nom', '$prenom', '$pseudo', '$email', '$hashed_password')";
+        $sql = "INSERT INTO utilisateur (nom, prenom, pseudo, email, `password`) VALUES ('$nom', '$prenom', '$username', '$email', '$hashed_password')";
         $result = mysqli_query($mysqli, $sql);
 
         if ($result) {
             // Enregistrement réussi
-            echo json_encode(true);
+            $data = array('success' => true,
+            'message' => '');
+            echo json_encode($data);
         } else {
             // Erreur lors de l'enregistrement
-            echo json_encode(false);
+            $data = array('success' => false,
+            'message' => 'Utilisateur existant');
+            echo json_encode($data);
         }
 
         // Arrêter l'exécution ultérieure
