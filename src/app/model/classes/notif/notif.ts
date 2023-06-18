@@ -9,5 +9,6 @@ export class Notif {
 
         public content: any,
         public duration: string,
+        public count: number,
     ){}
 }

@@ -19,6 +19,7 @@ export class NotifPageComponent {
   user!: User;
   notifs: Notif[] = [];
 
+
   constructor(
     private userService: UserService,
     private authService: AuthentificationService,
@@ -169,13 +170,34 @@ export class NotifPageComponent {
     }
     switch (notif.type_notif) {
       case "notif_mp":
+
+        var count: number = 0;
+
+        for (let not of this.notifs){
+
+          count++;
+
+          if (not.content != null && not.type_notif == "notif_mp"){
+            if(notif.content.id_utilisateur == not.content.id_utilisateur ){
+
+              if (this.notifs.indexOf(not) < this.notifs.indexOf(notif)){
+                return false;
+              }
+              else{
+                notif.count = count;
+                return true;
+              }
+            }
+          }
+        }
+      
         return true;
       case "notif_mpg":
         return true;
       case "notif_friend":
         for (let not of this.notifs){
 
-          if (not.content != null){
+          if (not.content != null && not.type_notif == "notif_friend"){
             if(notif.content.id_utilisateur == not.content.id_utilisateur ){
 
               if (this.notifs.indexOf(not) < this.notifs.indexOf(notif)){
@@ -187,10 +209,26 @@ export class NotifPageComponent {
             }
           }
         }
+        return true;
 
-        return true;
       case "notif_change_event":
+
+        for (let not of this.notifs){
+
+          if (not.content != null && not.type_notif == "notif_change_event"){
+            if(notif.content.id_evenement == not.content.id_evenement ){
+
+              if (this.notifs.indexOf(not) < this.notifs.indexOf(notif)){
+                return false;
+              }
+              else{
+                return true;
+              }
+            }
+          }
+        }
         return true;
+
       case "notif_event_participant":
         return true;
       default:
