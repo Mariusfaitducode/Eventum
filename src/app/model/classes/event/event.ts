@@ -11,5 +11,6 @@ export class Event {
         public lieu: string,
         public is_public: boolean,
         public max_participants: number,
+        public is_disponible: boolean,
       ) {}
 }

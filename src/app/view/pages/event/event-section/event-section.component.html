@@ -2,35 +2,39 @@
 
   <div [ngStyle]="{'background-image': 'url(/assets/' + event.image + ')'}" class="event-header">
 
-    <div class="event-buttons">
+    <div *ngIf="event.is_disponible">
+      <div class="event-buttons">
 
-      <div *ngIf="event.id_createur == connectedUser.id_utilisateur; else no_creator">
-        <button class="blue-button middle" (click)="modifier()">Modifier</button>
-
-        <button class="button red middle" (click)="delete()">Supprimer</button>
-
+        <div *ngIf="event.id_createur == connectedUser.id_utilisateur; else no_creator">
+          <button class="blue-button middle" (click)="modifier()">Modifier</button>
+  
+          <button class="button red middle" (click)="delete()">Supprimer</button>
+  
+        </div>
+        <ng-template #no_creator>
+  
+          
+              <div *ngIf="isRegistered; else no_registered" >
+                <!-- Si utilisateur inscrit -->
+                  <button class="blue-button middle" (click)="unregisterToEvent()">Se désinscrire</button>
+              </div>
+          
+              <ng-template #no_registered>
+                  <!-- Si utilisateur non inscrit -->
+                  <div *ngIf="event.max_participants == null || numberParticipants <  event.max_participants">
+                    <button class="blue-button middle" (click)="registerToEvent()">S'inscrire</button>
+                  </div>
+                  
+              </ng-template>
+          
+  
+            
+            
+        </ng-template>
       </div>
-      <ng-template #no_creator>
-
-        
-            <div *ngIf="isRegistered; else no_registered" >
-              <!-- Si utilisateur inscrit -->
-                <button class="blue-button middle" (click)="unregisterToEvent()">Se désinscrire</button>
-            </div>
-        
-            <ng-template #no_registered>
-                <!-- Si utilisateur non inscrit -->
-                <div *ngIf="event.max_participants == null || numberParticipants <  event.max_participants">
-                  <button class="blue-button middle" (click)="registerToEvent()">S'inscrire</button>
-                </div>
-                
-            </ng-template>
-        
-
-          
-          
-      </ng-template>
     </div>
+
+    
   </div>
 
 
@@ -48,20 +52,31 @@
     </table>
 
     <div class="description">
-      
 
-      <div *ngIf="event.max_participants == null || numberParticipants < event.max_participants; else max_atteint">
+      <div [ngSwitch]="true">
 
-        <p>{{event.description}}</p>
-      </div>
 
-      <ng-template #max_atteint>
-        <div class="error-message">
-          <svg width="60px" height="60px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.5-5.009c0-.867.659-1.491 1.491-1.491.85 0 1.509.624 1.509 1.491 0 .867-.659 1.509-1.509 1.509-.832 0-1.491-.642-1.491-1.509zM11.172 6a.5.5 0 0 0-.499.522l.306 7a.5.5 0 0 0 .5.478h1.043a.5.5 0 0 0 .5-.478l.305-7a.5.5 0 0 0-.5-.522h-1.655z"></path></g></svg>
-          <p>Nombre de participants maximum atteints</p>
+
+        <div *ngSwitchCase="!event.is_disponible">
+          <div class="error-message">
+            <svg width="60px" height="60px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.5-5.009c0-.867.659-1.491 1.491-1.491.85 0 1.509.624 1.509 1.491 0 .867-.659 1.509-1.509 1.509-.832 0-1.491-.642-1.491-1.509zM11.172 6a.5.5 0 0 0-.499.522l.306 7a.5.5 0 0 0 .5.478h1.043a.5.5 0 0 0 .5-.478l.305-7a.5.5 0 0 0-.5-.522h-1.655z"></path></g></svg>
+            <p>Événement indisponible</p>
+          </div>
         </div>
-        
-      </ng-template>
+
+        <div *ngSwitchCase="event.is_disponible && event.max_participants != null && numberParticipants >= event.max_participants">
+          <div class="error-message">
+            <svg width="60px" height="60px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.5-5.009c0-.867.659-1.491 1.491-1.491.85 0 1.509.624 1.509 1.491 0 .867-.659 1.509-1.509 1.509-.832 0-1.491-.642-1.491-1.509zM11.172 6a.5.5 0 0 0-.499.522l.306 7a.5.5 0 0 0 .5.478h1.043a.5.5 0 0 0 .5-.478l.305-7a.5.5 0 0 0-.5-.522h-1.655z"></path></g></svg>
+            <p>Nombre de participants maximum atteints</p>
+          </div>
+        </div>
+        <div *ngSwitchDefault>
+          <div class="description">
+            <p>{{event.description}}</p> 
+          </div>
+        </div>
+
+      </div>
 
       
       <!-- Si utilisateur non inscrit mais plus de places -->

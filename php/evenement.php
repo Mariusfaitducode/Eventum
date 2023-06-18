@@ -37,18 +37,18 @@ if(isset($postdata) && empty($postdata))
 
             $sql = "SELECT
                         image_cat
-                    FROM    
+                    FROM
                         categorie
                     WHERE
                         id_categorie = '$cat'";
-          
+
             $result_image=mysqli_query($mysqli,$sql);
             $row_image = $result_image->fetch_array();
-    
+
             $row['image'] = $row_image['image_cat'];
         }
-      
-        $data = [               
+
+        $data = [
                 "id_evenement" => $row['id_evenement'],
                 "id_createur" => $row['id_createur'],
                 "titre" => $row['titre'],
@@ -59,13 +59,14 @@ if(isset($postdata) && empty($postdata))
                 "heure" => $row['heure'],
                 "lieu" => $row['lieu'],
                 "is_public" => $row['is_public'],
-                "max_participants" => $row['max_participant']
+                "max_participants" => $row['max_participant'],
+                "is_disponible" => $row['is_disponible']
             ];
 
         echo json_encode($data);
 
     }else{
-        
+
         // Renvoi tous les événements
         $sql = "SELECT * FROM evenement";
         $result=mysqli_query($mysqli,$sql);
@@ -75,17 +76,17 @@ if(isset($postdata) && empty($postdata))
             if ($row['image'] == null) {
 
                 $cat = $row['id_categorie'];
-                
+
                 $sql = "SELECT
                             image_cat
-                        FROM    
+                        FROM
                             categorie
                         WHERE
                             id_categorie = '$cat'";
-              
+
                 $result_image=mysqli_query($mysqli,$sql);
                 $row_image = $result_image->fetch_array();
-    
+
                 $row['image'] = $row_image['image_cat'];
             }
 
@@ -101,13 +102,14 @@ if(isset($postdata) && empty($postdata))
                 "heure" => $row['heure'],
                 "lieu" => $row['lieu'],
                 "is_public" => $row['is_public'],
-                "max_participants" => $row['max_participant']
-            );                    
-            
+                "max_participants" => $row['max_participant'],
+                "is_disponible" => $row['is_disponible']
+            );
+
         }
         echo json_encode($data);
         }
-    }   
+    }
 
 
 ?>
