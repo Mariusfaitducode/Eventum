@@ -61,6 +61,8 @@ export class ShareDataService {
 
   public setSuccessProfil() {
     this.successProfile = true;
+    this.emitSuccess(this.successProfile);
+
 
     // Timer
     setTimeout(() => {

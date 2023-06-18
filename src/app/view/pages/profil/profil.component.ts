@@ -12,7 +12,7 @@ import { AuthentificationService } from 'src/app/model/services/authentification
 import { OnInit } from '@angular/core';
 import { UserService } from 'src/app/model/services/user/user.service';
 
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom , Subscription} from 'rxjs';
 import { EventService } from 'src/app/model/services/event/event.service';
 import { Router } from '@angular/router';
 import { ShareDataService } from 'src/app/model/services/share/share-data.service';
@@ -33,7 +33,8 @@ export class ProfilComponent {
 
   personnal_page: boolean = false;
 
-  public success: boolean = false;
+  success: boolean = false;
+  successSubscription!: Subscription;
 
   event_participate: Event[] = [];
   event_create: Event[] = [];
@@ -49,7 +50,16 @@ export class ProfilComponent {
   ) {}
 
   ngOnInit() {
+    this.successSubscription = this.shareService.success$.subscribe(
+      (success : boolean) => {
+        this.modifyProfil();
+      }
+    );
 
+  }
+
+  modifyProfil() {
+    console.log("MODIFIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
     const loggedIn: boolean = this.authService.isLoggedIn();
 
     //if (loggedIn)
@@ -105,13 +115,7 @@ export class ProfilComponent {
 
             //const relation1 = await this.service.getRelation(id, this.connectedUser.id_utilisateur).toPromise();
 
-            
-            
           });
-
-          
-
-          
           console.log("folllowed ="+this.followed); // Check if the user object is retrieved correctly
           console.log("folllowing ="+this.following); // Check if the user object is retrieved correctly
         }
@@ -123,8 +127,7 @@ export class ProfilComponent {
         // redirection vers la page hub
         this.router.navigateByUrl('hub');
       }
-      
-
+    
   }
 
   async loadRelationData() {

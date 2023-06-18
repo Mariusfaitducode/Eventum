@@ -42,12 +42,5 @@ export class EventSectionComponent {
     };
     this.router.navigate(['/event/'+ this.event.id_evenement + '/modifier'], navigationExtras);
   }
-
-  delete(){
-    const navigationExtras: NavigationExtras = {
-      queryParams: { 'id': this.event.id_evenement }
-    };
-    this.router.navigate(['/event/'+ this.event.id_evenement + '/confirmer'], navigationExtras);
-  }
 }
 

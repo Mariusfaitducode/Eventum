@@ -78,7 +78,6 @@ export class LoginComponent implements OnInit {
        
         setTimeout(() => {
           this.success = false;
-          this.error_message = "";
         }
         , 3000);
       }
