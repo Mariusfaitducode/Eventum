@@ -9,7 +9,7 @@
           <option *ngFor="let categorie of list_categorie" [value]="categorie.id_categorie">{{categorie.categorie}}</option>
         </select>
         <input type = "text" name="lieu" placeholder="Lieu" [(ngModel)]="lieu" [ngClass]="{ 'input-error': empty_location }">
-        <input type = "number" name="max_participants" placeholder="Nombre de participants maximum" [(ngModel)]="max_participants" [ngClass]="{ 'input-error': empty_max_participants }">
+        <input type = "number" name="max_participants" placeholder="Nombre de participants maximum" [(ngModel)]="max_participants">
         <br/>
 
         <input type="submit" class="button middle" value="Modifier" (click)="OnConfirm()"/>

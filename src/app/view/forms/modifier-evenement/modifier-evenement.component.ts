@@ -27,7 +27,7 @@ export class ModifierEvenementComponent implements OnInit{
     //public is_public: boolean = false
     public id_categorie: number = -1
     public id_user: number = 0
-    public max_participants: number = 0
+    public max_participants!: number
 
     // Verification des champs vides
     public empty_title: boolean = false;
@@ -36,7 +36,6 @@ export class ModifierEvenementComponent implements OnInit{
     public empty_hour: boolean = false;
     public empty_location: boolean = false;
     public empty_categorie: boolean = false;
-    public empty_max_participants: boolean = false;
 
     // Messages de succès/erreur
     public success: boolean = false;
@@ -141,15 +140,8 @@ export class ModifierEvenementComponent implements OnInit{
         this.empty_categorie = false;
       }
 
-      if(this.max_participants == 0 || this.max_participants == null){
-        this.empty_max_participants = true;
-      }else{
-        this.empty_max_participants = false;
-      }
-
-
       // Si tous les champs sont remplis
-      if(!this.empty_title && !this.empty_description && !this.empty_date && !this.empty_hour && !this.empty_location && !this.empty_categorie && !this.empty_max_participants){
+      if(!this.empty_title && !this.empty_description && !this.empty_date && !this.empty_hour && !this.empty_location && !this.empty_categorie){
         this.service.modifyEvent(this.event.id_evenement, this.titre, this.description, this.date, this.heure, this.lieu, this.id_categorie, this.id_user, this.max_participants).subscribe((data: any) => {
           this.success= data.success;
           this.error_message = data.message;
