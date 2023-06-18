@@ -83,7 +83,7 @@ if(isset($postdata) && empty($postdata))
             $row = $result->fetch_array();
             $id_notif = $row['id_notif'];
 
-            // on ajoute la notification à la table notification_new_participant
+            // on ajoute la notification à la table notification_change_evenement
             $sql = "INSERT INTO 
                         notification_change_evenement(id_notif, id_evenement)
                     VALUES
@@ -93,11 +93,13 @@ if(isset($postdata) && empty($postdata))
 
         }
 
-        // on supprime l'événement
-        $sql = "DELETE FROM 
-                evenement
-            WHERE
-                id_evenement = '$id_event'";
+        // on passe l'événement en non disponible
+        $sql = "UPDATE 
+                    evenement
+                SET
+                    is_disponible = '0'
+                WHERE
+                    id_evenement = '$id_event'";
 
         $result=mysqli_query($mysqli,$sql);
 

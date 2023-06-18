@@ -26,7 +26,7 @@ export class AddEventComponent implements OnInit{
   public id_categorie: number = -1
   public id_user: number = 0
   public selectedImage: File = new File([], "");
-  public max_participants: number = 0;
+  public max_participants!: number;
   
   // Récupération des catégories
   public list_categorie!: Categorie[]

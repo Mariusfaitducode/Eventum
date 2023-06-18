@@ -41,7 +41,7 @@ export class ModifierProfilComponent {
           this.shareService.setSuccessProfil();
           this.router.navigateByUrl('profil');
         } else {
-          this.error = true;
+          this.error = true;  
           this.error_message = data.message;
           setTimeout(() => {
             this.error = false;
