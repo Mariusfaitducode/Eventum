@@ -8,7 +8,7 @@ import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { ShareDataService } from 'src/app/model/services/share/share-data.service';
 import { NavigationExtras } from '@angular/router';
-import { Location } from '@angular/common';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-modifier-evenement',
@@ -49,7 +49,7 @@ export class ModifierEvenementComponent implements OnInit{
   
 
     //constructor
-    constructor(private service: EventService, private userService: UserService, private router: Router, private route: ActivatedRoute, private shareService: ShareDataService) {
+    constructor(private service: EventService, private zone: NgZone, private userService: UserService, private router: Router, private route: ActivatedRoute, private shareService: ShareDataService) {
       if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
         // redirection vers la page hub
         this.router.navigateByUrl('hub');
@@ -147,8 +147,8 @@ export class ModifierEvenementComponent implements OnInit{
           this.success= data.success;
           this.error_message = data.message;
           if(this.success){
-            this.shareService.setSuccessEvent();
-            this.router.navigate(['/event/' + this.event.id_evenement ]);
+            this.shareService.setSuccessModifyEvent();
+              this.router.navigate(['/event/' + this.event.id_evenement ]);
           }
       }
       );

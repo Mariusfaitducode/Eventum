@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Event } from '../../../model/classes/event/event';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,18 +6,22 @@ import { EventService } from 'src/app/model/services/event/event.service';
 import { User } from 'src/app/model/classes/user/user';
 import { UserService } from 'src/app/model/services/user/user.service';
 import { ShareDataService } from 'src/app/model/services/share/share-data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
-export class EventComponent {
+export class EventComponent implements OnInit{
   event!: Event;
   connectedUser!: User;
   numberParticipants!: number;
 
   isRegistered: boolean = false;
+
+  successSubscription!: Subscription;
+  success: boolean = false;
 
 
   constructor(
@@ -26,21 +30,26 @@ export class EventComponent {
     private userService: UserService,
     private router: Router,
     public shareService: ShareDataService
-    ) {}
+    ) {
+      
+    }
+
 
   ngOnInit() {
+    this.eventModify();
+    this.successSubscription = this.shareService.success$.subscribe(
+      (success : boolean) => {
+        this.eventModify();
+      }
+    );
+    
+  }
+
+  eventModify() {
     if(localStorage.getItem('token') == null){ // L'utilisateur n'est pas connecté
       // redirection vers la page hub
       this.router.navigateByUrl('hub');
     }
-
-    this.eventService.message$.subscribe((message)=> {
-      this.isRegistered = true;
-    });
-
-    this.eventService.message2$.subscribe((message)=> {
-      this.isRegistered = false;
-    });
 
     this.route.params.subscribe((params) => {
       const id = +params['id'];
@@ -73,5 +82,7 @@ export class EventComponent {
     });
   }
 
-
+  ngOnDestroy(): void {
+    this.successSubscription.unsubscribe();
+  }
 }
