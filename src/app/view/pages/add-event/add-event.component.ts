@@ -19,7 +19,7 @@ export class AddEventComponent implements OnInit{
   // Récupération des données du formulaire
   public titre: string = ""
   public description: string = ""
-  public date: Date = new Date()
+  public date!: Date;
   public heure: string=""
   public lieu: string=""
   //public is_public: boolean = false

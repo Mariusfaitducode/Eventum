@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Event } from 'src/app/model/classes/event/event';
 import { User } from 'src/app/model/classes/user/user';
 import { ShareDataService } from 'src/app/model/services/share/share-data.service';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-modifier-evenement',
@@ -171,7 +172,10 @@ export class ModifierEvenementComponent implements OnInit{
 
     }
 
-    public Delete(){
-      this.router.navigate(['/event/' + this.event.id_evenement + '/confirmer'], { queryParams: { id: this.event.id_evenement } });
+    delete(){
+      const navigationExtras: NavigationExtras = {
+        queryParams: { 'id': this.event.id_evenement }
+      };
+      this.router.navigate(['/event/'+ this.event.id_evenement + '/confirmer'], navigationExtras);
     }
 }

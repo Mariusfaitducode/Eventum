@@ -3,7 +3,6 @@
   <div [ngStyle]="{'background-image': 'url(/assets/' + event.image + ')'}" class="event-header">
 
     
-
     <div *ngIf="event.is_disponible == true">
 
       <div class="event-buttons">
@@ -29,6 +28,10 @@
               </ng-template>
           
         </ng-template>
+
+      <div *ngIf="event.id_createur == connectedUser.id_utilisateur; else no_creator">
+        <button class="blue-button middle" (click)="modifier()">Modifier</button>
+
       </div>
     </div>
 
