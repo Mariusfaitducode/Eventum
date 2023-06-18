@@ -33,13 +33,14 @@ if(isset($postdata) && empty($postdata))
                 AND 
                     ev.is_disponible=1
                 AND
-                    ev.id_utilisateur != '$id_user'";
+                    ev.id_createur != '$id_user'";
 
         $result=mysqli_query($mysqli,$sql);
 
-        if ($result != NULL) { 
 
-            while( $row = $result->fetch_array())
+        if ($result != null) { 
+
+            while($row = $result->fetch_array())
             {
 
                 $id_evenement = $row['id_evenement'];
