@@ -59,7 +59,7 @@ if(isset($postdata) && empty($postdata))
                     $result_image=mysqli_query($mysqli,$sql);
                     $row_image = $result_image->fetch_array();
 
-                    $row['image'] = $row_image['image_cat'];
+                    $row_event['image'] = $row_image['image_cat'];
                 }
 
 
