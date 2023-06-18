@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 18 juin 2023 à 18:06
+-- Généré le : dim. 18 juin 2023 à 19:13
 -- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.0.28
+-- Version de PHP : 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,7 +84,7 @@ INSERT INTO `evenement` (`id_evenement`, `id_createur`, `titre`, `id_categorie`,
 (54, 18, 'Petite marche', 24, 'On va aller faire un tour en forêt pour se vider la tête avant le final d\'IT45', NULL, '2023-06-24', '14:00:00', 'Belfort', 0, NULL, 1),
 (55, 19, 'Soirée karaoké', 15, 'Venez à l\'ABC pour un karaoké tous ensemble', NULL, '2023-06-22', '20:30:00', 'Belfort', 0, 50, 1),
 (56, 19, 'Marathon', 20, 'La ville de Belfort à l\'honneur d\'organiser son premier marathon !! Avis à tout les sportifs de la ville : n\'hésitez pas à nous rejoindre', NULL, '2023-07-02', '13:00:00', 'Belfort', 0, 150, 1),
-(57, 19, 'Inauguration du musée de Belfort', 19, 'La ville de Belfort ouvre son musée, venez nombreux à l\'inauguration', NULL, '2023-07-01', '15:00:00', 'Belfort', 0, NULL, 1);
+(57, 19, 'Ouverture musée', 19, 'La ville de Belfort ouvre son musée, venez nombreux pour son inauguration', NULL, '2023-07-01', '15:00:00', 'Belfort', 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,8 @@ INSERT INTO `inscription_evenement` (`id_relation`, `id_utilisateur`, `id_evenem
 (56, 16, 53),
 (57, 19, 55),
 (58, 19, 56),
-(59, 19, 57);
+(59, 19, 57),
+(61, 19, 52);
 
 -- --------------------------------------------------------
 
@@ -213,7 +214,18 @@ INSERT INTO `notifications` (`id_notif`, `id_utilisateur`, `date_notif`, `vue`, 
 (91, 19, '2023-06-18 17:30:09', 0, 'notif_change_event'),
 (92, 19, '2023-06-18 17:30:12', 0, 'notif_change_event'),
 (93, 19, '2023-06-18 17:30:17', 0, 'notif_change_event'),
-(94, 19, '2023-06-18 17:30:24', 0, 'notif_change_event');
+(94, 19, '2023-06-18 17:30:24', 0, 'notif_change_event'),
+(95, 19, '2023-06-18 18:11:26', 0, 'notif_change_event'),
+(96, 19, '2023-06-18 18:12:17', 0, 'notif_change_event'),
+(97, 19, '2023-06-18 18:13:03', 0, 'notif_change_event'),
+(98, 19, '2023-06-18 18:13:30', 0, 'notif_change_event'),
+(99, 19, '2023-06-18 18:13:39', 0, 'notif_change_event'),
+(100, 19, '2023-06-18 18:15:18', 0, 'notif_change_event'),
+(101, 15, '2023-06-18 18:22:43', 0, 'notif_event_participant'),
+(102, 15, '2023-06-18 18:26:00', 0, 'notif_event_participant'),
+(103, 18, '2023-06-18 18:27:04', 0, 'notif_event_participant'),
+(104, 18, '2023-06-18 18:28:15', 0, 'notif_event_participant'),
+(105, 18, '2023-06-18 18:28:18', 0, 'notif_event_participant');
 
 -- --------------------------------------------------------
 
@@ -237,7 +249,13 @@ INSERT INTO `notification_change_evenement` (`id_notif`, `id_evenement`) VALUES
 (91, 57),
 (92, 57),
 (93, 57),
-(94, 57);
+(94, 57),
+(95, 57),
+(96, 57),
+(97, 57),
+(98, 57),
+(99, 57),
+(100, 57);
 
 -- --------------------------------------------------------
 
@@ -314,8 +332,13 @@ CREATE TABLE `notification_new_participant` (
 INSERT INTO `notification_new_participant` (`id_notif`, `id_evenement`) VALUES
 (72, 52),
 (86, 52),
+(101, 52),
+(102, 52),
 (85, 53),
-(88, 53);
+(88, 53),
+(103, 54),
+(104, 54),
+(105, 54);
 
 -- --------------------------------------------------------
 
@@ -334,10 +357,12 @@ CREATE TABLE `preferences` (
 --
 
 INSERT INTO `preferences` (`id_utilisateur`, `id_categorie`, `preference_value`) VALUES
+(16, 24, 0),
 (16, 27, 1),
 (17, 23, 1),
 (17, 27, 1),
-(18, 23, 1);
+(18, 23, 1),
+(19, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -404,10 +429,10 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `pseudo`, `email`, `password`, `photo_profil`, `is_darkmode`, `role`, `token`) VALUES
 (15, 'Maurer', 'Gilles', 'gilles_mr', 'gilles.maurer@mail.fr', '$2y$10$G851079Ab4SCYxK6.X0EUeJaqavR4HxtY9LDHbRM7HOYDmdLMbEna', 'images/avatars/admin_avatar2.jpg', 0, NULL, 'QLh0zrA0K1QE5dL5ZQFzEF8tfCDawxBV6ajW07E'),
-(16, 'Diguat', 'Marius', 'SkateZen', 'marius.diguat@mail.fr', '$2y$10$ReWf9qxJ2REvnRXo4uz0HetAQCnsW5iGGoMkRYNb9neHu835jl8Rm', 'images/avatars/admin_avatar1.jpg', 0, NULL, 'qGlOSUsoxrKg3j67PQihmtyeYuuK9zJOYTWseOWngKo'),
+(16, 'Diguat', 'Marius', 'SkateZen', 'marius.diguat@mail.fr', '$2y$10$ReWf9qxJ2REvnRXo4uz0HetAQCnsW5iGGoMkRYNb9neHu835jl8Rm', 'images/avatars/admin_avatar1.jpg', 0, NULL, 'GXpaiCrRbltBORjx1fOTX7h9mBJrIJeQDEGv6kx4'),
 (17, 'Athane', 'Augustin', 'august2', 'augustin.athane@mail.fr', '$2y$10$9a9ROzrBiA/gOJwqgdWl1Onuq8ySwFvzbx2BqRVfWmxEIvqAjGUyC', 'images/avatars/admin_avatar4.jpg', 0, NULL, 'ibMQbUBf9mLhORIdBEU5jNaGxXsvpmdgNRthOYT8'),
-(18, 'Victor', 'Goudal', 'vitrolles', 'victor.goudal@mail.fr', '$2y$10$7fLOxzQ0UrM7DqeOJkprZ.a8r489YKVt4syqVdSUq5psCktOFvZzu', 'images/avatars/avatar5.jpg', 0, NULL, '0u8s9an2B7d0Qmem8UU4r1gbZcdcgp7x8J3Untsw'),
-(19, 'de Belfort', 'Mairie', 'mairie2belfort', 'mairie.belfort@mail.fr', '$2y$10$g9hngZBwukDGVaJpUsdh6eI497SIaaazUh0c8tpYrecF4oEcEN3be', 'images/avatars/avatar16.jpg', 0, NULL, 'onxmeDXAMIs56KQ4oQ1SrBb8MuAi9Hx6is9o4Rp9ZM');
+(18, 'Victor', 'Goudal', 'vitrolles', 'victor.goudal@mail.fr', '$2y$10$7fLOxzQ0UrM7DqeOJkprZ.a8r489YKVt4syqVdSUq5psCktOFvZzu', 'images/avatars/admin_avatar3.jpg', 0, NULL, '0u8s9an2B7d0Qmem8UU4r1gbZcdcgp7x8J3Untsw'),
+(19, 'de Belfort', 'Mairie', 'mairie2belfort', 'mairie.belfort@mail.fr', '$2y$10$g9hngZBwukDGVaJpUsdh6eI497SIaaazUh0c8tpYrecF4oEcEN3be', 'images/avatars/avatar16.jpg', 0, NULL, 'AlO3JrCdNNnLW4FnfSGnPAUScQYOybvVif23RF0o1M');
 
 --
 -- Index pour les tables déchargées
@@ -543,7 +568,7 @@ ALTER TABLE `evenement`
 -- AUTO_INCREMENT pour la table `inscription_evenement`
 --
 ALTER TABLE `inscription_evenement`
-  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_relation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT pour la table `message_groupe`
@@ -561,7 +586,7 @@ ALTER TABLE `message_prive`
 -- AUTO_INCREMENT pour la table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT pour la table `relation`
