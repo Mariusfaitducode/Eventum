@@ -14,7 +14,7 @@ export class AuthentificationService {
   //private secretKey = this.generateSecretKey();
 
   redirectUrl!: string;
-  baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
+  baseUrl: string = "https://mariusdiguat.fr/Eventum/backend/php";
 
   constructor(private httpClient: HttpClient) {
     this.loggedInStatus = this.isLoggedIn();

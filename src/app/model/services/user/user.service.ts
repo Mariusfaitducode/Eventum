@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 
 export class UserService {
   //redirectUrl!: string;
-  baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
-  baseUrl2: string = "http://localhost/eventum/Eventum_Angular/php/forum";
+  baseUrl: string = "https://mariusdiguat.fr/Eventum/backend/php";
+  baseUrl2: string = "https://mariusdiguat.fr/Eventum/backend/php/forum";
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 

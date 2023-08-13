@@ -9,7 +9,7 @@ import { Event } from '../../classes/event/event';
 })
 export class SearchService {
 
-  baseUrl: string = "http://localhost/eventum/Eventum_Angular/php/search";
+  baseUrl: string = "https://mariusdiguat.fr/Eventum/backend/php/search";
 
   constructor(private httpClient: HttpClient) { }
 

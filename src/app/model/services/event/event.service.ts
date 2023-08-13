@@ -12,7 +12,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class EventService {
   redirectUrl!: string;
-  baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
+  baseUrl: string = "https://mariusdiguat.fr/Eventum/backend/php";
 
   private messageSource = new BehaviorSubject<string>('');
   message$ = this.messageSource.asObservable();

@@ -7,7 +7,7 @@ import { Notif } from '../../classes/notif/notif';
   providedIn: 'root'
 })
 export class NotifService {
-  baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
+  baseUrl: string = "https://mariusdiguat.fr/Eventum/backend/php";
 
   constructor(private httpClient: HttpClient) { }
 

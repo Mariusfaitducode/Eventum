@@ -12,7 +12,7 @@ import { User } from './model/classes/user/user';
 
 export class ApiService {
     redirectUrl!: string;
-    baseUrl: string = "http://localhost/eventum/Eventum_Angular/php";
+    baseUrl: string = "https://mariusdiguat.fr/Eventum/backend/php";
 
     @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 

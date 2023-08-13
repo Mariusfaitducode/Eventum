@@ -9,8 +9,8 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class MessagerieService {
-  baseUrl: string = "http://localhost/eventum/Eventum_Angular/php/messagerie";
-  baseUrl2: string = "http://localhost/eventum/Eventum_Angular/php/forum";
+  baseUrl: string = "https://mariusdiguat.fr/Eventum/backend/php/messagerie";
+  baseUrl2: string = "https://mariusdiguat.fr/Eventum/backend/php/forum";
 
   private messageSource = new BehaviorSubject<string>('');
   message$ = this.messageSource.asObservable();
