@@ -37,6 +37,7 @@ if(isset($postdata) && empty($postdata))
 
         $result=mysqli_query($mysqli,$sql);
 
+        //Donne la bonne image pour chaque événement
 
         if ($result != null) { 
 
@@ -87,15 +88,12 @@ if(isset($postdata) && empty($postdata))
             }
         }
 
-        //Récupère les événements créés par l'utilisateur et qui ont le mois et l'année demandés
         $sql = "SELECT 
                     * 
                 FROM 
                     evenement 
                 WHERE 
-                    id_createur = '$id_user'
-                AND 
-                    is_disponible=1";
+                    id_createur = '$id_user'";
 
         $result=mysqli_query($mysqli,$sql);
 
