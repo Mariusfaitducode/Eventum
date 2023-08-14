@@ -91,12 +91,16 @@ export class ForumComponent implements OnInit, AfterViewChecked {
   }
 
   sendMessage() {
-    this.service.sendMessagesForEvent(this.connectedUser.id_utilisateur, this.event.id_evenement, this.message).subscribe((data: boolean) => {
-      console.log(data);
-      this.service.sendForumObservable('message');
-    });
+
+    if (this.message != ""){
+      this.service.sendMessagesForEvent(this.connectedUser.id_utilisateur, this.event.id_evenement, this.message).subscribe((data: boolean) => {
+        console.log(data);
+        this.service.sendForumObservable('message');
+      });
+      
+      this.message = "";
+    }
     
-    this.message = "";
   }
 
   scrollToBottom() {

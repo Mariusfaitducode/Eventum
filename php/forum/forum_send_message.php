@@ -32,29 +32,29 @@ if(isset($postdata) && empty($postdata))
       $message = "";
     }
     
-    // Préparation de la requête SQL
-        $sql = "INSERT INTO 
-                    message_groupe (id_utilisateur_envoyeur, id_evenement, date_envoi, contenu)
-                VALUES 
-                    (?, ?, CURRENT_TIMESTAMP, ?)";
+  // Préparation de la requête SQL
+    $sql = "INSERT INTO 
+                message_groupe (id_utilisateur_envoyeur, id_evenement, date_envoi, contenu)
+            VALUES 
+                (?, ?, CURRENT_TIMESTAMP, ?)";
 
-        // Utilisation d'une requête préparée
-        $stmt = mysqli_prepare($mysqli, $sql);
-        mysqli_stmt_bind_param($stmt, "iis", $id_sender, $id_evenement, $message);
+    // Utilisation d'une requête préparée
+    $stmt = mysqli_prepare($mysqli, $sql);
+    mysqli_stmt_bind_param($stmt, "iis", $id_sender, $id_evenement, $message);
 
-        // Exécution de la requête
-        $result = mysqli_stmt_execute($stmt);
+    // Exécution de la requête
+    $result = mysqli_stmt_execute($stmt);
 
-        if ($result) {
-            // Enregistrement réussi
-            echo json_encode(true);
-        } else {
-            // Erreur lors de l'enregistrement
-            echo json_encode(false);
-        }
+    if ($result) {
+        // Enregistrement réussi
+        echo json_encode(true);
+    } else {
+        // Erreur lors de l'enregistrement
+        echo json_encode(false);
+    }
 
-        // Fermeture du statement
-        mysqli_stmt_close($stmt);
+    // Fermeture du statement
+    mysqli_stmt_close($stmt);
 
 
     // Arrêter l'exécution ultérieure
