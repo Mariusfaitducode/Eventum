@@ -26,30 +26,35 @@ if(isset($postdata) && empty($postdata))
     $id_evenement = SecurizeString_ForSQL($_GET['id_evenement']);
 
     if (!empty($_GET['message'])){
-      $message = SecurizeString_ForSQL($_GET['message']);
+      $message = $_GET['message'];
     }
     else {
       $message = "";
     }
     
-    
+    // Préparation de la requête SQL
+        $sql = "INSERT INTO 
+                    message_groupe (id_utilisateur_envoyeur, id_evenement, date_envoi, contenu)
+                VALUES 
+                    (?, ?, CURRENT_TIMESTAMP, ?)";
 
-    // Insertion des données dans la base de données des messages
-    $sql = "INSERT INTO 
-                message_groupe (id_utilisateur_envoyeur, id_evenement, date_envoi, contenu)
-            VALUES 
-                ('$id_sender', '$id_evenement', CURRENT_TIMESTAMP, '$message')";
+        // Utilisation d'une requête préparée
+        $stmt = mysqli_prepare($mysqli, $sql);
+        mysqli_stmt_bind_param($stmt, "iis", $id_sender, $id_evenement, $message);
 
-    $result = mysqli_query($mysqli, $sql);
+        // Exécution de la requête
+        $result = mysqli_stmt_execute($stmt);
 
+        if ($result) {
+            // Enregistrement réussi
+            echo json_encode(true);
+        } else {
+            // Erreur lors de l'enregistrement
+            echo json_encode(false);
+        }
 
-    if ($result) {
-      // Enregistrement réussi
-      echo json_encode(true);
-    } else {
-      // Erreur lors de l'enregistrement
-      echo json_encode(false);
-    }
+        // Fermeture du statement
+        mysqli_stmt_close($stmt);
 
 
     // Arrêter l'exécution ultérieure

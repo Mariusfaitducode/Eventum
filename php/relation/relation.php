@@ -24,14 +24,23 @@ if(isset($postdata) && empty($postdata))
         $sql = "SELECT * FROM relation WHERE id_suiveur = '$id_1' AND id_suivie = '$id_2'";
 
         $result=mysqli_query($mysqli,$sql);
+
+        
         $row = $result->fetch_array();
-      
-        $data = [               
+
+        if ($row){
+            $data = [               
                 "id_1" => $row['id_suiveur'],
                 "id_2" => $row['id_suivie'],
                 "statut" => $row['statut']
             ];
-
+        }
+            
+            
+        
+        else{
+            $data = [];
+        }
         echo json_encode($data);
 
     } 
