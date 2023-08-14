@@ -16,7 +16,8 @@
 
   /* Color orange */
   --orange-00: #fffafa;
-  --orange-0: #eed8d8;
+  --orange-0: #fde8e8;
+  --orange-1: #eed8d8;
 
   /* Color violet */
 
@@ -49,6 +50,7 @@
 
   /* Color gray */
 
+  --lightgray-00: #ececec;
   --lightgray-0: #dfdddd;
   --lightgray-01: #ccc;
   --lightgray-1: #b3b3b3;

@@ -10,8 +10,17 @@
     justify-content: center;
     align-items: center;
 
-    background-color: var(--orange-00);
+    background-color: var(--orange-0);
+
+    cursor:pointer;
     
+}
+
+.viewed{
+  border: none;
+ 
+
+  background-color: var(--white-0);
 }
 
 .no-change{
@@ -33,8 +42,9 @@
     height: 75px;
 }
 
-.notification:hover{
-  background-color: var(--orange-0);
+.noViewed:hover{
+  
+  background-color: var(--orange-1);
 }
 
 .notification-content img{

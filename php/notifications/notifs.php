@@ -70,6 +70,23 @@ if(isset($postdata) && empty($postdata))
         }
         echo json_encode($data);
     }
+    // Si on veut marquer une notification comme vue
+    else if (isset($_GET['id_notif'])){
+
+        $id_notif = $_GET['id_notif'];
+        
+        $sql = "UPDATE notifications SET vue = 1 WHERE id_notif = '$id_notif'";
+
+        $result=mysqli_query($mysqli,$sql);
+
+        if ($result){
+            echo json_encode(true);
+        }
+    }
+    // Si on veut marquer comme vue toutes les notifications message
+    else if (isset($_GET['id_message_user'])){
+
+    }
 }
 
 ?>

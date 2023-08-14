@@ -47,4 +47,16 @@ export class NotifService {
     }));
   }
 
+  public changeNotifToViewed(id_notif: number){
+    return this.httpClient.get<boolean>(this.baseUrl + '/notifications/notifs.php?id_notif=' + id_notif).pipe(map(is_correct => {
+      return is_correct;
+    }));
+  }
+
+  public changeMessageNotifToViewed(id_user: number, id_message_user: number){
+    return this.httpClient.get<boolean>(this.baseUrl + '/notifications/notifs.php?id_message_user=' + id_message_user + '&user='+ id_user).pipe(map(is_correct => {
+      return is_correct;
+    }));
+  }
+
 }

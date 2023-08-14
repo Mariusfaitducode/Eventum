@@ -59,6 +59,8 @@ export class NotifPageComponent {
 
             // 'notif_mp','notif_mpg','notif_friend','notif_event','notif_event_participant'
 
+            //Récupère contenu notif en fonction du type
+
             switch (notif.type_notif) {
               case "notif_mp":
 
@@ -163,6 +165,8 @@ export class NotifPageComponent {
   
   }
 
+  // fonction pour déterminer si on doit afficher ou non la notif
+
   showNotif(notif: Notif): boolean {
 
     if (notif.content == null) {
@@ -175,23 +179,27 @@ export class NotifPageComponent {
 
         for (let not of this.notifs){
 
-          count++;
-
+          //Bien un message
           if (not.content != null && not.type_notif == "notif_mp"){
+
+            //Bien le bon correspondant
             if(notif.content.id_utilisateur == not.content.id_utilisateur ){
 
-              if (this.notifs.indexOf(not) < this.notifs.indexOf(notif)){
-                return false;
+              if (not.vue == false){
+                count++;
               }
-              else{
-                notif.count = count;
-                return true;
+
+              if (notif.date_notif < not.date_notif){
+                return false;
               }
             }
           }
         }
       
+        notif.count = count;
         return true;
+
+
       case "notif_mpg":
         return true;
       case "notif_friend":

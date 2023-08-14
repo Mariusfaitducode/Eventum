@@ -1,10 +1,10 @@
 
 
-<div class="notification">
+<div class="notification" [ngClass]="{viewed: notif.vue == true, noViewed: notif.vue == false }">
 
     <div [ngSwitch]="true" class="no-change" >
 
-        <div *ngSwitchCase="notif.type_notif == 'notif_mp'" class="notification-content" [routerLink]="'/messages/' + notif.content.id_utilisateur">
+        <div *ngSwitchCase="notif.type_notif == 'notif_mp'" class="notification-content" (click)="viewedNotif()"  [routerLink]="'/messages/' + notif.content.id_utilisateur">
 
             <div class="notif-infos">
               <img src="/assets/{{notif.content.photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
@@ -25,7 +25,7 @@
             <div>new message groupe</div>
         </div>
 
-        <div *ngSwitchCase="notif.type_notif == 'notif_friend'" class="notification-content" [routerLink]="'/profil/' + notif.content.id_utilisateur">
+        <div *ngSwitchCase="notif.type_notif == 'notif_friend'" class="notification-content" (click)="viewedNotif()" [routerLink]="'/profil/' + notif.content.id_utilisateur">
 
             <div class="notif-infos">
                 <img src="/assets/{{notif.content.photo_profil}}" width="55px" height="55px" alt="Avatar" class="avatar">
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div *ngSwitchCase="notif.type_notif == 'notif_change_event'" class="notification-content"  [routerLink]="'/event/' + notif.content.id_evenement">
+        <div *ngSwitchCase="notif.type_notif == 'notif_change_event'" class="notification-content" (click)="viewedNotif()" [routerLink]="'/event/' + notif.content.id_evenement">
 
           <div class="notif-infos">
             <img src="/assets/{{notif.content.image}}" width="55px" height="55px" alt="Avatar" class="avatar">
@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <div *ngSwitchCase="notif.type_notif == 'notif_event_participant'" class="notification-content" [routerLink]="'/event/' + notif.content.id_evenement">
+        <div *ngSwitchCase="notif.type_notif == 'notif_event_participant'" class="notification-content" (click)="viewedNotif()" [routerLink]="'/event/' + notif.content.id_evenement">
 
 
           <div class="notif-infos">
