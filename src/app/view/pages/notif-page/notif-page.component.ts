@@ -19,6 +19,8 @@ export class NotifPageComponent {
   user!: User;
   notifs: Notif[] = [];
 
+  pastille: boolean = false;
+
 
   constructor(
     private userService: UserService,
@@ -198,6 +200,7 @@ export class NotifPageComponent {
 
         if (count > 0){
           notif.count = count;
+          
           return true;
         }
         else{
@@ -210,6 +213,7 @@ export class NotifPageComponent {
       case "notif_friend":
         for (let not of this.notifs){
 
+          //Bien notif "relation" et même utilisateur
           if (not.content != null && not.type_notif == "notif_friend"){
             if(notif.content.id_utilisateur == not.content.id_utilisateur ){
 
@@ -217,6 +221,7 @@ export class NotifPageComponent {
                 return false;
               }
               else{
+                
                 return true;
               }
             }
@@ -273,4 +278,11 @@ export class NotifPageComponent {
 
     return duration;
   }
+
+  // adaptPastille(notif: Notif){
+
+  //   if (this.pastille == false){
+  //     this.pastille = !notif.vue;
+  //   }
+  // }
 }

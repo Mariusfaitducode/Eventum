@@ -18,23 +18,55 @@ export class NotificationComponent {
 
   viewedNotif(){
 
-    if (this.notif.vue == false){
 
-      // console.log("VIEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
-      // console.log("view == 1 ?")
-      // console.log(this.notif)
+    switch (this.notif.type_notif) {
+      case "notif_mp":
 
-      if (this.notif.type_notif == "notif_mp"){
+        this.notifService.changeMessageNotifToViewed(this.notif.id_utilisateur, this.notif.content.id_utilisateur).subscribe({});
+
+        break;
         
-        this.notifService.changeMessageNotifToViewed(this.notif.id_utilisateur, this.notif.content.id_utilisateur).subscribe({
 
-        });
-      }
 
-      this.notifService.changeNotifToViewed(this.notif.id_notif).subscribe({
+      // case "notif_mpg":
 
-      });
+      //   break;
+        
+      case "notif_friend":
+
+        this.notifService.changeFriendNotifToViewed(this.notif.id_utilisateur, this.notif.content.id_utilisateur).subscribe({});
+        break; 
+
+      case "notif_change_event":
+
+        this.notifService.changeEventNotifToViewed(this.notif.id_utilisateur, this.notif.content.id_evenement).subscribe({});
+
+        break;
+
+       
+
+      // case "notif_event_participant":
+
+
+      //   break;
+
+      default:
+        this.notifService.changeNotifToViewed(this.notif.id_notif).subscribe({});
+        break;
+        
     }
+
+    // if (this.notif.vue == false){
+
+    //   // console.log("VIEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+    //   // console.log("view == 1 ?")
+    //   // console.log(this.notif)
+
+      
+    //   this.notifService.changeNotifToViewed(this.notif.id_notif).subscribe({
+
+    //   });
+    // }
 
   }
 }

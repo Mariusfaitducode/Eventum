@@ -70,42 +70,42 @@ if(isset($postdata) && empty($postdata))
         }
         echo json_encode($data);
     }
-    // Si on veut marquer une notification comme vue
-    else if (isset($_GET['id_notif'])){
+    // // Si on veut marquer une notification comme vue
+    // else if (isset($_GET['id_notif'])){
 
-        $id_notif = $_GET['id_notif'];
+    //     $id_notif = $_GET['id_notif'];
         
-        $sql = "UPDATE notifications SET vue = 1 WHERE id_notif = '$id_notif'";
+    //     $sql = "UPDATE notifications SET vue = 1 WHERE id_notif = '$id_notif'";
 
-        $result=mysqli_query($mysqli,$sql);
+    //     $result=mysqli_query($mysqli,$sql);
 
-        if ($result){
-            echo json_encode(true);
-        }
-    }
-    // Si on veut marquer comme vue toutes les notifications message
-    else if (isset($_GET['id_message_user']) && isset($_GET['user'])){
+    //     if ($result){
+    //         echo json_encode(true);
+    //     }
+    // }
+    // // Si on veut marquer comme vue toutes les notifications message
+    // else if (isset($_GET['id_message_user']) && isset($_GET['user'])){
 
-        $id_user = $_GET['user'];
-        $id_message_user = $_GET['id_message_user'];
+    //     $id_user = $_GET['user'];
+    //     $id_message_user = $_GET['id_message_user'];
         
-        $sql = "UPDATE notifications n
-                SET n.vue = 1
-                WHERE n.id_notif IN (
-                    SELECT nm.id_notif
-                    FROM notification_message_prive nm
-                    INNER JOIN message_prive m ON nm.id_message = m.id_message
-                    WHERE (m.id_utilisateur_envoyeur = $id_message_user AND m.id_utilisateur_destinataire = $id_user)
+    //     $sql = "UPDATE notifications n
+    //             SET n.vue = 1
+    //             WHERE n.id_notif IN (
+    //                 SELECT nm.id_notif
+    //                 FROM notification_message_prive nm
+    //                 INNER JOIN message_prive m ON nm.id_message = m.id_message
+    //                 WHERE (m.id_utilisateur_envoyeur = $id_message_user AND m.id_utilisateur_destinataire = $id_user)
                
-        )";
+    //     )";   
 
-        $result=mysqli_query($mysqli,$sql);
+    //     $result=mysqli_query($mysqli,$sql);
 
-        if ($result){
-            echo json_encode(true);
-        }
+    //     if ($result){
+    //         echo json_encode(true);
+    //     }
 
-    }
+    // }
 }
 
 ?>
