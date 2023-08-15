@@ -84,7 +84,26 @@ if(isset($postdata) && empty($postdata))
         }
     }
     // Si on veut marquer comme vue toutes les notifications message
-    else if (isset($_GET['id_message_user'])){
+    else if (isset($_GET['id_message_user']) && isset($_GET['user'])){
+
+        $id_user = $_GET['user'];
+        $id_message_user = $_GET['id_message_user'];
+        
+        $sql = "UPDATE notifications n
+                SET n.vue = 1
+                WHERE n.id_notif IN (
+                    SELECT nm.id_notif
+                    FROM notification_message_prive nm
+                    INNER JOIN message_prive m ON nm.id_message = m.id_message
+                    WHERE (m.id_utilisateur_envoyeur = $id_message_user AND m.id_utilisateur_destinataire = $id_user)
+               
+        )";
+
+        $result=mysqli_query($mysqli,$sql);
+
+        if ($result){
+            echo json_encode(true);
+        }
 
     }
 }

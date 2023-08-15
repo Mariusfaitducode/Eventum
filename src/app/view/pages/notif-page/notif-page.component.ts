@@ -195,9 +195,14 @@ export class NotifPageComponent {
             }
           }
         }
-      
-        notif.count = count;
-        return true;
+
+        if (count > 0){
+          notif.count = count;
+          return true;
+        }
+        else{
+          return false;
+        }
 
 
       case "notif_mpg":

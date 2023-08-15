@@ -25,7 +25,8 @@ export class NotificationComponent {
       // console.log(this.notif)
 
       if (this.notif.type_notif == "notif_mp"){
-        this.notifService.changeMessageNotifToViewed(this.notif.id_utilisateur, this.notif.content).subscribe({
+        
+        this.notifService.changeMessageNotifToViewed(this.notif.id_utilisateur, this.notif.content.id_utilisateur).subscribe({
 
         });
       }
