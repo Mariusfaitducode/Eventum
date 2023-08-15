@@ -91,6 +91,14 @@
   margin-left: 10px;
 }
 
+.pastille{
+  background-color: var(--purple-1);
+
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
 
 /* Contenu bar de navigation */
 
@@ -143,4 +151,13 @@
     margin: 0 0 0 20px;
     transition: transform 0.2s ease-in-out;
   }
+
+  .pastille{
+    position: absolute;
+
+    margin-left: 35px;
+    margin-top: 10px;
+  }
 }
+
+
